@@ -1,2 +1,3 @@
 # nbdev.jl
-Future home for porting nbdev to julia
+☠️ Currently under heavy development and I am introducing breaking changes almost daily.
+
