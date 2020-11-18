@@ -154,7 +154,7 @@ function _load_notebook(filename::String, marker::String)
 		collected_nuclei=nuclei(collect_nuclei(notebook, marker))
 		
 		if marker=="md"
-			Notebook(collected_nuclei)
+			notebook
 		else
 			Nb(collected_nuclei, filename)
 		end
@@ -182,7 +182,7 @@ k="01_export.jl"
 
 # ╔═╡ 4c511e5e-1771-11eb-3c8e-5785e7399d70
 #export
-strip=(x,y) -> replace(x, y=>"")
+strip=(x::String,y) -> replace(x, y=>"")
 
 # ╔═╡ 7b999f90-1775-11eb-031e-69d461ec4150
 "module $(uppercasefirst(strip(strip(k, r"[0-9_]"), r".jl")))"
@@ -225,6 +225,31 @@ save_nb(testnb, "../testpath")
 # ╔═╡ b9a15e60-0e13-11eb-199d-f50a49f5bc44
 md"we will read files in the curren tpath whihc should be the /nbs folder in your project. Thie will host all your notebooks"
 
+# ╔═╡ cdada98e-0e13-11eb-30aa-1777efffb181
+#export
+begin
+function readfilenames()
+	files=[]
+	for file in readdir()
+			if endswith(file, ".jl")
+				push!(files,file)
+			end
+			#if getfile_extension(file)== ".jl"
+			#	push!(files,file)
+			#end
+	end
+	files
+end
+
+function readfilenames(dir::String)
+	files=cd(readdir, dir)
+	files
+end
+end
+
+# ╔═╡ 9b436180-177c-11eb-1c9a-ffbac62c95df
+readfilenames()
+
 # ╔═╡ e46146c0-0eb2-11eb-0c7f-df5be4faaf93
 function show_output(file_path::String, file::String)
 	if isfile(file_path)
@@ -250,28 +275,6 @@ end
 function getfile_extension(filename)
     return filename[findlast(isequal('.'),filename):end]
 end
-
-# ╔═╡ cdada98e-0e13-11eb-30aa-1777efffb181
-#export
-begin
-function readfilenames()
-	files=[]
-	for file in readdir()
-			if getfile_extension(file)== ".jl"
-				push!(files,file)
-			end
-	end
-	files
-end
-
-function readfilenames(dir::String)
-	files=cd(readdir, dir)
-	files
-end
-end
-
-# ╔═╡ 9b436180-177c-11eb-1c9a-ffbac62c95df
-readfilenames()
 
 # ╔═╡ 06649ce0-177d-11eb-2092-d7160725252a
  getfile_extension("test.jl")

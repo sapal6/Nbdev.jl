@@ -26,6 +26,7 @@ import Pluto.PlutoRunner
 
 # ╔═╡ bcb831c0-0e07-11eb-3958-4b88811cfae8
 #export
+#TODO:how toclean the workspace
 function execute_code(notebook::Notebook)
 	fakeserver=ServerSession()
 	fakeclient = ClientSession(:fake, nothing)

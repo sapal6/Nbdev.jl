@@ -3,6 +3,9 @@
 
 module Documenter
 #export
+using Markdown
+
+#export
 using ReusePatterns
 
 #export
@@ -15,6 +18,9 @@ include("../src/Export.jl")
 end
 
 #export
+import Pluto: Notebook, Cell
+
+#export
 load_nb=Export.load_nb
 
 #export
@@ -24,15 +30,22 @@ include("../src/ConfigReader.jl")
 include("../src/CodeRunner.jl")
 
 #export
-#TODO:reusepattrens behaves weirdly in pluyto notebook need to fix
-#for now just restart the notebook
 begin
-struct Journal
-	notebook::Export.Nb
-	codeWithOp::String
+Base.@kwdef mutable struct Section
+	line::String=""
 end
 	
-@forward((Journal, :codeWithOp),Export.Nb)
+Section(line)=Section(line=line)
+end
+
+#export
+begin
+struct Page
+	sections::Array{Section,1}
+    name::AbstractString
+end
+	
+Page(sections, path)=Page(sections=sections, path=path)
 end
 
 #export
@@ -62,35 +75,114 @@ function run_and_update_nb(file::AbstractString)
 end
 
 #export
-function findExampleChunks(code_chunk)
-	if .!startswith(code_chunk, "md")
-		return "$code_chunk\n"
+begin
+function stitchCode(cell::Cell)
+	#cleanedCode=Export.strip(Export.strip(cell.code,"\n"), "\n")
+	#string("<p><code>",cleanedCode,cell.output_repr,"</code></p>\n")
+	string("```","\n$(cell.code)\n","\n$(cell.output_repr)\n","```\n")
+end
+
+function stitchCode(cellop::AbstractString)
+	#cleanedop=Export.strip(Export.strip(cellop,"\n"), "\n")
+	#string("<p><code>",cleanedop,"</code></p>\n")
+	string("```","\n$cellop\n","```\n")
+end
+end
+
+#export
+grabFuncSig=(pat, fdesc) -> match(pat, fdesc).match
+
+#export
+begin
+pat4func=r"[a-zA-Z]+\([^\)]*\)(\.[^\)]*\))?"
+pat4anonymfunc = r"\([^\)]*\)(\.[^\)]*\))?"
+end
+
+#export
+function showdDoc(fname, args...)
+	fdesc=string(methods(fname).ms[1])
+	fsig=grabFuncSig(pat4func, fdesc)
+	if fsig==nothing
+		return grabFuncSig(pat4anonymfunc, fdesc)
 	else
-		return ""
+		return fsig
 	end
 end
 
 #export
-function collateExampleChunks(code_cells::Array)
-	return join(map(code_chunk->findExampleChunks(code_chunk), code_cells))
+function createPage(filename::AbstractString, notebook::Notebook)
+	sections=Section[]
+	
+	for cell in notebook.cells
+		
+		if cell.errored
+			error("Build stopped. Seems like the code $cell.code has an error")
+			break
+	    end
+		
+	    if startswith(cell.code, "md")
+			push!(sections, Section(cell.output_repr))
+		elseif !startswith(cell.code, "#export") && !startswith(cell.code, "#hide")
+			if occursin(cell.code, "showDoc")
+				stitched_code=stitchCode(cell.output_repr)
+				push!(sections, Section(stitched_code))
+			else
+				stitched_code=stitchCode(cell)
+			    push!(sections, Section(stitched_code))
+			end
+		end
+	end
+	
+	Page(sections, filename)
 end
 
 #export
-function collateMdChunks(code_cells::Array)
-	return [md_chunk for md_chunk in code_cells if startswith(md_chunk, "md")]
+begin
+const _header = "<html>"
+const _footer = "</html>"
 end
 
 #export
-function collateChunksForDoc(file::String)
-	code_cells = collect_codecells(file)
-	vcat(collateMdChunks(code_cells::Array), collateExampleChunks(code_cells))
+md2html(md)=Markdown.html(md)
+
+#export
+begin
+	
+function save_page(io, page)
+    #println(io, _header)
+    println(io, "")
+		
+	pageHeading=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
+	heading2md=md"# $pageHeading"
+		
+    println(io, md2html(heading2md))
+		
+	for section in page.sections
+			println(io, section.line*"\n")
+    end
+		
+	#print(io, _footer)	
+end
+
+function save_page(page::Page, path::String)
+	file_name=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
+	open(joinpath(path, file_name*".md"), "w") do io
+        save_page(io, page)
+    end
+end
 end
 
 #export
-function export2MD()
-	config=read_conf("../settings.ini")
-	files=[file for file in readfilenames() if getfile_extension(file)== ".jl"]
-	export_content(files, "../docs")
+begin
+function export2html(file::String, path::String)
+	notebook=run_and_update_nb(joinpath("../nbs",file))
+	page=createPage(file, notebook)
+	save_page(page, path)
+end
+	
+export2html(files::AbstractVector, path::String)=map(file->export2html(file, path), files)
+	
+export2html()=export2html(Export.readfilenames(), "../docs")
 end
 
 end

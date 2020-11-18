@@ -93,7 +93,7 @@ function _load_notebook(filename::String, marker::String)
 		collected_nuclei=nuclei(collect_nuclei(notebook, marker))
 		
 		if marker=="md"
-			Notebook(collected_nuclei)
+			notebook
 		else
 			Nb(collected_nuclei, filename)
 		end
@@ -102,7 +102,7 @@ end
 end
 
 #export
-strip=(x,y) -> replace(x, y=>"")
+strip=(x::String,y) -> replace(x, y=>"")
 
 #export
 begin
@@ -132,9 +132,12 @@ begin
 function readfilenames()
 	files=[]
 	for file in readdir()
-			if getfile_extension(file)== ".jl"
+			if endswith(file, ".jl")
 				push!(files,file)
 			end
+			#if getfile_extension(file)== ".jl"
+			#	push!(files,file)
+			#end
 	end
 	files
 end

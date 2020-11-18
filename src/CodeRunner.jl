@@ -9,6 +9,7 @@ import Pluto: Notebook, Cell, Configuration, Notebook, ServerSession, ClientSess
 import Pluto.PlutoRunner
 
 #export
+#TODO:how toclean the workspace
 function execute_code(notebook::Notebook)
 	fakeserver=ServerSession()
 	fakeclient = ClientSession(:fake, nothing)
