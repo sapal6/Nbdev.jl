@@ -1,4 +1,5 @@
 **Documentation**
 
   * [Introduction](README.md)
-  * [Details](docs/Documenter.md)
+  * [Documenter](docs/Documenter.md)
+

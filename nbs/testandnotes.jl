@@ -14,10 +14,7 @@ test(num)= md"$num is test"
 test(1)
 
 # ╔═╡ f01369b0-1369-11eb-3645-a56195e645b3
-import Pluto: load_notebook
-
-# ╔═╡ f9bb5630-1369-11eb-2e71-ddf7bc8a1092
-d=load_notebook("testandnotes.jl")
+#import Pluto: load_notebook
 
 # ╔═╡ 71f404e2-13c3-11eb-225a-4360c6cd9f0a
 md"the following code does the following
@@ -72,9 +69,6 @@ testop=PlutoRunner.format_output(eval(:($(Expr(:toplevel, :(#= testandnotes.jl#=
 # ╔═╡ b8ea1d80-1cd3-11eb-0986-b137f832276d
 print(testop)
 
-# ╔═╡ 2809dda2-1ada-11eb-00f7-9b9142026806
-d.cells[1].cell_id
-
 # ╔═╡ b13c70d0-1cc7-11eb-3a56-a7ba1947c650
 #testserver.options.evaluation.workspace_use_distributed = false
 
@@ -110,6 +104,59 @@ update_run!(testserver, notebook, notebook.cells[1])
 # ╔═╡ 4b7f9290-1ccc-11eb-1f63-2fae40ea29b5
 notebook.cells[1].output_repr
 
+# ╔═╡ 0d868a50-2fb1-11eb-30a9-03af7cba588e
+begin
+	
+const _cell_id_delimiter = "# ╔═╡ "
+const _cell_suffix = "\n\n"
+	
+function load_notebook(io, path)
+    #TODO: ignore this
+	firstline = String(readline(io))
+    collected_cells = []
+		
+	# ignore first bits of file
+    readuntil(io, _cell_id_delimiter)
+
+    last_read = ""
+    while !eof(io)
+        cell_id_str = String(readline(io))
+        if cell_id_str == "Cell order:"
+            break
+        else
+            #cell_id = UUID(cell_id_str)
+            code_raw = String(readuntil(io, _cell_id_delimiter))
+            # change Windows line endings to Linux
+            code_normalised = replace(code_raw, "\r\n" => "\n")
+            # remove the cell appendix
+            code = code_normalised[1:prevind(code_normalised, end, length(_cell_suffix))]
+
+            read_cell = code
+            push!(collected_cells, read_cell)
+        end
+    end
+		
+	collected_cells
+end
+
+function load_notebook(path::String)
+    local loaded
+    open(path, "r") do io
+        loaded = load_notebook(io, path)
+    end
+    loaded
+end
+end
+
+# ╔═╡ f9bb5630-1369-11eb-2e71-ddf7bc8a1092
+d=load_notebook("testandnotes.jl")
+
+# ╔═╡ 2809dda2-1ada-11eb-00f7-9b9142026806
+d.cells[1].cell_id
+
+# ╔═╡ c69459a0-2fb1-11eb-04ba-6bddc237fe24
+load_notebook("testandnotes.jl")
+
 # ╔═╡ Cell order:
 # ╟─b54d06b0-1369-11eb-32b4-ab93e613b598
 # ╠═d4b0c320-1369-11eb-3f10-d3f9fad87ea0
@@ -131,3 +178,5 @@ notebook.cells[1].output_repr
 # ╠═49500860-1ccc-11eb-2916-afbe3871450a
 # ╠═8c162620-1ccc-11eb-0585-852ddcb59b95
 # ╠═4b7f9290-1ccc-11eb-1f63-2fae40ea29b5
+# ╠═0d868a50-2fb1-11eb-30a9-03af7cba588e
+# ╠═c69459a0-2fb1-11eb-04ba-6bddc237fe24

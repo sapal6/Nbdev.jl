@@ -3,6 +3,9 @@
 
 module Documenter
 #export
+using Base.Docs
+
+#export
 using Markdown
 
 #export
@@ -12,16 +15,10 @@ using ReusePatterns
 using Images, FileIO
 
 #export
-begin
+using Publish
+
+#export
 include("../src/Export.jl")
-#const Nb = Export.Nb 
-end
-
-#export
-import Pluto: Notebook, Cell
-
-#export
-load_nb=Export.load_nb
 
 #export
 include("../src/ConfigReader.jl")
@@ -30,37 +27,80 @@ include("../src/ConfigReader.jl")
 include("../src/CodeRunner.jl")
 
 #export
+import Pluto: Notebook, Cell, load_notebook_nobackup
+
+#export
 begin
+"""
+> struct Section--> This is like the section of a page and is made up of one or multiple "lines".
+> * Fields:
+>   * line--> String which makes up a section
+"""
 Base.@kwdef mutable struct Section
 	line::String=""
 end
-	
+
+"""
+> Section(line)--> Helper function to call the constructor of the type Section
+"""
 Section(line)=Section(line=line)
+"""
+> line(section::Section)--> Getter for accessing the underlying field "line".
+"""
+line(section::Section)=section.line
 end
 
 #export
 begin
+"""
+> Page--> The type that represents a page in a document.
+> * Fields:
+>   * sections--> Array of Section type.
+>   * name--> Name of the module being documented.
+"""
 struct Page
 	sections::Array{Section,1}
     name::AbstractString
 end
-	
+
+"""
+> Page--> Helper function to create constructer for Page type.
+"""
 Page(sections, path)=Page(sections=sections, path=path)
+	
+"""
+> sections--> Getter for accessing teh underlying field "sections" of Page.
+"""
+sections(p::Page)=p.sections
+	
+"""
+> name--> Getter for accessing teh underlying field "name" of Page.
+"""
+name(p::Page)=p.name
 end
 
 #export
+#TODO:This should be moved to a utility module
+"""
+> img(img_path::String)--> Helper function to load images within a notebook. This can be helpful to have images appear in the final document.
+"""
 function img(img_path::String)
 	load(img_path)
 end
 
 #export
-using Publish
-
-#export
+"""
+> newsitegen(configpath::String="../settings.ini")--> Create required directory structure for hosting documents with optional path to a config file.
+"""
 function newsitegen(configpath::String="../settings.ini")
+	
+	if !isfile("../settings.ini") 
+		error("You don't have the settings file available in project path")
+	end
+	
 	config=read_conf(configpath)
 	if isdir("../docs")
-		error("$(config["lib_name"])_docs directory is already present")
+		warn("$(config["lib_name"])_docs directory is already present")
 	else
 	    #setup("../$(config["lib_name"])_docs")
 		setup("../")
@@ -69,47 +109,93 @@ function newsitegen(configpath::String="../settings.ini")
 end
 
 #export
+"""
+> run_and_update_nb(file::AbstractString)--> Run the notebook in the supplied path and update the notebook with the output of each cell.
+"""
 function run_and_update_nb(file::AbstractString)
-	notebook=load_nb(file, "md")
+	notebook=load_notebook_nobackup(file)
 	return CodeRunner.execute_code(notebook)
 end
 
 #export
 begin
-function stitchCode(cell::Cell)
-	#cleanedCode=Export.strip(Export.strip(cell.code,"\n"), "\n")
-	#string("<p><code>",cleanedCode,cell.output_repr,"</code></p>\n")
-	string("```","\n$(cell.code)\n","\n$(cell.output_repr)\n","```\n")
+"""
+> struct FunctionDocs--> Stores the document of different objects.
+> * funcDocs--> Array of strings.
+"""
+mutable struct FunctionDocs
+	funcDocs::Array{String, 1}
 end
 
-function stitchCode(cellop::AbstractString)
-	#cleanedop=Export.strip(Export.strip(cellop,"\n"), "\n")
-	#string("<p><code>",cleanedop,"</code></p>\n")
-	string("```","\n$cellop\n","```\n")
+"""
+> FunctionDocs(funcDocs)--> Helper for accessing the FunctionDocs constructer.
+"""
+FunctionDocs(funcDocs)=FunctionDocs(funcDocs) 
 end
-end
-
-#export
-grabFuncSig=(pat, fdesc) -> match(pat, fdesc).match
 
 #export
 begin
-pat4func=r"[a-zA-Z]+\([^\)]*\)(\.[^\)]*\))?"
-pat4anonymfunc = r"\([^\)]*\)(\.[^\)]*\))?"
+
+"""
+> stitchCode(cell::Cell)--> Stitches the code in a Pluto notebook cell with the output of that code. The output is acode block.
+"""
+function stitchCode(cell::Cell)
+	#cleanedCode=Export.strip(Export.strip(cell.code,"\n"), "\n")
+	#string("<p><code>",cleanedCode,cell.output_repr,"</code></p>\n")
+	string("```","\n$(cell.code)\n","$(cell.output_repr)\n","```\n")
+end
+	
+"""
+> stitchCode(cellop::AbstractString)--> Removes the quotes from a string and creates a code block with that string inside the newely formed code block
+"""
+function stitchCode(cellop::AbstractString)
+
+	cleanedop=Export.strip(Export.strip(cellop,"\""), "\"")
+	string("```","\n$cleanedop\n","```\n")
+	#string("",cellop,"\n")
+end
+	
+"""
+> stitchCode(cellop::AbstractString)--> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object
+"""
+function stitchCode(fdocs::FunctionDocs)
+		funcdocs=""
+		
+		for fdoc in fdocs.funcDocs
+		    funcdocs=string(funcdocs, "$(fdoc)\n\n")
+	    end
+		
+		funcdocs
+end
 end
 
 #export
-function showdDoc(fname, args...)
-	fdesc=string(methods(fname).ms[1])
-	fsig=grabFuncSig(pat4func, fdesc)
-	if fsig==nothing
-		return grabFuncSig(pat4anonymfunc, fdesc)
-	else
-		return fsig
-	end
+"""
+> collectFuncDocs(obj)--> Collects objects (functions, methods, macro structs etc.) and creates an array of documents (generated from teh docstrings). Creates aFunctionDocs type from these documents.
+"""
+function collectFuncDocs(obj)
+	docs=doc(obj)
+    fdocs=["$(docs.meta[:results][i].object)" for i=1:length(docs.meta[:results])]
+	FunctionDocs(fdocs)
 end
 
 #export
+"""
+> showDoc(obj)--> Takes an object and builds markdown documentation.
+"""
+function showDoc(obj)
+	docs=collectFuncDocs(obj)
+	stitchCode(docs)
+end
+
+#export
+#TODO: for a code section in showdoc, the docstring shud be the definition
+#TODO: add a field in Section type for docstrings
+#TODO: add a source to the code in all code sections
+#TODO: add a field in Section type known as source
+#TODO: Source to be like /src/<section under the document named source files
+#TODO: we should be able to record graph as well in the doc
+#TODO: can have a field known as graph in Section type
 function createPage(filename::AbstractString, notebook::Notebook)
 	sections=Section[]
 	
@@ -123,9 +209,11 @@ function createPage(filename::AbstractString, notebook::Notebook)
 	    if startswith(cell.code, "md")
 			push!(sections, Section(cell.output_repr))
 		elseif !startswith(cell.code, "#export") && !startswith(cell.code, "#hide")
-			if occursin(cell.code, "showDoc")
-				stitched_code=stitchCode(cell.output_repr)
-				push!(sections, Section(stitched_code))
+			if occursin( "showDoc", cell.code)
+				#stitched_code=stitchCode(cell.output_repr)
+				cleanedop=Export.strip(cell.output_repr, "\"")
+				cleanedop=replace(cleanedop, "\\n"=>"\n")
+				push!(sections, Section(cleanedop))
 			else
 				stitched_code=stitchCode(cell)
 			    push!(sections, Section(stitched_code))
@@ -148,7 +236,7 @@ md2html(md)=Markdown.html(md)
 #export
 begin
 	
-function save_page(io, page)
+function save_page(io, page::Page)
     #println(io, _header)
     println(io, "")
 		
@@ -163,11 +251,25 @@ function save_page(io, page)
 		
 	#print(io, _footer)	
 end
+	
+function save_page(io, docnames::Array{String,1})
+    println(io, "**Documentation**\n")
+	println(io, "  * [Introduction](README.md)")
+	for docname in docnames
+			println(io, "  * [$docname](docs/$docname.md)\n")
+	end
+end
 
 function save_page(page::Page, path::String)
 	file_name=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
 	open(joinpath(path, file_name*".md"), "w") do io
         save_page(io, page)
+    end
+end
+	
+function save_page(docnames::Array{String,1})
+	open("../toc.md", "w") do io
+        save_page(io, docnames)
     end
 end
 end
@@ -183,6 +285,12 @@ end
 export2html(files::AbstractVector, path::String)=map(file->export2html(file, path), files)
 	
 export2html()=export2html(Export.readfilenames(), "../docs")
+end
+
+#export
+function createtoc()
+	docnames=[Export.strip(name, ".md") for name in readdir("../docs")]
+	save_page(docnames)
 end
 
 end

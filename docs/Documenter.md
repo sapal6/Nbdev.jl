@@ -10,11 +10,6 @@
 <div class="markdown"><p>now the save_nb can take the type Journal</p>
 </div>
 
-<div class="markdown"><p><code>func img&#40;img_path::String&#41;</code></p>
-<pre><code> &gt;Helper function to load image inside markdown</code></pre>
-<p>The img function loads image from a path.</p>
-</div>
-
 <div class="markdown"><p>We will use Publish.jl to build our documentation which will also double up as a website for the project.</p>
 <p>For this we will make a call to the <code>newsite&#40;&#41;</code> function which will generate the basic folder structure for us.</p>
 </div>
@@ -30,19 +25,15 @@
 </div>
 
 ```
-
 function test(x)
 	x+1
 end
-
-
 test (generic function with 1 method)
 ```
 
 
 ```
 test(1)
-
 2
 ```
 
@@ -60,21 +51,18 @@ test(1)
 
 ```
 Markdown.html(md"```func test end```")
-
 "<p><code>func test end</code></p>\n"
 ```
 
 
 ```
 code=testNb.cells[13].code
-
 "md\"now the save_nb can take the type Journal\""
 ```
 
 
 ```
 cleanedCode=Export.strip(Export.strip(code,"\n"), "\n")
-
 "md\"now the save_nb can take the type Journal\""
 ```
 
@@ -84,7 +72,6 @@ cleanedCode=Export.strip(Export.strip(code,"\n"), "\n")
 
 ```
 string("<p><code>",cleanedCode,"</code></p>\n")
-
 "<p><code>md\"now the save_nb can take the type Journal\"</code></p>\n"
 ```
 
@@ -95,23 +82,120 @@ string("<p><code>",cleanedCode,"</code></p>\n")
 </div>
 
 ```
-grabFuncSig(pat4func,dstr)
+d=methods(stitchCode)
+# 3 methods for generic function <b>stitchCode</b>:<ul><li> stitchCode(fdocs::<b>Main.workspace2.FunctionDocs</b>) in Main.workspace2 at nbs\02_documenter.jl#==#d75486f0-2022-11eb-2d95-aded3418c079:30</li> <li> stitchCode(cell::<b>Pluto.Cell</b>) in Main.workspace2 at nbs\02_documenter.jl#==#d75486f0-2022-11eb-2d95-aded3418c079:11</li> <li> stitchCode(cellop::<b>AbstractString</b>) in Main.workspace2 at nbs\02_documenter.jl#==#d75486f0-2022-11eb-2d95-aded3418c079:20</li> </ul>
+```
 
-"stitchCode(cell::Pluto.Cell)"
+
+```
+grabFuncSig(pat4func,dstr)
+"stitchCode(fdocs::Main.workspace2.FunctionDocs)"
 ```
 
 
 ```
 fstr = string(methods(grabFuncSig).ms[1])
-
-"(::Main.workspace8.var\"#2#3\")(pat, fdesc) in Main.workspace8 at nbs\\02_documenter.jl#==#00989200-25d6-11eb-3139-8dd2ca0346f8:2"
+"(::Main.workspace2.var\"#2#3\")(pat, fdesc) in Main.workspace2 at nbs\\02_documenter.jl#==#00989200-25d6-11eb-3139-8dd2ca0346f8:2"
 ```
 
 
 ```
 grabFuncSig(pat4anonymfunc,fstr)
+"(::Main.workspace2.var\"#2#3\")"
+```
 
-"(::Main.workspace8.var\"#2#3\")"
+
+```
+docs=@doc stitchCode
+<div class="markdown"><blockquote>
+<p>stitchCode&#40;cell::Cell&#41;–&gt; blah blah1</p>
+</blockquote>
+
+
+<blockquote>
+<p>stitchCode&#40;cellop::AbstractString&#41;–&gt; blah blah2</p>
+</blockquote>
+
+
+<blockquote>
+<p>stitchCode&#40;cellop::AbstractString&#41;–&gt; blah blah3</p>
+</blockquote>
+
+
+</div>
+```
+
+
+```
+"$(docs.meta[:results][1].object)"
+"> stitchCode(cell::Cell)–> blah blah1\n\n"
+```
+
+
+```
+collectFuncDocs(stitchCode).funcDocs
+<jltree class="collapsed" onclick="onjltreeclick(this, event)">String<jlarray><r><k>1</k><v><pre>&quot;&gt; stitchCode&#40;cell::Cell&#41;–&gt; blah blah1\n\n&quot;</pre></v></r><r><k>2</k><v><pre>&quot;&gt; stitchCode&#40;cellop::AbstractString&#41;–&gt; blah blah2\n\n&quot;</pre></v></r><r><k>3</k><v><pre>&quot;&gt; stitchCode&#40;cellop::AbstractString&#41;–&gt; blah blah3\n\n&quot;</pre></v></r></jlarray></jltree>
+```
+
+
+```
+tt="testfunc"
+"testfunc"
+```
+
+
+> stitchCode(cell::Cell)–> blah blah1
+
+
+
+> stitchCode(cellop::AbstractString)–> blah blah2
+
+
+
+> stitchCode(cellop::AbstractString)–> blah blah3
+
+
+
+
+
+<div class="markdown"><p>Creating the toc.md–</p>
+<ul>
+<li><p>Create the file-</p>
+<ul>
+<li><p>The first two lines should be <strong>Documentation</strong> and * <a href="README.md">Introduction</a></p>
+</li>
+</ul>
+</li>
+<li><p>Read the files in doc folder.</p>
+<ul>
+<li><p>Append to the file as <code>&#91;&lt;md file name from the doc folder&gt;&#93;&#40;file path&#41;</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+```
+filenames=readdir("../docs")
+<jltree class="collapsed" onclick="onjltreeclick(this, event)">String<jlarray><r><k>1</k><v><pre>&quot;Documenter.md&quot;</pre></v></r></jlarray></jltree>
+```
+
+
+```
+docnames=[Export.strip(name, ".md") for name in filenames]
+<jltree class="collapsed" onclick="onjltreeclick(this, event)">String<jlarray><r><k>1</k><v><pre>&quot;Documenter&quot;</pre></v></r></jlarray></jltree>
+```
+
+
+```
+save_page(docnames)
+
+```
+
+
+```
+createtoc()
+
 ```
 
 
