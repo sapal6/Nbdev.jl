@@ -60,8 +60,8 @@ import Pluto: Notebook, Cell, load_notebook_nobackup
 ConfigReader.read_conf("../settings.ini")["lib_path"]
 
 # ╔═╡ 25ff264e-3ec5-11eb-362c-07b4e24c635a
-md"## Internal Objects(Structs, methods etc.) 
-These are the objects on which nbdev's Documenter module was built. You can use it extend nbdev but these are not required to use nbdev."
+md"## Lower Level Entities(Structs, methods etc.) 
+These are the objects on which nbdev's Documenter module was built. You can use it extend nbdev but these are automtically used by Nbdev's internal engine to generate code files for you."
 
 # ╔═╡ bf4e47f0-3ec5-11eb-1b65-5fe2e7a88ff1
 md"#### Section type"
@@ -96,13 +96,13 @@ md"A Section can be thought of as a paragraph on a page📃. This would be compo
 @doc Section
 
 # ╔═╡ f1318ca0-3f97-11eb-3727-3f71064c77bf
-md"###### Example"
+md"#### Example"
 
 # ╔═╡ cfb6d710-3f97-11eb-31ed-6daa12cf592e
+begin
 section=Section("This is a test line")
-
-# ╔═╡ db69aec0-3f97-11eb-355f-6576db3debf8
 line(section)
+end
 
 # ╔═╡ 309585e2-3f93-11eb-0873-d9b0d7a6200e
 md"#### Page Type"
@@ -141,13 +141,19 @@ end
 md"A 📃 is made up of several sections. These sections can be example codes, text ,graphs(to be implemented) and function documentation and several pages. The Page type helps in implementing this concept into code."
 
 # ╔═╡ ea16dab0-3f97-11eb-19b5-0f4998ba3e39
-md"###### Example"
+md"#### Example"
 
 # ╔═╡ 11057000-3f98-11eb-27aa-ffb097ca25ed
+begin
 page=Page([Section("iny, meeny, miny mo"), Section("🙈 🙊 🙉")], "Monkey module")
-
-# ╔═╡ bb97bfd0-3f9a-11eb-2290-e1ebb16985cc
 sections(page)
+end
+
+# ╔═╡ 7e959872-421d-11eb-3784-2f110840a628
+page
+
+# ╔═╡ dd721172-4443-11eb-3833-3f74ff47dd42
+typeof(page)
 
 # ╔═╡ 452212b0-3f95-11eb-110c-ed193d10b1da
 md"#### img"
@@ -220,7 +226,7 @@ import Pluto
 
 # ╔═╡ 2fc24ff0-11f7-11eb-18a8-1b2b989fa189
 #hide
-testNb=Pluto.load_notebook("02_documenter.jl")
+#testNb=Pluto.load_notebook("02_documenter.jl")
 
 # ╔═╡ 743238d0-1918-11eb-3dfc-6f30db92923c
 md"##### run_and_update "
@@ -238,7 +244,7 @@ end
 # ╔═╡ 5001a5b0-11ff-11eb-054a-6921da78afa3
 md"`run_and_update_nb` uses the `load_notebook_nobackup` function in Pluto.jl. There are multiple ways to achieve what this fucntions achieves without depending on Pluto internals but for now this was the quickiest way to achieve this.
 
-**Note-**Dependeing on Pluto to run anad update a notebook this way makes it difficult to run unit test for this function from within pluto itself because a Pluto cell is treated as worker 2, 3 and so on but when you do load_notebook() then it spins up another worker. Only worker 1 can spwan further processes and not a notebook cell."
+**Note-**Depending on Pluto to run anad update a notebook this way makes it difficult to run unit test for this function from within pluto itself because a Pluto cell is treated as worker 2, 3 and so on but when you do load_notebook() then it spins up another worker. Only worker 1 can spwan further processes and not a notebook cell."
 
 # ╔═╡ f1d7ed22-1f8a-11eb-035d-6de2cb48bb8b
 #hide
@@ -246,15 +252,15 @@ Markdown.html(md"```func test end```")
 
 # ╔═╡ 6b9cb0f0-1f5e-11eb-1e15-9f0c8295b59f
 #hide
-code=testNb.cells[13].code
+#code=testNb.cells[13].code
 
 # ╔═╡ c3d2cf20-1f8b-11eb-0381-01270b1494b3
 #hide
-cleanedCode=Export.strip(Export.strip(code,"\n"), "\n")
+#cleanedCode=Export.strip(Export.strip(code,"\n"), "\n")
 
 # ╔═╡ 1d71bb00-1f8b-11eb-31de-69aebd625201
 #hide
-string("<p><code>",cleanedCode,"</code></p>\n")
+#string("<p><code>",cleanedCode,"</code></p>\n")
 
 # ╔═╡ bda9c5a0-1f8a-11eb-396b-97f97add91db
 md"##### stitchCode"
@@ -301,13 +307,39 @@ end
 #export
 begin
 
+jltree_pat=Dict("<jltree class=collapsed onclick=onjltreeclick(this, event)>"=>"",
+                    "<jlstruct>"=>"(",
+                     "<r>"=>"",
+                     "<k>" => "",
+                     "</k>" => "-->",
+                     "<v>" => "",
+                     "</v>"=> "",
+                     "</r>" => "",
+                     "</jlstruct>"=>")",
+                     "</jltree>" => "",
+		             "<jlarray>" => "[",
+                     "</jlarray>"=>"]",
+	                 "<pre>"=>"",
+	                 "</pre>"=>"",
+	                 "&quot;"=>"",
+	                 "&#61;"=>"=",
+	                 "&#43;"=>"+",
+	                 "&#40;"=>"(",
+	                 "&#41;"=>")")
+                    		
+
 """
 > stitchCode(cell::Cell)--> Stitches the code in a Pluto notebook cell with the output of that code. The output is acode block.
 """
 function stitchCode(cell::Cell)
-	#cleanedCode=Export.strip(Export.strip(cell.code,"\n"), "\n")
-	#string("<p><code>",cleanedCode,cell.output_repr,"</code></p>\n")
-	string("```","\n$(cell.code)\n","$(cell.output_repr)\n","```\n")
+	op=Export.strip(cell.output_repr, "\"")
+	if startswith(cell.output_repr, "<jltree")
+			for(key, val) in jltree_pat
+				op=replace(op, key=>val)
+			end
+	end
+		
+	string("```","\n$(cell.code)\n","------\nOutput\n------\n","$(op)\n", "```\n")
 end
 	
 """
@@ -335,10 +367,13 @@ end
 end
 
 # ╔═╡ 931b9ab2-4060-11eb-219d-49b05ff3ca72
-md"######  Example"
+md"####  Example"
 
 # ╔═╡ 4cd1f510-2b23-11eb-3051-072d6fb4e81c
-FunctionDocs(["i", "j"])
+begin
+funcdocs=FunctionDocs(["i", "j"])
+funcdocs.funcDocs
+end
 
 # ╔═╡ 95219eb0-3e01-11eb-28d2-af58c55dfbd1
 #hide
@@ -360,7 +395,7 @@ function collectFuncDocs(obj)
 end
 
 # ╔═╡ 01a22122-4061-11eb-393e-17c15f09e58d
-md"##### Example"
+md"#### Example"
 
 # ╔═╡ 89db4130-3ec1-11eb-23ee-eff6d23c1588
 collectFuncDocs(stitchCode).funcDocs
@@ -376,12 +411,15 @@ md"##### showDoc"
 
 # ╔═╡ a310902e-2b28-11eb-0455-add7ff7c8d6e
 #export
+begin
+	
 """
-> showDoc(obj)--> Takes an object and builds markdown documentation.
+> showDoc(o)--> Takes an object and builds markdown documentation.
 """
-function showDoc(obj)
-	docs=collectFuncDocs(obj)
+function showDoc(o)
+	docs=collectFuncDocs(o)
 	stitchCode(docs)
+end
 end
 
 # ╔═╡ d8395ed0-3ec5-11eb-049c-0b38eb2e7d54
@@ -414,18 +452,36 @@ showDoc(collectFuncDocs)
 # ╔═╡ f17bc160-2e46-11eb-0d65-cf6185b4f406
 showDoc(showDoc)
 
+# ╔═╡ 2b104160-4e83-11eb-1a78-a96f77e1aff4
+struct MyStruct
+	name
+end
+
+# ╔═╡ 449bb6f2-4e83-11eb-27ae-298352285e98
+mystruct=MyStruct("test")
+
+# ╔═╡ df1998f0-4ea1-11eb-0626-dbead118373f
+typeof(mystruct)
+
+# ╔═╡ 10866060-5980-11eb-0422-e7300713c6a4
+md"Currently nbdev is unable to recognize the docstrings of inline expressions.👇"
+
+# ╔═╡ 4fee8610-5980-11eb-137a-83f4aa64e933
+"> inlinetest--> This is a inline test expression"
+inlinetest=str->replace(str, "1"=> "one")
+
+# ╔═╡ 83bb0590-5980-11eb-3159-b376954405ef
+#hide
+#showDoc(inlinetest)
+
 # ╔═╡ 285cf4e0-4064-11eb-3162-1b399c464a1a
-md""
+md"##### createPage"
 
 # ╔═╡ 36b846d0-2024-11eb-3784-89a02343cd0b
 #export
-#TODO: for a code section in showdoc, the docstring shud be the definition
-#TODO: add a field in Section type for docstrings
-#TODO: add a source to the code in all code sections
-#TODO: add a field in Section type known as source
-#TODO: Source to be like /src/<section under the document named source files
-#TODO: we should be able to record graph as well in the doc
-#TODO: can have a field known as graph in Section type
+"""
+> CreatePage--> Creates the "Page" type from the markdown and example code cells of the supplied notebook. The filename is the name of the notebook which is parsed.
+"""
 function createPage(filename::AbstractString, notebook::Notebook)
 	sections=Section[]
 	
@@ -454,6 +510,12 @@ function createPage(filename::AbstractString, notebook::Notebook)
 	Page(sections, filename)
 end
 
+# ╔═╡ 7216e720-411e-11eb-1103-19bf4993ef1e
+showDoc(createPage)
+
+# ╔═╡ 7f938250-411e-11eb-0d30-b53cf2c8bc97
+md"While generating document this function you don't need to call this function. This is done automatically😃 for you when nbdev generates documents."
+
 # ╔═╡ 8d7b5280-28a0-11eb-282d-2dbf124460da
 #export
 begin
@@ -461,34 +523,34 @@ const _header = "<html>"
 const _footer = "</html>"
 end
 
+# ╔═╡ 15299390-411f-11eb-3b2b-257dc0eac258
+md"##### md2html"
+
 # ╔═╡ 60f5f6b0-28a1-11eb-1b18-27bdfed23c8c
 #export
+"""
+> md2html(md)--> Tiny helper to format a markdown into html.
+"""
 md2html(md)=Markdown.html(md)
 
-# ╔═╡ cec980d0-28a1-11eb-3089-ff1cbc3ee2db
-#hide
-str=uppercasefirst(Export.strip(Export.strip("02_documenter.jl", r"[0-9_]"), r".jl"))
+# ╔═╡ 39ae06b0-411f-11eb-01eb-b30511aec8cc
+md"Sometimes it better to have tiny helpers like this. The `md2html` converts the supplied markdown into a visible html.🎈🎈"
 
-# ╔═╡ 311fd750-28a4-11eb-0d43-d3316d43e977
-#hide
-md=md"# $str"
+# ╔═╡ 827db480-411f-11eb-2eb3-b3239cc4a865
+md"#### Example"
 
-# ╔═╡ 41705300-28a4-11eb-1117-3b1c0d7b7ac9
-#hide
-md2html(md)
+# ╔═╡ 8aab35fe-411f-11eb-27b2-6bc7d3dd5280
+md2html(md"This is a test")
 
-# ╔═╡ 395860a0-32fd-11eb-3586-092f98b7d140
-md"Creating the toc.md--
-
-* Create the file-
-  + The first two lines should be **Documentation** and * [Introduction](README.md)
-* Read the files in doc folder.
-  + Append to the file as ```[<md file name from the doc folder>](file path)```"
+# ╔═╡ 7b6fd3d0-411f-11eb-3786-ff38ee7d0291
+md"##### save_page"
 
 # ╔═╡ 4c5c7c22-28a0-11eb-0069-cb78e0e7e0ee
 #export
 begin
-	
+"""
+> save_page(io, page::Page)--> Take the contents from a "Page" type and write to the io
+"""
 function save_page(io, page::Page)
     #println(io, _header)
     println(io, "")
@@ -504,7 +566,10 @@ function save_page(io, page::Page)
 		
 	#print(io, _footer)	
 end
-	
+
+"""
+> save_page(save_page(io, docnames::Array{String,1}))--> Given an array of document names, creates a table of content
+"""
 function save_page(io, docnames::Array{String,1})
     println(io, "**Documentation**\n")
 	println(io, "  * [Introduction](README.md)")
@@ -513,13 +578,19 @@ function save_page(io, docnames::Array{String,1})
 	end
 end
 
+"""
+> save_page(page::Page, path::String)--> Given a "Page" type and the required path, creates the related markdwon file in the specified path. The name of the resulting markdown file is same as the nameof the notebook for which the document is generated
+"""
 function save_page(page::Page, path::String)
 	file_name=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
 	open(joinpath(path, file_name*".md"), "w") do io
         save_page(io, page)
     end
 end
-	
+
+"""
+> save_page(docnames::Array{String,1})--> Given an array of documents, creates the related table of contents in "toc.md"
+"""
 function save_page(docnames::Array{String,1})
 	open("../toc.md", "w") do io
         save_page(io, docnames)
@@ -527,37 +598,87 @@ function save_page(docnames::Array{String,1})
 end
 end
 
+# ╔═╡ 870d3240-4120-11eb-0dca-89337e801493
+showDoc(save_page)
+
+# ╔═╡ 943f2fe2-4120-11eb-11a9-7785d11d3c36
+md"Nbdev calls the required method of `save_page` automatically during document generation."
+
 # ╔═╡ 9fa322d0-32ff-11eb-2060-4b3e609d0d73
+#hide
 filenames=readdir("../docs")
 
 # ╔═╡ caa56ba0-32ff-11eb-2008-91c24261ae53
+#hide
 docnames=[Export.strip(name, ".md") for name in filenames]
 
 # ╔═╡ a8606bc0-3300-11eb-1487-6f229844f529
+#hide
 save_page(docnames)
+
+# ╔═╡ ed8b55f0-4121-11eb-1a2b-a77bea8bfe7f
+md"##### export2html"
 
 # ╔═╡ f31331e0-28c2-11eb-1014-95ed88d77469
 #export
 begin
+"""
+> export2html(file::String, path::String)--> Generate document for a file in the given path
+"""
 function export2html(file::String, path::String)
 	notebook=run_and_update_nb(joinpath("../nbs",file))
 	page=createPage(file, notebook)
 	save_page(page, path)
 end
-	
+
+"""
+> export2html(files::AbstractVector, path::String)--> Map the `export2html(file, path)` to a given vector of file.
+"""
 export2html(files::AbstractVector, path::String)=map(file->export2html(file, path), files)
-	
+
+"""
+> export2html()--> Higher level API to generate documents for all the valid notebooks
+"""
 export2html()=export2html(Export.readfilenames(), "../docs")
 end
 
+# ╔═╡ 807db3e2-4121-11eb-136d-ad470b83a46f
+showDoc(export2html)
+
+# ╔═╡ 8c376960-4121-11eb-1627-cf0d01bcf47b
+md"The `export2html()` is what gets summoned when document generation is invoked. Like most things in nbdev (and unlike most things in life) this too gets invoked automatically. 🥳"
+
+# ╔═╡ e8e79770-4121-11eb-2d54-0b27713454c8
+md"##### createtoc"
+
 # ╔═╡ 477e3750-3301-11eb-0bf0-3397364c4f91
 #export
+"""
+> createtoc()--> Create the tableof contents and save that in toc.md inside docs directory
+"""
 function createtoc()
 	docnames=[Export.strip(name, ".md") for name in readdir("../docs")]
 	save_page(docnames)
 end
 
+# ╔═╡ 2a7498f0-4122-11eb-13d3-a5bff912453c
+showDoc(createtoc)
+
+# ╔═╡ 0a8aeb00-411f-11eb-15cb-69ac5c16f683
+md"Creating the toc.md and example--
+
+* Create the file-
+  + The first two lines should be-->  
+
+    **Documentation**
+    * [Introduction](README.md)
+* Read the files in doc folder.
+  + Append to the file as-->
+    * [Module1]```(/docs/module1)```
+    * [Module2]```(/docs/module2)```"
+
 # ╔═╡ 79b7bac0-3301-11eb-12ee-d1870258f287
+#hide
 createtoc()
 
 # ╔═╡ 58b6fa50-0ba8-11eb-1ccf-1328cbe524b4
@@ -565,7 +686,7 @@ createtoc()
 Export.notebook2script()
 
 # ╔═╡ Cell order:
-# ╟─b495a5c0-0701-11eb-22a0-2f1a44fb9a15
+# ╠═b495a5c0-0701-11eb-22a0-2f1a44fb9a15
 # ╠═4cb4aa50-3e01-11eb-3460-5f109773492b
 # ╠═151ec8b0-2b27-11eb-1ec2-a7c5e4c13db9
 # ╠═085e8560-17af-11eb-37c6-2bfceac4cf79
@@ -575,25 +696,25 @@ Export.notebook2script()
 # ╠═23c57f60-0eb4-11eb-20c0-7dac22387fc1
 # ╠═a1a09fd0-193d-11eb-0a91-11a6df8cb651
 # ╠═27ff1d70-1201-11eb-2003-27cb52571be6
-# ╟─25ff264e-3ec5-11eb-362c-07b4e24c635a
-# ╟─bf4e47f0-3ec5-11eb-1b65-5fe2e7a88ff1
+# ╠═25ff264e-3ec5-11eb-362c-07b4e24c635a
+# ╠═bf4e47f0-3ec5-11eb-1b65-5fe2e7a88ff1
 # ╠═5a2e9790-201f-11eb-0df4-f90b3cc54f20
 # ╟─0bc30190-3ec9-11eb-0ac6-7d8f1eacc210
 # ╠═730d99d0-3ec6-11eb-185c-fb571b36bf67
 # ╠═d8395ed0-3ec5-11eb-049c-0b38eb2e7d54
 # ╠═0d10aed0-3f9b-11eb-1bcd-dbdb5e5068f4
-# ╟─f1318ca0-3f97-11eb-3727-3f71064c77bf
+# ╠═f1318ca0-3f97-11eb-3727-3f71064c77bf
 # ╠═cfb6d710-3f97-11eb-31ed-6daa12cf592e
-# ╠═db69aec0-3f97-11eb-355f-6576db3debf8
 # ╠═309585e2-3f93-11eb-0873-d9b0d7a6200e
 # ╠═28a4e100-17ac-11eb-172c-2d0e73460caa
 # ╠═87c22750-3f94-11eb-201c-a3c6374881f4
 # ╠═41b87320-3f9b-11eb-1ed4-fdfefdc01627
 # ╠═48beb2b0-3f9b-11eb-2756-919a82c5c0de
 # ╟─997a4950-3f94-11eb-2e66-d9a70cc175d1
-# ╟─ea16dab0-3f97-11eb-19b5-0f4998ba3e39
+# ╠═ea16dab0-3f97-11eb-19b5-0f4998ba3e39
 # ╠═11057000-3f98-11eb-27aa-ffb097ca25ed
-# ╠═bb97bfd0-3f9a-11eb-2290-e1ebb16985cc
+# ╠═7e959872-421d-11eb-3784-2f110840a628
+# ╠═dd721172-4443-11eb-3833-3f74ff47dd42
 # ╟─452212b0-3f95-11eb-110c-ed193d10b1da
 # ╠═4c59d7fe-07ba-11eb-2817-3919d9fc485f
 # ╠═8d74a142-3f95-11eb-3331-5577669dd902
@@ -611,7 +732,7 @@ Export.notebook2script()
 # ╠═2fc24ff0-11f7-11eb-18a8-1b2b989fa189
 # ╟─743238d0-1918-11eb-3dfc-6f30db92923c
 # ╠═8691e572-1918-11eb-011c-639d3617e076
-# ╟─5001a5b0-11ff-11eb-054a-6921da78afa3
+# ╠═5001a5b0-11ff-11eb-054a-6921da78afa3
 # ╠═f1d7ed22-1f8a-11eb-035d-6de2cb48bb8b
 # ╠═6b9cb0f0-1f5e-11eb-1e15-9f0c8295b59f
 # ╠═c3d2cf20-1f8b-11eb-0381-01270b1494b3
@@ -631,26 +752,43 @@ Export.notebook2script()
 # ╠═83214680-3eb9-11eb-32bd-01e55390224e
 # ╠═3f171660-3ec1-11eb-0983-2789adeab1c3
 # ╠═d038c980-4061-11eb-19a5-5bab5b196788
-# ╟─01a22122-4061-11eb-393e-17c15f09e58d
+# ╠═01a22122-4061-11eb-393e-17c15f09e58d
 # ╠═89db4130-3ec1-11eb-23ee-eff6d23c1588
 # ╟─db32b16e-4061-11eb-23f0-7fdeaab0d0c8
 # ╟─0661fdb0-4062-11eb-09d0-030a43180a2c
 # ╟─df2e8540-4063-11eb-2266-7f423f03bd67
 # ╠═a310902e-2b28-11eb-0455-add7ff7c8d6e
 # ╠═f17bc160-2e46-11eb-0d65-cf6185b4f406
-# ╠═285cf4e0-4064-11eb-3162-1b399c464a1a
+# ╠═2b104160-4e83-11eb-1a78-a96f77e1aff4
+# ╠═449bb6f2-4e83-11eb-27ae-298352285e98
+# ╠═df1998f0-4ea1-11eb-0626-dbead118373f
+# ╠═10866060-5980-11eb-0422-e7300713c6a4
+# ╠═4fee8610-5980-11eb-137a-83f4aa64e933
+# ╠═83bb0590-5980-11eb-3159-b376954405ef
+# ╟─285cf4e0-4064-11eb-3162-1b399c464a1a
 # ╠═36b846d0-2024-11eb-3784-89a02343cd0b
+# ╠═7216e720-411e-11eb-1103-19bf4993ef1e
+# ╟─7f938250-411e-11eb-0d30-b53cf2c8bc97
 # ╠═8d7b5280-28a0-11eb-282d-2dbf124460da
+# ╟─15299390-411f-11eb-3b2b-257dc0eac258
 # ╠═60f5f6b0-28a1-11eb-1b18-27bdfed23c8c
-# ╠═cec980d0-28a1-11eb-3089-ff1cbc3ee2db
-# ╠═311fd750-28a4-11eb-0d43-d3316d43e977
-# ╠═41705300-28a4-11eb-1117-3b1c0d7b7ac9
-# ╠═395860a0-32fd-11eb-3586-092f98b7d140
+# ╟─39ae06b0-411f-11eb-01eb-b30511aec8cc
+# ╠═827db480-411f-11eb-2eb3-b3239cc4a865
+# ╠═8aab35fe-411f-11eb-27b2-6bc7d3dd5280
+# ╟─7b6fd3d0-411f-11eb-3786-ff38ee7d0291
 # ╠═4c5c7c22-28a0-11eb-0069-cb78e0e7e0ee
+# ╠═870d3240-4120-11eb-0dca-89337e801493
+# ╟─943f2fe2-4120-11eb-11a9-7785d11d3c36
 # ╠═9fa322d0-32ff-11eb-2060-4b3e609d0d73
 # ╠═caa56ba0-32ff-11eb-2008-91c24261ae53
 # ╠═a8606bc0-3300-11eb-1487-6f229844f529
+# ╟─ed8b55f0-4121-11eb-1a2b-a77bea8bfe7f
 # ╠═f31331e0-28c2-11eb-1014-95ed88d77469
+# ╠═807db3e2-4121-11eb-136d-ad470b83a46f
+# ╟─8c376960-4121-11eb-1627-cf0d01bcf47b
+# ╟─e8e79770-4121-11eb-2d54-0b27713454c8
 # ╠═477e3750-3301-11eb-0bf0-3397364c4f91
+# ╠═2a7498f0-4122-11eb-13d3-a5bff912453c
+# ╟─0a8aeb00-411f-11eb-15cb-69ac5c16f683
 # ╠═79b7bac0-3301-11eb-12ee-d1870258f287
 # ╠═58b6fa50-0ba8-11eb-1ccf-1328cbe524b4

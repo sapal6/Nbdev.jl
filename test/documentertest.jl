@@ -14,9 +14,13 @@ include("../src/Documenter.jl")
 end =#
 
 @testset "Save page" begin
-    notebook=Documenter.run_and_update_nb("nbs\\02_documenter.jl")
-    page=Documenter.createPage("02_documenter.jl", notebook)
+    documenter_notebook=Documenter.run_and_update_nb("nbs\\02_documenter.jl")
+    export_notebook=Documenter.run_and_update_nb("nbs\\01_export.jl")
+    documenter_page=Documenter.createPage("02_documenter.jl", documenter_notebook)
+    export_page=Documenter.createPage("01_export.jl", export_notebook)
     
-    @test page.name=="02_documenter.jl"
-    Documenter.save_page(page, "./docs")
+    @test documenter_page.name=="02_documenter.jl"
+    @test export_page.name=="01_export.jl"
+    Documenter.save_page(documenter_page, "./docs")
+    Documenter.save_page(export_page, "./docs")
 end
