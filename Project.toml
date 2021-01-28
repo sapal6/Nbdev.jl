@@ -1,4 +1,4 @@
-name = "nbdev.jl"
+name = "Nbdev"
 #uuid = "a638fb9c-bedd-4dfc-8d67-050e11823cc0"
 authors = ["pal, <satyabrata.pal@fisglobal.com>"]
 version = "0.1.0"
