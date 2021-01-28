@@ -136,13 +136,39 @@ end
 #export
 begin
 
+jltree_pat=Dict("<jltree class=collapsed onclick=onjltreeclick(this, event)>"=>"",
+                    "<jlstruct>"=>"(",
+                     "<r>"=>"",
+                     "<k>" => "",
+                     "</k>" => "-->",
+                     "<v>" => "",
+                     "</v>"=> "",
+                     "</r>" => "",
+                     "</jlstruct>"=>")",
+                     "</jltree>" => "",
+		             "<jlarray>" => "[",
+                     "</jlarray>"=>"]",
+	                 "<pre>"=>"",
+	                 "</pre>"=>"",
+	                 "&quot;"=>"",
+	                 "&#61;"=>"=",
+	                 "&#43;"=>"+",
+	                 "&#40;"=>"(",
+	                 "&#41;"=>")")
+                    		
+
 """
 > stitchCode(cell::Cell)--> Stitches the code in a Pluto notebook cell with the output of that code. The output is acode block.
 """
 function stitchCode(cell::Cell)
-	#cleanedCode=Export.strip(Export.strip(cell.code,"\n"), "\n")
-	#string("<p><code>",cleanedCode,cell.output_repr,"</code></p>\n")
-	string("```","\n$(cell.code)\n","$(cell.output_repr)\n","```\n")
+	op=Export.strip(cell.output_repr, "\"")
+	if startswith(cell.output_repr, "<jltree")
+			for(key, val) in jltree_pat
+				op=replace(op, key=>val)
+			end
+	end
+		
+	string("```","\n$(cell.code)\n","------\nOutput\n------\n","$(op)\n", "```\n")
 end
 	
 """
@@ -180,22 +206,21 @@ function collectFuncDocs(obj)
 end
 
 #export
+begin
+	
 """
-> showDoc(obj)--> Takes an object and builds markdown documentation.
+> showDoc(o)--> Takes an object and builds markdown documentation.
 """
-function showDoc(obj)
-	docs=collectFuncDocs(obj)
+function showDoc(o)
+	docs=collectFuncDocs(o)
 	stitchCode(docs)
+end
 end
 
 #export
-#TODO: for a code section in showdoc, the docstring shud be the definition
-#TODO: add a field in Section type for docstrings
-#TODO: add a source to the code in all code sections
-#TODO: add a field in Section type known as source
-#TODO: Source to be like /src/<section under the document named source files
-#TODO: we should be able to record graph as well in the doc
-#TODO: can have a field known as graph in Section type
+"""
+> CreatePage--> Creates the "Page" type from the markdown and example code cells of the supplied notebook. The filename is the name of the notebook which is parsed.
+"""
 function createPage(filename::AbstractString, notebook::Notebook)
 	sections=Section[]
 	
@@ -231,11 +256,16 @@ const _footer = "</html>"
 end
 
 #export
+"""
+> md2html(md)--> Tiny helper to format a markdown into html.
+"""
 md2html(md)=Markdown.html(md)
 
 #export
 begin
-	
+"""
+> save_page(io, page::Page)--> Take the contents from a "Page" type and write to the io
+"""
 function save_page(io, page::Page)
     #println(io, _header)
     println(io, "")
@@ -251,7 +281,10 @@ function save_page(io, page::Page)
 		
 	#print(io, _footer)	
 end
-	
+
+"""
+> save_page(save_page(io, docnames::Array{String,1}))--> Given an array of document names, creates a table of content
+"""
 function save_page(io, docnames::Array{String,1})
     println(io, "**Documentation**\n")
 	println(io, "  * [Introduction](README.md)")
@@ -260,13 +293,19 @@ function save_page(io, docnames::Array{String,1})
 	end
 end
 
+"""
+> save_page(page::Page, path::String)--> Given a "Page" type and the required path, creates the related markdwon file in the specified path. The name of the resulting markdown file is same as the nameof the notebook for which the document is generated
+"""
 function save_page(page::Page, path::String)
 	file_name=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
 	open(joinpath(path, file_name*".md"), "w") do io
         save_page(io, page)
     end
 end
-	
+
+"""
+> save_page(docnames::Array{String,1})--> Given an array of documents, creates the related table of contents in "toc.md"
+"""
 function save_page(docnames::Array{String,1})
 	open("../toc.md", "w") do io
         save_page(io, docnames)
@@ -276,18 +315,30 @@ end
 
 #export
 begin
+"""
+> export2html(file::String, path::String)--> Generate document for a file in the given path
+"""
 function export2html(file::String, path::String)
 	notebook=run_and_update_nb(joinpath("../nbs",file))
 	page=createPage(file, notebook)
 	save_page(page, path)
 end
-	
+
+"""
+> export2html(files::AbstractVector, path::String)--> Map the `export2html(file, path)` to a given vector of file.
+"""
 export2html(files::AbstractVector, path::String)=map(file->export2html(file, path), files)
-	
+
+"""
+> export2html()--> Higher level API to generate documents for all the valid notebooks
+"""
 export2html()=export2html(Export.readfilenames(), "../docs")
 end
 
 #export
+"""
+> createtoc()--> Create the tableof contents and save that in toc.md inside docs directory
+"""
 function createtoc()
 	docnames=[Export.strip(name, ".md") for name in readdir("../docs")]
 	save_page(docnames)
