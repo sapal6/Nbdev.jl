@@ -9,7 +9,16 @@ import Pluto: Notebook, Cell, Configuration, Notebook, ServerSession, ClientSess
 import Pluto.PlutoRunner
 
 #export
-#TODO:how toclean the workspace
+#TODO:how to clean the child processes spawned by this process.
+#also, executing the notebook this way prevents the tests to be
+#executed in the notebook
+
+"""
+> execute_code(notebook::Notebook)--> This function does the following
+> * Take a notebook. 
+> * Create a fake server, fake client etc.
+> * Run the notebook cell by cell and update the notebook with the output.
+"""
 function execute_code(notebook::Notebook)
 	fakeserver=ServerSession()
 	fakeclient = ClientSession(:fake, nothing)

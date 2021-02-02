@@ -1,4 +1,4 @@
-name: Publish
+name: Nbdev
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   publish:
-    name: "Publish Documentation (dev)"
+    name: "Nbdev Documentation"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,13 +18,13 @@ jobs:
         with:
           version: '1.5'
       - name: Install dependencies
-        run: julia --project=. -e 'using Pkg; Pkg.instantiate()'
+        run: julia --color=yes --project=. -e 'using Pkg; Pkg.instantiate()'
       - name: Build and deploy
         run: |
           cd gh-pages
-          julia --project=.. -e 'using Publish, USER; deploy(USER; root="/USER.jl", label="dev")'
+          julia --color=yes --project=.. -e 'using Publish; deploy(Nbdev; root="/Nbdev.jl", label="dev")'
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
-          git commit -m "(dev) Built by Publish.jl."
+          git commit -m "Built by Nbdev.jl."
           git push

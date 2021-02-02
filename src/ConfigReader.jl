@@ -6,7 +6,9 @@ module ConfigReader
 using ConfParser
 
 #export
-#TODO: This probably should go to a helper file
+"""
+> read_conf(confpath::String="../settings.ini")--> Takes in the config filepath and parses the different configurations(key/value pair. Returns a dictionary
+"""
 function read_conf(confpath::String="../settings.ini")
 	conf = ConfParse(confpath)
 	parse_conf!(conf)
