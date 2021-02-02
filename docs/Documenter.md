@@ -301,10 +301,12 @@ Main.workspace6.inlinetest
 
 > save*page(save*page(io, docnames::Array{String,1}))–> Given an array of document names, creates a table of content
 
+> save*page(save*page(io, docnames::Array{String,1}))–> Given an array of document names, creates a table of content
 
 
 > save_page(page::Page, path::String)–> Given a \Page\ type and the required path, creates the related markdwon file in the specified path. The name of the resulting markdown file is same as the nameof the notebook for which the document is generated
 
+> save_page(page::Page, path::String)–> Given a \Page\ type and the required path, creates the related markdwon file in the specified path. The name of the resulting markdown file is same as the nameof the notebook for which the document is generated
 
 
 > save_page(docnames::Array{String,1})–> Given an array of documents, creates the related table of contents in \toc.md\
@@ -322,9 +324,9 @@ Main.workspace6.inlinetest
 > export2html(file::String, path::String)–> Generate document for a file in the given path
 
 
-
 > export2html(files::AbstractVector, path::String)–> Map the `export2html(file, path)` to a given vector of file.
 
+> export2html(files::AbstractVector, path::String)–> Map the `export2html(file, path)` to a given vector of file.
 
 
 > export2html()–> Higher level API to generate documents for all the valid notebooks
@@ -372,4 +374,3 @@ Main.workspace6.inlinetest
 </li>
 </ul>
 </div>
-
