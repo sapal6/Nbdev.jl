@@ -9,7 +9,7 @@ jobs:
     name: "Nbdev Documentation"
     runs-on: ubuntu-latest
     steps:
-      - uses: checkout@v2.3.1
+      - uses: actions/checkout@v2.3.1
         with:
           persist-credentials: false
       - uses: julia-actions/setup-julia@latest
