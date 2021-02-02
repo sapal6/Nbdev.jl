@@ -21,7 +21,7 @@ jobs:
         run: |
           mkdir gh-pages
           cd gh-pages
-          julia --color=yes --project=.. -e 'using Publish; deploy(Nbdev; root="/nbdev.jl", label="dev")'
+          julia --color=yes --project=.. -e 'using Publish; deploy("/nbdev.jl/Project.toml", label="dev")'
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
