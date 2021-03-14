@@ -15,6 +15,9 @@ using ReusePatterns
 using Images, FileIO
 
 #export
+using PyCall
+
+#export
 using Publish
 
 #export
@@ -89,9 +92,26 @@ function img(img_path::String)
 end
 
 #export
+begin
 """
 > newsitegen(configpath::String="../settings.ini")--> Create required directory structure for hosting documents with optional path to a config file.
 """
+#function newsitegen(configpath::String="../settings.ini")
+#	
+#	if !isfile("../settings.ini") 
+#		error("You don't have the settings file available in project path")
+#	end
+#	
+#	config=read_conf(configpath)
+#	if isdir("../docs")
+#		warn("$(config["lib_name"])_docs directory is already present")
+#	else
+#	    #setup("../$(config["lib_name"])_docs")
+#		setup("../")
+#		mkdir("../docs")
+#	end
+#end
+
 function newsitegen(configpath::String="../settings.ini")
 	
 	if !isfile("../settings.ini") 
@@ -103,9 +123,10 @@ function newsitegen(configpath::String="../settings.ini")
 		warn("$(config["lib_name"])_docs directory is already present")
 	else
 	    #setup("../$(config["lib_name"])_docs")
-		setup("../")
 		mkdir("../docs")
+		run(`mkdocs new my-project`)
 	end
+end
 end
 
 #export

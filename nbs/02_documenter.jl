@@ -20,6 +20,10 @@ using ReusePatterns
 #export
 using Images, FileIO
 
+# ╔═╡ f85e7f50-6b8f-11eb-3f9c-bb80926ce8ce
+#export
+using PyCall
+
 # ╔═╡ dbc2c790-08aa-11eb-12bb-579de4923c76
 #export
 using Publish
@@ -184,9 +188,26 @@ md"##### newsitegen"
 
 # ╔═╡ e49c1970-08aa-11eb-094a-655c0f0c22af
 #export
+begin
 """
 > newsitegen(configpath::String="../settings.ini")--> Create required directory structure for hosting documents with optional path to a config file.
 """
+#function newsitegen(configpath::String="../settings.ini")
+#	
+#	if !isfile("../settings.ini") 
+#		error("You don't have the settings file available in project path")
+#	end
+#	
+#	config=read_conf(configpath)
+#	if isdir("../docs")
+#		warn("$(config["lib_name"])_docs directory is already present")
+#	else
+#	    #setup("../$(config["lib_name"])_docs")
+#		setup("../")
+#		mkdir("../docs")
+#	end
+#end
+
 function newsitegen(configpath::String="../settings.ini")
 	
 	if !isfile("../settings.ini") 
@@ -198,14 +219,15 @@ function newsitegen(configpath::String="../settings.ini")
 		warn("$(config["lib_name"])_docs directory is already present")
 	else
 	    #setup("../$(config["lib_name"])_docs")
-		setup("../")
 		mkdir("../docs")
+		run(`mkdocs new my-project`)
 	end
+end
 end
 
 # ╔═╡ e7a9d932-08ab-11eb-1f38-479b95b55ee6
 #hide
-#newsitegen()
+newsitegen()
 
 # ╔═╡ 63b40350-405d-11eb-1b89-cf3fb7ded30d
 md"Nbdev uses [Publish.jl](https://michaelhatherly.github.io/Publish.jl/0.1.0/docs/getting_started.html) to generate the document site. All the documents are in markdown format and must be present under the `docs` 📂 in the project root. The `newsitegen` function makes sure to create a docs 📂 if it's not available in project root."
@@ -691,6 +713,7 @@ Export.notebook2script()
 # ╠═151ec8b0-2b27-11eb-1ec2-a7c5e4c13db9
 # ╠═085e8560-17af-11eb-37c6-2bfceac4cf79
 # ╠═2a9f0c2e-07ba-11eb-2a22-cf9244b79ecd
+# ╠═f85e7f50-6b8f-11eb-3f9c-bb80926ce8ce
 # ╠═b068dfd2-0eb3-11eb-109a-d1b6ef1eeca0
 # ╠═1d83078e-2024-11eb-0e5f-51310d134662
 # ╠═23c57f60-0eb4-11eb-20c0-7dac22387fc1
