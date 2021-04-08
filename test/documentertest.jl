@@ -13,7 +13,7 @@ include("../src/Documenter.jl")
     @show journal.sections[1] =#
 end =#
 
-@testset "Save page" begin
+#= @testset "Save page" begin
     documenter_notebook=Documenter.run_and_update_nb("nbs\\02_documenter.jl")
     export_notebook=Documenter.run_and_update_nb("nbs\\01_export.jl")
     documenter_page=Documenter.createPage("02_documenter.jl", documenter_notebook)
@@ -21,6 +21,11 @@ end =#
     
     @test documenter_page.name=="02_documenter.jl"
     @test export_page.name=="01_export.jl"
-    Documenter.save_page(documenter_page, "./docs")
-    Documenter.save_page(export_page, "./docs")
+    Documenter.save_page(documenter_page, "./docs/docs")
+    Documenter.save_page(export_page, "./docs/docs")
+end =#
+
+@testset "export2md" begin
+    #Documenter.export2md(["01_export.jl", "02_documenter.jl"], "./docs/docs")
+    Documenter.export2md()
 end

@@ -16,14 +16,6 @@ using Markdown
 #export
 using ReusePatterns
 
-# ╔═╡ 2a9f0c2e-07ba-11eb-2a22-cf9244b79ecd
-#export
-using Images, FileIO
-
-# ╔═╡ f85e7f50-6b8f-11eb-3f9c-bb80926ce8ce
-#export
-using PyCall
-
 # ╔═╡ dbc2c790-08aa-11eb-12bb-579de4923c76
 #export
 using Publish
@@ -55,6 +47,12 @@ These might be some answers to the above questions👇
 
 🤫 *The third capability is yet to come.*"
 
+# ╔═╡ 2a9f0c2e-07ba-11eb-2a22-cf9244b79ecd
+#export
+#TODO: not working in local due to system block.
+#have to test in an unrestricted environment
+#using Images, FileIO
+
 # ╔═╡ 1d83078e-2024-11eb-0e5f-51310d134662
 #export
 import Pluto: Notebook, Cell, load_notebook_nobackup
@@ -74,7 +72,7 @@ md"#### Section type"
 #export
 begin
 """
-> struct Section--> This is like the section of a page and is made up of one or multiple "lines".
+> struct Section--> This is like the section of a page and is made up of one or multiple lines.
 > * Fields:
 >   * line--> String which makes up a section
 """
@@ -87,7 +85,7 @@ end
 """
 Section(line)=Section(line=line)
 """
-> line(section::Section)--> Getter for accessing the underlying field "line".
+> line(section::Section)--> Getter for accessing the underlying field line.
 """
 line(section::Section)=section.line
 end
@@ -131,12 +129,12 @@ end
 Page(sections, path)=Page(sections=sections, path=path)
 	
 """
-> sections--> Getter for accessing teh underlying field "sections" of Page.
+> sections--> Getter for accessing the underlying field sections of Page.
 """
 sections(p::Page)=p.sections
 	
 """
-> name--> Getter for accessing teh underlying field "name" of Page.
+> name--> Getter for accessing the underlying field name of Page.
 """
 name(p::Page)=p.name
 end
@@ -165,12 +163,17 @@ md"#### img"
 # ╔═╡ 4c59d7fe-07ba-11eb-2817-3919d9fc485f
 #export
 #TODO:This should be moved to a utility module
-"""
-> img(img_path::String)--> Helper function to load images within a notebook. This can be helpful to have images appear in the final document.
-"""
-function img(img_path::String)
-	load(img_path)
-end
+#TODO: have to test in unrestricted environment
+#as it's getting blocked in my current system
+#"""
+#> img(img_path::String)--> Helper function to load images within a notebook. This can be helpful to have images appear in the final document.
+#"""
+#function img(img_path::String)
+#	load(img_path)
+#end
+
+# ╔═╡ 8d74a142-3f95-11eb-3331-5577669dd902
+#showDoc(img)
 
 # ╔═╡ b726f4f0-405a-11eb-3fe1-b5e95c56cf9b
 md"`img()` accepts image path and loads an image onto the notebook where it is called."
@@ -227,7 +230,7 @@ end
 
 # ╔═╡ e7a9d932-08ab-11eb-1f38-479b95b55ee6
 #hide
-newsitegen()
+#newsitegen()
 
 # ╔═╡ 63b40350-405d-11eb-1b89-cf3fb7ded30d
 md"Nbdev uses [Publish.jl](https://michaelhatherly.github.io/Publish.jl/0.1.0/docs/getting_started.html) to generate the document site. All the documents are in markdown format and must be present under the `docs` 📂 in the project root. The `newsitegen` function makes sure to create a docs 📂 if it's not available in project root."
@@ -375,7 +378,7 @@ function stitchCode(cellop::AbstractString)
 end
 	
 """
-> stitchCode(cellop::AbstractString)--> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object
+> stitchCode(fdocs::FunctionDocs)--> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object
 """
 function stitchCode(fdocs::FunctionDocs)
 		funcdocs=""
@@ -459,9 +462,6 @@ showDoc(sections)
 # ╔═╡ 48beb2b0-3f9b-11eb-2756-919a82c5c0de
 showDoc(name)
 
-# ╔═╡ 8d74a142-3f95-11eb-3331-5577669dd902
-showDoc(img)
-
 # ╔═╡ 59aca6d0-405f-11eb-2252-633f4d0ccdbc
 showDoc(stitchCode)
 
@@ -502,7 +502,7 @@ md"##### createPage"
 # ╔═╡ 36b846d0-2024-11eb-3784-89a02343cd0b
 #export
 """
-> CreatePage--> Creates the "Page" type from the markdown and example code cells of the supplied notebook. The filename is the name of the notebook which is parsed.
+> CreatePage--> Creates the Page type from the markdown and example code cells of the supplied notebook. The filename is the name of the notebook which is parsed.
 """
 function createPage(filename::AbstractString, notebook::Notebook)
 	sections=Section[]
@@ -549,11 +549,10 @@ end
 md"##### md2html"
 
 # ╔═╡ 60f5f6b0-28a1-11eb-1b18-27bdfed23c8c
-#export
 """
 > md2html(md)--> Tiny helper to format a markdown into html.
 """
-md2html(md)=Markdown.html(md)
+md2html(md)=Export.strip(Markdown.html(md), "\n")
 
 # ╔═╡ 39ae06b0-411f-11eb-01eb-b30511aec8cc
 md"Sometimes it better to have tiny helpers like this. The `md2html` converts the supplied markdown into a visible html.🎈🎈"
@@ -564,26 +563,66 @@ md"#### Example"
 # ╔═╡ 8aab35fe-411f-11eb-27b2-6bc7d3dd5280
 md2html(md"This is a test")
 
+# ╔═╡ f5521070-8f6f-11eb-3466-539ce423eb19
+md"""#### sw
+Checks if a given string startwith a certain susbstring. Helpful when there are a list of strings to match.
+"""
+
+# ╔═╡ 642e89a0-8f71-11eb-0a01-07ade17b8c65
+#export
+""">sw--> Checks if a given string
+    startwith a certain susbstring.
+    Helpful when there are a list of strings to match.
+"""
+sw = o -> startswith("```html~~~", o)
+
+# ╔═╡ 20728fa0-8f70-11eb-2807-9bdb80c4b2f9
+md"""#### Example"""
+
+# ╔═╡ 1b8e6cc0-8f70-11eb-0e91-1101742b14a4
+#hide
+begin
+	v = ["<", "~~~", "```"]
+	f = y -> startswith("```html~~~", y)
+	a =f.(v)
+	a,true in f.(v)
+end
+
 # ╔═╡ 7b6fd3d0-411f-11eb-3786-ff38ee7d0291
 md"##### save_page"
 
 # ╔═╡ 4c5c7c22-28a0-11eb-0069-cb78e0e7e0ee
 #export
 begin
+
+#vector of possible non-html strings
+nothtml = ["> ", "```"]
+	
 """
-> save_page(io, page::Page)--> Take the contents from a "Page" type and write to the io
+> save_page(io, page::Page)--> Take the contents from a Page type and write to the io
 """
 function save_page(io, page::Page)
     #println(io, _header)
-    println(io, "")
+    #println(io, "")
 		
 	pageHeading=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
-	heading2md=md"# $pageHeading"
-		
-    println(io, md2html(heading2md))
-		
+	#heading2md=md"# $pageHeading"
+	
+	#for Franklin. Without this Franklin gives error on page title
+	println(io, "@def title ="*"\""*pageHeading*"\"")
+	println(io, "~~~")
+    println(io, "<h1>Documenter</h1>")
+	println(io, "~~~")
+	
+    #TODO: the new line is rendering the web page renderable in franlin need to deal with it
 	for section in page.sections
-			println(io, section.line*"\n")
+			if startswith(section.line, "<")
+			    println(io, "~~~")
+			    println(io, section.line)
+			    println(io, "~~~")
+			else
+				println(io, section.line)
+			end
     end
 		
 	#print(io, _footer)	
@@ -601,7 +640,7 @@ function save_page(io, docnames::Array{String,1})
 end
 
 """
-> save_page(page::Page, path::String)--> Given a "Page" type and the required path, creates the related markdwon file in the specified path. The name of the resulting markdown file is same as the nameof the notebook for which the document is generated
+> save_page(page::Page, path::String)--> Given a Page type and the required path, creates the related markdwon file in the specified path. The name of the resulting markdown file is same as the nameof the notebook for which the document is generated
 """
 function save_page(page::Page, path::String)
 	file_name=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
@@ -639,52 +678,60 @@ docnames=[Export.strip(name, ".md") for name in filenames]
 save_page(docnames)
 
 # ╔═╡ ed8b55f0-4121-11eb-1a2b-a77bea8bfe7f
-md"##### export2html"
+md"##### export2md"
 
 # ╔═╡ f31331e0-28c2-11eb-1014-95ed88d77469
 #export
 begin
 """
-> export2html(file::String, path::String)--> Generate document for a file in the given path
+> export2md(file::String, path::String)--> Generate document for a file in the given path
 """
-function export2html(file::String, path::String)
-	notebook=run_and_update_nb(joinpath("../nbs",file))
+function export2md(file::String, path::String)
+	notebook=run_and_update_nb(joinpath("./nbs",file))
 	page=createPage(file, notebook)
 	save_page(page, path)
 end
 
 """
-> export2html(files::AbstractVector, path::String)--> Map the `export2html(file, path)` to a given vector of file.
+> export2md(files::AbstractVector, path::String)--> Map the `export2md(file, path)` to a given vector of file.
 """
-export2html(files::AbstractVector, path::String)=map(file->export2html(file, path), files)
+function export2md(files::AbstractVector, path::String)
+	for file in files
+      export2md(file, path)
+	end
+end
 
 """
-> export2html()--> Higher level API to generate documents for all the valid notebooks
+> export2md()--> Higher level API to generate documents for all the valid notebooks
 """
-export2html()=export2html(Export.readfilenames(), "../docs")
+export2md()=export2md(Export.readfilenames("./nbs"), "./docs/docs")
 end
 
 # ╔═╡ 807db3e2-4121-11eb-136d-ad470b83a46f
-showDoc(export2html)
+showDoc(export2md)
 
 # ╔═╡ 8c376960-4121-11eb-1627-cf0d01bcf47b
-md"The `export2html()` is what gets summoned when document generation is invoked. Like most things in nbdev (and unlike most things in life) this too gets invoked automatically. 🥳"
+md"The `export2md()` is what gets summoned when document generation is invoked. Like most things in nbdev (and unlike most things in life) this too gets invoked automatically. 🥳"
 
 # ╔═╡ e8e79770-4121-11eb-2d54-0b27713454c8
 md"##### createtoc"
 
 # ╔═╡ 477e3750-3301-11eb-0bf0-3397364c4f91
-#export
+#hide
+#perhaps dont need it now because franklin has the settings
+#in the html _layout file itself.
+#the directory from where the fields can be borrowed
+#for toc.
 """
-> createtoc()--> Create the tableof contents and save that in toc.md inside docs directory
-"""
-function createtoc()
-	docnames=[Export.strip(name, ".md") for name in readdir("../docs")]
-	save_page(docnames)
-end
+#> createtoc()--> Create the tableof contents and save that in toc.md inside docs directory
+#"""
+#function createtoc()
+#	docnames=[Export.strip(name, ".md") for name in readdir("../docs/")]
+#	save_page(docnames)
+#end
 
 # ╔═╡ 2a7498f0-4122-11eb-13d3-a5bff912453c
-showDoc(createtoc)
+#showDoc(createtoc)
 
 # ╔═╡ 0a8aeb00-411f-11eb-15cb-69ac5c16f683
 md"Creating the toc.md and example--
@@ -701,7 +748,7 @@ md"Creating the toc.md and example--
 
 # ╔═╡ 79b7bac0-3301-11eb-12ee-d1870258f287
 #hide
-createtoc()
+#createtoc()
 
 # ╔═╡ 58b6fa50-0ba8-11eb-1ccf-1328cbe524b4
 #hide
@@ -713,7 +760,6 @@ Export.notebook2script()
 # ╠═151ec8b0-2b27-11eb-1ec2-a7c5e4c13db9
 # ╠═085e8560-17af-11eb-37c6-2bfceac4cf79
 # ╠═2a9f0c2e-07ba-11eb-2a22-cf9244b79ecd
-# ╠═f85e7f50-6b8f-11eb-3f9c-bb80926ce8ce
 # ╠═b068dfd2-0eb3-11eb-109a-d1b6ef1eeca0
 # ╠═1d83078e-2024-11eb-0e5f-51310d134662
 # ╠═23c57f60-0eb4-11eb-20c0-7dac22387fc1
@@ -798,6 +844,10 @@ Export.notebook2script()
 # ╟─39ae06b0-411f-11eb-01eb-b30511aec8cc
 # ╠═827db480-411f-11eb-2eb3-b3239cc4a865
 # ╠═8aab35fe-411f-11eb-27b2-6bc7d3dd5280
+# ╠═f5521070-8f6f-11eb-3466-539ce423eb19
+# ╠═642e89a0-8f71-11eb-0a01-07ade17b8c65
+# ╠═20728fa0-8f70-11eb-2807-9bdb80c4b2f9
+# ╠═1b8e6cc0-8f70-11eb-0e91-1101742b14a4
 # ╟─7b6fd3d0-411f-11eb-3786-ff38ee7d0291
 # ╠═4c5c7c22-28a0-11eb-0069-cb78e0e7e0ee
 # ╠═870d3240-4120-11eb-0dca-89337e801493
@@ -805,10 +855,10 @@ Export.notebook2script()
 # ╠═9fa322d0-32ff-11eb-2060-4b3e609d0d73
 # ╠═caa56ba0-32ff-11eb-2008-91c24261ae53
 # ╠═a8606bc0-3300-11eb-1487-6f229844f529
-# ╟─ed8b55f0-4121-11eb-1a2b-a77bea8bfe7f
+# ╠═ed8b55f0-4121-11eb-1a2b-a77bea8bfe7f
 # ╠═f31331e0-28c2-11eb-1014-95ed88d77469
 # ╠═807db3e2-4121-11eb-136d-ad470b83a46f
-# ╟─8c376960-4121-11eb-1627-cf0d01bcf47b
+# ╠═8c376960-4121-11eb-1627-cf0d01bcf47b
 # ╟─e8e79770-4121-11eb-2d54-0b27713454c8
 # ╠═477e3750-3301-11eb-0bf0-3397364c4f91
 # ╠═2a7498f0-4122-11eb-13d3-a5bff912453c

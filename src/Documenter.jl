@@ -12,12 +12,6 @@ using Markdown
 using ReusePatterns
 
 #export
-using Images, FileIO
-
-#export
-using PyCall
-
-#export
 using Publish
 
 #export
@@ -30,12 +24,17 @@ include("../src/ConfigReader.jl")
 include("../src/CodeRunner.jl")
 
 #export
+#TODO: not working in local due to system block.
+#have to test in an unrestricted environment
+#using Images, FileIO
+
+#export
 import Pluto: Notebook, Cell, load_notebook_nobackup
 
 #export
 begin
 """
-> struct Section--> This is like the section of a page and is made up of one or multiple "lines".
+> struct Section--> This is like the section of a page and is made up of one or multiple lines.
 > * Fields:
 >   * line--> String which makes up a section
 """
@@ -48,7 +47,7 @@ end
 """
 Section(line)=Section(line=line)
 """
-> line(section::Section)--> Getter for accessing the underlying field "line".
+> line(section::Section)--> Getter for accessing the underlying field line.
 """
 line(section::Section)=section.line
 end
@@ -72,24 +71,26 @@ end
 Page(sections, path)=Page(sections=sections, path=path)
 	
 """
-> sections--> Getter for accessing teh underlying field "sections" of Page.
+> sections--> Getter for accessing the underlying field sections of Page.
 """
 sections(p::Page)=p.sections
 	
 """
-> name--> Getter for accessing teh underlying field "name" of Page.
+> name--> Getter for accessing the underlying field name of Page.
 """
 name(p::Page)=p.name
 end
 
 #export
 #TODO:This should be moved to a utility module
-"""
-> img(img_path::String)--> Helper function to load images within a notebook. This can be helpful to have images appear in the final document.
-"""
-function img(img_path::String)
-	load(img_path)
-end
+#TODO: have to test in unrestricted environment
+#as it's getting blocked in my current system
+#"""
+#> img(img_path::String)--> Helper function to load images within a notebook. This can be helpful to have images appear in the final document.
+#"""
+#function img(img_path::String)
+#	load(img_path)
+#end
 
 #export
 begin
@@ -203,7 +204,7 @@ function stitchCode(cellop::AbstractString)
 end
 	
 """
-> stitchCode(cellop::AbstractString)--> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object
+> stitchCode(fdocs::FunctionDocs)--> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object
 """
 function stitchCode(fdocs::FunctionDocs)
 		funcdocs=""
@@ -240,7 +241,7 @@ end
 
 #export
 """
-> CreatePage--> Creates the "Page" type from the markdown and example code cells of the supplied notebook. The filename is the name of the notebook which is parsed.
+> CreatePage--> Creates the Page type from the markdown and example code cells of the supplied notebook. The filename is the name of the notebook which is parsed.
 """
 function createPage(filename::AbstractString, notebook::Notebook)
 	sections=Section[]
@@ -277,27 +278,43 @@ const _footer = "</html>"
 end
 
 #export
+""">sw--> Checks if a given string
+    startwith a certain susbstring.
+    Helpful when there are a list of strings to match.
 """
-> md2html(md)--> Tiny helper to format a markdown into html.
-"""
-md2html(md)=Markdown.html(md)
+sw = o -> startswith("```html~~~", o)
 
 #export
 begin
+
+#vector of possible non-html strings
+nothtml = ["> ", "```"]
+	
 """
-> save_page(io, page::Page)--> Take the contents from a "Page" type and write to the io
+> save_page(io, page::Page)--> Take the contents from a Page type and write to the io
 """
 function save_page(io, page::Page)
     #println(io, _header)
-    println(io, "")
+    #println(io, "")
 		
 	pageHeading=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
-	heading2md=md"# $pageHeading"
-		
-    println(io, md2html(heading2md))
-		
+	#heading2md=md"# $pageHeading"
+	
+	#for Franklin. Without this Franklin gives error on page title
+	println(io, "@def title ="*"\""*pageHeading*"\"")
+	println(io, "~~~")
+    println(io, "<h1>Documenter</h1>")
+	println(io, "~~~")
+	
+    #TODO: the new line is rendering the web page renderable in franlin need to deal with it
 	for section in page.sections
-			println(io, section.line*"\n")
+			if startswith(section.line, "<")
+			    println(io, "~~~")
+			    println(io, section.line)
+			    println(io, "~~~")
+			else
+				println(io, section.line)
+			end
     end
 		
 	#print(io, _footer)	
@@ -315,7 +332,7 @@ function save_page(io, docnames::Array{String,1})
 end
 
 """
-> save_page(page::Page, path::String)--> Given a "Page" type and the required path, creates the related markdwon file in the specified path. The name of the resulting markdown file is same as the nameof the notebook for which the document is generated
+> save_page(page::Page, path::String)--> Given a Page type and the required path, creates the related markdwon file in the specified path. The name of the resulting markdown file is same as the nameof the notebook for which the document is generated
 """
 function save_page(page::Page, path::String)
 	file_name=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
@@ -337,32 +354,27 @@ end
 #export
 begin
 """
-> export2html(file::String, path::String)--> Generate document for a file in the given path
+> export2md(file::String, path::String)--> Generate document for a file in the given path
 """
-function export2html(file::String, path::String)
-	notebook=run_and_update_nb(joinpath("../nbs",file))
+function export2md(file::String, path::String)
+	notebook=run_and_update_nb(joinpath("./nbs",file))
 	page=createPage(file, notebook)
 	save_page(page, path)
 end
 
 """
-> export2html(files::AbstractVector, path::String)--> Map the `export2html(file, path)` to a given vector of file.
+> export2md(files::AbstractVector, path::String)--> Map the `export2md(file, path)` to a given vector of file.
 """
-export2html(files::AbstractVector, path::String)=map(file->export2html(file, path), files)
-
-"""
-> export2html()--> Higher level API to generate documents for all the valid notebooks
-"""
-export2html()=export2html(Export.readfilenames(), "../docs")
+function export2md(files::AbstractVector, path::String)
+	for file in files
+      export2md(file, path)
+	end
 end
 
-#export
 """
-> createtoc()--> Create the tableof contents and save that in toc.md inside docs directory
+> export2md()--> Higher level API to generate documents for all the valid notebooks
 """
-function createtoc()
-	docnames=[Export.strip(name, ".md") for name in readdir("../docs")]
-	save_page(docnames)
+export2md()=export2md(Export.readfilenames("./nbs"), "./docs/docs")
 end
 
 end

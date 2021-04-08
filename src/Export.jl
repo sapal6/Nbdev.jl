@@ -219,7 +219,15 @@ function readfilenames()
 end
 
 function readfilenames(dir::String)
-	files=cd(readdir, dir)
+	files=[]
+	for file in readdir(dir)
+			if endswith(file, ".jl")
+				push!(files,file)
+			end
+			#if getfile_extension(file)== ".jl"
+			#	push!(files,file)
+			#end
+	end
 	files
 end
 end
