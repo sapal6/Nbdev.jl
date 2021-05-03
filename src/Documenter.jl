@@ -357,7 +357,7 @@ begin
 > export2md(file::String, path::String)--> Generate document for a file in the given path
 """
 function export2md(file::String, path::String)
-	notebook=run_and_update_nb(joinpath("./nbs",file))
+	notebook=run_and_update_nb(joinpath(joinpath(pwd(), "nbs"),file))
 	page=createPage(file, notebook)
 	save_page(page, path)
 end
@@ -374,7 +374,7 @@ end
 """
 > export2md()--> Higher level API to generate documents for all the valid notebooks
 """
-export2md()=export2md(Export.readfilenames("./nbs"), "./docs/docs")
+export2md()=export2md(Export.readfilenames(joinpath(pwd(), "nbs")), "docs")
 end
 
 end
