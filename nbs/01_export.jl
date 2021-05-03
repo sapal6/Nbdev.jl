@@ -9,7 +9,7 @@ using InteractiveUtils
 include("../src/documenter.jl")
 
 # ╔═╡ 486bb5f0-54be-11eb-0e7c-1dcf55b5f983
-md"The Export module helps in exporting the code to script files amongst other things."
+md"The Export module helps in exporting the code to script files."
 
 # ╔═╡ 0aecd4c0-0e14-11eb-1619-4f5e0ced1279
 #export
@@ -24,7 +24,7 @@ end
 # ╔═╡ 6ff1ad80-1479-11eb-3868-0df000f47cc9
 md"## Lower Level Entities(Structs, methods etc.) 
 
-These are the objects on which nbdev's Export module was built. You can use it extend nbdev but these are automtically used by Nbdev's internal engine to generate code files for you."
+These are the objects on which nbdev's Export module was built. You can use it to extend nbdev but these are automtically used by Nbdev's internal engine to generate code files for you."
 
 # ╔═╡ 16fbf5b0-54bf-11eb-3c21-2bf024188fac
 md"#### Nucleus type"
@@ -51,7 +51,7 @@ end
 Documenter.showDoc(Nucleus)
 
 # ╔═╡ 1d983360-54c0-11eb-0104-672aaffbbb95
-md"Every time a code cell is parsed, it gets stored as a Nucleus type. The stored code can then be accesed using the `code` field in the Nucleus type."
+md"Every time a code cell is parsed, it gets stored as a Nucleus type. The stored code can then be accessed using the `code` field in the Nucleus type."
 
 # ╔═╡ cc7be350-54bf-11eb-2107-335896e7fbf3
 md"#### Example"
@@ -72,7 +72,7 @@ md"#### Nb type"
 #export
 begin
 """
-> struct Nb--> Reresents a notebook having nuclei made up of code cells only.
+> struct Nb--> a notebook having nuclei made up of code cells only.
 > * Fields:
 >   * nuclei--> Array of Nucleus type
 >   * name--> name of notebook
@@ -151,7 +151,7 @@ const _cell_suffix = "\n\n"
 md"#### load_scrubbed_nb"
 
 # ╔═╡ 512e7b20-54d5-11eb-3ff9-b150bf2f9e26
-md"`load_scrubbed_nb` reads the notebook in the given path cellby cell, while ignoring the stuffs in the notebook like the cell order delimeters and the cell start delimeter. The result is a `ScrubbedNotebook` type which contains only the code which you intend to export."
+md"`load_scrubbed_nb` reads the notebook in the given path cell by cell, while ignoring the stuffs in the notebook like the cell order delimeters and the cell start delimeter. The result is a `ScrubbedNotebook` type which contains only the code which you intend to export."
 
 # ╔═╡ 12377150-54d6-11eb-18ff-ef441154f771
 md"## High Level APIs
@@ -472,7 +472,7 @@ md"`notebook2script` can be called from anotebook which you intend to export. Us
 notebook2script()
 
 # ╔═╡ Cell order:
-# ╟─486bb5f0-54be-11eb-0e7c-1dcf55b5f983
+# ╠═486bb5f0-54be-11eb-0e7c-1dcf55b5f983
 # ╠═5b4e526e-3dfa-11eb-3472-bd753d60c119
 # ╠═0aecd4c0-0e14-11eb-1619-4f5e0ced1279
 # ╠═d2a442c0-0eb2-11eb-1ea8-d507d9145823
