@@ -300,26 +300,27 @@ function save_page(io, page::Page)
 	pageHeading=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
 	#heading2md=md"# $pageHeading"
 	
-	#for Franklin. Without this Franklin gives error on page title
-	println(io, "@def title ="*"\""*pageHeading*"\"")
-	println(io, "~~~")
+	#println(io, "@def title ="*"\""*pageHeading*"\"")
+	#println(io, "~~~")
     println(io, "<h1>Documenter</h1>")
-	println(io, "~~~")
+	#println(io, "~~~")
 	
     #TODO: the new line is rendering the web page renderable in franlin need to deal with it
 	for section in page.sections
-			if startswith(section.line, "<")
-			    println(io, "~~~")
-			    println(io, section.line)
-			    println(io, "~~~")
-			else
-				println(io, section.line)
-			end
+			println(io, section.line)
+			#if startswith(section.line, "<")
+			#    println(io, "~~~")
+			#    println(io, section.line)
+			#    println(io, "~~~")
+			#else
+			#	println(io, section.line)
+			#end
     end
 		
 	#print(io, _footer)	
 end
 
+#TODO: perhaps need to modify the toc creation?
 """
 > save_page(save_page(io, docnames::Array{String,1}))--> Given an array of document names, creates a table of content
 """
