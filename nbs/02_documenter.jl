@@ -35,7 +35,7 @@ include("../src/CodeRunner.jl")
 # ╔═╡ b495a5c0-0701-11eb-22a0-2f1a44fb9a15
 md"The Documenter module is based on the following question:
 
-**What failities would we want to have if we need a way to generate documents from a 📓 ?**🤔
+**What facilities would we want to have if we need a way to generate documents from a 📓 ?**🤔
 
 These might be some answers to the above questions👇
 
@@ -63,7 +63,7 @@ ConfigReader.read_conf("../settings.ini")["lib_path"]
 
 # ╔═╡ 25ff264e-3ec5-11eb-362c-07b4e24c635a
 md"## Lower Level Entities(Structs, methods etc.) 
-These are the objects on which nbdev's Documenter module was built. You can use it extend nbdev but these are automtically used by Nbdev's internal engine to generate code files for you."
+These are the objects on which nbdev's Documenter module was built. You can use it to extend nbdev but these are automtically used by Nbdev's internal engine to generate code files for you."
 
 # ╔═╡ bf4e47f0-3ec5-11eb-1b65-5fe2e7a88ff1
 md"#### Section type"
@@ -210,7 +210,7 @@ begin
 #		mkdir("../docs")
 #	end
 #end
-
+	
 function newsitegen(configpath::String="../settings.ini")
 	
 	if !isfile("../settings.ini") 
@@ -231,9 +231,6 @@ end
 # ╔═╡ e7a9d932-08ab-11eb-1f38-479b95b55ee6
 #hide
 #newsitegen()
-
-# ╔═╡ 63b40350-405d-11eb-1b89-cf3fb7ded30d
-md"Nbdev uses [Publish.jl](https://michaelhatherly.github.io/Publish.jl/0.1.0/docs/getting_started.html) to generate the document site. All the documents are in markdown format and must be present under the `docs` 📂 in the project root. The `newsitegen` function makes sure to create a docs 📂 if it's not available in project root."
 
 # ╔═╡ 74879c7e-0eeb-11eb-31bf-251621d154a6
 #hide
@@ -536,7 +533,7 @@ end
 showDoc(createPage)
 
 # ╔═╡ 7f938250-411e-11eb-0d30-b53cf2c8bc97
-md"While generating document this function you don't need to call this function. This is done automatically😃 for you when nbdev generates documents."
+md"While generating document you don't need to call this function. This is done automatically😃 for you when nbdev generates documents."
 
 # ╔═╡ 8d7b5280-28a0-11eb-282d-2dbf124460da
 #export
@@ -665,18 +662,6 @@ showDoc(save_page)
 # ╔═╡ 943f2fe2-4120-11eb-11a9-7785d11d3c36
 md"Nbdev calls the required method of `save_page` automatically during document generation."
 
-# ╔═╡ 9fa322d0-32ff-11eb-2060-4b3e609d0d73
-#hide
-filenames=readdir("../docs")
-
-# ╔═╡ caa56ba0-32ff-11eb-2008-91c24261ae53
-#hide
-docnames=[Export.strip(name, ".md") for name in filenames]
-
-# ╔═╡ a8606bc0-3300-11eb-1487-6f229844f529
-#hide
-save_page(docnames)
-
 # ╔═╡ ed8b55f0-4121-11eb-1a2b-a77bea8bfe7f
 md"##### export2md"
 
@@ -718,10 +703,8 @@ md"##### createtoc"
 
 # ╔═╡ 477e3750-3301-11eb-0bf0-3397364c4f91
 #hide
-#perhaps dont need it now because franklin has the settings
-#in the html _layout file itself.
-#the directory from where the fields can be borrowed
-#for toc.
+#TODO: need o modify for mkdocs?
+#not sure. have to check
 """
 #> createtoc()--> Create the tableof contents and save that in toc.md inside docs directory
 #"""
@@ -732,19 +715,6 @@ md"##### createtoc"
 
 # ╔═╡ 2a7498f0-4122-11eb-13d3-a5bff912453c
 #showDoc(createtoc)
-
-# ╔═╡ 0a8aeb00-411f-11eb-15cb-69ac5c16f683
-md"Creating the toc.md and example--
-
-* Create the file-
-  + The first two lines should be-->  
-
-    **Documentation**
-    * [Introduction](README.md)
-* Read the files in doc folder.
-  + Append to the file as-->
-    * [Module1]```(/docs/module1)```
-    * [Module2]```(/docs/module2)```"
 
 # ╔═╡ 79b7bac0-3301-11eb-12ee-d1870258f287
 #hide
@@ -794,7 +764,6 @@ Export.notebook2script()
 # ╟─4393ada2-405d-11eb-2b44-4956a62bc6ae
 # ╠═e49c1970-08aa-11eb-094a-655c0f0c22af
 # ╠═e7a9d932-08ab-11eb-1f38-479b95b55ee6
-# ╟─63b40350-405d-11eb-1b89-cf3fb7ded30d
 # ╠═74879c7e-0eeb-11eb-31bf-251621d154a6
 # ╠═e2952860-1ade-11eb-20ca-091a45fab2f2
 # ╠═d9fffed0-2f3f-11eb-16b4-4b2778f792d9
@@ -837,7 +806,7 @@ Export.notebook2script()
 # ╟─285cf4e0-4064-11eb-3162-1b399c464a1a
 # ╠═36b846d0-2024-11eb-3784-89a02343cd0b
 # ╠═7216e720-411e-11eb-1103-19bf4993ef1e
-# ╟─7f938250-411e-11eb-0d30-b53cf2c8bc97
+# ╠═7f938250-411e-11eb-0d30-b53cf2c8bc97
 # ╠═8d7b5280-28a0-11eb-282d-2dbf124460da
 # ╟─15299390-411f-11eb-3b2b-257dc0eac258
 # ╠═60f5f6b0-28a1-11eb-1b18-27bdfed23c8c
@@ -852,9 +821,6 @@ Export.notebook2script()
 # ╠═4c5c7c22-28a0-11eb-0069-cb78e0e7e0ee
 # ╠═870d3240-4120-11eb-0dca-89337e801493
 # ╟─943f2fe2-4120-11eb-11a9-7785d11d3c36
-# ╠═9fa322d0-32ff-11eb-2060-4b3e609d0d73
-# ╠═caa56ba0-32ff-11eb-2008-91c24261ae53
-# ╠═a8606bc0-3300-11eb-1487-6f229844f529
 # ╠═ed8b55f0-4121-11eb-1a2b-a77bea8bfe7f
 # ╠═f31331e0-28c2-11eb-1014-95ed88d77469
 # ╠═807db3e2-4121-11eb-136d-ad470b83a46f
@@ -862,6 +828,5 @@ Export.notebook2script()
 # ╟─e8e79770-4121-11eb-2d54-0b27713454c8
 # ╠═477e3750-3301-11eb-0bf0-3397364c4f91
 # ╠═2a7498f0-4122-11eb-13d3-a5bff912453c
-# ╟─0a8aeb00-411f-11eb-15cb-69ac5c16f683
 # ╠═79b7bac0-3301-11eb-12ee-d1870258f287
 # ╠═58b6fa50-0ba8-11eb-1ccf-1328cbe524b4

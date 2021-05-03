@@ -112,7 +112,7 @@ begin
 #		mkdir("../docs")
 #	end
 #end
-
+	
 function newsitegen(configpath::String="../settings.ini")
 	
 	if !isfile("../settings.ini") 
