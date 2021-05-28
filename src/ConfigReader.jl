@@ -6,6 +6,9 @@ module ConfigReader
 using ConfParser
 
 #export
+#TODO: there can be better way to create settings file
+#maybe toml but I would like to keep it separate from
+#the project toml
 """
 > read_conf(confpath::String="../settings.ini")--> Takes in the config filepath and parses the different configurations(key/value pair. Returns a dictionary
 """

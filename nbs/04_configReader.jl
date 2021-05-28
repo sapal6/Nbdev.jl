@@ -17,13 +17,16 @@ include("../src/Export.jl")
 include("../src/Documenter.jl")
 
 # ╔═╡ bb6686a0-0ba5-11eb-0b57-c393077a2c77
-md"The config fileis where all the settings are to be stored. Nbdev will use this to setup different things in your project. The `read_conf` helps you to parse the settings.ini file"
+md"The config file is where all the settings are to be stored. Nbdev will use this to setup different things in your project. The `read_conf` helps you to parse the settings.ini file"
 
 # ╔═╡ e9b27010-6324-11eb-2986-713d2cfb9089
 md"## read_conf"
 
 # ╔═╡ 09f2b5f0-0ba6-11eb-2561-cb7d0adb6ced
 #export
+#TODO: there can be better way to create settings file
+#maybe toml but I would like to keep it separate from
+#the project toml
 """
 > read_conf(confpath::String="../settings.ini")--> Takes in the config filepath and parses the different configurations(key/value pair. Returns a dictionary
 """

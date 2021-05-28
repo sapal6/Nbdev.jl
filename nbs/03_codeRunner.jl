@@ -19,7 +19,9 @@ I think the simplest way to do this is to do the following👇
 
 * Take a notebook. 
 * Create a fake server, fake client etc.
-* Run the notebook cell by cell and update the notebook with the output."
+* Run the notebook cell by cell and update the notebook with the output.
+
+This is taken straight from Pluto's webserver code"
 
 # ╔═╡ 195b8ac0-1cff-11eb-1989-07908c56d612
 #export

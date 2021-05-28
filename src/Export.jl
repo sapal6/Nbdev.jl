@@ -30,7 +30,7 @@ end
 #export
 begin
 """
-> struct Nb--> Reresents a notebook having nuclei made up of code cells only.
+> struct Nb--> a notebook having nuclei made up of code cells only.
 > * Fields:
 >   * nuclei--> Array of Nucleus type
 >   * name--> name of notebook

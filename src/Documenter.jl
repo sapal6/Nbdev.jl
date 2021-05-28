@@ -9,12 +9,6 @@ using Base.Docs
 using Markdown
 
 #export
-using ReusePatterns
-
-#export
-using Publish
-
-#export
 include("../src/Export.jl")
 
 #export
@@ -93,44 +87,6 @@ end
 #end
 
 #export
-begin
-"""
-> newsitegen(configpath::String="../settings.ini")--> Create required directory structure for hosting documents with optional path to a config file.
-"""
-#function newsitegen(configpath::String="../settings.ini")
-#	
-#	if !isfile("../settings.ini") 
-#		error("You don't have the settings file available in project path")
-#	end
-#	
-#	config=read_conf(configpath)
-#	if isdir("../docs")
-#		warn("$(config["lib_name"])_docs directory is already present")
-#	else
-#	    #setup("../$(config["lib_name"])_docs")
-#		setup("../")
-#		mkdir("../docs")
-#	end
-#end
-
-function newsitegen(configpath::String="../settings.ini")
-	
-	if !isfile("../settings.ini") 
-		error("You don't have the settings file available in project path")
-	end
-	
-	config=read_conf(configpath)
-	if isdir("../docs")
-		warn("$(config["lib_name"])_docs directory is already present")
-	else
-	    #setup("../$(config["lib_name"])_docs")
-		mkdir("../docs")
-		run(`mkdocs new my-project`)
-	end
-end
-end
-
-#export
 """
 > run_and_update_nb(file::AbstractString)--> Run the notebook in the supplied path and update the notebook with the output of each cell.
 """
@@ -157,40 +113,15 @@ end
 
 #export
 begin
-
-jltree_pat=Dict("<jltree class=collapsed onclick=onjltreeclick(this, event)>"=>"",
-                    "<jlstruct>"=>"(",
-                     "<r>"=>"",
-                     "<k>" => "",
-                     "</k>" => "-->",
-                     "<v>" => "",
-                     "</v>"=> "",
-                     "</r>" => "",
-                     "</jlstruct>"=>")",
-                     "</jltree>" => "",
-		             "<jlarray>" => "[",
-                     "</jlarray>"=>"]",
-	                 "<pre>"=>"",
-	                 "</pre>"=>"",
-	                 "&quot;"=>"",
-	                 "&#61;"=>"=",
-	                 "&#43;"=>"+",
-	                 "&#40;"=>"(",
-	                 "&#41;"=>")")
-                    		
+        		
 
 """
-> stitchCode(cell::Cell)--> Stitches the code in a Pluto notebook cell with the output of that code. The output is acode block.
+> stitchCode(cell::Cell)--> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.
 """
-function stitchCode(cell::Cell)
-	op=Export.strip(cell.output_repr, "\"")
-	if startswith(cell.output_repr, "<jltree")
-			for(key, val) in jltree_pat
-				op=replace(op, key=>val)
-			end
-	end
-		
-	string("```","\n$(cell.code)\n","------\nOutput\n------\n","$(op)\n", "```\n")
+function stitchCode(cell::AbstractArray)
+	#op=Export.strip(values(cell[2]), "\"")
+	op=values(cell[2])
+	string("```","\n$(cell[1])\n","------\nOutput\n------\n","$(op)\n", "```\n")
 end
 	
 """
@@ -252,17 +183,16 @@ function createPage(filename::AbstractString, notebook::Notebook)
 			error("Build stopped. Seems like the code $cell.code has an error")
 			break
 	    end
-		
 	    if startswith(cell.code, "md")
-			push!(sections, Section(cell.output_repr))
+			push!(sections, Section(cell.output.body))
 		elseif !startswith(cell.code, "#export") && !startswith(cell.code, "#hide")
 			if occursin( "showDoc", cell.code)
-				#stitched_code=stitchCode(cell.output_repr)
-				cleanedop=Export.strip(cell.output_repr, "\"")
+				#stitched_code=stitchCode(cell.output)
+				cleanedop=Export.strip(cell.output.body, "\"")
 				cleanedop=replace(cleanedop, "\\n"=>"\n")
 				push!(sections, Section(cleanedop))
 			else
-				stitched_code=stitchCode(cell)
+				stitched_code=stitchCode([cell.code, cell.output.body])
 			    push!(sections, Section(stitched_code))
 			end
 		end
@@ -294,32 +224,18 @@ nothtml = ["> ", "```"]
 > save_page(io, page::Page)--> Take the contents from a Page type and write to the io
 """
 function save_page(io, page::Page)
-    #println(io, _header)
-    #println(io, "")
 		
 	pageHeading=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
-	#heading2md=md"# $pageHeading"
+
+    println(io, "<h1>$pageHeading</h1>")
 	
-	#for Franklin. Without this Franklin gives error on page title
-	println(io, "@def title ="*"\""*pageHeading*"\"")
-	println(io, "~~~")
-    println(io, "<h1>Documenter</h1>")
-	println(io, "~~~")
-	
-    #TODO: the new line is rendering the web page renderable in franlin need to deal with it
 	for section in page.sections
-			if startswith(section.line, "<")
-			    println(io, "~~~")
-			    println(io, section.line)
-			    println(io, "~~~")
-			else
-				println(io, section.line)
-			end
+			println(io, section.line)
     end
 		
-	#print(io, _footer)	
 end
 
+#TODO: perhaps need to modify the toc creation?
 """
 > save_page(save_page(io, docnames::Array{String,1}))--> Given an array of document names, creates a table of content
 """
@@ -357,7 +273,7 @@ begin
 > export2md(file::String, path::String)--> Generate document for a file in the given path
 """
 function export2md(file::String, path::String)
-	notebook=run_and_update_nb(joinpath("./nbs",file))
+	notebook=run_and_update_nb(joinpath(joinpath(pwd(), "nbs"),file))
 	page=createPage(file, notebook)
 	save_page(page, path)
 end
@@ -374,7 +290,7 @@ end
 """
 > export2md()--> Higher level API to generate documents for all the valid notebooks
 """
-export2md()=export2md(Export.readfilenames("./nbs"), "./docs/docs")
+export2md()=export2md(Export.readfilenames(joinpath(pwd(), "nbs")), "docs")
 end
 
 end

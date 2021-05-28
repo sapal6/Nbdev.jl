@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.11.13
+# v0.14.4
 
 using Markdown
 using InteractiveUtils
@@ -11,14 +11,6 @@ using Base.Docs
 # ╔═╡ 151ec8b0-2b27-11eb-1ec2-a7c5e4c13db9
 #export
 using Markdown
-
-# ╔═╡ 085e8560-17af-11eb-37c6-2bfceac4cf79
-#export
-using ReusePatterns
-
-# ╔═╡ dbc2c790-08aa-11eb-12bb-579de4923c76
-#export
-using Publish
 
 # ╔═╡ b068dfd2-0eb3-11eb-109a-d1b6ef1eeca0
 #export
@@ -35,7 +27,7 @@ include("../src/CodeRunner.jl")
 # ╔═╡ b495a5c0-0701-11eb-22a0-2f1a44fb9a15
 md"The Documenter module is based on the following question:
 
-**What failities would we want to have if we need a way to generate documents from a 📓 ?**🤔
+**What facilities would we want to have if we need a way to generate documents from a 📓 ?**🤔
 
 These might be some answers to the above questions👇
 
@@ -63,7 +55,7 @@ ConfigReader.read_conf("../settings.ini")["lib_path"]
 
 # ╔═╡ 25ff264e-3ec5-11eb-362c-07b4e24c635a
 md"## Lower Level Entities(Structs, methods etc.) 
-These are the objects on which nbdev's Documenter module was built. You can use it extend nbdev but these are automtically used by Nbdev's internal engine to generate code files for you."
+These are the objects on which nbdev's Documenter module was built. You can use it to extend nbdev but these are automtically used by Nbdev's internal engine to generate code files for you."
 
 # ╔═╡ bf4e47f0-3ec5-11eb-1b65-5fe2e7a88ff1
 md"#### Section type"
@@ -186,55 +178,6 @@ md"`img()` accepts image path and loads an image onto the notebook where it is c
 #hide
 pwd()
 
-# ╔═╡ 4393ada2-405d-11eb-2b44-4956a62bc6ae
-md"##### newsitegen"
-
-# ╔═╡ e49c1970-08aa-11eb-094a-655c0f0c22af
-#export
-begin
-"""
-> newsitegen(configpath::String="../settings.ini")--> Create required directory structure for hosting documents with optional path to a config file.
-"""
-#function newsitegen(configpath::String="../settings.ini")
-#	
-#	if !isfile("../settings.ini") 
-#		error("You don't have the settings file available in project path")
-#	end
-#	
-#	config=read_conf(configpath)
-#	if isdir("../docs")
-#		warn("$(config["lib_name"])_docs directory is already present")
-#	else
-#	    #setup("../$(config["lib_name"])_docs")
-#		setup("../")
-#		mkdir("../docs")
-#	end
-#end
-
-function newsitegen(configpath::String="../settings.ini")
-	
-	if !isfile("../settings.ini") 
-		error("You don't have the settings file available in project path")
-	end
-	
-	config=read_conf(configpath)
-	if isdir("../docs")
-		warn("$(config["lib_name"])_docs directory is already present")
-	else
-	    #setup("../$(config["lib_name"])_docs")
-		mkdir("../docs")
-		run(`mkdocs new my-project`)
-	end
-end
-end
-
-# ╔═╡ e7a9d932-08ab-11eb-1f38-479b95b55ee6
-#hide
-#newsitegen()
-
-# ╔═╡ 63b40350-405d-11eb-1b89-cf3fb7ded30d
-md"Nbdev uses [Publish.jl](https://michaelhatherly.github.io/Publish.jl/0.1.0/docs/getting_started.html) to generate the document site. All the documents are in markdown format and must be present under the `docs` 📂 in the project root. The `newsitegen` function makes sure to create a docs 📂 if it's not available in project root."
-
 # ╔═╡ 74879c7e-0eeb-11eb-31bf-251621d154a6
 #hide
 function test(x)
@@ -331,40 +274,15 @@ end
 # ╔═╡ d75486f0-2022-11eb-2d95-aded3418c079
 #export
 begin
-
-jltree_pat=Dict("<jltree class=collapsed onclick=onjltreeclick(this, event)>"=>"",
-                    "<jlstruct>"=>"(",
-                     "<r>"=>"",
-                     "<k>" => "",
-                     "</k>" => "-->",
-                     "<v>" => "",
-                     "</v>"=> "",
-                     "</r>" => "",
-                     "</jlstruct>"=>")",
-                     "</jltree>" => "",
-		             "<jlarray>" => "[",
-                     "</jlarray>"=>"]",
-	                 "<pre>"=>"",
-	                 "</pre>"=>"",
-	                 "&quot;"=>"",
-	                 "&#61;"=>"=",
-	                 "&#43;"=>"+",
-	                 "&#40;"=>"(",
-	                 "&#41;"=>")")
-                    		
+        		
 
 """
-> stitchCode(cell::Cell)--> Stitches the code in a Pluto notebook cell with the output of that code. The output is acode block.
+> stitchCode(cell::Cell)--> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.
 """
-function stitchCode(cell::Cell)
-	op=Export.strip(cell.output_repr, "\"")
-	if startswith(cell.output_repr, "<jltree")
-			for(key, val) in jltree_pat
-				op=replace(op, key=>val)
-			end
-	end
-		
-	string("```","\n$(cell.code)\n","------\nOutput\n------\n","$(op)\n", "```\n")
+function stitchCode(cell::AbstractArray)
+	#op=Export.strip(values(cell[2]), "\"")
+	op=values(cell[2])
+	string("```","\n$(cell[1])\n","------\nOutput\n------\n","$(op)\n", "```\n")
 end
 	
 """
@@ -513,17 +431,16 @@ function createPage(filename::AbstractString, notebook::Notebook)
 			error("Build stopped. Seems like the code $cell.code has an error")
 			break
 	    end
-		
 	    if startswith(cell.code, "md")
-			push!(sections, Section(cell.output_repr))
+			push!(sections, Section(cell.output.body))
 		elseif !startswith(cell.code, "#export") && !startswith(cell.code, "#hide")
 			if occursin( "showDoc", cell.code)
-				#stitched_code=stitchCode(cell.output_repr)
-				cleanedop=Export.strip(cell.output_repr, "\"")
+				#stitched_code=stitchCode(cell.output)
+				cleanedop=Export.strip(cell.output.body, "\"")
 				cleanedop=replace(cleanedop, "\\n"=>"\n")
 				push!(sections, Section(cleanedop))
 			else
-				stitched_code=stitchCode(cell)
+				stitched_code=stitchCode([cell.code, cell.output.body])
 			    push!(sections, Section(stitched_code))
 			end
 		end
@@ -536,7 +453,7 @@ end
 showDoc(createPage)
 
 # ╔═╡ 7f938250-411e-11eb-0d30-b53cf2c8bc97
-md"While generating document this function you don't need to call this function. This is done automatically😃 for you when nbdev generates documents."
+md"While generating document you don't need to call this function. This is done automatically😃 for you when nbdev generates documents."
 
 # ╔═╡ 8d7b5280-28a0-11eb-282d-2dbf124460da
 #export
@@ -602,32 +519,18 @@ nothtml = ["> ", "```"]
 > save_page(io, page::Page)--> Take the contents from a Page type and write to the io
 """
 function save_page(io, page::Page)
-    #println(io, _header)
-    #println(io, "")
 		
 	pageHeading=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
-	#heading2md=md"# $pageHeading"
+
+    println(io, "<h1>$pageHeading</h1>")
 	
-	#for Franklin. Without this Franklin gives error on page title
-	println(io, "@def title ="*"\""*pageHeading*"\"")
-	println(io, "~~~")
-    println(io, "<h1>Documenter</h1>")
-	println(io, "~~~")
-	
-    #TODO: the new line is rendering the web page renderable in franlin need to deal with it
 	for section in page.sections
-			if startswith(section.line, "<")
-			    println(io, "~~~")
-			    println(io, section.line)
-			    println(io, "~~~")
-			else
-				println(io, section.line)
-			end
+			println(io, section.line)
     end
 		
-	#print(io, _footer)	
 end
 
+#TODO: perhaps need to modify the toc creation?
 """
 > save_page(save_page(io, docnames::Array{String,1}))--> Given an array of document names, creates a table of content
 """
@@ -665,18 +568,6 @@ showDoc(save_page)
 # ╔═╡ 943f2fe2-4120-11eb-11a9-7785d11d3c36
 md"Nbdev calls the required method of `save_page` automatically during document generation."
 
-# ╔═╡ 9fa322d0-32ff-11eb-2060-4b3e609d0d73
-#hide
-filenames=readdir("../docs")
-
-# ╔═╡ caa56ba0-32ff-11eb-2008-91c24261ae53
-#hide
-docnames=[Export.strip(name, ".md") for name in filenames]
-
-# ╔═╡ a8606bc0-3300-11eb-1487-6f229844f529
-#hide
-save_page(docnames)
-
 # ╔═╡ ed8b55f0-4121-11eb-1a2b-a77bea8bfe7f
 md"##### export2md"
 
@@ -687,7 +578,7 @@ begin
 > export2md(file::String, path::String)--> Generate document for a file in the given path
 """
 function export2md(file::String, path::String)
-	notebook=run_and_update_nb(joinpath("./nbs",file))
+	notebook=run_and_update_nb(joinpath(joinpath(pwd(), "nbs"),file))
 	page=createPage(file, notebook)
 	save_page(page, path)
 end
@@ -704,7 +595,7 @@ end
 """
 > export2md()--> Higher level API to generate documents for all the valid notebooks
 """
-export2md()=export2md(Export.readfilenames("./nbs"), "./docs/docs")
+export2md()=export2md(Export.readfilenames(joinpath(pwd(), "nbs")), "docs")
 end
 
 # ╔═╡ 807db3e2-4121-11eb-136d-ad470b83a46f
@@ -713,52 +604,14 @@ showDoc(export2md)
 # ╔═╡ 8c376960-4121-11eb-1627-cf0d01bcf47b
 md"The `export2md()` is what gets summoned when document generation is invoked. Like most things in nbdev (and unlike most things in life) this too gets invoked automatically. 🥳"
 
-# ╔═╡ e8e79770-4121-11eb-2d54-0b27713454c8
-md"##### createtoc"
-
-# ╔═╡ 477e3750-3301-11eb-0bf0-3397364c4f91
-#hide
-#perhaps dont need it now because franklin has the settings
-#in the html _layout file itself.
-#the directory from where the fields can be borrowed
-#for toc.
-"""
-#> createtoc()--> Create the tableof contents and save that in toc.md inside docs directory
-#"""
-#function createtoc()
-#	docnames=[Export.strip(name, ".md") for name in readdir("../docs/")]
-#	save_page(docnames)
-#end
-
-# ╔═╡ 2a7498f0-4122-11eb-13d3-a5bff912453c
-#showDoc(createtoc)
-
-# ╔═╡ 0a8aeb00-411f-11eb-15cb-69ac5c16f683
-md"Creating the toc.md and example--
-
-* Create the file-
-  + The first two lines should be-->  
-
-    **Documentation**
-    * [Introduction](README.md)
-* Read the files in doc folder.
-  + Append to the file as-->
-    * [Module1]```(/docs/module1)```
-    * [Module2]```(/docs/module2)```"
-
-# ╔═╡ 79b7bac0-3301-11eb-12ee-d1870258f287
-#hide
-#createtoc()
-
 # ╔═╡ 58b6fa50-0ba8-11eb-1ccf-1328cbe524b4
 #hide
 Export.notebook2script()
 
 # ╔═╡ Cell order:
-# ╠═b495a5c0-0701-11eb-22a0-2f1a44fb9a15
+# ╟─b495a5c0-0701-11eb-22a0-2f1a44fb9a15
 # ╠═4cb4aa50-3e01-11eb-3460-5f109773492b
 # ╠═151ec8b0-2b27-11eb-1ec2-a7c5e4c13db9
-# ╠═085e8560-17af-11eb-37c6-2bfceac4cf79
 # ╠═2a9f0c2e-07ba-11eb-2a22-cf9244b79ecd
 # ╠═b068dfd2-0eb3-11eb-109a-d1b6ef1eeca0
 # ╠═1d83078e-2024-11eb-0e5f-51310d134662
@@ -768,7 +621,7 @@ Export.notebook2script()
 # ╠═25ff264e-3ec5-11eb-362c-07b4e24c635a
 # ╠═bf4e47f0-3ec5-11eb-1b65-5fe2e7a88ff1
 # ╠═5a2e9790-201f-11eb-0df4-f90b3cc54f20
-# ╟─0bc30190-3ec9-11eb-0ac6-7d8f1eacc210
+# ╠═0bc30190-3ec9-11eb-0ac6-7d8f1eacc210
 # ╠═730d99d0-3ec6-11eb-185c-fb571b36bf67
 # ╠═d8395ed0-3ec5-11eb-049c-0b38eb2e7d54
 # ╠═0d10aed0-3f9b-11eb-1bcd-dbdb5e5068f4
@@ -790,11 +643,6 @@ Export.notebook2script()
 # ╟─b726f4f0-405a-11eb-3fe1-b5e95c56cf9b
 # ╠═8d851420-08af-11eb-26b0-63501c72011a
 # ╠═9478dd20-08af-11eb-1663-a7db573d2187
-# ╠═dbc2c790-08aa-11eb-12bb-579de4923c76
-# ╟─4393ada2-405d-11eb-2b44-4956a62bc6ae
-# ╠═e49c1970-08aa-11eb-094a-655c0f0c22af
-# ╠═e7a9d932-08ab-11eb-1f38-479b95b55ee6
-# ╟─63b40350-405d-11eb-1b89-cf3fb7ded30d
 # ╠═74879c7e-0eeb-11eb-31bf-251621d154a6
 # ╠═e2952860-1ade-11eb-20ca-091a45fab2f2
 # ╠═d9fffed0-2f3f-11eb-16b4-4b2778f792d9
@@ -837,7 +685,7 @@ Export.notebook2script()
 # ╟─285cf4e0-4064-11eb-3162-1b399c464a1a
 # ╠═36b846d0-2024-11eb-3784-89a02343cd0b
 # ╠═7216e720-411e-11eb-1103-19bf4993ef1e
-# ╟─7f938250-411e-11eb-0d30-b53cf2c8bc97
+# ╠═7f938250-411e-11eb-0d30-b53cf2c8bc97
 # ╠═8d7b5280-28a0-11eb-282d-2dbf124460da
 # ╟─15299390-411f-11eb-3b2b-257dc0eac258
 # ╠═60f5f6b0-28a1-11eb-1b18-27bdfed23c8c
@@ -852,16 +700,8 @@ Export.notebook2script()
 # ╠═4c5c7c22-28a0-11eb-0069-cb78e0e7e0ee
 # ╠═870d3240-4120-11eb-0dca-89337e801493
 # ╟─943f2fe2-4120-11eb-11a9-7785d11d3c36
-# ╠═9fa322d0-32ff-11eb-2060-4b3e609d0d73
-# ╠═caa56ba0-32ff-11eb-2008-91c24261ae53
-# ╠═a8606bc0-3300-11eb-1487-6f229844f529
 # ╠═ed8b55f0-4121-11eb-1a2b-a77bea8bfe7f
 # ╠═f31331e0-28c2-11eb-1014-95ed88d77469
 # ╠═807db3e2-4121-11eb-136d-ad470b83a46f
 # ╠═8c376960-4121-11eb-1627-cf0d01bcf47b
-# ╟─e8e79770-4121-11eb-2d54-0b27713454c8
-# ╠═477e3750-3301-11eb-0bf0-3397364c4f91
-# ╠═2a7498f0-4122-11eb-13d3-a5bff912453c
-# ╟─0a8aeb00-411f-11eb-15cb-69ac5c16f683
-# ╠═79b7bac0-3301-11eb-12ee-d1870258f287
 # ╠═58b6fa50-0ba8-11eb-1ccf-1328cbe524b4
