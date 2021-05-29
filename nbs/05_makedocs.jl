@@ -47,11 +47,21 @@ md"##### createfiles"
 at the document root and fills it with initial
 content.
 """
-function mkdocs_yml()
+function mkdocs_yml(path:: AbstractString)
+	mkdoc_yml = joinpath(path, "mkdocs.yml")
+	if !isfile(mkdoc_yml)
+	    touch(mkdoc_yml)
+	else
+		@warn "File note created because it was already present"
+    end
+	
 end
 
 # ╔═╡ 18af50bd-bc5f-4e38-ab97-2a8cef56805a
 Documenter.showDoc(mkdocs_yml)
+
+# ╔═╡ 4b3477a9-cf4a-4ea6-8eac-359cb34d97be
+mkdocs_yml("../docs")
 
 # ╔═╡ eeb046c0-bdcc-11eb-31a1-838f33f977e3
 md"##### newsitegen"
@@ -94,6 +104,7 @@ Export.notebook2script()
 # ╠═fe6028bc-58b8-45d1-bf7b-8f5e31e8d452
 # ╠═ad99a75a-2918-4e27-b679-3ab3611cc3fc
 # ╠═18af50bd-bc5f-4e38-ab97-2a8cef56805a
+# ╠═4b3477a9-cf4a-4ea6-8eac-359cb34d97be
 # ╠═eeb046c0-bdcc-11eb-31a1-838f33f977e3
 # ╠═cc200174-9530-438f-8004-3883c372f674
 # ╠═4e27289a-5e5c-4a04-820d-e3fb7cc78afb

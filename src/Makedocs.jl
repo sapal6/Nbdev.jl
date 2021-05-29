@@ -13,6 +13,22 @@ function makepath(path:: AbstractString)
 end
 
 #export
+"""
+> mkdocs_yml()--> Creates a mkdocs.yml file
+at the document root and fills it with initial
+content.
+"""
+function mkdocs_yml(path:: AbstractString)
+	mkdoc_yml = joinpath(path, "mkdocs.yml")
+	if !isfile(mkdoc_yml)
+	    touch(mkdoc_yml)
+	else
+		@warn "File note created because it was already present"
+    end
+	
+end
+
+#export
 begin
 """
 > newsitegen()--> Create required directory structure for hosting documents and the initial files(index.md and mkdocs.yml) if not already there.
