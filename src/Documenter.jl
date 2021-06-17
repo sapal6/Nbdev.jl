@@ -290,7 +290,7 @@ end
 """
 > export2md()--> Higher level API to generate documents for all the valid notebooks
 """
-export2md()=export2md(Export.readfilenames(joinpath(pwd(), "nbs")), "docs")
+export2md()=export2md(Export.readfilenames(joinpath(pwd(), "nbs")), "docs/docs")
 end
 
 end

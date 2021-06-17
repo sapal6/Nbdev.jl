@@ -40,7 +40,7 @@ import Pluto: Notebook, Cell, load_notebook_nobackup
     @show journal.sections[1] =#
 end =#
 
-@testset "Save page" begin
+#= @testset "Save page" begin
     documenter_notebook=Documenter.run_and_update_nb(joinpath(pwd(), "nbs", "02_documenter.jl"))
     #export_notebook=Documenter.run_and_update_nb("nbs\\01_export.jl")
     documenter_page=Documenter.createPage("02_documenter.jl", documenter_notebook)
@@ -50,9 +50,9 @@ end =#
     #@test export_page.name=="01_export.jl"
     Documenter.save_page(documenter_page, joinpath(pwd(), "docs"))
     #Documenter.save_page(export_page, "./docs/docs")
-end
+end =#
 
-#= @testset "export2md" begin
+@testset "export2md" begin
     #Documenter.export2md(["02_documenter.jl"], joinpath(pwd(), "docs"))
     Documenter.export2md()
-end =#
+end

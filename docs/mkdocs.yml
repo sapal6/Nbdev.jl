@@ -1,0 +1,43 @@
+site_name: Build With FastAI
+nav:
+    - Home: Index.md
+    - Aboutme: docs/About.md
+    - Docs:
+      - CodeRunner: docs/CodeRunner.md
+      - ConfigReader: docs/ConfigReader.md
+      - Documenter: docs/Documenter.md
+      - Export: docs/Export.md
+      - MakeDocs: docs/Makedocs.md
+    - FAQ: docs/faq.md
+  
+theme:
+  name: material
+  palette:
+    primary: cyan
+  font:
+    text: Roboto
+  logo: assets/logo.png
+  favicon: assets/images/favicon.png
+  features:
+    navigation.tabs
+    
+  markdown_extensions:
+    - meta  
+ 
+  plugins:
+    - search  
+    - tags
+
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/thecodingprojec
+
+    - icon: fontawesome/brands/medium
+      link: https://medium.com/ml-and-automation
+    
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/satyabratapal
+      
+repo_url: https://github.com/sapal6/buildwithfastai.git
+repo_name: sapal6/buildwithfastai
