@@ -1,5 +1,5 @@
 # Nbdev
-This project is an atttempt to port fastai [Nbdev](https://github.com/fastai/nbdev) to Julia. Nbdev(both the oriignal version and the Julia version) are based on the idea of using Notebooks for literate programming. 
+This project is an attempt to port fastai [Nbdev](https://github.com/fastai/nbdev) to Julia. Nbdev(both the oriignal version and the Julia version) are based on the idea of using Notebooks for literate programming. 
 
 On a very high level the base idea is this 👇
 
