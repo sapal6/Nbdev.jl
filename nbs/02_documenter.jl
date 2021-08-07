@@ -12,6 +12,14 @@ using Base.Docs
 #export
 using Markdown
 
+# ╔═╡ 07b9d565-4690-4e48-bcc2-05428b665ca1
+#export
+using Distributed
+
+# ╔═╡ 77a9e510-4ae2-44a2-9536-17a89a54d6f6
+#export
+using ProgressMeter
+
 # ╔═╡ b068dfd2-0eb3-11eb-109a-d1b6ef1eeca0
 #export
 include("../src/Export.jl")
@@ -38,12 +46,6 @@ These might be some answers to the above questions👇
 💡 Automatically create project readme.
 
 🤫 *The third capability is yet to come.*"
-
-# ╔═╡ 2a9f0c2e-07ba-11eb-2a22-cf9244b79ecd
-#export
-#TODO: not working in local due to system block.
-#have to test in an unrestricted environment
-#using Images, FileIO
 
 # ╔═╡ 1d83078e-2024-11eb-0e5f-51310d134662
 #export
@@ -587,7 +589,10 @@ end
 > export2md(files::AbstractVector, path::String)--> Map the `export2md(file, path)` to a given vector of file.
 """
 function export2md(files::AbstractVector, path::String)
+	n = length(files)
+	p = Progress(n, 1)
 	for file in files
+	  next!(p)
       export2md(file, path)
 	end
 end
@@ -612,7 +617,8 @@ Export.notebook2script()
 # ╟─b495a5c0-0701-11eb-22a0-2f1a44fb9a15
 # ╠═4cb4aa50-3e01-11eb-3460-5f109773492b
 # ╠═151ec8b0-2b27-11eb-1ec2-a7c5e4c13db9
-# ╠═2a9f0c2e-07ba-11eb-2a22-cf9244b79ecd
+# ╠═07b9d565-4690-4e48-bcc2-05428b665ca1
+# ╠═77a9e510-4ae2-44a2-9536-17a89a54d6f6
 # ╠═b068dfd2-0eb3-11eb-109a-d1b6ef1eeca0
 # ╠═1d83078e-2024-11eb-0e5f-51310d134662
 # ╠═23c57f60-0eb4-11eb-20c0-7dac22387fc1

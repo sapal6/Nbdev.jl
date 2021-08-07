@@ -1,28 +1,30 @@
-site_name: Build With FastAI
+site_name: Nbdev-dev
 nav:
     - Home: Index.md
-    - Aboutme: docs/About.md
+    - About: About.md
     - Docs:
-      - CodeRunner: docs/CodeRunner.md
-      - ConfigReader: docs/ConfigReader.md
-      - Documenter: docs/Documenter.md
-      - Export: docs/Export.md
-      - MakeDocs: docs/Makedocs.md
-    - FAQ: docs/faq.md
+      - CodeRunner: CodeRunner.md
+      - ConfigReader: ConfigReader.md
+      - Documenter: Documenter.md
+      - Export: Export.md
+      - MakeDocs: Makedocs.md
+    - FAQ: faq.md
   
 theme:
   name: material
   palette:
-    primary: cyan
+    primary: white
   font:
     text: Roboto
-  logo: assets/logo.png
-  favicon: assets/images/favicon.png
+  logo: assets/nbdev.png
+  favicon: assets/nbdev.png
   features:
     navigation.tabs
     
   markdown_extensions:
     - meta  
+    - pymdownx.highlight:
+        linenums: true
  
   plugins:
     - search  
@@ -39,5 +41,5 @@ extra:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/satyabratapal
       
-repo_url: https://github.com/sapal6/buildwithfastai.git
-repo_name: sapal6/buildwithfastai
+repo_url: https://github.com/sapal6/nbdev.jl.git
+repo_name: sapal6/nbdev.jl

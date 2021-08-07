@@ -9,6 +9,12 @@ using Base.Docs
 using Markdown
 
 #export
+using Distributed
+
+#export
+using ProgressMeter
+
+#export
 include("../src/Export.jl")
 
 #export
@@ -16,11 +22,6 @@ include("../src/ConfigReader.jl")
 
 #export
 include("../src/CodeRunner.jl")
-
-#export
-#TODO: not working in local due to system block.
-#have to test in an unrestricted environment
-#using Images, FileIO
 
 #export
 import Pluto: Notebook, Cell, load_notebook_nobackup
@@ -282,7 +283,10 @@ end
 > export2md(files::AbstractVector, path::String)--> Map the `export2md(file, path)` to a given vector of file.
 """
 function export2md(files::AbstractVector, path::String)
+	n = length(files)
+	p = Progress(n, 1)
 	for file in files
+	  next!(p)
       export2md(file, path)
 	end
 end

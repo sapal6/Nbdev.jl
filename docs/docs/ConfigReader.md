@@ -15,7 +15,7 @@ exampl=read_conf("../settings.ini")
 ------
 Output
 ------
-Any["Dict{String, String}", Any[(("\"author_email\"", MIME type text/plain), ("\"Satyabrata.pal1@gmail.com\"", MIME type text/plain)), (("\"author\"", MIME type text/plain), ("\"Satyabrata\"", MIME type text/plain)), (("\"lib_name\"", MIME type text/plain), ("\"nbdev.jl\"", MIME type text/plain)), (("\"lib_path\"", MIME type text/plain), ("\"./../Projects/open-projects/nbdev.jl\"", MIME type text/plain)), (("\"keywords\"", MIME type text/plain), ("\"nothing\"", MIME type text/plain)), (("\"copyright\"", MIME type text/plain), ("\"nothing\"", MIME type text/plain)), (("\"description\"", MIME type text/plain), ("\"A\"", MIME type text/plain)), (("\"user\"", MIME type text/plain), ("\"sapal6\"", MIME type text/plain))], :Dict, "Dict", "fe05e336e332826b"]
+Any["Dict{String, String}", Any[(("\"author_email\"", MIME type text/plain), ("\"Satyabrata.pal1@gmail.com\"", MIME type text/plain)), (("\"author\"", MIME type text/plain), ("\"Satyabrata\"", MIME type text/plain)), (("\"lib_name\"", MIME type text/plain), ("\"nbdev.jl\"", MIME type text/plain)), (("\"lib_path\"", MIME type text/plain), ("\"./../Projects/open-projects/nbdev.jl\"", MIME type text/plain)), (("\"keywords\"", MIME type text/plain), ("\"nothing\"", MIME type text/plain)), (("\"copyright\"", MIME type text/plain), ("\"nothing\"", MIME type text/plain)), (("\"description\"", MIME type text/plain), ("\"A\"", MIME type text/plain)), (("\"user\"", MIME type text/plain), ("\"sapal6\"", MIME type text/plain))], :Dict, "Dict", "3f22d331606221b7"]
 ```
 
 ```
@@ -31,6 +31,6 @@ Export.notebook2script()
 ------
 Output
 ------
-Any["Nothing", Tuple{Int64, Any}[(1, ("nothing", MIME type text/plain)), (2, ("nothing", MIME type text/plain)), (3, ("nothing", MIME type text/plain)), (4, ("nothing", MIME type text/plain)), (5, ("nothing", MIME type text/plain)), (6, ("nothing", MIME type text/plain))], :Array, "", "27b770a13147915f"]
+Any["Nothing", Tuple{Int64, Any}[(1, ("nothing", MIME type text/plain)), (2, ("nothing", MIME type text/plain)), (3, ("nothing", MIME type text/plain)), (4, ("nothing", MIME type text/plain)), (5, ("nothing", MIME type text/plain))], :Array, "", "1a9af367ab1d1e48"]
 ```
 

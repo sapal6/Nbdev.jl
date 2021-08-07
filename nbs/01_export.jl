@@ -259,7 +259,7 @@ load_nb(filename::String, marker::String) = _load_nb(filename, marker)
 """
 function _load_nb(filename::String, marker::String)
 		#notebook=load_notebook_nobackup(filename)
-		scrubbedNotebook=load_scrubbed_nb(filename)
+		scrubbedNotebook=load_scrubbed_nb(normpath(joinpath(@__FILE__,"..","..", "nbs", filename)))
 		collected_nuclei=nuclei(collect_nuclei(scrubbedNotebook, marker))
 		
 		#if marker=="md"
@@ -370,7 +370,7 @@ begin
 """
 function readfilenames()
 	files=[]
-	for file in readdir()
+	for file in readdir(normpath(joinpath(@__FILE__,"..","..", "nbs")))
 			if endswith(file, ".jl")
 				push!(files,file)
 			end
