@@ -609,6 +609,23 @@ showDoc(export2md)
 # ╔═╡ 8c376960-4121-11eb-1627-cf0d01bcf47b
 md"The `export2md()` is what gets summoned when document generation is invoked. Like most things in nbdev (and unlike most things in life) this too gets invoked automatically. 🥳"
 
+# ╔═╡ f69f6cba-4fa3-447c-9f8e-f9c5d1f8f7d5
+#### export2readme
+
+# ╔═╡ 15c1479b-8202-4d3c-8bdd-903c3c43775d
+joinpath(pwd(), "nbs/*index.jl")
+
+# ╔═╡ 9c07bd79-f47e-4897-830b-63748f674335
+#export
+begin
+"""
+> export2readme()--> create readme from the contents of Index notebook
+"""
+function export2readme()
+    cp(normpath(joinpath(@__FILE__,"..","..", "docs/docs/Index.md")), normpath(joinpath(@__FILE__,"..","..", "", "README.md")), force=true)
+end 
+end
+
 # ╔═╡ 58b6fa50-0ba8-11eb-1ccf-1328cbe524b4
 #hide
 Export.notebook2script()
@@ -710,4 +727,7 @@ Export.notebook2script()
 # ╠═f31331e0-28c2-11eb-1014-95ed88d77469
 # ╠═807db3e2-4121-11eb-136d-ad470b83a46f
 # ╠═8c376960-4121-11eb-1627-cf0d01bcf47b
+# ╠═f69f6cba-4fa3-447c-9f8e-f9c5d1f8f7d5
+# ╠═15c1479b-8202-4d3c-8bdd-903c3c43775d
+# ╠═9c07bd79-f47e-4897-830b-63748f674335
 # ╠═58b6fa50-0ba8-11eb-1ccf-1328cbe524b4

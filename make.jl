@@ -12,6 +12,7 @@ usage - In your project root type\n
 	error_msg = "Wrong option.\nPlease type ```julia make.jl --help```for usage details"
 	if arg == "docs"
 		Documenter.export2md()
+		Documenter.export2readme()
 	else
 		print(error_msg)
 	end

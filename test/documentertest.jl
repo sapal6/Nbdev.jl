@@ -52,7 +52,11 @@ end =#
     #Documenter.save_page(export_page, "./docs/docs")
 end =#
 
-@testset "export2md" begin
-    #Documenter.export2md(["02_documenter.jl"], joinpath(pwd(), "docs"))
-    Documenter.export2md()
+#@testset "export2md" begin
+#    Documenter.export2md(["06_index.jl"], joinpath(pwd(), "docs"))
+#    #Documenter.export2md()
+#end
+
+@testset "export2readme" begin
+    Documenter.export2readme()
 end

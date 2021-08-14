@@ -297,4 +297,14 @@ end
 export2md()=export2md(Export.readfilenames(joinpath(pwd(), "nbs")), "docs/docs")
 end
 
+#export
+begin
+"""
+> export2readme()--> create readme from the contents of Index notebook
+"""
+function export2readme()
+    cp(normpath(joinpath(@__FILE__,"..","..", "docs/docs/Index.md")), normpath(joinpath(@__FILE__,"..","..", "", "README.md")), force=true)
+end 
+end
+
 end

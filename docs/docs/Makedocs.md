@@ -40,7 +40,7 @@ readdir("../")
 ------
 Output
 ------
-Any["String", Tuple{Int64, Any}[(1, ("\".git\"", MIME type text/plain)), (2, ("\".github\"", MIME type text/plain)), (3, ("\"Manifest.toml\"", MIME type text/plain)), (4, ("\"Project.toml\"", MIME type text/plain)), (5, ("\"README.md\"", MIME type text/plain)), (6, ("\"bkp\"", MIME type text/plain)), (7, ("\"docs\"", MIME type text/plain)), (8, ("\"make.jl\"", MIME type text/plain)), (9, ("\"nbs\"", MIME type text/plain)), (10, ("\"settings.ini\"", MIME type text/plain)), (11, ("\"src\"", MIME type text/plain)), (12, ("\"test\"", MIME type text/plain)), (13, ("\"testpath\"", MIME type text/plain))], :Array, "", "c5361b47fa84d53e"]
+Any["String", Tuple{Int64, Any}[(1, ("\".git\"", MIME type text/plain)), (2, ("\".github\"", MIME type text/plain)), (3, ("\"Manifest.toml\"", MIME type text/plain)), (4, ("\"Project.toml\"", MIME type text/plain)), (5, ("\"README.md\"", MIME type text/plain)), (6, ("\"bkp\"", MIME type text/plain)), (7, ("\"docs\"", MIME type text/plain)), (8, ("\"make.jl\"", MIME type text/plain)), (9, ("\"nbs\"", MIME type text/plain)), (10, ("\"settings.ini\"", MIME type text/plain)), (11, ("\"src\"", MIME type text/plain)), (12, ("\"test\"", MIME type text/plain)), (13, ("\"testpath\"", MIME type text/plain))], :Array, "", "54f6e0621a39f480"]
 ```
 
 > newsitegen()–> Create required directory structure for hosting documents and the initial files(index.md and mkdocs.yml) if not already there.
