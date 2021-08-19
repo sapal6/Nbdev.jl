@@ -4,7 +4,6 @@ nav:
     - About: About.md
     - Docs:
       - CodeRunner: CodeRunner.md
-      - ConfigReader: ConfigReader.md
       - Documenter: Documenter.md
       - Export: Export.md
       - MakeDocs: Makedocs.md

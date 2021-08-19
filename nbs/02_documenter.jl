@@ -32,28 +32,9 @@ include("../src/ConfigReader.jl")
 #export
 include("../src/CodeRunner.jl")
 
-# ╔═╡ b495a5c0-0701-11eb-22a0-2f1a44fb9a15
-md"The Documenter module is based on the following question:
-
-**What facilities would we want to have if we need a way to generate documents from a 📓 ?**🤔
-
-These might be some answers to the above questions👇
-
-💡 An automatic way to generate documents from the markdown matter.
-
-💡 Automatic way to document functions, methods etc.
-
-💡 Automatically create project readme.
-
-🤫 *The third capability is yet to come.*"
-
 # ╔═╡ 1d83078e-2024-11eb-0e5f-51310d134662
 #export
 import Pluto: Notebook, Cell, load_notebook_nobackup
-
-# ╔═╡ a1a09fd0-193d-11eb-0a91-11a6df8cb651
-#hide
-ConfigReader.read_conf("../settings.ini")["lib_path"]
 
 # ╔═╡ 25ff264e-3ec5-11eb-362c-07b4e24c635a
 md"## Lower Level Entities(Structs, methods etc.) 
@@ -83,13 +64,6 @@ Section(line)=Section(line=line)
 """
 line(section::Section)=section.line
 end
-
-# ╔═╡ 0bc30190-3ec9-11eb-0ac6-7d8f1eacc210
-md"A Section can be thought of as a paragraph on a page📃. This would be composed of several lines. The Section type represents a paragraph and the field line is a string which ultimatley goes on to form a section inthe generated document."
-
-# ╔═╡ 730d99d0-3ec6-11eb-185c-fb571b36bf67
-#hide
-@doc Section
 
 # ╔═╡ f1318ca0-3f97-11eb-3727-3f71064c77bf
 md"#### Example"
@@ -151,27 +125,6 @@ page
 # ╔═╡ dd721172-4443-11eb-3833-3f74ff47dd42
 typeof(page)
 
-# ╔═╡ 452212b0-3f95-11eb-110c-ed193d10b1da
-md"#### img"
-
-# ╔═╡ 4c59d7fe-07ba-11eb-2817-3919d9fc485f
-#export
-#TODO:This should be moved to a utility module
-#TODO: have to test in unrestricted environment
-#as it's getting blocked in my current system
-#"""
-#> img(img_path::String)--> Helper function to load images within a notebook. This can be helpful to have images appear in the final document.
-#"""
-#function img(img_path::String)
-#	load(img_path)
-#end
-
-# ╔═╡ 8d74a142-3f95-11eb-3331-5577669dd902
-#showDoc(img)
-
-# ╔═╡ b726f4f0-405a-11eb-3fe1-b5e95c56cf9b
-md"`img()` accepts image path and loads an image onto the notebook where it is called."
-
 # ╔═╡ 8d851420-08af-11eb-26b0-63501c72011a
 #hide
 #cd("../nbs")
@@ -212,9 +165,9 @@ function run_and_update_nb(file::AbstractString)
 end
 
 # ╔═╡ 5001a5b0-11ff-11eb-054a-6921da78afa3
-md"`run_and_update_nb` uses the `load_notebook_nobackup` function in Pluto.jl. There are multiple ways to achieve what this fucntions achieves without depending on Pluto internals but for now this was the quickiest way to achieve this.
+md"`run_and_update_nb` uses the `load_notebook_nobackup` function in Pluto.jl. There are multiple ways to achieve what this function achieves without depending on Pluto internals but for now this was the quickiest way to achieve this.
 
-**Note-**Depending on Pluto to run anad update a notebook this way makes it difficult to run unit test for this function from within pluto itself because a Pluto cell is treated as worker 2, 3 and so on but when you do load_notebook() then it spins up another worker. Only worker 1 can spwan further processes and not a notebook cell."
+**Note-**Depending on Pluto internal to run and update a notebook makes it difficult to run unit test for this function from within pluto itself because a Pluto cell is treated as worker 2, 3 and so on but when you do load_notebook() then it spins up another worker. Only worker 1 can spwan further processes and not a notebook cell."
 
 # ╔═╡ f1d7ed22-1f8a-11eb-035d-6de2cb48bb8b
 #hide
@@ -327,6 +280,9 @@ docs=@doc stitchCode
 # ╔═╡ 83214680-3eb9-11eb-32bd-01e55390224e
 #hide
 "$(docs.meta[:results][1].object)"
+
+# ╔═╡ 85446eb5-b22f-41f9-bb9c-be41a7479866
+md"##### collectFuncDocs"
 
 # ╔═╡ 3f171660-3ec1-11eb-0983-2789adeab1c3
 #export
@@ -613,7 +569,8 @@ md"The `export2md()` is what gets summoned when document generation is invoked. 
 #### export2readme
 
 # ╔═╡ 15c1479b-8202-4d3c-8bdd-903c3c43775d
-joinpath(pwd(), "nbs/*index.jl")
+#hide
+#joinpath(pwd(), "nbs/*index.jl")
 
 # ╔═╡ 9c07bd79-f47e-4897-830b-63748f674335
 #export
@@ -631,7 +588,6 @@ end
 Export.notebook2script()
 
 # ╔═╡ Cell order:
-# ╟─b495a5c0-0701-11eb-22a0-2f1a44fb9a15
 # ╠═4cb4aa50-3e01-11eb-3460-5f109773492b
 # ╠═151ec8b0-2b27-11eb-1ec2-a7c5e4c13db9
 # ╠═07b9d565-4690-4e48-bcc2-05428b665ca1
@@ -639,13 +595,10 @@ Export.notebook2script()
 # ╠═b068dfd2-0eb3-11eb-109a-d1b6ef1eeca0
 # ╠═1d83078e-2024-11eb-0e5f-51310d134662
 # ╠═23c57f60-0eb4-11eb-20c0-7dac22387fc1
-# ╠═a1a09fd0-193d-11eb-0a91-11a6df8cb651
 # ╠═27ff1d70-1201-11eb-2003-27cb52571be6
 # ╠═25ff264e-3ec5-11eb-362c-07b4e24c635a
 # ╠═bf4e47f0-3ec5-11eb-1b65-5fe2e7a88ff1
 # ╠═5a2e9790-201f-11eb-0df4-f90b3cc54f20
-# ╠═0bc30190-3ec9-11eb-0ac6-7d8f1eacc210
-# ╠═730d99d0-3ec6-11eb-185c-fb571b36bf67
 # ╠═d8395ed0-3ec5-11eb-049c-0b38eb2e7d54
 # ╠═0d10aed0-3f9b-11eb-1bcd-dbdb5e5068f4
 # ╠═f1318ca0-3f97-11eb-3727-3f71064c77bf
@@ -660,10 +613,6 @@ Export.notebook2script()
 # ╠═11057000-3f98-11eb-27aa-ffb097ca25ed
 # ╠═7e959872-421d-11eb-3784-2f110840a628
 # ╠═dd721172-4443-11eb-3833-3f74ff47dd42
-# ╟─452212b0-3f95-11eb-110c-ed193d10b1da
-# ╠═4c59d7fe-07ba-11eb-2817-3919d9fc485f
-# ╠═8d74a142-3f95-11eb-3331-5577669dd902
-# ╟─b726f4f0-405a-11eb-3fe1-b5e95c56cf9b
 # ╠═8d851420-08af-11eb-26b0-63501c72011a
 # ╠═9478dd20-08af-11eb-1663-a7db573d2187
 # ╠═74879c7e-0eeb-11eb-31bf-251621d154a6
@@ -690,6 +639,7 @@ Export.notebook2script()
 # ╠═4cd1f510-2b23-11eb-3051-072d6fb4e81c
 # ╠═95219eb0-3e01-11eb-28d2-af58c55dfbd1
 # ╠═83214680-3eb9-11eb-32bd-01e55390224e
+# ╠═85446eb5-b22f-41f9-bb9c-be41a7479866
 # ╠═3f171660-3ec1-11eb-0983-2789adeab1c3
 # ╠═d038c980-4061-11eb-19a5-5bab5b196788
 # ╠═01a22122-4061-11eb-393e-17c15f09e58d

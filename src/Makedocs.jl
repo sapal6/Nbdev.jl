@@ -23,7 +23,7 @@ function mkdocs_yml(path:: AbstractString)
 	if !isfile(mkdoc_yml)
 	    touch(mkdoc_yml)
 	else
-		@warn "File note created because it was already present"
+		@warn "File not created because it was already present"
     end
 	
 end
@@ -34,7 +34,6 @@ begin
 > newsitegen()--> Create required directory structure for hosting documents and the initial files(index.md and mkdocs.yml) if not already there.
 """
 function newsitegen()
-	
 	path = joinpath("../","docs/docs")
     makepath(path)
 end

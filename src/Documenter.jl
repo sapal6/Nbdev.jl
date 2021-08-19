@@ -77,17 +77,6 @@ name(p::Page)=p.name
 end
 
 #export
-#TODO:This should be moved to a utility module
-#TODO: have to test in unrestricted environment
-#as it's getting blocked in my current system
-#"""
-#> img(img_path::String)--> Helper function to load images within a notebook. This can be helpful to have images appear in the final document.
-#"""
-#function img(img_path::String)
-#	load(img_path)
-#end
-
-#export
 """
 > run_and_update_nb(file::AbstractString)--> Run the notebook in the supplied path and update the notebook with the output of each cell.
 """

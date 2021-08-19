@@ -38,7 +38,7 @@ Documenter.showDoc(makepath)
 makepath("../docs/docs")
 
 # ╔═╡ fe6028bc-58b8-45d1-bf7b-8f5e31e8d452
-md"##### createfiles"
+md"##### mkdocs_yml"
 
 # ╔═╡ ad99a75a-2918-4e27-b679-3ab3611cc3fc
 #export
@@ -52,7 +52,7 @@ function mkdocs_yml(path:: AbstractString)
 	if !isfile(mkdoc_yml)
 	    touch(mkdoc_yml)
 	else
-		@warn "File note created because it was already present"
+		@warn "File not created because it was already present"
     end
 	
 end
@@ -67,6 +67,7 @@ mkdocs_yml("../docs")
 md"##### newsitegen"
 
 # ╔═╡ cc200174-9530-438f-8004-3883c372f674
+#hide
 readdir("../")
 
 # ╔═╡ 4e27289a-5e5c-4a04-820d-e3fb7cc78afb
@@ -76,7 +77,6 @@ begin
 > newsitegen()--> Create required directory structure for hosting documents and the initial files(index.md and mkdocs.yml) if not already there.
 """
 function newsitegen()
-	
 	path = joinpath("../","docs/docs")
     makepath(path)
 end

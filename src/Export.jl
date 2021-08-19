@@ -105,7 +105,7 @@ end
 #export
 begin
 """
->load_scrubbed_nb--> These are modification of the Pluto.load_notebook methods. Scrubs the notebook of all stuff but the code to be exported.
+>load_scrubbed_nb(io, path)::ScrubbedNotebook--> These are modification of the Pluto.load_notebook methods. Scrubs the notebook of all stuff but the code to be exported.
 """
 function load_scrubbed_nb(io, path)::ScrubbedNotebook
     collected_cells = []
@@ -150,7 +150,7 @@ begin
 load_nb(filename::String, marker::String) = _load_nb(filename, marker)
 
 """
-> _load_nb(filename::String, marker::String)--> creates a scrubbednotebook and returns a curated Nb type having code to be exported.
+> _load_nb(filename::String, marker::String)--> creates a scrubbed notebook and returns a curated Nb type having code to be exported.
 """
 function _load_nb(filename::String, marker::String)
 		#notebook=load_notebook_nobackup(filename)
@@ -243,7 +243,7 @@ end
 
 #export
 """
-> export_content(files::AbstractVector, path::String, marker::String)--> maps the `export_file` function to each files in the files vector
+> export_content(files::AbstractVector, path::String, marker::String)--> maps the `export_file` function to each files
 """
 function export_content(files::AbstractVector, path::String, marker::String)
 	map(file->export_file(file, path, marker), files)

@@ -1,18 +1,8 @@
 <h1>Documenter</h1>
-<div class="markdown"><p>The Documenter module is based on the following question:</p>
-<p><strong>What facilities would we want to have if we need a way to generate documents from a 📓 ?</strong>🤔</p>
-<p>These might be some answers to the above questions👇</p>
-<p>💡 An automatic way to generate documents from the markdown matter.</p>
-<p>💡 Automatic way to document functions, methods etc.</p>
-<p>💡 Automatically create project readme.</p>
-<p>🤫 <em>The third capability is yet to come.</em></p>
-</div>
 <div class="markdown"><h2>Lower Level Entities&#40;Structs, methods etc.&#41;</h2>
 <p>These are the objects on which nbdev&#39;s Documenter module was built. You can use it to extend nbdev but these are automtically used by Nbdev&#39;s internal engine to generate code files for you.</p>
 </div>
 <div class="markdown"><h4>Section type</h4>
-</div>
-<div class="markdown"><p>A Section can be thought of as a paragraph on a page📃. This would be composed of several lines. The Section type represents a paragraph and the field line is a string which ultimatley goes on to form a section inthe generated document.</p>
 </div>
 > struct Section–> This is like the section of a page and is made up of one or multiple lines.
 >
@@ -83,7 +73,7 @@ end
 ------
 Output
 ------
-Any["Main.workspace4.Section", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "fa444fa0e4c6af01"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "88841500014839c9"), MIME type application/vnd.pluto.tree+object))], :Array, "", "fc4b3df5dc0d1895"]
+Any["Main.workspace4.Section", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "f7047cf157739d28"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "2ecceac0470471e1"), MIME type application/vnd.pluto.tree+object))], :Array, "", "997626bfb7bc4cd"]
 ```
 
 ```
@@ -91,7 +81,7 @@ page
 ------
 Output
 ------
-Any["Page", Any[(:sections, (Dict{Symbol, Any}(:prefix => "Main.workspace4.Section", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "fa444fa0e4c6af01"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "88841500014839c9"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "fc4b3df5dc0d1895"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"Monkey module\"", MIME type text/plain))], :struct, "Page", "6d82ec596a4f3951"]
+Any["Page", Any[(:sections, (Dict{Symbol, Any}(:prefix => "Main.workspace4.Section", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "f7047cf157739d28"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "2ecceac0470471e1"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "997626bfb7bc4cd"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"Monkey module\"", MIME type text/plain))], :struct, "Page", "16221ba9b10e5055"]
 ```
 
 ```
@@ -102,15 +92,10 @@ Output
 Page
 ```
 
-<div class="markdown"><h4>img</h4>
-</div>
-
-<div class="markdown"><p><code>img&#40;&#41;</code> accepts image path and loads an image onto the notebook where it is called.</p>
-</div>
 <div class="markdown"><h5>run<em>and</em>update</h5>
 </div>
-<div class="markdown"><p><code>run_and_update_nb</code> uses the <code>load_notebook_nobackup</code> function in Pluto.jl. There are multiple ways to achieve what this fucntions achieves without depending on Pluto internals but for now this was the quickiest way to achieve this.</p>
-<p><strong>Note-</strong>Depending on Pluto to run anad update a notebook this way makes it difficult to run unit test for this function from within pluto itself because a Pluto cell is treated as worker 2, 3 and so on but when you do load_notebook&#40;&#41; then it spins up another worker. Only worker 1 can spwan further processes and not a notebook cell.</p>
+<div class="markdown"><p><code>run_and_update_nb</code> uses the <code>load_notebook_nobackup</code> function in Pluto.jl. There are multiple ways to achieve what this function achieves without depending on Pluto internals but for now this was the quickiest way to achieve this.</p>
+<p><strong>Note-</strong>Depending on Pluto internal to run and update a notebook makes it difficult to run unit test for this function from within pluto itself because a Pluto cell is treated as worker 2, 3 and so on but when you do load_notebook&#40;&#41; then it spins up another worker. Only worker 1 can spwan further processes and not a notebook cell.</p>
 </div>
 <div class="markdown"><h5>stitchCode</h5>
 </div>
@@ -150,9 +135,11 @@ end
 ------
 Output
 ------
-Any["String", Tuple{Int64, Any}[(1, ("\"i\"", MIME type text/plain)), (2, ("\"j\"", MIME type text/plain))], :Array, "", "6cd5d5e1c96a0f43"]
+Any["String", Tuple{Int64, Any}[(1, ("\"i\"", MIME type text/plain)), (2, ("\"j\"", MIME type text/plain))], :Array, "", "95a9f9541d107ee3"]
 ```
 
+<div class="markdown"><h5>collectFuncDocs</h5>
+</div>
 > collectFuncDocs(obj)–> Collects objects (functions, methods, macro structs etc.) and creates an array of documents (generated from teh docstrings). Creates aFunctionDocs type from these documents.
 
 
@@ -165,7 +152,7 @@ collectFuncDocs(stitchCode).funcDocs
 ------
 Output
 ------
-Any["String", Tuple{Int64, Any}[(1, ("\"> stitchCode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.\\n\\n\"", MIME type text/plain)), (2, ("\"> stitchCode(cellop::AbstractString)–> Removes the quotes from a string and creates a code block with that string inside the newely formed code block\\n\\n\"", MIME type text/plain)), (3, ("\"> stitchCode(fdocs::FunctionDocs)–> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object\\n\\n\"", MIME type text/plain))], :Array, "", "fffa0d86f2eba627"]
+Any["String", Tuple{Int64, Any}[(1, ("\"> stitchCode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.\\n\\n\"", MIME type text/plain)), (2, ("\"> stitchCode(cellop::AbstractString)–> Removes the quotes from a string and creates a code block with that string inside the newely formed code block\\n\\n\"", MIME type text/plain)), (3, ("\"> stitchCode(fdocs::FunctionDocs)–> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object\\n\\n\"", MIME type text/plain))], :Array, "", "9c5c467c2d7a6d4f"]
 ```
 
 <div class="markdown"><h2>Higher Level API</h2>
@@ -194,7 +181,7 @@ mystruct=MyStruct("test")
 ------
 Output
 ------
-Any["MyStruct", Any[(:name, ("\"test\"", MIME type text/plain))], :struct, "MyStruct", "7c4cf243320d5c4d"]
+Any["MyStruct", Any[(:name, ("\"test\"", MIME type text/plain))], :struct, "MyStruct", "4f8f2de9940fb72"]
 ```
 
 ```
@@ -292,13 +279,5 @@ Main.workspace4.md2html
 Output
 ------
 
-```
-
-```
-joinpath(pwd(), "nbs/*index.jl")
-------
-Output
-------
-"C:\\satya\\projects\\julia\\nbdev.jl\\nbs\\nbs/*index.jl"
 ```
 

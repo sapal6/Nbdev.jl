@@ -22,6 +22,7 @@ function processMdChunk(mdChunk::String)
 end
 
 # ╔═╡ 2181580b-7f3e-456f-aa62-68130d9b9178
+#hide
 load_notebook_nobackup("./01_export.jl")
 
 # ╔═╡ 6ff1ad80-1479-11eb-3868-0df000f47cc9
@@ -159,7 +160,7 @@ md"`load_scrubbed_nb` reads the notebook in the given path cell by cell, while i
 # ╔═╡ 12377150-54d6-11eb-18ff-ef441154f771
 md"## High Level APIs
 
-This too are called automaticallyby Nbdev."
+This too are called automatically by Nbdev."
 
 # ╔═╡ c71b1460-54d5-11eb-3e6b-cb3dadbc0349
 md"#### load_nb"
@@ -206,7 +207,7 @@ Documenter.showDoc(collect_nuclei)
 #export
 begin
 """
->load_scrubbed_nb--> These are modification of the Pluto.load_notebook methods. Scrubs the notebook of all stuff but the code to be exported.
+>load_scrubbed_nb(io, path)::ScrubbedNotebook--> These are modification of the Pluto.load_notebook methods. Scrubs the notebook of all stuff but the code to be exported.
 """
 function load_scrubbed_nb(io, path)::ScrubbedNotebook
     collected_cells = []
@@ -255,7 +256,7 @@ begin
 load_nb(filename::String, marker::String) = _load_nb(filename, marker)
 
 """
-> _load_nb(filename::String, marker::String)--> creates a scrubbednotebook and returns a curated Nb type having code to be exported.
+> _load_nb(filename::String, marker::String)--> creates a scrubbed notebook and returns a curated Nb type having code to be exported.
 """
 function _load_nb(filename::String, marker::String)
 		#notebook=load_notebook_nobackup(filename)
@@ -291,7 +292,8 @@ md"something to save files"
 k="01_export.jl"
 
 # ╔═╡ 16a58460-54d7-11eb-1f6a-97f11bc07049
-md"#### strip"
+md"#### strip
+> strip --> Helper fucntion to replace a substring y in a string x with blank."
 
 # ╔═╡ 4c511e5e-1771-11eb-3c8e-5785e7399d70
 #export
@@ -420,10 +422,13 @@ end
 # ╔═╡ a89665f0-54d8-11eb-1e5a-fd409b238ce1
 Documenter.showDoc(export_file)
 
+# ╔═╡ a0129641-9a52-497c-9b34-944250f655c6
+md"#### export_content"
+
 # ╔═╡ 41d65310-0e11-11eb-1a36-87dc9ac941fa
 #export
 """
-> export_content(files::AbstractVector, path::String, marker::String)--> maps the `export_file` function to each files in the files vector
+> export_content(files::AbstractVector, path::String, marker::String)--> maps the `export_file` function to each files
 """
 function export_content(files::AbstractVector, path::String, marker::String)
 	map(file->export_file(file, path, marker), files)
@@ -540,6 +545,7 @@ notebook2script()
 # ╠═528689b0-54d8-11eb-35f4-2b56012fa4e6
 # ╠═0be54350-177c-11eb-285a-93dd4d45e40e
 # ╠═a89665f0-54d8-11eb-1e5a-fd409b238ce1
+# ╠═a0129641-9a52-497c-9b34-944250f655c6
 # ╠═41d65310-0e11-11eb-1a36-87dc9ac941fa
 # ╠═1b57d6f0-54d9-11eb-0a0a-db4b2959750b
 # ╠═23e775a0-54d9-11eb-0106-431100572909
