@@ -1,30 +1,16 @@
-name: Nbdev
-
+name: nbdev
 on:
   push:
-    branches: 'master'
-
+    branches: 
+      - master
+      - main
 jobs:
-  publish:
-    name: "Nbdev Documentation"
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
         with:
-          ref: gh-pages
-          path: gh-pages
-      - uses: julia-actions/setup-julia@latest
-        with:
-          version: '1.5'
-      - name: Install dependencies
-        run: julia --color=yes --project=. -e 'using Pkg; Pkg.instantiate()'
-      - name: Build and deploy
-        run: |
-          cd gh-pages
-          julia --color=yes --project=.. -e 'using Publish; deploy("nbdev.jl/Project.toml", "build")'
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "Built by Nbdev.jl."
-          git push
+          python-version: 3.x
+      - run: pip install mkdocs-material 
+      - run: mkdocs gh-deploy --force
