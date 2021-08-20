@@ -14,7 +14,7 @@ This project is an attempt to port fastai [Nbdev](https://github.com/fastai/nbde
 
 On a very high level the base idea is this 👇
 
-$(LocalResource("../docs/docs/images/nbdev.png"))
+$(LocalResource("../docs/images/nbdev.png"))
 
 While both projects try to achieve the same base goal i.e. generating source code and documentation from Notebooks, the Julia version aims to start from Pluto notebook while the python version starts from a Jupyter notebook. 
 

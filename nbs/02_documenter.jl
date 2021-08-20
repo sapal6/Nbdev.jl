@@ -470,9 +470,6 @@ md"##### save_page"
 #export
 begin
 
-#vector of possible non-html strings
-nothtml = ["> ", "```"]
-	
 """
 > save_page(io, page::Page)--> Take the contents from a Page type and write to the io
 """
@@ -488,17 +485,6 @@ function save_page(io, page::Page)
 		
 end
 
-#TODO: perhaps need to modify the toc creation?
-"""
-> save_page(save_page(io, docnames::Array{String,1}))--> Given an array of document names, creates a table of content
-"""
-function save_page(io, docnames::Array{String,1})
-    println(io, "**Documentation**\n")
-	println(io, "  * [Introduction](README.md)")
-	for docname in docnames
-			println(io, "  * [$docname](docs/$docname.md)\n")
-	end
-end
 
 """
 > save_page(page::Page, path::String)--> Given a Page type and the required path, creates the related markdwon file in the specified path. The name of the resulting markdown file is same as the nameof the notebook for which the document is generated
@@ -556,7 +542,7 @@ end
 """
 > export2md()--> Higher level API to generate documents for all the valid notebooks
 """
-export2md()=export2md(Export.readfilenames(joinpath(pwd(), "nbs")), "docs/docs")
+export2md()=export2md(Export.readfilenames(joinpath(pwd(), "nbs")), "docs")
 end
 
 # ╔═╡ 807db3e2-4121-11eb-136d-ad470b83a46f
@@ -579,7 +565,7 @@ begin
 > export2readme()--> create readme from the contents of Index notebook
 """
 function export2readme()
-    cp(normpath(joinpath(@__FILE__,"..","..", "docs/docs/Index.md")), normpath(joinpath(@__FILE__,"..","..", "", "README.md")), force=true)
+    cp(normpath(joinpath(@__FILE__,"..","..", "docs/Index.md")), normpath(joinpath(@__FILE__,"..","..", "", "README.md")), force=true)
 end 
 end
 
