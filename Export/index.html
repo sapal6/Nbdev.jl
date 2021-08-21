@@ -1,0 +1,727 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/nbdev.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+    
+    
+      
+        <title>Export - Nbdev-dev</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.f7f47774.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:""}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Nbdev-dev" class="md-header__button md-logo" aria-label="Nbdev-dev" data-md-component="logo">
+      
+  <img src="../assets/nbdev.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nbdev-dev
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Export
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/sapal6/nbdev.jl.git/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sapal6/nbdev.jl
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../Index/" class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../About.md" class="md-tabs__link">
+      About
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../CodeRunner/" class="md-tabs__link md-tabs__link--active">
+        Docs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../faq.md" class="md-tabs__link">
+      FAQ
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Nbdev-dev" class="md-nav__button md-logo" aria-label="Nbdev-dev" data-md-component="logo">
+      
+  <img src="../assets/nbdev.png" alt="logo">
+
+    </a>
+    Nbdev-dev
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/sapal6/nbdev.jl.git/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sapal6/nbdev.jl
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Index/" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../About.md" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Docs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Docs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Docs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CodeRunner/" class="md-nav__link">
+        CodeRunner
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Documenter/" class="md-nav__link">
+        Documenter
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Export
+      </a>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Makedocs/" class="md-nav__link">
+        MakeDocs
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq.md" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/sapal6/nbdev.jl.git/edit/master/docs/Export.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1>Export</h1>
+<div class="markdown"><p>The Export module helps in exporting the code to script files.</p>
+</div>
+<div class="markdown"><h2>Lower Level Entities&#40;Structs, methods etc.&#41;</h2>
+<p>These are the objects on which nbdev&#39;s Export module was built. You can use it to extend nbdev but these are automtically used by Nbdev&#39;s internal engine to generate code files for you.</p>
+</div>
+<div class="markdown"><h4>Nucleus type</h4>
+</div>
+<blockquote>
+<p>struct Nucleus–&gt; This is the lowest entity of a code notebook. This type represents the code cell in a Pluto notebook.</p>
+<ul>
+<li>
+<p>Fields:</p>
+<ul>
+<li>code–&gt; String which makes up a code cell</li>
+</ul>
+</li>
+</ul>
+<p>Nucleus(code)–&gt;Getter for accessing the constructer of the Nucleus type</p>
+</blockquote>
+<div class="markdown"><p>Every time a code cell is parsed, it gets stored as a Nucleus type. The stored code can then be accessed using the <code>code</code> field in the Nucleus type.</p>
+</div>
+<div class="markdown"><h4>Example</h4>
+</div>
+
+<pre><code>sample_code=&quot;a=1+1&quot;
+------
+Output
+------
+&quot;a=1+1&quot;
+</code></pre>
+<pre><code>nucleus=Nucleus(sample_code)
+------
+Output
+------
+Any[&quot;Nucleus&quot;, Any[(:code, (&quot;\&quot;a=1+1\&quot;&quot;, MIME type text/plain))], :struct, &quot;Nucleus&quot;, &quot;47548a9678eb6201&quot;]
+</code></pre>
+<pre><code>nucleus.code
+------
+Output
+------
+&quot;a=1+1&quot;
+</code></pre>
+<div class="markdown"><h4>Nb type</h4>
+</div>
+<blockquote>
+<p>struct Nb–&gt; a notebook having nuclei made up of code cells only.</p>
+<ul>
+<li>
+<p>Fields:</p>
+<ul>
+<li>nuclei–&gt; Array of Nucleus type</li>
+<li>name–&gt; name of notebook</li>
+</ul>
+</li>
+</ul>
+<p>nuclei(nuclei::Array)–&gt; Helper to collect an array of Nucleus.</p>
+<p>nuclei(nuclei::Array)–&gt; Helper to collect an name of a notebook.</p>
+</blockquote>
+<div class="markdown"><p>A Nb type is used to collect all code cells&#40;which are contained in the Nucleus type. These code cells are actual code represented as string.</p>
+</div>
+<div class="markdown"><h4>Example</h4>
+</div>
+
+<pre><code>samplecodes=[Nucleus(&quot;a=1+1&quot;), Nucleus(&quot;function test(x)  x+1 end&quot;), Nucleus(&quot;test(2)&quot;)]
+------
+Output
+------
+Any[&quot;Main.workspace2.Nucleus&quot;, Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;a=1+1\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;306d40c84759e9a7&quot;), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;function test(x)  x+1 end\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;c2976b556bae3e4f&quot;), MIME type application/vnd.pluto.tree+object)), (3, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;test(2)\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;6dde1c26c23ba23b&quot;), MIME type application/vnd.pluto.tree+object))], :Array, &quot;&quot;, &quot;403f1afae8420fcc&quot;]
+</code></pre>
+<pre><code>nb=Nb(samplecodes, &quot;testnb.jl&quot;)
+------
+Output
+------
+Any[&quot;Nb&quot;, Any[(:nuclei, (Dict{Symbol, Any}(:prefix =&gt; &quot;Main.workspace2.Nucleus&quot;, :elements =&gt; Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;a=1+1\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;306d40c84759e9a7&quot;), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;function test(x)  x+1 end\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;c2976b556bae3e4f&quot;), MIME type application/vnd.pluto.tree+object)), (3, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;test(2)\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;6dde1c26c23ba23b&quot;), MIME type application/vnd.pluto.tree+object))], :type =&gt; :Array, :prefix_short =&gt; &quot;&quot;, :objectid =&gt; &quot;403f1afae8420fcc&quot;), MIME type application/vnd.pluto.tree+object)), (:name, (&quot;\&quot;testnb.jl\&quot;&quot;, MIME type text/plain))], :struct, &quot;Nb&quot;, &quot;4be33ca50065e252&quot;]
+</code></pre>
+<pre><code>nb.nuclei
+------
+Output
+------
+Any[&quot;Main.workspace2.Nucleus&quot;, Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;a=1+1\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;306d40c84759e9a7&quot;), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;function test(x)  x+1 end\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;c2976b556bae3e4f&quot;), MIME type application/vnd.pluto.tree+object)), (3, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;test(2)\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;6dde1c26c23ba23b&quot;), MIME type application/vnd.pluto.tree+object))], :Array, &quot;&quot;, &quot;403f1afae8420fcc&quot;]
+</code></pre>
+<pre><code>nb.name
+------
+Output
+------
+&quot;testnb.jl&quot;
+</code></pre>
+<blockquote>
+<p>collect_nuclei(notebook::ScrubbedNotebook, marker)–&gt; Reads a notebook, collects code from code cells and returns an array of Nucelus.</p>
+</blockquote>
+<div class="markdown"><p><code>collect_nuclei&#40;notebook::ScrubbedNotebook, marker&#41;</code> reads the entire notebook cell by cell and then checks if the content of that cell starts with a marker, only then it builds an array of the Nucleus type. </p>
+</div>
+<div class="markdown"><h4>load<em>scrubbed</em>nb</h4>
+</div>
+<blockquote>
+<p>load<em>scrubbed</em>nb(io, path)::ScrubbedNotebook–&gt; These are modification of the Pluto.load_notebook methods. Scrubs the notebook of all stuff but the code to be exported.</p>
+</blockquote>
+<div class="markdown"><p><code>load_scrubbed_nb</code> reads the notebook in the given path cell by cell, while ignoring the stuffs in the notebook like the cell order delimeters and the cell start delimeter. The result is a <code>ScrubbedNotebook</code> type which contains only the code which you intend to export.</p>
+</div>
+<div class="markdown"><h2>High Level APIs</h2>
+<p>This too are called automatically by Nbdev.</p>
+</div>
+<div class="markdown"><h4>load_nb</h4>
+</div>
+<blockquote>
+<p>load<em>nb(filename::String, marker::String)–&gt; High level function which calls _load</em>nb</p>
+<p><em>load</em>nb(filename::String, marker::String)–&gt; creates a scrubbed notebook and returns a curated Nb type having code to be exported.</p>
+</blockquote>
+<div class="markdown"><h4>ScrubbedNotebook</h4>
+</div>
+
+<pre><code>testnb= load_nb(&quot;01_export.jl&quot;, &quot;#export&quot;)
+------
+Output
+------
+Any[&quot;Nb&quot;, Any[(:nuclei, (Dict{Symbol, Any}(:prefix =&gt; &quot;Main.workspace2.Nucleus&quot;, :elements =&gt; Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\nimport Pluto: Notebook, Cell, load_notebook_nobackup\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;ff74b8c09c2a01d&quot;), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\nfunction processMdChunk(mdChunk::String)\\n\\tchopMdMarker(mdChunk)\\nend\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;7234e7b14e3dd8b6&quot;), MIME type application/vnd.pluto.tree+object)), (3, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\nbegin\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; struct Nucleus--&gt; This is the lowest entity of a code notebook. This type represents the code cell in a Pluto notebook.\\n&gt; * Fields:\\n&gt;   * code--&gt; String which makes up a code cell\\n\\\&quot;\\\&quot;\\\&quot;\\nBase.@kwdef mutable struct Nucleus\\n\\tcode::String=\\\&quot;\\\&quot;\\n\\tend\\n\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; Nucleus(code)--&gt;Getter for accessing the constructer of the Nucleus type\\n\\\&quot;\\\&quot;\\\&quot;\\nNucleus(code) = Nucleus(code = code)\\nend\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;30d3cd894b7ba5ab&quot;), MIME type application/vnd.pluto.tree+object)), (4, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\nbegin\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; struct Nb--&gt; a notebook having nuclei made up of code cells only.\\n&gt; * Fields:\\n&gt;   * nuclei--&gt; Array of Nucleus type\\n&gt;   * name--&gt; name of notebook\\n\\\&quot;\\\&quot;\\\&quot;\\nmutable struct Nb\\n\\tnuclei::Array{Nucleus,1}\\n\\tname::AbstractString\\nend\\n\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; nuclei(nuclei::Array)--&gt; Helper to collect an array of Nucleus.\\t\\n\\\&quot;\\\&quot;\\\&quot;\\nnuclei(nuclei::Array) = nuclei\\n\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; nuclei(nuclei::Array)--&gt; Helper to collect an name of a notebook.\\n\\\&quot;\\\&quot;\\\&quot;\\nname(name::AbstractString) = name\\nend\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;4a9e22027f104b91&quot;), MIME type application/vnd.pluto.tree+object)), (5, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\nbegin\\n\\\&quot;\\\&quot;\\\&quot;\\nHeaders that would appear in a code file\\n\\\&quot;\\\&quot;\\\&quot;\\nconst _header = \\\&quot;### A Nbdev script file ###\\\&quot;\\nconst _sub_header = \\\&quot;### Autogenerated file. Don't modify. ###\\\&quot;\\nend\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;16bbf13b174bcf5b&quot;), MIME type application/vnd.pluto.tree+object)), (6, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\n\\\&quot;\\\&quot;\\\&quot;\\nThis had to be done because having the cell iddelimeter as a constant gives an error during parsing the notebook\\n\\\&quot;\\\&quot;\\\&quot;\\ncell_id_delimiter=string(\\\&quot;#\\\&quot;,\\\&quot; ╔═╡ \\\&quot;)\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;c7f527202d292b1&quot;), MIME type application/vnd.pluto.tree+object)), (7, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\n\\\&quot;\\\&quot;\\\&quot;\\nmarks the end of a cell\\n\\\&quot;\\\&quot;\\\&quot;\\nconst _cell_suffix = \\\&quot;\\\\n\\\\n\\\&quot;\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;a869a2ca3aa73257&quot;), MIME type application/vnd.pluto.tree+object)), (8, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; struct ScrubbedNotebook--&gt; Represents a notebook from which all but code to be exported are scrubbed off.\\n&gt; * Fields--&gt;\\n&gt;   * cells--&gt; Vector of strings.\\n\\\&quot;\\\&quot;\\\&quot;\\nmutable struct ScrubbedNotebook\\n\\tcells::Array{String, 1}\\nend\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;fdb9e50ae547b3af&quot;), MIME type application/vnd.pluto.tree+object)), (9, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; collect_nuclei(notebook::ScrubbedNotebook, marker)--&gt; Reads a notebook, collects code from code cells and returns an array of Nucelus.\\n\\\&quot;\\\&quot;\\\&quot;\\nfunction collect_nuclei(notebook::ScrubbedNotebook, marker)\\n\\tnotebook_cells=notebook.cells\\n\\tnuclei=[]\\n\\t\\t\\n    for i in 1:length(notebook_cells)\\n    \\traw_code=notebook_cells[i]\\n    \\tnucleus=Nucleus(raw_code)\\n    \\t\\n    \\tif startswith(raw_code, marker)\\n            push!(nuclei,nucleus)\\n        end\\n    \\t\\n    end\\n\\t nuclei\\nend\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;7c865c0f964b693&quot;), MIME type application/vnd.pluto.tree+object)), (10, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\nbegin\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt;load_scrubbed_nb(io, path)::ScrubbedNotebook--&gt; These are modification of the Pluto.load_notebook methods. Scrubs the notebook of all stuff but the code to be exported.\\n\\\&quot;\\\&quot;\\\&quot;\\nfunction load_scrubbed_nb(io, path)::ScrubbedNotebook\\n    collected_cells = []\\n\\t\\t\\n\\t# ignore first bits of file\\n    readuntil(io,cell_id_delimiter)\\n\\n    last_read = \\\&quot;\\\&quot;\\n    while !eof(io)\\n        cell_id_str = String(readline(io))\\n        if cell_id_str == \\\&quot;Cell order:\\\&quot;\\n            break\\n        else\\n            code_raw = String(readuntil(io, cell_id_delimiter))\\n            # change Windows line endings to Linux\\n            code_normalised = replace(code_raw, \\\&quot;\\\\r\\\\n\\\&quot; =&gt; \\\&quot;\\\\n\\\&quot;)\\n            # remove the cell appendix\\n            code = code_normalised[1:prevind(code_normalised, end, length(_cell_suffix))]\\n\\n            read_cell = code\\n            push!(collected_cells, read_cell)\\n        end\\n    end\\n\\t\\t\\n\\tScrubbedNotebook(collected_cells)\\nend\\n\\t\\nfunction load_scrubbed_nb(path::String)::ScrubbedNotebook\\n    local loaded\\n    open(path, \\\&quot;r\\\&quot;) do io\\n        loaded = load_scrubbed_nb(io, path)\\n    end\\n    loaded\\nend\\nend\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;2d31ed14c437c5f2&quot;), MIME type application/vnd.pluto.tree+object)), (11, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\nbegin\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; load_nb(filename::String, marker::String)--&gt; High level function which calls _load_nb\\n\\\&quot;\\\&quot;\\\&quot;\\nload_nb(filename::String, marker::String) = _load_nb(filename, marker)\\n\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; _load_nb(filename::String, marker::String)--&gt; creates a scrubbed notebook and returns a curated Nb type having code to be exported.\\n\\\&quot;\\\&quot;\\\&quot;\\nfunction _load_nb(filename::String, marker::String)\\n\\t\\t#notebook=load_notebook_nobackup(filename)\\n\\t\\tscrubbedNotebook=load_scrubbed_nb(normpath(joinpath(@__FILE__,\\\&quot;..\\\&quot;,\\\&quot;..\\\&quot;, \\\&quot;nbs\\\&quot;, filename)))\\n\\t\\tcollected_nuclei=nuclei(collect_nuclei(scrubbedNotebook, marker))\\n\\t\\t\\n\\t\\t#if marker==\\\&quot;md\\\&quot;\\n\\t\\t#\\tnotebook\\n\\t\\t#else\\n\\t\\tNb(collected_nuclei, filename)\\n\\t\\t#end\\nend\\n\\nend\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;6511de1e33f7a364&quot;), MIME type application/vnd.pluto.tree+object)), (12, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; strip --&gt; Helper fucntion to replace a substring y in a string x with blank.\\n\\\&quot;\\\&quot;\\\&quot;\\nstrip=(x::String,y) -&gt; replace(x, y=&gt;\\\&quot;\\\&quot;)\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;9fe841be29a46787&quot;), MIME type application/vnd.pluto.tree+object)), (13, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\nbegin\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; save_nb(io, notebook)--&gt; Reads the supplied notebook and creates an io and writes stuffs like the module name and the content to the created io.\\n\\\&quot;\\\&quot;\\\&quot;\\nfunction save_nb(io, notebook)\\n    println(io, _header)\\n    println(io, _sub_header)\\n    println(io, \\\&quot;\\\&quot;)\\n    println(io, \\\&quot;module \\\$(uppercasefirst(strip(strip(notebook.name, r\\\&quot;[0-9_]\\\&quot;), r\\\&quot;.jl\\\&quot;)))\\\&quot;)\\n\\tfor nucleus in notebook.nuclei\\n\\t\\t\\tprintln(io, nucleus.code*\\\&quot;\\\\n\\\&quot;)\\n    end\\n\\t#notebook\\n\\tprint(io, \\\&quot;end\\\&quot;)\\t\\nend\\n\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; save_nb(notebook::Nb, path::String)--&gt; Creates a file in the supplied path with the name in the NB type.\\n\\\&quot;\\\&quot;\\\&quot;\\nfunction save_nb(notebook::Nb, path::String)\\n\\tfile_name=uppercasefirst(strip(notebook.name, r\\\&quot;[0-9_]\\\&quot;))\\n\\topen(joinpath(path, file_name), \\\&quot;w\\\&quot;) do io\\n        save_nb(io, notebook)\\n    end\\nend\\nend\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;c9ed9a347daf1a0b&quot;), MIME type application/vnd.pluto.tree+object)), (14, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\nbegin\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; readfilenames()--&gt; Reads files in the directory and subdirectories in the current path. Reads only the files with \\\&quot;.jl\\\&quot; extension\\n\\\&quot;\\\&quot;\\\&quot;\\nfunction readfilenames()\\n\\tfiles=[]\\n\\tfor file in readdir(normpath(joinpath(@__FILE__,\\\&quot;..\\\&quot;,\\\&quot;..\\\&quot;, \\\&quot;nbs\\\&quot;)))\\n\\t\\t\\tif endswith(file, \\\&quot;.jl\\\&quot;)\\n\\t\\t\\t\\tpush!(files,file)\\n\\t\\t\\tend\\n\\t\\t\\t#if getfile_extension(file)== \\\&quot;.jl\\\&quot;\\n\\t\\t\\t#\\tpush!(files,file)\\n\\t\\t\\t#end\\n\\tend\\n\\tfiles\\nend\\n\\nfunction readfilenames(dir::String)\\n\\tfiles=[]\\n\\tfor file in readdir(dir)\\n\\t\\t\\tif endswith(file, \\\&quot;.jl\\\&quot;)\\n\\t\\t\\t\\tpush!(files,file)\\n\\t\\t\\tend\\n\\t\\t\\t#if getfile_extension(file)== \\\&quot;.jl\\\&quot;\\n\\t\\t\\t#\\tpush!(files,file)\\n\\t\\t\\t#end\\n\\tend\\n\\tfiles\\nend\\nend\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;fdf7a671e5c34491&quot;), MIME type application/vnd.pluto.tree+object)), (15, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; export_file(file::String, path::String, marker::String)--&gt; Loads the file in the supplied path and reads the cells which are marked with \\\&quot;#export\\\&quot;. Then saves the notebook in the given path\\n\\\&quot;\\\&quot;\\\&quot;\\nfunction export_file(file::String, path::String, marker::String)\\n\\tnotebook=load_nb(file, \\\&quot;#export\\\&quot;)\\n\\tsave_nb(notebook, path)\\nend\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;64e4a47cb39d3cf5&quot;), MIME type application/vnd.pluto.tree+object)), (16, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; export_content(files::AbstractVector, path::String, marker::String)--&gt; maps the `export_file` function to each files\\n\\\&quot;\\\&quot;\\\&quot;\\nfunction export_content(files::AbstractVector, path::String, marker::String)\\n\\tmap(file-&gt;export_file(file, path, marker), files)\\nend\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;d89912151b061910&quot;), MIME type application/vnd.pluto.tree+object)), (17, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; getfile_extension(filename)--&gt; get the file extensions in the pwd\\n\\\&quot;\\\&quot;\\\&quot;\\nfunction getfile_extension(filename)\\n    return filename[findlast(isequal('.'),filename):end]\\nend\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;4a13057f7df9fc7f&quot;), MIME type application/vnd.pluto.tree+object)), (18, (Dict{Symbol, Any}(:prefix =&gt; &quot;Nucleus&quot;, :elements =&gt; Any[(:code, (&quot;\&quot;#export\\n\\\&quot;\\\&quot;\\\&quot;\\n&gt; notebook2script()--&gt; Export all the code to the ../src path of the project\\n\\\&quot;\\\&quot;\\\&quot;\\nfunction notebook2script()\\n\\texport_content(readfilenames(), \\\&quot;../src\\\&quot;, \\\&quot;#export\\\&quot;)\\nend\&quot;&quot;, MIME type text/plain))], :type =&gt; :struct, :prefix_short =&gt; &quot;Nucleus&quot;, :objectid =&gt; &quot;92278d680e230cb3&quot;), MIME type application/vnd.pluto.tree+object))], :type =&gt; :Array, :prefix_short =&gt; &quot;&quot;, :objectid =&gt; &quot;77793349d6ff63ef&quot;), MIME type application/vnd.pluto.tree+object)), (:name, (&quot;\&quot;01_export.jl\&quot;&quot;, MIME type text/plain))], :struct, &quot;Nb&quot;, &quot;7b12925ce165cbe5&quot;]
+</code></pre>
+<pre><code>testnb.nuclei[1].code
+------
+Output
+------
+&quot;#export\nimport Pluto: Notebook, Cell, load_notebook_nobackup&quot;
+</code></pre>
+<div class="markdown"><p>something to save files</p>
+</div>
+<div class="markdown"><h4>strip</h4>
+<blockquote>
+<p>strip –&gt; Helper fucntion to replace a substring y in a string x with blank.</p>
+</blockquote>
+</div>
+<div class="markdown"><h4>Example</h4>
+</div>
+
+<pre><code>&quot;module $(uppercasefirst(strip(strip(k, r&quot;[0-9_]&quot;), r&quot;.jl&quot;)))&quot;
+------
+Output
+------
+&quot;module Export&quot;
+</code></pre>
+<div class="markdown"><p>To export the required code, the following scenarios must be considered.</p>
+<p>👉 Check if the file is in the src directory. If it&#39;s there then overwrite it. </p>
+<p>👉 If it&#39;s not there then create and then write.</p>
+</div>
+<blockquote>
+<p>save_nb(io, notebook)–&gt; Reads the supplied notebook and creates an io and writes stuffs like the module name and the content to the created io.</p>
+<p>save_nb(notebook::Nb, path::String)–&gt; Creates a file in the supplied path with the name in the NB type.</p>
+</blockquote>
+<div class="markdown"><h4>Example</h4>
+</div>
+
+<pre><code>save_nb(testnb, &quot;../testpath&quot;)
+------
+Output
+------
+
+</code></pre>
+<div class="markdown"><p>We will read files in the current path which should be the /nbs folder in your project. This will host all your notebooks</p>
+</div>
+<div class="markdown"><h4>readfilenames</h4>
+</div>
+<blockquote>
+<p>readfilenames()–&gt; Reads files in the directory and subdirectories in the current path. Reads only the files with .jl\ extension</p>
+</blockquote>
+<div class="markdown"><h4>Example</h4>
+</div>
+
+<pre><code>readfilenames()
+------
+Output
+------
+Any[&quot;Any&quot;, Tuple{Int64, Any}[(1, (&quot;\&quot;01_export.jl\&quot;&quot;, MIME type text/plain)), (2, (&quot;\&quot;02_documenter.jl\&quot;&quot;, MIME type text/plain)), (3, (&quot;\&quot;03_codeRunner.jl\&quot;&quot;, MIME type text/plain)), (4, (&quot;\&quot;05_makedocs.jl\&quot;&quot;, MIME type text/plain)), (5, (&quot;\&quot;06_index.jl\&quot;&quot;, MIME type text/plain))], :Array, &quot;&quot;, &quot;dff1b136b2da593b&quot;]
+</code></pre>
+<div class="markdown"><h4>export_file</h4>
+</div>
+<blockquote>
+<p>export_file(file::String, path::String, marker::String)–&gt; Loads the file in the supplied path and reads the cells which are marked with #export. Then saves the notebook in the given path</p>
+</blockquote>
+<div class="markdown"><h4>export_content</h4>
+</div>
+<blockquote>
+<p>export*content(files::AbstractVector, path::String, marker::String)–&gt; maps the <code>export*file</code> function to each files</p>
+</blockquote>
+<div class="markdown"><h4>getfile_extension</h4>
+</div>
+<blockquote>
+<p>getfile_extension(filename)–&gt; get the file extensions in the pwd</p>
+</blockquote>
+<div class="markdown"><h4>Example</h4>
+</div>
+
+<pre><code> getfile_extension(&quot;test.jl&quot;)
+------
+Output
+------
+&quot;.jl&quot;
+</code></pre>
+<div class="markdown"><h4>notebook2script</h4>
+</div>
+<blockquote>
+<p>notebook2script()–&gt; Export all the code to the ../src path of the project</p>
+</blockquote>
+<div class="markdown"><p><code>notebook2script</code> can be called from anotebook which you intend to export. Usually in the last cell of that notebook</p>
+</div>
+
+<pre><code>notebook2script()
+------
+Output
+------
+Any[&quot;Nothing&quot;, Tuple{Int64, Any}[(1, (&quot;nothing&quot;, MIME type text/plain)), (2, (&quot;nothing&quot;, MIME type text/plain)), (3, (&quot;nothing&quot;, MIME type text/plain)), (4, (&quot;nothing&quot;, MIME type text/plain)), (5, (&quot;nothing&quot;, MIME type text/plain))], :Array, &quot;&quot;, &quot;eace4e8e41d845ae&quot;]
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../Documenter/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Documenter" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Documenter
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../Makedocs/" class="md-footer__link md-footer__link--next" aria-label="Next: MakeDocs" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              MakeDocs
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/thecodingprojec" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://medium.com/ml-and-automation" target="_blank" rel="noopener" title="medium.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 32v448h448V32H0zm372.2 106.1-24 23c-2.1 1.6-3.1 4.2-2.7 6.7v169.3c-.4 2.6.6 5.2 2.7 6.7l23.5 23v5.1h-118V367l24.3-23.6c2.4-2.4 2.4-3.1 2.4-6.7V199.8l-67.6 171.6h-9.1L125 199.8v115c-.7 4.8 1 9.7 4.4 13.2l31.6 38.3v5.1H71.2v-5.1l31.6-38.3c3.4-3.5 4.9-8.4 4.1-13.2v-133c.4-3.7-1-7.3-3.8-9.8L75 138.1V133h87.3l67.4 148L289 133.1h83.2v5z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.linkedin.com/in/satyabratapal" target="_blank" rel="noopener" title="www.linkedin.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": "navigation.tabs", "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.febc23d1.min.js"></script>
+      
+    
+  </body>
+</html>
