@@ -2,6 +2,7 @@ name: nbdev deploy
 on:
   push:
     branches:
+      - master
       - main
 
 jobs:
