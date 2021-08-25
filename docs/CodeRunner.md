@@ -1,5 +1,5 @@
 <h1>CodeRunner</h1>
-<div class="markdown"><p>You need to have something to capture the output. This is useful when you want to have examples or capture test output in the docs.</p>
+<div class="markdown"><p>You need to have something to capture the output.This is useful when you want to have examples or capture test output in the docs.</p>
 <p>I think the simplest way to do this is to do the following👇</p>
 <ul>
 <li><p>Take a notebook. </p>

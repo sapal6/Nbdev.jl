@@ -2,7 +2,7 @@
 <div class="markdown"><p>The Export module helps in exporting the code to script files.</p>
 </div>
 <div class="markdown"><h2>Lower Level Entities&#40;Structs, methods etc.&#41;</h2>
-<p>These are the objects on which nbdev&#39;s Export module was built. You can use it to extend nbdev but these are automtically used by Nbdev&#39;s internal engine to generate code files for you.</p>
+<p>These are the objects on which nbdev&#39;s Export module was built.You can use it to extend nbdev but these are automtically used by Nbdev&#39;s internal engine to generate code files for you.</p>
 </div>
 <div class="markdown"><h4>Nucleus type</h4>
 </div>

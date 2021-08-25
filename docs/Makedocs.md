@@ -1,5 +1,5 @@
 <h1>Makedocs</h1>
-<div class="markdown"><p>This module takes care of the creation of the support system document generation such as directory creation, index.yml and mkdocs.yml creation.</p>
+<div class="markdown"><p>This module takes care of the creation of the support system document generation such as directory creation,index.yml and mkdocs.yml creation.</p>
 <p>Additionally it calls mkdocs commands to build the site</p>
 </div>
 <div class="markdown"><h5>makepath</h5>
