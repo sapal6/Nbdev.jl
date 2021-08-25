@@ -1,12 +1,12 @@
 site_name: Nbdev-dev
 nav:
-    - Home: Index.md
-    - About: About.md
+    - Home: index.md
+    - About: about.md
     - Docs:
-      - CodeRunner: CodeRunner.md
-      - Documenter: Documenter.md
-      - Export: Export.md
-      - MakeDocs: Makedocs.md
+      - CodeRunner: codeRunner.md
+      - Documenter: documenter.md
+      - Export: export.md
+      - MakeDocs: makedocs.md
     - FAQ: faq.md
   
 theme:
