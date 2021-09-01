@@ -1,13 +1,11 @@
 site_name: Nbdev-dev
 nav:
     - Home: index.md
-    - About: about.md
     - Docs:
-      - CodeRunner: codeRunner.md
+      - CodeRunner: coderunner.md
       - Documenter: documenter.md
       - Export: export.md
       - MakeDocs: makedocs.md
-    - FAQ: faq.md
   
 theme:
   name: material
@@ -21,7 +19,8 @@ theme:
     navigation.tabs
     
   markdown_extensions:
-    - meta  
+    - meta 
+    - toc
     - pymdownx.highlight:
         linenums: true
  

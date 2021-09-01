@@ -6,7 +6,7 @@ using InteractiveUtils
 
 # ╔═╡ 5b4e526e-3dfa-11eb-3472-bd753d60c119
 #hide
-include("../src/documenter.jl")
+include("../src/Documenter.jl")
 
 # ╔═╡ 486bb5f0-54be-11eb-0e7c-1dcf55b5f983
 md"The Export module helps in exporting the code to script files."
@@ -31,7 +31,7 @@ md"## Lower Level Entities(Structs, methods etc.)
 These are the objects on which nbdev's Export module was built. You can use it to extend nbdev but these are automtically used by Nbdev's internal engine to generate code files for you."
 
 # ╔═╡ 16fbf5b0-54bf-11eb-3c21-2bf024188fac
-md"#### Nucleus type"
+md"## Nucleus type"
 
 # ╔═╡ a5bfff40-1620-11eb-2824-2d49985a022d
 #export
@@ -70,7 +70,7 @@ nucleus=Nucleus(sample_code)
 nucleus.code
 
 # ╔═╡ d236da00-54c6-11eb-3afe-859ccc31d041
-md"#### Nb type"
+md"## Nb type"
 
 # ╔═╡ d17ebf90-1486-11eb-0d41-b967a8ab82ba
 #export
@@ -152,7 +152,7 @@ marks the end of a cell
 const _cell_suffix = "\n\n"
 
 # ╔═╡ 0561b9f0-54d5-11eb-01f0-8bde739e3e37
-md"#### load_scrubbed_nb"
+md"## load_scrubbed_nb"
 
 # ╔═╡ 512e7b20-54d5-11eb-3ff9-b150bf2f9e26
 md"`load_scrubbed_nb` reads the notebook in the given path cell by cell, while ignoring the stuffs in the notebook like the cell order delimeters and the cell start delimeter. The result is a `ScrubbedNotebook` type which contains only the code which you intend to export."
@@ -163,10 +163,10 @@ md"## High Level APIs
 This too are called automatically by Nbdev."
 
 # ╔═╡ c71b1460-54d5-11eb-3e6b-cb3dadbc0349
-md"#### load_nb"
+md"## load_nb"
 
 # ╔═╡ 8b7e8030-54d6-11eb-2f48-d3bc02e21c96
-md"#### ScrubbedNotebook"
+md"## ScrubbedNotebook"
 
 # ╔═╡ 20c285d0-2fb4-11eb-1ef0-3b28829af7e8
 #export
@@ -292,7 +292,7 @@ md"something to save files"
 k="01_export.jl"
 
 # ╔═╡ 16a58460-54d7-11eb-1f6a-97f11bc07049
-md"#### strip
+md"## strip
 > strip --> Helper fucntion to replace a substring y in a string x with blank."
 
 # ╔═╡ 4c511e5e-1771-11eb-3c8e-5785e7399d70
@@ -362,7 +362,7 @@ save_nb(testnb, "../testpath")
 md"We will read files in the current path which should be the /nbs folder in your project. This will host all your notebooks"
 
 # ╔═╡ f7f0d72e-54d7-11eb-1b8a-b3689e09598b
-md"#### readfilenames"
+md"## readfilenames"
 
 # ╔═╡ cdada98e-0e13-11eb-30aa-1777efffb181
 #export
@@ -373,7 +373,7 @@ begin
 function readfilenames()
 	files=[]
 	for file in readdir(normpath(joinpath(@__FILE__,"..","..", "nbs")))
-			if endswith(file, ".jl")
+			if endswith(file, ".jl") && !contains(file, "index")
 				push!(files,file)
 			end
 			#if getfile_extension(file)== ".jl"
@@ -407,7 +407,7 @@ md"#### Example"
 readfilenames()
 
 # ╔═╡ 528689b0-54d8-11eb-35f4-2b56012fa4e6
-md"#### export_file"
+md"## export_file"
 
 # ╔═╡ 0be54350-177c-11eb-285a-93dd4d45e40e
 #export
@@ -423,7 +423,7 @@ end
 Documenter.showDoc(export_file)
 
 # ╔═╡ a0129641-9a52-497c-9b34-944250f655c6
-md"#### export_content"
+md"## export_content"
 
 # ╔═╡ 41d65310-0e11-11eb-1a36-87dc9ac941fa
 #export
@@ -438,7 +438,7 @@ end
 Documenter.showDoc(export_content)
 
 # ╔═╡ 23e775a0-54d9-11eb-0106-431100572909
-md"#### getfile_extension"
+md"## getfile_extension"
 
 # ╔═╡ 01608690-0e14-11eb-3faa-9b960f57f3fe
 #export
@@ -459,7 +459,7 @@ md"#### Example"
  getfile_extension("test.jl")
 
 # ╔═╡ 4de0d9f0-54d9-11eb-38c6-3de69a7ec1db
-md"#### notebook2script"
+md"## notebook2script"
 
 # ╔═╡ b34f9d82-0ede-11eb-0f08-afa0cc898e80
 #export
@@ -531,7 +531,7 @@ notebook2script()
 # ╠═55ed2102-597d-11eb-342c-b589f4681bdd
 # ╠═526b7d10-54d7-11eb-20f1-5d26e020ff16
 # ╠═7b999f90-1775-11eb-031e-69d461ec4150
-# ╟─76f97bd0-177b-11eb-2d78-77c72b2aef81
+# ╠═76f97bd0-177b-11eb-2d78-77c72b2aef81
 # ╠═6069d790-176f-11eb-3020-41b450d430ad
 # ╠═d096aed0-54d7-11eb-31fc-b19801db8851
 # ╠═dc1cd130-54d7-11eb-223f-e724e43a535c

@@ -34,7 +34,7 @@ begin
 > newsitegen()--> Create required directory structure for hosting documents and the initial files(index.md and mkdocs.yml) if not already there.
 """
 function newsitegen()
-	path = joinpath("../","docs/docs")
+	path = joinpath(".","docs")
     makepath(path)
 end
 end

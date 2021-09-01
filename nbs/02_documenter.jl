@@ -24,10 +24,6 @@ using ProgressMeter
 #export
 include("../src/Export.jl")
 
-# ╔═╡ 23c57f60-0eb4-11eb-20c0-7dac22387fc1
-#export
-include("../src/ConfigReader.jl")
-
 # ╔═╡ 27ff1d70-1201-11eb-2003-27cb52571be6
 #export
 include("../src/CodeRunner.jl")
@@ -41,7 +37,7 @@ md"## Lower Level Entities(Structs, methods etc.)
 These are the objects on which nbdev's Documenter module was built. You can use it to extend nbdev but these are automtically used by Nbdev's internal engine to generate code files for you."
 
 # ╔═╡ bf4e47f0-3ec5-11eb-1b65-5fe2e7a88ff1
-md"#### Section type"
+md"## Section type"
 
 # ╔═╡ 5a2e9790-201f-11eb-0df4-f90b3cc54f20
 #export
@@ -66,7 +62,7 @@ line(section::Section)=section.line
 end
 
 # ╔═╡ f1318ca0-3f97-11eb-3727-3f71064c77bf
-md"#### Example"
+md"## Example"
 
 # ╔═╡ cfb6d710-3f97-11eb-31ed-6daa12cf592e
 begin
@@ -75,7 +71,7 @@ line(section)
 end
 
 # ╔═╡ 309585e2-3f93-11eb-0873-d9b0d7a6200e
-md"#### Page Type"
+md"## Page Type"
 
 # ╔═╡ 28a4e100-17ac-11eb-172c-2d0e73460caa
 #export
@@ -152,7 +148,7 @@ import Pluto
 #testNb=Pluto.load_notebook("02_documenter.jl")
 
 # ╔═╡ 743238d0-1918-11eb-3dfc-6f30db92923c
-md"##### run_and_update "
+md"## run_and_update "
 
 # ╔═╡ 8691e572-1918-11eb-011c-639d3617e076
 #export
@@ -186,7 +182,7 @@ Markdown.html(md"```func test end```")
 #string("<p><code>",cleanedCode,"</code></p>\n")
 
 # ╔═╡ bda9c5a0-1f8a-11eb-396b-97f97add91db
-md"##### stitchCode"
+md"## stitchCode"
 
 # ╔═╡ 00989200-25d6-11eb-3139-8dd2ca0346f8
 #hide
@@ -207,7 +203,7 @@ end
 fstr = string(methods(grabFuncSig).ms[1])
 
 # ╔═╡ 19ab31e0-4060-11eb-0417-131e3a1f5a5e
-md"#### FunctionDocs"
+md"## FunctionDocs"
 
 # ╔═╡ 34ff4880-2b22-11eb-0eef-9bc7ab1aef8f
 #export
@@ -282,7 +278,7 @@ docs=@doc stitchCode
 "$(docs.meta[:results][1].object)"
 
 # ╔═╡ 85446eb5-b22f-41f9-bb9c-be41a7479866
-md"##### collectFuncDocs"
+md"## collectFuncDocs"
 
 # ╔═╡ 3f171660-3ec1-11eb-0983-2789adeab1c3
 #export
@@ -308,7 +304,7 @@ md"## Higher Level API"
 md"These higher level APIs can either be used directly or are already used internally by nbdev. One such functions which can be used directly is..."
 
 # ╔═╡ df2e8540-4063-11eb-2266-7f423f03bd67
-md"##### showDoc"
+md"## showDoc"
 
 # ╔═╡ a310902e-2b28-11eb-0455-add7ff7c8d6e
 #export
@@ -373,7 +369,7 @@ inlinetest=str->replace(str, "1"=> "one")
 #showDoc(inlinetest)
 
 # ╔═╡ 285cf4e0-4064-11eb-3162-1b399c464a1a
-md"##### createPage"
+md"## createPage"
 
 # ╔═╡ 36b846d0-2024-11eb-3784-89a02343cd0b
 #export
@@ -391,7 +387,7 @@ function createPage(filename::AbstractString, notebook::Notebook)
 	    end
 	    if startswith(cell.code, "md")
 			push!(sections, Section(cell.output.body))
-		elseif !startswith(cell.code, "#export") && !startswith(cell.code, "#hide")
+		elseif !startswith(cell.code, "#export") && !startswith(cell.code, "#hide") 
 			if occursin( "showDoc", cell.code)
 				#stitched_code=stitchCode(cell.output)
 				cleanedop=Export.strip(cell.output.body, "\"")
@@ -421,7 +417,7 @@ const _footer = "</html>"
 end
 
 # ╔═╡ 15299390-411f-11eb-3b2b-257dc0eac258
-md"##### md2html"
+md"## md2html"
 
 # ╔═╡ 60f5f6b0-28a1-11eb-1b18-27bdfed23c8c
 """
@@ -439,7 +435,7 @@ md"#### Example"
 md2html(md"This is a test")
 
 # ╔═╡ f5521070-8f6f-11eb-3466-539ce423eb19
-md"""#### sw
+md"""## sw
 Checks if a given string startwith a certain susbstring. Helpful when there are a list of strings to match.
 """
 
@@ -464,7 +460,7 @@ begin
 end
 
 # ╔═╡ 7b6fd3d0-411f-11eb-3786-ff38ee7d0291
-md"##### save_page"
+md"## save_page"
 
 # ╔═╡ 4c5c7c22-28a0-11eb-0069-cb78e0e7e0ee
 #export
@@ -490,7 +486,7 @@ end
 > save_page(page::Page, path::String)--> Given a Page type and the required path, creates the related markdwon file in the specified path. The name of the resulting markdown file is same as the nameof the notebook for which the document is generated
 """
 function save_page(page::Page, path::String)
-	file_name=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
+	file_name=lowercase(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
 	open(joinpath(path, file_name*".md"), "w") do io
         save_page(io, page)
     end
@@ -513,7 +509,7 @@ showDoc(save_page)
 md"Nbdev calls the required method of `save_page` automatically during document generation."
 
 # ╔═╡ ed8b55f0-4121-11eb-1a2b-a77bea8bfe7f
-md"##### export2md"
+md"## export2md"
 
 # ╔═╡ f31331e0-28c2-11eb-1014-95ed88d77469
 #export
@@ -580,7 +576,6 @@ Export.notebook2script()
 # ╠═77a9e510-4ae2-44a2-9536-17a89a54d6f6
 # ╠═b068dfd2-0eb3-11eb-109a-d1b6ef1eeca0
 # ╠═1d83078e-2024-11eb-0e5f-51310d134662
-# ╠═23c57f60-0eb4-11eb-20c0-7dac22387fc1
 # ╠═27ff1d70-1201-11eb-2003-27cb52571be6
 # ╠═25ff264e-3ec5-11eb-362c-07b4e24c635a
 # ╠═bf4e47f0-3ec5-11eb-1b65-5fe2e7a88ff1
@@ -594,7 +589,7 @@ Export.notebook2script()
 # ╠═87c22750-3f94-11eb-201c-a3c6374881f4
 # ╠═41b87320-3f9b-11eb-1ed4-fdfefdc01627
 # ╠═48beb2b0-3f9b-11eb-2756-919a82c5c0de
-# ╟─997a4950-3f94-11eb-2e66-d9a70cc175d1
+# ╠═997a4950-3f94-11eb-2e66-d9a70cc175d1
 # ╠═ea16dab0-3f97-11eb-19b5-0f4998ba3e39
 # ╠═11057000-3f98-11eb-27aa-ffb097ca25ed
 # ╠═7e959872-421d-11eb-3784-2f110840a628
@@ -605,20 +600,20 @@ Export.notebook2script()
 # ╠═e2952860-1ade-11eb-20ca-091a45fab2f2
 # ╠═d9fffed0-2f3f-11eb-16b4-4b2778f792d9
 # ╠═2fc24ff0-11f7-11eb-18a8-1b2b989fa189
-# ╟─743238d0-1918-11eb-3dfc-6f30db92923c
+# ╠═743238d0-1918-11eb-3dfc-6f30db92923c
 # ╠═8691e572-1918-11eb-011c-639d3617e076
 # ╠═5001a5b0-11ff-11eb-054a-6921da78afa3
 # ╠═f1d7ed22-1f8a-11eb-035d-6de2cb48bb8b
 # ╠═6b9cb0f0-1f5e-11eb-1e15-9f0c8295b59f
 # ╠═c3d2cf20-1f8b-11eb-0381-01270b1494b3
 # ╠═1d71bb00-1f8b-11eb-31de-69aebd625201
-# ╟─bda9c5a0-1f8a-11eb-396b-97f97add91db
+# ╠═bda9c5a0-1f8a-11eb-396b-97f97add91db
 # ╠═d75486f0-2022-11eb-2d95-aded3418c079
 # ╠═59aca6d0-405f-11eb-2252-633f4d0ccdbc
 # ╠═00989200-25d6-11eb-3139-8dd2ca0346f8
 # ╠═363dc920-25d6-11eb-37d7-b5ade368658f
 # ╠═9bf47390-25d6-11eb-1c3a-1d305aeb1c06
-# ╟─19ab31e0-4060-11eb-0417-131e3a1f5a5e
+# ╠═19ab31e0-4060-11eb-0417-131e3a1f5a5e
 # ╠═34ff4880-2b22-11eb-0eef-9bc7ab1aef8f
 # ╠═bb865340-4061-11eb-065c-030bf004197f
 # ╠═931b9ab2-4060-11eb-219d-49b05ff3ca72
@@ -631,8 +626,8 @@ Export.notebook2script()
 # ╠═01a22122-4061-11eb-393e-17c15f09e58d
 # ╠═89db4130-3ec1-11eb-23ee-eff6d23c1588
 # ╟─db32b16e-4061-11eb-23f0-7fdeaab0d0c8
-# ╟─0661fdb0-4062-11eb-09d0-030a43180a2c
-# ╟─df2e8540-4063-11eb-2266-7f423f03bd67
+# ╠═0661fdb0-4062-11eb-09d0-030a43180a2c
+# ╠═df2e8540-4063-11eb-2266-7f423f03bd67
 # ╠═a310902e-2b28-11eb-0455-add7ff7c8d6e
 # ╠═f17bc160-2e46-11eb-0d65-cf6185b4f406
 # ╠═2b104160-4e83-11eb-1a78-a96f77e1aff4
@@ -641,24 +636,24 @@ Export.notebook2script()
 # ╠═10866060-5980-11eb-0422-e7300713c6a4
 # ╠═4fee8610-5980-11eb-137a-83f4aa64e933
 # ╠═83bb0590-5980-11eb-3159-b376954405ef
-# ╟─285cf4e0-4064-11eb-3162-1b399c464a1a
+# ╠═285cf4e0-4064-11eb-3162-1b399c464a1a
 # ╠═36b846d0-2024-11eb-3784-89a02343cd0b
 # ╠═7216e720-411e-11eb-1103-19bf4993ef1e
 # ╠═7f938250-411e-11eb-0d30-b53cf2c8bc97
 # ╠═8d7b5280-28a0-11eb-282d-2dbf124460da
-# ╟─15299390-411f-11eb-3b2b-257dc0eac258
+# ╠═15299390-411f-11eb-3b2b-257dc0eac258
 # ╠═60f5f6b0-28a1-11eb-1b18-27bdfed23c8c
-# ╟─39ae06b0-411f-11eb-01eb-b30511aec8cc
+# ╠═39ae06b0-411f-11eb-01eb-b30511aec8cc
 # ╠═827db480-411f-11eb-2eb3-b3239cc4a865
 # ╠═8aab35fe-411f-11eb-27b2-6bc7d3dd5280
 # ╠═f5521070-8f6f-11eb-3466-539ce423eb19
 # ╠═642e89a0-8f71-11eb-0a01-07ade17b8c65
 # ╠═20728fa0-8f70-11eb-2807-9bdb80c4b2f9
 # ╠═1b8e6cc0-8f70-11eb-0e91-1101742b14a4
-# ╟─7b6fd3d0-411f-11eb-3786-ff38ee7d0291
+# ╠═7b6fd3d0-411f-11eb-3786-ff38ee7d0291
 # ╠═4c5c7c22-28a0-11eb-0069-cb78e0e7e0ee
 # ╠═870d3240-4120-11eb-0dca-89337e801493
-# ╟─943f2fe2-4120-11eb-11a9-7785d11d3c36
+# ╠═943f2fe2-4120-11eb-11a9-7785d11d3c36
 # ╠═ed8b55f0-4121-11eb-1a2b-a77bea8bfe7f
 # ╠═f31331e0-28c2-11eb-1014-95ed88d77469
 # ╠═807db3e2-4121-11eb-136d-ad470b83a46f

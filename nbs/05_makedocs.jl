@@ -18,7 +18,7 @@ md"This module takes care of the creation of the support system document generat
 Additionally it calls mkdocs commands to build the site"
 
 # ╔═╡ 0c7570c3-8871-494f-91a0-fc04376344c3
-md"##### makepath"
+md"## makepath"
 
 # ╔═╡ ab5e0c09-223c-46c3-992c-928d42b0cb3b
 #export
@@ -38,7 +38,7 @@ Documenter.showDoc(makepath)
 makepath("../docs/docs")
 
 # ╔═╡ fe6028bc-58b8-45d1-bf7b-8f5e31e8d452
-md"##### mkdocs_yml"
+md"## mkdocs_yml"
 
 # ╔═╡ ad99a75a-2918-4e27-b679-3ab3611cc3fc
 #export
@@ -61,10 +61,10 @@ end
 Documenter.showDoc(mkdocs_yml)
 
 # ╔═╡ 4b3477a9-cf4a-4ea6-8eac-359cb34d97be
-mkdocs_yml("../docs")
+#mkdocs_yml("../docs")
 
 # ╔═╡ eeb046c0-bdcc-11eb-31a1-838f33f977e3
-md"##### newsitegen"
+md"## newsitegen"
 
 # ╔═╡ cc200174-9530-438f-8004-3883c372f674
 #hide
@@ -77,7 +77,7 @@ begin
 > newsitegen()--> Create required directory structure for hosting documents and the initial files(index.md and mkdocs.yml) if not already there.
 """
 function newsitegen()
-	path = joinpath("../","docs/docs")
+	path = joinpath(".","docs")
     makepath(path)
 end
 end

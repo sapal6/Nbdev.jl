@@ -2,7 +2,7 @@
 <div class="markdown"><h2>Lower Level Entities&#40;Structs, methods etc.&#41;</h2>
 <p>These are the objects on which nbdev&#39;s Documenter module was built. You can use it to extend nbdev but these are automtically used by Nbdev&#39;s internal engine to generate code files for you.</p>
 </div>
-<div class="markdown"><h4>Section type</h4>
+<div class="markdown"><h2>Section type</h2>
 </div>
 > struct Section–> This is like the section of a page and is made up of one or multiple lines.
 >
@@ -22,7 +22,7 @@
 
 
 
-<div class="markdown"><h4>Example</h4>
+<div class="markdown"><h2>Example</h2>
 </div>
 ```
 begin
@@ -35,7 +35,7 @@ Output
 "This is a test line"
 ```
 
-<div class="markdown"><h4>Page Type</h4>
+<div class="markdown"><h2>Page Type</h2>
 </div>
 > Page–> The type that represents a page in a document.
 >
@@ -73,7 +73,7 @@ end
 ------
 Output
 ------
-Any["Main.workspace4.Section", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "feebbea666a8e4ee"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "829704086dff6e2c"), MIME type application/vnd.pluto.tree+object))], :Array, "", "2ae47e853db14b27"]
+Any["Main.workspace4.Section", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "fa3ba98f6a120c2e"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "4c034d080da15382"), MIME type application/vnd.pluto.tree+object))], :Array, "", "d6e870b197a870d9"]
 ```
 
 ```
@@ -81,7 +81,7 @@ page
 ------
 Output
 ------
-Any["Page", Any[(:sections, (Dict{Symbol, Any}(:prefix => "Main.workspace4.Section", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "feebbea666a8e4ee"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "829704086dff6e2c"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "2ae47e853db14b27"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"Monkey module\"", MIME type text/plain))], :struct, "Page", "8cb32a20a1fa86d3"]
+Any["Page", Any[(:sections, (Dict{Symbol, Any}(:prefix => "Main.workspace4.Section", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "fa3ba98f6a120c2e"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "4c034d080da15382"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "d6e870b197a870d9"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"Monkey module\"", MIME type text/plain))], :struct, "Page", "2c76c73d0f1c53c0"]
 ```
 
 ```
@@ -92,12 +92,12 @@ Output
 Page
 ```
 
-<div class="markdown"><h5>run<em>and</em>update</h5>
+<div class="markdown"><h2>run<em>and</em>update</h2>
 </div>
 <div class="markdown"><p><code>run_and_update_nb</code> uses the <code>load_notebook_nobackup</code> function in Pluto.jl. There are multiple ways to achieve what this function achieves without depending on Pluto internals but for now this was the quickiest way to achieve this.</p>
 <p><strong>Note-</strong>Depending on Pluto internal to run and update a notebook makes it difficult to run unit test for this function from within pluto itself because a Pluto cell is treated as worker 2, 3 and so on but when you do load_notebook&#40;&#41; then it spins up another worker. Only worker 1 can spwan further processes and not a notebook cell.</p>
 </div>
-<div class="markdown"><h5>stitchCode</h5>
+<div class="markdown"><h2>stitchCode</h2>
 </div>
 > stitchCode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.
 
@@ -112,7 +112,7 @@ Page
 
 
 
-<div class="markdown"><h4>FunctionDocs</h4>
+<div class="markdown"><h2>FunctionDocs</h2>
 </div>
 > struct FunctionDocs–> Stores the document of different objects.
 >
@@ -135,10 +135,10 @@ end
 ------
 Output
 ------
-Any["String", Tuple{Int64, Any}[(1, ("\"i\"", MIME type text/plain)), (2, ("\"j\"", MIME type text/plain))], :Array, "", "504c835612561e68"]
+Any["String", Tuple{Int64, Any}[(1, ("\"i\"", MIME type text/plain)), (2, ("\"j\"", MIME type text/plain))], :Array, "", "df5983523100c0e6"]
 ```
 
-<div class="markdown"><h5>collectFuncDocs</h5>
+<div class="markdown"><h2>collectFuncDocs</h2>
 </div>
 > collectFuncDocs(obj)–> Collects objects (functions, methods, macro structs etc.) and creates an array of documents (generated from teh docstrings). Creates aFunctionDocs type from these documents.
 
@@ -152,14 +152,14 @@ collectFuncDocs(stitchCode).funcDocs
 ------
 Output
 ------
-Any["String", Tuple{Int64, Any}[(1, ("\"> stitchCode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.\\n\\n\"", MIME type text/plain)), (2, ("\"> stitchCode(cellop::AbstractString)–> Removes the quotes from a string and creates a code block with that string inside the newely formed code block\\n\\n\"", MIME type text/plain)), (3, ("\"> stitchCode(fdocs::FunctionDocs)–> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object\\n\\n\"", MIME type text/plain))], :Array, "", "ef6e481a53739452"]
+Any["String", Tuple{Int64, Any}[(1, ("\"> stitchCode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.\\n\\n\"", MIME type text/plain)), (2, ("\"> stitchCode(cellop::AbstractString)–> Removes the quotes from a string and creates a code block with that string inside the newely formed code block\\n\\n\"", MIME type text/plain)), (3, ("\"> stitchCode(fdocs::FunctionDocs)–> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object\\n\\n\"", MIME type text/plain))], :Array, "", "8ecd4a7e122cd22b"]
 ```
 
 <div class="markdown"><h2>Higher Level API</h2>
 </div>
 <div class="markdown"><p>These higher level APIs can either be used directly or are already used internally by nbdev. One such functions which can be used directly is...</p>
 </div>
-<div class="markdown"><h5>showDoc</h5>
+<div class="markdown"><h2>showDoc</h2>
 </div>
 > showDoc(o)–> Takes an object and builds markdown documentation.
 
@@ -181,7 +181,7 @@ mystruct=MyStruct("test")
 ------
 Output
 ------
-Any["MyStruct", Any[(:name, ("\"test\"", MIME type text/plain))], :struct, "MyStruct", "eaf3dde155ac40a7"]
+Any["MyStruct", Any[(:name, ("\"test\"", MIME type text/plain))], :struct, "MyStruct", "827bb69404d873d4"]
 ```
 
 ```
@@ -203,7 +203,7 @@ Output
 Main.workspace4.inlinetest
 ```
 
-<div class="markdown"><h5>createPage</h5>
+<div class="markdown"><h2>createPage</h2>
 </div>
 > CreatePage–> Creates the Page type from the markdown and example code cells of the supplied notebook. The filename is the name of the notebook which is parsed.
 
@@ -212,7 +212,7 @@ Main.workspace4.inlinetest
 
 <div class="markdown"><p>While generating document you don&#39;t need to call this function. This is done automatically😃 for you when nbdev generates documents.</p>
 </div>
-<div class="markdown"><h5>md2html</h5>
+<div class="markdown"><h2>md2html</h2>
 </div>
 ```
 """
@@ -230,12 +230,12 @@ Main.workspace4.md2html
 <div class="markdown"><h4>Example</h4>
 </div>
 "<p>This is a test</p>"
-<div class="markdown"><h4>sw</h4>
+<div class="markdown"><h2>sw</h2>
 <p>Checks if a given string startwith a certain susbstring. Helpful when there are a list of strings to match.</p>
 </div>
 <div class="markdown"><h4>Example</h4>
 </div>
-<div class="markdown"><h5>save_page</h5>
+<div class="markdown"><h2>save_page</h2>
 </div>
 > save_page(io, page::Page)–> Take the contents from a Page type and write to the io
 
@@ -252,7 +252,7 @@ Main.workspace4.md2html
 
 <div class="markdown"><p>Nbdev calls the required method of <code>save_page</code> automatically during document generation.</p>
 </div>
-<div class="markdown"><h5>export2md</h5>
+<div class="markdown"><h2>export2md</h2>
 </div>
 > export2md(file::String, path::String)–> Generate document for a file in the given path
 

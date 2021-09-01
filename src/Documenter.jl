@@ -18,9 +18,6 @@ using ProgressMeter
 include("../src/Export.jl")
 
 #export
-include("../src/ConfigReader.jl")
-
-#export
 include("../src/CodeRunner.jl")
 
 #export
@@ -175,7 +172,7 @@ function createPage(filename::AbstractString, notebook::Notebook)
 	    end
 	    if startswith(cell.code, "md")
 			push!(sections, Section(cell.output.body))
-		elseif !startswith(cell.code, "#export") && !startswith(cell.code, "#hide")
+		elseif !startswith(cell.code, "#export") && !startswith(cell.code, "#hide") 
 			if occursin( "showDoc", cell.code)
 				#stitched_code=stitchCode(cell.output)
 				cleanedop=Export.strip(cell.output.body, "\"")
@@ -227,7 +224,7 @@ end
 > save_page(page::Page, path::String)--> Given a Page type and the required path, creates the related markdwon file in the specified path. The name of the resulting markdown file is same as the nameof the notebook for which the document is generated
 """
 function save_page(page::Page, path::String)
-	file_name=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
+	file_name=lowercase(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
 	open(joinpath(path, file_name*".md"), "w") do io
         save_page(io, page)
     end
