@@ -1,4 +1,4 @@
-<h1>Coderunner</h1>
+<h1>CodeRunner</h1>
 <div class="markdown"><p>You need to have something to capture the output. This is useful when you want to have examples or capture test output in the docs.</p>
 <p>I think the simplest way to do this is to do the following👇</p>
 <ul>
@@ -11,8 +11,8 @@
 </ul>
 <p>This is taken straight from Pluto&#39;s webserver code</p>
 </div>
-<div class="markdown"><h2>execute_code</h2>
-</div>
+## execute_code
+
 > execute_code(notebook::Notebook)–> This function does the following
 >
 >   * Take a notebook.

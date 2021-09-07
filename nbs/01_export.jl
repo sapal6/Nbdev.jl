@@ -4,6 +4,13 @@
 using Markdown
 using InteractiveUtils
 
+# ╔═╡ 1cfdfbea-3ef7-4a38-b42b-8610d0f90646
+#hide
+begin
+using PlutoUI
+TableOfContents()
+end
+
 # ╔═╡ 5b4e526e-3dfa-11eb-3472-bd753d60c119
 #hide
 include("../src/Documenter.jl")
@@ -359,7 +366,7 @@ md"#### Example"
 save_nb(testnb, "../testpath")
 
 # ╔═╡ b9a15e60-0e13-11eb-199d-f50a49f5bc44
-md"We will read files in the current path which should be the /nbs folder in your project. This will host all your notebooks"
+md"We will read files in the /nbs folder in your project. This will host all your notebooks"
 
 # ╔═╡ f7f0d72e-54d7-11eb-1b8a-b3689e09598b
 md"## readfilenames"
@@ -485,6 +492,7 @@ notebook2script()
 # ╠═0aecd4c0-0e14-11eb-1619-4f5e0ced1279
 # ╠═d2a442c0-0eb2-11eb-1ea8-d507d9145823
 # ╠═2181580b-7f3e-456f-aa62-68130d9b9178
+# ╠═1cfdfbea-3ef7-4a38-b42b-8610d0f90646
 # ╠═6ff1ad80-1479-11eb-3868-0df000f47cc9
 # ╠═16fbf5b0-54bf-11eb-3c21-2bf024188fac
 # ╠═a5bfff40-1620-11eb-2824-2d49985a022d

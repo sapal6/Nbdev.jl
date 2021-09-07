@@ -158,6 +158,19 @@ end
 end
 
 #export
+begin
+function maintain_heading(str:: AbstractString)
+	res= nothing
+	if startswith(str, """<div class="markdown"><h2>""")
+			res = Export.strip(Export.strip(Export.strip(str, """<div class="markdown"><h2>"""), """</h2>"""), """</div>""")
+			res = string("## ", res)
+	else
+		res = str
+	end
+	res
+end
+
+
 """
 > CreatePage--> Creates the Page type from the markdown and example code cells of the supplied notebook. The filename is the name of the notebook which is parsed.
 """
@@ -171,7 +184,8 @@ function createPage(filename::AbstractString, notebook::Notebook)
 			break
 	    end
 	    if startswith(cell.code, "md")
-			push!(sections, Section(cell.output.body))
+			clean_op = maintain_heading(cell.output.body)
+			push!(sections, Section(clean_op))
 		elseif !startswith(cell.code, "#export") && !startswith(cell.code, "#hide") 
 			if occursin( "showDoc", cell.code)
 				#stitched_code=stitchCode(cell.output)
@@ -187,19 +201,7 @@ function createPage(filename::AbstractString, notebook::Notebook)
 	
 	Page(sections, filename)
 end
-
-#export
-begin
-const _header = "<html>"
-const _footer = "</html>"
 end
-
-#export
-""">sw--> Checks if a given string
-    startwith a certain susbstring.
-    Helpful when there are a list of strings to match.
-"""
-sw = o -> startswith("```html~~~", o)
 
 #export
 begin

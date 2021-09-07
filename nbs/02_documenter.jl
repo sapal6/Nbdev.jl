@@ -20,6 +20,10 @@ using Distributed
 #export
 using ProgressMeter
 
+# ╔═╡ 9930ad11-84da-45e0-95dc-f46c4d48174a
+#hide
+using PlutoUI
+
 # ╔═╡ b068dfd2-0eb3-11eb-109a-d1b6ef1eeca0
 #export
 include("../src/Export.jl")
@@ -31,6 +35,10 @@ include("../src/CodeRunner.jl")
 # ╔═╡ 1d83078e-2024-11eb-0e5f-51310d134662
 #export
 import Pluto: Notebook, Cell, load_notebook_nobackup
+
+# ╔═╡ fcfaccaf-cc88-44bb-8971-c1328d8599ee
+#hide
+TableOfContents()
 
 # ╔═╡ 25ff264e-3ec5-11eb-362c-07b4e24c635a
 md"## Lower Level Entities(Structs, methods etc.) 
@@ -334,6 +342,9 @@ showDoc(sections)
 # ╔═╡ 48beb2b0-3f9b-11eb-2756-919a82c5c0de
 showDoc(name)
 
+# ╔═╡ a13c23a3-f9c1-41dd-850b-b1e99a80c26f
+showDoc(run_and_update_nb)
+
 # ╔═╡ 59aca6d0-405f-11eb-2252-633f4d0ccdbc
 showDoc(stitchCode)
 
@@ -347,8 +358,13 @@ showDoc(collectFuncDocs)
 showDoc(showDoc)
 
 # ╔═╡ 2b104160-4e83-11eb-1a78-a96f77e1aff4
+begin
+"""
+> An example of a struct
+"""
 struct MyStruct
 	name
+end
 end
 
 # ╔═╡ 449bb6f2-4e83-11eb-27ae-298352285e98
@@ -356,6 +372,9 @@ mystruct=MyStruct("test")
 
 # ╔═╡ df1998f0-4ea1-11eb-0626-dbead118373f
 typeof(mystruct)
+
+# ╔═╡ e1d02746-3098-4832-af6c-81f99fab6ca5
+showDoc(MyStruct)
 
 # ╔═╡ 10866060-5980-11eb-0422-e7300713c6a4
 md"Currently nbdev is unable to recognize the docstrings of inline expressions.👇"
@@ -373,6 +392,19 @@ md"## createPage"
 
 # ╔═╡ 36b846d0-2024-11eb-3784-89a02343cd0b
 #export
+begin
+function maintain_heading(str:: AbstractString)
+	res= nothing
+	if startswith(str, """<div class="markdown"><h2>""")
+			res = Export.strip(Export.strip(Export.strip(str, """<div class="markdown"><h2>"""), """</h2>"""), """</div>""")
+			res = string("## ", res)
+	else
+		res = str
+	end
+	res
+end
+
+
 """
 > CreatePage--> Creates the Page type from the markdown and example code cells of the supplied notebook. The filename is the name of the notebook which is parsed.
 """
@@ -386,7 +418,8 @@ function createPage(filename::AbstractString, notebook::Notebook)
 			break
 	    end
 	    if startswith(cell.code, "md")
-			push!(sections, Section(cell.output.body))
+			clean_op = maintain_heading(cell.output.body)
+			push!(sections, Section(clean_op))
 		elseif !startswith(cell.code, "#export") && !startswith(cell.code, "#hide") 
 			if occursin( "showDoc", cell.code)
 				#stitched_code=stitchCode(cell.output)
@@ -402,6 +435,7 @@ function createPage(filename::AbstractString, notebook::Notebook)
 	
 	Page(sections, filename)
 end
+end
 
 # ╔═╡ 7216e720-411e-11eb-1103-19bf4993ef1e
 showDoc(createPage)
@@ -410,53 +444,10 @@ showDoc(createPage)
 md"While generating document you don't need to call this function. This is done automatically😃 for you when nbdev generates documents."
 
 # ╔═╡ 8d7b5280-28a0-11eb-282d-2dbf124460da
-#export
+#hide
 begin
 const _header = "<html>"
 const _footer = "</html>"
-end
-
-# ╔═╡ 15299390-411f-11eb-3b2b-257dc0eac258
-md"## md2html"
-
-# ╔═╡ 60f5f6b0-28a1-11eb-1b18-27bdfed23c8c
-"""
-> md2html(md)--> Tiny helper to format a markdown into html.
-"""
-md2html(md)=Export.strip(Markdown.html(md), "\n")
-
-# ╔═╡ 39ae06b0-411f-11eb-01eb-b30511aec8cc
-md"Sometimes it better to have tiny helpers like this. The `md2html` converts the supplied markdown into a visible html.🎈🎈"
-
-# ╔═╡ 827db480-411f-11eb-2eb3-b3239cc4a865
-md"#### Example"
-
-# ╔═╡ 8aab35fe-411f-11eb-27b2-6bc7d3dd5280
-md2html(md"This is a test")
-
-# ╔═╡ f5521070-8f6f-11eb-3466-539ce423eb19
-md"""## sw
-Checks if a given string startwith a certain susbstring. Helpful when there are a list of strings to match.
-"""
-
-# ╔═╡ 642e89a0-8f71-11eb-0a01-07ade17b8c65
-#export
-""">sw--> Checks if a given string
-    startwith a certain susbstring.
-    Helpful when there are a list of strings to match.
-"""
-sw = o -> startswith("```html~~~", o)
-
-# ╔═╡ 20728fa0-8f70-11eb-2807-9bdb80c4b2f9
-md"""#### Example"""
-
-# ╔═╡ 1b8e6cc0-8f70-11eb-0e91-1101742b14a4
-#hide
-begin
-	v = ["<", "~~~", "```"]
-	f = y -> startswith("```html~~~", y)
-	a =f.(v)
-	a,true in f.(v)
 end
 
 # ╔═╡ 7b6fd3d0-411f-11eb-3786-ff38ee7d0291
@@ -565,6 +556,9 @@ function export2readme()
 end 
 end
 
+# ╔═╡ 1d1e1c1f-75dc-4a72-ae01-9bc337afe14b
+showDoc(export2readme)
+
 # ╔═╡ 58b6fa50-0ba8-11eb-1ccf-1328cbe524b4
 #hide
 Export.notebook2script()
@@ -577,6 +571,8 @@ Export.notebook2script()
 # ╠═b068dfd2-0eb3-11eb-109a-d1b6ef1eeca0
 # ╠═1d83078e-2024-11eb-0e5f-51310d134662
 # ╠═27ff1d70-1201-11eb-2003-27cb52571be6
+# ╠═9930ad11-84da-45e0-95dc-f46c4d48174a
+# ╠═fcfaccaf-cc88-44bb-8971-c1328d8599ee
 # ╠═25ff264e-3ec5-11eb-362c-07b4e24c635a
 # ╠═bf4e47f0-3ec5-11eb-1b65-5fe2e7a88ff1
 # ╠═5a2e9790-201f-11eb-0df4-f90b3cc54f20
@@ -603,6 +599,7 @@ Export.notebook2script()
 # ╠═743238d0-1918-11eb-3dfc-6f30db92923c
 # ╠═8691e572-1918-11eb-011c-639d3617e076
 # ╠═5001a5b0-11ff-11eb-054a-6921da78afa3
+# ╠═a13c23a3-f9c1-41dd-850b-b1e99a80c26f
 # ╠═f1d7ed22-1f8a-11eb-035d-6de2cb48bb8b
 # ╠═6b9cb0f0-1f5e-11eb-1e15-9f0c8295b59f
 # ╠═c3d2cf20-1f8b-11eb-0381-01270b1494b3
@@ -633,6 +630,7 @@ Export.notebook2script()
 # ╠═2b104160-4e83-11eb-1a78-a96f77e1aff4
 # ╠═449bb6f2-4e83-11eb-27ae-298352285e98
 # ╠═df1998f0-4ea1-11eb-0626-dbead118373f
+# ╠═e1d02746-3098-4832-af6c-81f99fab6ca5
 # ╠═10866060-5980-11eb-0422-e7300713c6a4
 # ╠═4fee8610-5980-11eb-137a-83f4aa64e933
 # ╠═83bb0590-5980-11eb-3159-b376954405ef
@@ -641,15 +639,6 @@ Export.notebook2script()
 # ╠═7216e720-411e-11eb-1103-19bf4993ef1e
 # ╠═7f938250-411e-11eb-0d30-b53cf2c8bc97
 # ╠═8d7b5280-28a0-11eb-282d-2dbf124460da
-# ╠═15299390-411f-11eb-3b2b-257dc0eac258
-# ╠═60f5f6b0-28a1-11eb-1b18-27bdfed23c8c
-# ╠═39ae06b0-411f-11eb-01eb-b30511aec8cc
-# ╠═827db480-411f-11eb-2eb3-b3239cc4a865
-# ╠═8aab35fe-411f-11eb-27b2-6bc7d3dd5280
-# ╠═f5521070-8f6f-11eb-3466-539ce423eb19
-# ╠═642e89a0-8f71-11eb-0a01-07ade17b8c65
-# ╠═20728fa0-8f70-11eb-2807-9bdb80c4b2f9
-# ╠═1b8e6cc0-8f70-11eb-0e91-1101742b14a4
 # ╠═7b6fd3d0-411f-11eb-3786-ff38ee7d0291
 # ╠═4c5c7c22-28a0-11eb-0069-cb78e0e7e0ee
 # ╠═870d3240-4120-11eb-0dca-89337e801493
@@ -661,4 +650,5 @@ Export.notebook2script()
 # ╠═f69f6cba-4fa3-447c-9f8e-f9c5d1f8f7d5
 # ╠═15c1479b-8202-4d3c-8bdd-903c3c43775d
 # ╠═9c07bd79-f47e-4897-830b-63748f674335
+# ╠═1d1e1c1f-75dc-4a72-ae01-9bc337afe14b
 # ╠═58b6fa50-0ba8-11eb-1ccf-1328cbe524b4

@@ -15,8 +15,8 @@ end
 #export
 """
 > mkdocs_yml()--> Creates a mkdocs.yml file
-at the document root and fills it with initial
-content.
+> at the document root and fills it with initial
+> content.
 """
 function mkdocs_yml(path:: AbstractString)
 	mkdoc_yml = joinpath(path, "mkdocs.yml")

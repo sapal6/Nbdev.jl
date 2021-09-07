@@ -2,8 +2,8 @@
 <div class="markdown"><p>This module takes care of the creation of the support system document generation such as directory creation, index.yml and mkdocs.yml creation.</p>
 <p>Additionally it calls mkdocs commands to build the site</p>
 </div>
-<div class="markdown"><h2>makepath</h2>
-</div>
+## makepath
+
 create the given path if not present
 
 
@@ -13,15 +13,13 @@ makepath("../docs/docs")
 ------
 Output
 ------
-
+"../docs/docs"
 ```
 
-<div class="markdown"><h2>mkdocs_yml</h2>
-</div>
-> mkdocs_yml()–> Creates a mkdocs.yml file
+## mkdocs_yml
 
+> mkdocs_yml()–> Creates a mkdocs.yml file at the document root and fills it with initial content.
 
-at the document root and fills it with initial content.
 
 
 
@@ -33,8 +31,8 @@ Output
 
 ```
 
-<div class="markdown"><h2>newsitegen</h2>
-</div>
+## newsitegen
+
 > newsitegen()–> Create required directory structure for hosting documents and the initial files(index.md and mkdocs.yml) if not already there.
 
 
