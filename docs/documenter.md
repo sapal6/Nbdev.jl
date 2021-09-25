@@ -73,7 +73,7 @@ end
 ------
 Output
 ------
-Any["Main.workspace4.Section", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "2c6dd926cb12949a"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "cb55193108e114fc"), MIME type application/vnd.pluto.tree+object))], :Array, "", "65e03cebbd625f57"]
+Any["Main.workspace2.Section", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "d2b1e6ca959aed65"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "a1e56f06b401fb6e"), MIME type application/vnd.pluto.tree+object))], :Array, "", "ee0f1765cc50638b"]
 ```
 
 ```
@@ -81,7 +81,7 @@ page
 ------
 Output
 ------
-Any["Page", Any[(:sections, (Dict{Symbol, Any}(:prefix => "Main.workspace4.Section", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "2c6dd926cb12949a"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "cb55193108e114fc"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "65e03cebbd625f57"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"Monkey module\"", MIME type text/plain))], :struct, "Page", "ab11bfd82c006477"]
+Any["Page", Any[(:sections, (Dict{Symbol, Any}(:prefix => "Main.workspace2.Section", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "d2b1e6ca959aed65"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "a1e56f06b401fb6e"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "ee0f1765cc50638b"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"Monkey module\"", MIME type text/plain))], :struct, "Page", "2c391763f30cda6c"]
 ```
 
 ```
@@ -140,7 +140,7 @@ end
 ------
 Output
 ------
-Any["String", Tuple{Int64, Any}[(1, ("\"i\"", MIME type text/plain)), (2, ("\"j\"", MIME type text/plain))], :Array, "", "b2eb355ecd9be094"]
+Any["String", Tuple{Int64, Any}[(1, ("\"i\"", MIME type text/plain)), (2, ("\"j\"", MIME type text/plain))], :Array, "", "442e60e8779ce5b1"]
 ```
 
 ## collectFuncDocs
@@ -157,7 +157,7 @@ collectFuncDocs(stitchCode).funcDocs
 ------
 Output
 ------
-Any["String", Tuple{Int64, Any}[(1, ("\"> stitchCode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.\\n\\n\"", MIME type text/plain)), (2, ("\"> stitchCode(cellop::AbstractString)–> Removes the quotes from a string and creates a code block with that string inside the newely formed code block\\n\\n\"", MIME type text/plain)), (3, ("\"> stitchCode(fdocs::FunctionDocs)–> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object\\n\\n\"", MIME type text/plain))], :Array, "", "aed7a286beba78e8"]
+Any["String", Tuple{Int64, Any}[(1, ("\"> stitchCode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.\\n\\n\"", MIME type text/plain)), (2, ("\"> stitchCode(cellop::AbstractString)–> Removes the quotes from a string and creates a code block with that string inside the newely formed code block\\n\\n\"", MIME type text/plain)), (3, ("\"> stitchCode(fdocs::FunctionDocs)–> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object\\n\\n\"", MIME type text/plain))], :Array, "", "a61478e33e897719"]
 ```
 
 ## Higher Level API
@@ -183,7 +183,7 @@ end
 ------
 Output
 ------
-Main.workspace4.MyStruct
+Main.workspace2.MyStruct
 ```
 
 ```
@@ -191,7 +191,7 @@ mystruct=MyStruct("test")
 ------
 Output
 ------
-Any["MyStruct", Any[(:name, ("\"test\"", MIME type text/plain))], :struct, "MyStruct", "ee20c0d179305af"]
+Any["MyStruct", Any[(:name, ("\"test\"", MIME type text/plain))], :struct, "MyStruct", "249a8fbbfd537500"]
 ```
 
 ```
@@ -215,7 +215,7 @@ inlinetest=str->replace(str, "1"=> "one")
 ------
 Output
 ------
-Main.workspace4.inlinetest
+Main.workspace2.inlinetest
 ```
 
 ## createPage

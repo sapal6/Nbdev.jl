@@ -208,7 +208,7 @@ begin
 function readfilenames()
 	files=[]
 	for file in readdir(normpath(joinpath(@__FILE__,"..","..", "nbs")))
-			if endswith(file, ".jl")
+			if endswith(file, ".jl") && !contains(file, "index")
 				push!(files,file)
 			end
 			#if getfile_extension(file)== ".jl"

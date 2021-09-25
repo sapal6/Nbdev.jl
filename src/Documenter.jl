@@ -176,6 +176,7 @@ end
 """
 function createPage(filename::AbstractString, notebook::Notebook)
 	sections=Section[]
+	res=nothing
 	
 	for cell in notebook.cells
 		
@@ -198,8 +199,12 @@ function createPage(filename::AbstractString, notebook::Notebook)
 			end
 		end
 	end
+	if !isempty(sections)
+	    res=Page(sections, filename)
+	end
 	
-	Page(sections, filename)
+	return res
+	
 end
 end
 
@@ -243,14 +248,16 @@ end
 end
 
 #export
-begin
+begin			
 """
 > export2md(file::String, path::String)--> Generate document for a file in the given path
 """
 function export2md(file::String, path::String)
 	notebook=run_and_update_nb(joinpath(joinpath(pwd(), "nbs"),file))
 	page=createPage(file, notebook)
-	save_page(page, path)
+	if page != nothing
+	    save_page(page, path)
+	end
 end
 
 """
@@ -277,7 +284,7 @@ begin
 > export2readme()--> create readme from the contents of Index notebook
 """
 function export2readme()
-    cp(normpath(joinpath(@__FILE__,"..","..", "docs/Index.md")), normpath(joinpath(@__FILE__,"..","..", "", "README.md")), force=true)
+    cp(normpath(joinpath(@__FILE__,"..","..", "docs/Index.md")),       normpath(joinpath(@__FILE__,"..","..", "", "README.md")), force=true)
 end 
 end
 

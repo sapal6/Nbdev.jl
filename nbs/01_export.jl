@@ -1,8 +1,16 @@
 ### A Pluto.jl notebook ###
-# v0.14.4
+# v0.16.1
 
 using Markdown
 using InteractiveUtils
+
+# ╔═╡ 5b4e526e-3dfa-11eb-3472-bd753d60c119
+#hide
+begin
+#for sharing environments between notebooks
+import Pkg
+Pkg.activate(".")
+end
 
 # ╔═╡ 1cfdfbea-3ef7-4a38-b42b-8610d0f90646
 #hide
@@ -11,7 +19,7 @@ using PlutoUI
 TableOfContents()
 end
 
-# ╔═╡ 5b4e526e-3dfa-11eb-3472-bd753d60c119
+# ╔═╡ 5bb30a64-043e-4ad0-9d60-3d470d22fd8f
 #hide
 include("../src/Documenter.jl")
 
@@ -423,7 +431,9 @@ md"## export_file"
 """
 function export_file(file::String, path::String, marker::String)
 	notebook=load_nb(file, "#export")
-	save_nb(notebook, path)
+	if !isempty(notebook.nuclei)
+	    save_nb(notebook, path)
+	end
 end
 
 # ╔═╡ a89665f0-54d8-11eb-1e5a-fd409b238ce1
@@ -489,6 +499,7 @@ notebook2script()
 # ╔═╡ Cell order:
 # ╠═486bb5f0-54be-11eb-0e7c-1dcf55b5f983
 # ╠═5b4e526e-3dfa-11eb-3472-bd753d60c119
+# ╠═5bb30a64-043e-4ad0-9d60-3d470d22fd8f
 # ╠═0aecd4c0-0e14-11eb-1619-4f5e0ced1279
 # ╠═d2a442c0-0eb2-11eb-1ea8-d507d9145823
 # ╠═2181580b-7f3e-456f-aa62-68130d9b9178

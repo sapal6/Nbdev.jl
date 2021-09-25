@@ -238,7 +238,9 @@ end
 """
 function export_file(file::String, path::String, marker::String)
 	notebook=load_nb(file, "#export")
-	save_nb(notebook, path)
+	if !isempty(notebook.nuclei)
+	    save_nb(notebook, path)
+	end
 end
 
 #export

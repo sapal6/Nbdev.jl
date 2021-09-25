@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.14.4
+# v0.16.1
 
 using Markdown
 using InteractiveUtils
@@ -410,6 +410,7 @@ end
 """
 function createPage(filename::AbstractString, notebook::Notebook)
 	sections=Section[]
+	res=nothing
 	
 	for cell in notebook.cells
 		
@@ -432,8 +433,12 @@ function createPage(filename::AbstractString, notebook::Notebook)
 			end
 		end
 	end
+	if !isempty(sections)
+	    res=Page(sections, filename)
+	end
 	
-	Page(sections, filename)
+	return res
+	
 end
 end
 
@@ -504,14 +509,16 @@ md"## export2md"
 
 # ╔═╡ f31331e0-28c2-11eb-1014-95ed88d77469
 #export
-begin
+begin			
 """
 > export2md(file::String, path::String)--> Generate document for a file in the given path
 """
 function export2md(file::String, path::String)
 	notebook=run_and_update_nb(joinpath(joinpath(pwd(), "nbs"),file))
 	page=createPage(file, notebook)
-	save_page(page, path)
+	if page != nothing
+	    save_page(page, path)
+	end
 end
 
 """
@@ -552,7 +559,7 @@ begin
 > export2readme()--> create readme from the contents of Index notebook
 """
 function export2readme()
-    cp(normpath(joinpath(@__FILE__,"..","..", "docs/Index.md")), normpath(joinpath(@__FILE__,"..","..", "", "README.md")), force=true)
+    cp(normpath(joinpath(@__FILE__,"..","..", "docs/Index.md")),       normpath(joinpath(@__FILE__,"..","..", "", "README.md")), force=true)
 end 
 end
 
@@ -562,6 +569,281 @@ showDoc(export2readme)
 # ╔═╡ 58b6fa50-0ba8-11eb-1ccf-1328cbe524b4
 #hide
 Export.notebook2script()
+
+# ╔═╡ 00000000-0000-0000-0000-000000000001
+PLUTO_PROJECT_TOML_CONTENTS = """
+[deps]
+Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
+Markdown = "d6f4376e-aef5-505a-96c1-9c027394607a"
+Pluto = "c3e4b0f8-55cb-11ea-2926-15256bba5781"
+PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
+ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
+
+[compat]
+Pluto = "~0.16.1"
+PlutoUI = "~0.7.10"
+ProgressMeter = "~1.7.1"
+"""
+
+# ╔═╡ 00000000-0000-0000-0000-000000000002
+PLUTO_MANIFEST_TOML_CONTENTS = """
+# This file is machine-generated - editing it directly is not advised
+
+[[ArgTools]]
+uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
+
+[[Artifacts]]
+uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
+
+[[Base64]]
+uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
+
+[[Configurations]]
+deps = ["ExproniconLite", "OrderedCollections", "TOML"]
+git-tree-sha1 = "41d153a50b001a7c534f19e263540cca1a4e7cf3"
+uuid = "5218b696-f38b-4ac9-8b61-a12ec717816d"
+version = "0.16.4"
+
+[[DataAPI]]
+git-tree-sha1 = "cc70b17275652eb47bc9e5f81635981f13cea5c8"
+uuid = "9a962f9c-6df0-11e9-0e5d-c546b8b5ee8a"
+version = "1.9.0"
+
+[[DataValueInterfaces]]
+git-tree-sha1 = "bfc1187b79289637fa0ef6d4436ebdfe6905cbd6"
+uuid = "e2d170a0-9d28-54be-80f0-106bbe20a464"
+version = "1.0.0"
+
+[[Dates]]
+deps = ["Printf"]
+uuid = "ade2ca70-3891-5945-98fb-dc099432e06a"
+
+[[Distributed]]
+deps = ["Random", "Serialization", "Sockets"]
+uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
+
+[[Downloads]]
+deps = ["ArgTools", "LibCURL", "NetworkOptions"]
+uuid = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
+
+[[ExproniconLite]]
+git-tree-sha1 = "45b421f664eba4cd4bed8e5e706f69f2ccd8fcb3"
+uuid = "55351af7-c7e9-48d6-89ff-24e801d99491"
+version = "0.6.10"
+
+[[FileWatching]]
+uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
+
+[[FuzzyCompletions]]
+deps = ["REPL"]
+git-tree-sha1 = "2cc2791b324e8ed387a91d7226d17be754e9de61"
+uuid = "fb4132e2-a121-4a70-b8a1-d5b831dcdcc2"
+version = "0.4.3"
+
+[[HTTP]]
+deps = ["Base64", "Dates", "IniFile", "Logging", "MbedTLS", "NetworkOptions", "Sockets", "URIs"]
+git-tree-sha1 = "60ed5f1643927479f845b0135bb369b031b541fa"
+uuid = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+version = "0.9.14"
+
+[[HypertextLiteral]]
+git-tree-sha1 = "72053798e1be56026b81d4e2682dbe58922e5ec9"
+uuid = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
+version = "0.9.0"
+
+[[IniFile]]
+deps = ["Test"]
+git-tree-sha1 = "098e4d2c533924c921f9f9847274f2ad89e018b8"
+uuid = "83e8ac13-25f8-5344-8a64-a9f2b223428f"
+version = "0.5.0"
+
+[[InteractiveUtils]]
+deps = ["Markdown"]
+uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
+
+[[IteratorInterfaceExtensions]]
+git-tree-sha1 = "a3f24677c21f5bbe9d2a714f95dcd58337fb2856"
+uuid = "82899510-4779-5014-852e-03e436cf321d"
+version = "1.0.0"
+
+[[JSON]]
+deps = ["Dates", "Mmap", "Parsers", "Unicode"]
+git-tree-sha1 = "8076680b162ada2a031f707ac7b4953e30667a37"
+uuid = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+version = "0.21.2"
+
+[[LibCURL]]
+deps = ["LibCURL_jll", "MozillaCACerts_jll"]
+uuid = "b27032c2-a3e7-50c8-80cd-2d36dbcbfd21"
+
+[[LibCURL_jll]]
+deps = ["Artifacts", "LibSSH2_jll", "Libdl", "MbedTLS_jll", "Zlib_jll", "nghttp2_jll"]
+uuid = "deac9b47-8bc7-5906-a0fe-35ac56dc84c0"
+
+[[LibGit2]]
+deps = ["Base64", "NetworkOptions", "Printf", "SHA"]
+uuid = "76f85450-5226-5b5a-8eaa-529ad045b433"
+
+[[LibSSH2_jll]]
+deps = ["Artifacts", "Libdl", "MbedTLS_jll"]
+uuid = "29816b5a-b9ab-546f-933c-edad1886dfa8"
+
+[[Libdl]]
+uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
+
+[[LinearAlgebra]]
+deps = ["Libdl"]
+uuid = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+
+[[Logging]]
+uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
+
+[[Markdown]]
+deps = ["Base64"]
+uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
+
+[[MbedTLS]]
+deps = ["Dates", "MbedTLS_jll", "Random", "Sockets"]
+git-tree-sha1 = "1c38e51c3d08ef2278062ebceade0e46cefc96fe"
+uuid = "739be429-bea8-5141-9913-cc70e7f3736d"
+version = "1.0.3"
+
+[[MbedTLS_jll]]
+deps = ["Artifacts", "Libdl"]
+uuid = "c8ffd9c3-330d-5841-b78e-0817d7145fa1"
+
+[[Mmap]]
+uuid = "a63ad114-7e13-5084-954f-fe012c677804"
+
+[[MozillaCACerts_jll]]
+uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
+
+[[MsgPack]]
+deps = ["Serialization"]
+git-tree-sha1 = "a8cbf066b54d793b9a48c5daa5d586cf2b5bd43d"
+uuid = "99f44e22-a591-53d1-9472-aa23ef4bd671"
+version = "1.1.0"
+
+[[NetworkOptions]]
+uuid = "ca575930-c2e3-43a9-ace4-1e988b2c1908"
+
+[[OrderedCollections]]
+git-tree-sha1 = "85f8e6578bf1f9ee0d11e7bb1b1456435479d47c"
+uuid = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
+version = "1.4.1"
+
+[[Parsers]]
+deps = ["Dates"]
+git-tree-sha1 = "9d8c00ef7a8d110787ff6f170579846f776133a9"
+uuid = "69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
+version = "2.0.4"
+
+[[Pkg]]
+deps = ["Artifacts", "Dates", "Downloads", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
+uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+
+[[Pluto]]
+deps = ["Base64", "Configurations", "Dates", "Distributed", "FileWatching", "FuzzyCompletions", "HTTP", "InteractiveUtils", "Logging", "Markdown", "MsgPack", "Pkg", "REPL", "Sockets", "TableIOInterface", "Tables", "UUIDs"]
+git-tree-sha1 = "d4955d6b5267ed826d03e3f05cc23426492b23c9"
+uuid = "c3e4b0f8-55cb-11ea-2926-15256bba5781"
+version = "0.16.1"
+
+[[PlutoUI]]
+deps = ["Base64", "Dates", "HypertextLiteral", "InteractiveUtils", "JSON", "Logging", "Markdown", "Random", "Reexport", "Suppressor"]
+git-tree-sha1 = "26b4d16873562469a0a1e6ae41d90dec9e51286d"
+uuid = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
+version = "0.7.10"
+
+[[Printf]]
+deps = ["Unicode"]
+uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+
+[[ProgressMeter]]
+deps = ["Distributed", "Printf"]
+git-tree-sha1 = "afadeba63d90ff223a6a48d2009434ecee2ec9e8"
+uuid = "92933f4c-e287-5a05-a399-4b506db050ca"
+version = "1.7.1"
+
+[[REPL]]
+deps = ["InteractiveUtils", "Markdown", "Sockets", "Unicode"]
+uuid = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
+
+[[Random]]
+deps = ["Serialization"]
+uuid = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+
+[[Reexport]]
+git-tree-sha1 = "45e428421666073eab6f2da5c9d310d99bb12f9b"
+uuid = "189a3867-3050-52da-a836-e630ba90ab69"
+version = "1.2.2"
+
+[[SHA]]
+uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
+
+[[Serialization]]
+uuid = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
+
+[[Sockets]]
+uuid = "6462fe0b-24de-5631-8697-dd941f90decc"
+
+[[Suppressor]]
+git-tree-sha1 = "a819d77f31f83e5792a76081eee1ea6342ab8787"
+uuid = "fd094767-a336-5f1f-9728-57cf17d0bbfb"
+version = "0.2.0"
+
+[[TOML]]
+deps = ["Dates"]
+uuid = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+
+[[TableIOInterface]]
+git-tree-sha1 = "9a0d3ab8afd14f33a35af7391491ff3104401a35"
+uuid = "d1efa939-5518-4425-949f-ab857e148477"
+version = "0.1.6"
+
+[[TableTraits]]
+deps = ["IteratorInterfaceExtensions"]
+git-tree-sha1 = "c06b2f539df1c6efa794486abfb6ed2022561a39"
+uuid = "3783bdb8-4a98-5b6b-af9a-565f29a5fe9c"
+version = "1.0.1"
+
+[[Tables]]
+deps = ["DataAPI", "DataValueInterfaces", "IteratorInterfaceExtensions", "LinearAlgebra", "TableTraits", "Test"]
+git-tree-sha1 = "1162ce4a6c4b7e31e0e6b14486a6986951c73be9"
+uuid = "bd369af6-aec1-5ad0-b16a-f7cc5008161c"
+version = "1.5.2"
+
+[[Tar]]
+deps = ["ArgTools", "SHA"]
+uuid = "a4e569a6-e804-4fa4-b0f3-eef7a1d5b13e"
+
+[[Test]]
+deps = ["InteractiveUtils", "Logging", "Random", "Serialization"]
+uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[[URIs]]
+git-tree-sha1 = "97bbe755a53fe859669cd907f2d96aee8d2c1355"
+uuid = "5c2747f8-b7ea-4ff2-ba2e-563bfd36b1d4"
+version = "1.3.0"
+
+[[UUIDs]]
+deps = ["Random", "SHA"]
+uuid = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
+
+[[Unicode]]
+uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
+
+[[Zlib_jll]]
+deps = ["Libdl"]
+uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
+
+[[nghttp2_jll]]
+deps = ["Artifacts", "Libdl"]
+uuid = "8e850ede-7688-5339-a07c-302acd2aaf8d"
+
+[[p7zip_jll]]
+deps = ["Artifacts", "Libdl"]
+uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
+"""
 
 # ╔═╡ Cell order:
 # ╠═4cb4aa50-3e01-11eb-3460-5f109773492b
@@ -652,3 +934,5 @@ Export.notebook2script()
 # ╠═9c07bd79-f47e-4897-830b-63748f674335
 # ╠═1d1e1c1f-75dc-4a72-ae01-9bc337afe14b
 # ╠═58b6fa50-0ba8-11eb-1ccf-1328cbe524b4
+# ╟─00000000-0000-0000-0000-000000000001
+# ╟─00000000-0000-0000-0000-000000000002

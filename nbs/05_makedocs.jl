@@ -1,8 +1,16 @@
 ### A Pluto.jl notebook ###
-# v0.14.4
+# v0.16.1
 
 using Markdown
 using InteractiveUtils
+
+# ╔═╡ 2d0d4838-eb58-4f2a-9864-40f4336f43f1
+#hide
+import Pkg
+
+# ╔═╡ e7a181c5-e00e-44cb-8c42-c27983deae25
+#hide
+Pkg.activate(".")
 
 # ╔═╡ 64f0c27d-9276-4e9f-b09c-414dd93ffe83
 #hide
@@ -94,6 +102,8 @@ Documenter.showDoc(newsitegen)
 Export.notebook2script()
 
 # ╔═╡ Cell order:
+# ╠═2d0d4838-eb58-4f2a-9864-40f4336f43f1
+# ╠═e7a181c5-e00e-44cb-8c42-c27983deae25
 # ╠═64f0c27d-9276-4e9f-b09c-414dd93ffe83
 # ╠═6f1cd19f-b529-41d7-a9d6-aca3cb2888be
 # ╠═3d2e0115-5643-488a-8932-006912864c5b

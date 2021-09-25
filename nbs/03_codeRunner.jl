@@ -1,16 +1,23 @@
 ### A Pluto.jl notebook ###
-# v0.14.4
+# v0.16.1
 
 using Markdown
 using InteractiveUtils
 
+# ╔═╡ 086bff3e-6324-11eb-31cc-995e82c7b175
+#hide
+#hide
+#for sharing environments between notebooks
+begin
+import Pkg
+# activate the shared project environment
+Pkg.activate(Base.current_project())
+include("../src/Documenter.jl")
+end
+
 # ╔═╡ cc24b4ce-0eb1-11eb-38fb-55530877867a
 #hide
 include("../src/Export.jl")
-
-# ╔═╡ 086bff3e-6324-11eb-31cc-995e82c7b175
-#hide
-include("../src/Documenter.jl")
 
 # ╔═╡ 70e301b0-0c7e-11eb-119a-f3a0a39ff933
 md"You need to have something to capture the output. This is useful when you want to have examples or capture test output in the docs.
