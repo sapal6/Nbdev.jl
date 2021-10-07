@@ -4,10 +4,10 @@
 module Nbdev
 #export
 begin
-include("../src/Export.jl")
-include("../src/Documenter.jl")
-include("../src/Makedocs.jl")
-include("../src/CodeRunner.jl")
+include(normpath(joinpath(@__FILE__,"..","..", "src/Export.jl")))
+include(normpath(joinpath(@__FILE__,"..","..", "src/Documenter.jl")))
+include(normpath(joinpath(@__FILE__,"..","..", "src/Makedocs.jl")))
+include(normpath(joinpath(@__FILE__,"..","..", "src/CodeRunner.jl")))
 end
 
 end
