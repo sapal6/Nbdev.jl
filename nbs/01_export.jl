@@ -387,7 +387,8 @@ begin
 """
 function readfilenames()
 	files=[]
-	for file in readdir(normpath(joinpath(@__FILE__,"..","..", "nbs")))
+	#for file in readdir(normpath(joinpath(@__FILE__,"..","..", "nbs")))
+	for file in readdir(normpath(joinpath("..","nbs")))
 			if endswith(file, ".jl") && !contains(file, "index")
 				push!(files,file)
 			end
