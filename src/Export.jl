@@ -267,4 +267,7 @@ function notebook2script()
 	export_content(readfilenames(), "../src", "#export")
 end
 
+#export
+export notebook2script
+
 end

@@ -15,10 +15,10 @@ Pkg.activate(".")
 # ╔═╡ 00758500-175a-11ec-173c-670141a85b02
 #export
 begin
-include("../src/Export.jl")
-include("../src/Documenter.jl")
-include("../src/Makedocs.jl")
-include("../src/CodeRunner.jl")
+include(normpath(joinpath(@__FILE__,"..","..", "src/Export.jl")))
+include(normpath(joinpath(@__FILE__,"..","..", "src/Documenter.jl")))
+include(normpath(joinpath(@__FILE__,"..","..", "src/Makedocs.jl")))
+include(normpath(joinpath(@__FILE__,"..","..", "src/CodeRunner.jl")))
 end
 
 # ╔═╡ 9724fdac-8ffd-483c-9d7e-a4cdc8d0dd72

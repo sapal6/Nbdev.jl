@@ -539,6 +539,10 @@ end
 export2md()=export2md(Export.readfilenames(joinpath(pwd(), "nbs")), "docs")
 end
 
+# ╔═╡ 7081aafd-d6ef-4672-99b0-6080497e2498
+#export
+export showDoc, export2md
+
 # ╔═╡ 807db3e2-4121-11eb-136d-ad470b83a46f
 showDoc(export2md)
 
@@ -855,6 +859,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═27ff1d70-1201-11eb-2003-27cb52571be6
 # ╠═9930ad11-84da-45e0-95dc-f46c4d48174a
 # ╠═fcfaccaf-cc88-44bb-8971-c1328d8599ee
+# ╠═7081aafd-d6ef-4672-99b0-6080497e2498
 # ╠═25ff264e-3ec5-11eb-362c-07b4e24c635a
 # ╠═bf4e47f0-3ec5-11eb-1b65-5fe2e7a88ff1
 # ╠═5a2e9790-201f-11eb-0df4-f90b3cc54f20

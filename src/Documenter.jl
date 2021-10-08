@@ -279,6 +279,9 @@ export2md()=export2md(Export.readfilenames(joinpath(pwd(), "nbs")), "docs")
 end
 
 #export
+export showDoc, export2md
+
+#export
 begin
 """
 > export2readme()--> create readme from the contents of Index notebook

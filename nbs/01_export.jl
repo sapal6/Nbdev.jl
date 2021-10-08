@@ -487,6 +487,10 @@ function notebook2script()
 	export_content(readfilenames(), "../src", "#export")
 end
 
+# ╔═╡ 822b3787-f4ec-4edf-bd8d-7469c9ccc8bf
+#export
+export notebook2script
+
 # ╔═╡ 730bc63e-54d9-11eb-1489-39a31e9b0deb
 Documenter.showDoc(notebook2script)
 
@@ -504,6 +508,7 @@ notebook2script()
 # ╠═d2a442c0-0eb2-11eb-1ea8-d507d9145823
 # ╠═2181580b-7f3e-456f-aa62-68130d9b9178
 # ╠═1cfdfbea-3ef7-4a38-b42b-8610d0f90646
+# ╠═822b3787-f4ec-4edf-bd8d-7469c9ccc8bf
 # ╠═6ff1ad80-1479-11eb-3868-0df000f47cc9
 # ╠═16fbf5b0-54bf-11eb-3c21-2bf024188fac
 # ╠═a5bfff40-1620-11eb-2824-2d49985a022d
