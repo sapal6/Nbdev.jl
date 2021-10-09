@@ -274,15 +274,9 @@ load_nb(filename::String, marker::String) = _load_nb(filename, marker)
 > _load_nb(filename::String, marker::String)--> creates a scrubbed notebook and returns a curated Nb type having code to be exported.
 """
 function _load_nb(filename::String, marker::String)
-		#notebook=load_notebook_nobackup(filename)
-		scrubbedNotebook=load_scrubbed_nb(normpath(joinpath(@__FILE__,"..","..", "nbs", filename)))
+		scrubbedNotebook=load_scrubbed_nb(filename)
 		collected_nuclei=nuclei(collect_nuclei(scrubbedNotebook, marker))
-		
-		#if marker=="md"
-		#	notebook
-		#else
-		Nb(collected_nuclei, filename)
-		#end
+		Nb(collected_nuclei, basename(filename))
 end
 
 end
@@ -327,6 +321,9 @@ md"#### Example"
 # ╔═╡ 7b999f90-1775-11eb-031e-69d461ec4150
 "module $(uppercasefirst(strip(strip(k, r"[0-9_]"), r".jl")))"
 
+# ╔═╡ a0169477-e5ba-43bc-b86e-a377fa3b6e39
+md"## save_nb"
+
 # ╔═╡ 76f97bd0-177b-11eb-2d78-77c72b2aef81
 md"To export the required code, the following scenarios must be considered.
 
@@ -356,9 +353,9 @@ end
 """
 > save_nb(notebook::Nb, path::String)--> Creates a file in the supplied path with the name in the NB type.
 """
-function save_nb(notebook::Nb, path::String)
+function save_nb(notebook::Nb, src_dir::String)
 	file_name=uppercasefirst(strip(notebook.name, r"[0-9_]"))
-	open(joinpath(path, file_name), "w") do io
+	open(joinpath(src_dir, file_name), "w") do io
         save_nb(io, notebook)
     end
 end
@@ -367,15 +364,6 @@ end
 # ╔═╡ d096aed0-54d7-11eb-31fc-b19801db8851
 Documenter.showDoc(save_nb)
 
-# ╔═╡ dc1cd130-54d7-11eb-223f-e724e43a535c
-md"#### Example"
-
-# ╔═╡ cdd23fa0-1776-11eb-2343-a570b848c87e
-save_nb(testnb, "../testpath")
-
-# ╔═╡ b9a15e60-0e13-11eb-199d-f50a49f5bc44
-md"We will read files in the /nbs folder in your project. This will host all your notebooks"
-
 # ╔═╡ f7f0d72e-54d7-11eb-1b8a-b3689e09598b
 md"## readfilenames"
 
@@ -383,14 +371,14 @@ md"## readfilenames"
 #export
 begin
 """
-> readfilenames()--> Reads files in the directory and subdirectories in the current path. Reads only the files with ".jl" extension
+> readfilenames(nbs_dir::String)--> Reads files in the directory and subdirectories in the given path. Reads only the files with ".jl" extension
 """
-function readfilenames()
+function read_filenames(nbs_dir::String)
 	files=[]
 	#for file in readdir(normpath(joinpath(@__FILE__,"..","..", "nbs")))
-	for file in readdir(normpath(joinpath("..","nbs")))
+	for file in readdir(nbs_dir)
 			if endswith(file, ".jl") && !contains(file, "index")
-				push!(files,file)
+				push!(files,joinpath(nbs_dir, file))
 			end
 			#if getfile_extension(file)== ".jl"
 			#	push!(files,file)
@@ -399,28 +387,16 @@ function readfilenames()
 	files
 end
 
-function readfilenames(dir::String)
-	files=[]
-	for file in readdir(dir)
-			if endswith(file, ".jl")
-				push!(files,file)
-			end
-			#if getfile_extension(file)== ".jl"
-			#	push!(files,file)
-			#end
-	end
-	files
-end
 end
 
 # ╔═╡ 37ffeb40-54d8-11eb-0c8a-af262b2bec28
-Documenter.showDoc(readfilenames)
+Documenter.showDoc(read_filenames)
 
 # ╔═╡ 4259e9b0-54d8-11eb-3768-85ede85ab315
 md"#### Example"
 
 # ╔═╡ 9b436180-177c-11eb-1c9a-ffbac62c95df
-readfilenames()
+read_filenames(joinpath("..", "nbs"))
 
 # ╔═╡ 528689b0-54d8-11eb-35f4-2b56012fa4e6
 md"## export_file"
@@ -428,12 +404,12 @@ md"## export_file"
 # ╔═╡ 0be54350-177c-11eb-285a-93dd4d45e40e
 #export
 """
-> export_file(file::String, path::String, marker::String)--> Loads the file in the supplied path and reads the cells which are marked with "#export". Then saves the notebook in the given path
+> export_file(file::String, src_dir::String, marker::String)--> Loads the file in the supplied path and reads the cells which are marked with "#export". Then saves the notebook in the given path
 """
-function export_file(file::String, path::String, marker::String)
+function export_file(file::String, src_dir::String, marker::String)
 	notebook=load_nb(file, "#export")
 	if !isempty(notebook.nuclei)
-	    save_nb(notebook, path)
+	    save_nb(notebook, src_dir)
 	end
 end
 
@@ -446,10 +422,10 @@ md"## export_content"
 # ╔═╡ 41d65310-0e11-11eb-1a36-87dc9ac941fa
 #export
 """
-> export_content(files::AbstractVector, path::String, marker::String)--> maps the `export_file` function to each files
+> export_content(files::AbstractVector, src_dir::String, marker::String)--> maps the `export_file` function to each files
 """
-function export_content(files::AbstractVector, path::String, marker::String)
-	map(file->export_file(file, path, marker), files)
+function export_content(files::AbstractVector, src_dir::String, marker::String)
+	map(file->export_file(file, src_dir, marker), files)
 end
 
 # ╔═╡ 1b57d6f0-54d9-11eb-0a0a-db4b2959750b
@@ -482,10 +458,10 @@ md"## notebook2script"
 # ╔═╡ b34f9d82-0ede-11eb-0f08-afa0cc898e80
 #export
 """
-> notebook2script()--> Export all the code to the ../src path of the project
+> notebook2script(nbs_dir::String, src_dir::String)--> Export all the code from the provided notebook directory to the given source directory
 """
-function notebook2script()
-	export_content(readfilenames(), "../src", "#export")
+function notebook2script(nbs_dir::String, src_dir::String)
+	export_content(read_filenames(nbs_dir), src_dir, "#export")
 end
 
 # ╔═╡ 822b3787-f4ec-4edf-bd8d-7469c9ccc8bf
@@ -496,10 +472,10 @@ export notebook2script
 Documenter.showDoc(notebook2script)
 
 # ╔═╡ 7a9391e0-54d9-11eb-14f1-7f8e10036a1a
-md"`notebook2script` can be called from anotebook which you intend to export. Usually in the last cell of that notebook"
+md"`notebook2script` can be called from a notebook which you intend to export. Usually in the last cell of that notebook"
 
 # ╔═╡ baf3f1d0-0ede-11eb-2c02-1f53ed1a6cd7
-notebook2script()
+notebook2script(joinpath("..", "nbs"), joinpath("..", "src"))
 
 # ╔═╡ Cell order:
 # ╠═486bb5f0-54be-11eb-0e7c-1dcf55b5f983
@@ -556,12 +532,10 @@ notebook2script()
 # ╠═55ed2102-597d-11eb-342c-b589f4681bdd
 # ╠═526b7d10-54d7-11eb-20f1-5d26e020ff16
 # ╠═7b999f90-1775-11eb-031e-69d461ec4150
+# ╠═a0169477-e5ba-43bc-b86e-a377fa3b6e39
 # ╠═76f97bd0-177b-11eb-2d78-77c72b2aef81
 # ╠═6069d790-176f-11eb-3020-41b450d430ad
 # ╠═d096aed0-54d7-11eb-31fc-b19801db8851
-# ╠═dc1cd130-54d7-11eb-223f-e724e43a535c
-# ╠═cdd23fa0-1776-11eb-2343-a570b848c87e
-# ╠═b9a15e60-0e13-11eb-199d-f50a49f5bc44
 # ╠═f7f0d72e-54d7-11eb-1b8a-b3689e09598b
 # ╠═cdada98e-0e13-11eb-30aa-1777efffb181
 # ╠═37ffeb40-54d8-11eb-0c8a-af262b2bec28

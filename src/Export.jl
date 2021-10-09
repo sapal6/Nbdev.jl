@@ -153,15 +153,9 @@ load_nb(filename::String, marker::String) = _load_nb(filename, marker)
 > _load_nb(filename::String, marker::String)--> creates a scrubbed notebook and returns a curated Nb type having code to be exported.
 """
 function _load_nb(filename::String, marker::String)
-		#notebook=load_notebook_nobackup(filename)
-		scrubbedNotebook=load_scrubbed_nb(normpath(joinpath(@__FILE__,"..","..", "nbs", filename)))
+		scrubbedNotebook=load_scrubbed_nb(filename)
 		collected_nuclei=nuclei(collect_nuclei(scrubbedNotebook, marker))
-		
-		#if marker=="md"
-		#	notebook
-		#else
-		Nb(collected_nuclei, filename)
-		#end
+		Nb(collected_nuclei, basename(filename))
 end
 
 end
@@ -192,9 +186,9 @@ end
 """
 > save_nb(notebook::Nb, path::String)--> Creates a file in the supplied path with the name in the NB type.
 """
-function save_nb(notebook::Nb, path::String)
+function save_nb(notebook::Nb, src_dir::String)
 	file_name=uppercasefirst(strip(notebook.name, r"[0-9_]"))
-	open(joinpath(path, file_name), "w") do io
+	open(joinpath(src_dir, file_name), "w") do io
         save_nb(io, notebook)
     end
 end
@@ -203,14 +197,14 @@ end
 #export
 begin
 """
-> readfilenames()--> Reads files in the directory and subdirectories in the current path. Reads only the files with ".jl" extension
+> readfilenames(nbs_dir::String)--> Reads files in the directory and subdirectories in the given path. Reads only the files with ".jl" extension
 """
-function readfilenames()
+function read_filenames(nbs_dir::String)
 	files=[]
 	#for file in readdir(normpath(joinpath(@__FILE__,"..","..", "nbs")))
-	for file in readdir(normpath(joinpath("..","nbs")))
+	for file in readdir(nbs_dir)
 			if endswith(file, ".jl") && !contains(file, "index")
-				push!(files,file)
+				push!(files,joinpath(nbs_dir, file))
 			end
 			#if getfile_extension(file)== ".jl"
 			#	push!(files,file)
@@ -219,37 +213,25 @@ function readfilenames()
 	files
 end
 
-function readfilenames(dir::String)
-	files=[]
-	for file in readdir(dir)
-			if endswith(file, ".jl")
-				push!(files,file)
-			end
-			#if getfile_extension(file)== ".jl"
-			#	push!(files,file)
-			#end
-	end
-	files
-end
 end
 
 #export
 """
-> export_file(file::String, path::String, marker::String)--> Loads the file in the supplied path and reads the cells which are marked with "#export". Then saves the notebook in the given path
+> export_file(file::String, src_dir::String, marker::String)--> Loads the file in the supplied path and reads the cells which are marked with "#export". Then saves the notebook in the given path
 """
-function export_file(file::String, path::String, marker::String)
+function export_file(file::String, src_dir::String, marker::String)
 	notebook=load_nb(file, "#export")
 	if !isempty(notebook.nuclei)
-	    save_nb(notebook, path)
+	    save_nb(notebook, src_dir)
 	end
 end
 
 #export
 """
-> export_content(files::AbstractVector, path::String, marker::String)--> maps the `export_file` function to each files
+> export_content(files::AbstractVector, src_dir::String, marker::String)--> maps the `export_file` function to each files
 """
-function export_content(files::AbstractVector, path::String, marker::String)
-	map(file->export_file(file, path, marker), files)
+function export_content(files::AbstractVector, src_dir::String, marker::String)
+	map(file->export_file(file, src_dir, marker), files)
 end
 
 #export
@@ -262,10 +244,10 @@ end
 
 #export
 """
-> notebook2script()--> Export all the code to the ../src path of the project
+> notebook2script(nbs_dir::String, src_dir::String)--> Export all the code from the provided notebook directory to the given source directory
 """
-function notebook2script()
-	export_content(readfilenames(), "../src", "#export")
+function notebook2script(nbs_dir::String, src_dir::String)
+	export_content(read_filenames(nbs_dir), src_dir, "#export")
 end
 
 #export
