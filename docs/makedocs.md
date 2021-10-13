@@ -8,14 +8,6 @@ create the given path if not present
 
 
 
-```
-makepath("../docs/docs")
-------
-Output
-------
-"../docs/docs"
-```
-
 ## mkdocs_yml
 
 > mkdocs_yml()–> Creates a mkdocs.yml file at the document root and fills it with initial content.

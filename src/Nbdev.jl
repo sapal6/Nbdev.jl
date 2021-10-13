@@ -8,14 +8,15 @@ include(normpath(joinpath(@__FILE__,"..","..", "src/Export.jl")))
 include(normpath(joinpath(@__FILE__,"..","..", "src/Documenter.jl")))
 include(normpath(joinpath(@__FILE__,"..","..", "src/Makedocs.jl")))
 include(normpath(joinpath(@__FILE__,"..","..", "src/CodeRunner.jl")))
+include(normpath(joinpath(@__FILE__,"..","..", "src/Make.jl")))
 end
 
 #export
 begin
 notebook2script = Export.notebook2script
 showDoc = Documenter.showDoc
-export2md = Documenter.export2md
-export notebook2script, showDoc, export2md
+build = Make.build
+export notebook2script, showDoc, build
 end
 
 end

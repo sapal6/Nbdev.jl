@@ -434,7 +434,7 @@ function createPage(filename::AbstractString, notebook::Notebook)
 		end
 	end
 	if !isempty(sections)
-	    res=Page(sections, filename)
+	    res=Page(sections, basename(filename))
 	end
 	
 	return res
@@ -487,15 +487,6 @@ function save_page(page::Page, path::String)
         save_page(io, page)
     end
 end
-
-"""
-> save_page(docnames::Array{String,1})--> Given an array of documents, creates the related table of contents in "toc.md"
-"""
-function save_page(docnames::Array{String,1})
-	open("../toc.md", "w") do io
-        save_page(io, docnames)
-    end
-end
 end
 
 # ╔═╡ 870d3240-4120-11eb-0dca-89337e801493
@@ -514,7 +505,7 @@ begin
 > export2md(file::String, path::String)--> Generate document for a file in the given path
 """
 function export2md(file::String, path::String)
-	notebook=run_and_update_nb(joinpath(joinpath(pwd(), "nbs"),file))
+	notebook=run_and_update_nb(file)
 	page=createPage(file, notebook)
 	if page != nothing
 	    save_page(page, path)
@@ -536,7 +527,7 @@ end
 """
 > export2md()--> Higher level API to generate documents for all the valid notebooks
 """
-export2md()=export2md(Export.readfilenames(joinpath(pwd(), "nbs")), "docs")
+export2md(nbs_dir)=export2md(Export.read_filenames(joinpath(pwd(), nbs_dir)), "docs")
 end
 
 # ╔═╡ 7081aafd-d6ef-4672-99b0-6080497e2498
@@ -545,6 +536,9 @@ export showDoc, export2md
 
 # ╔═╡ 807db3e2-4121-11eb-136d-ad470b83a46f
 showDoc(export2md)
+
+# ╔═╡ 0bf8a871-822a-4281-9186-2355751451d4
+Export.read_filenames(joinpath(pwd()))
 
 # ╔═╡ 8c376960-4121-11eb-1627-cf0d01bcf47b
 md"The `export2md()` is what gets summoned when document generation is invoked. Like most things in nbdev (and unlike most things in life) this too gets invoked automatically. 🥳"
@@ -563,7 +557,7 @@ begin
 > export2readme()--> create readme from the contents of Index notebook
 """
 function export2readme()
-    cp(normpath(joinpath(@__FILE__,"..","..", "docs/Index.md")),       normpath(joinpath(@__FILE__,"..","..", "", "README.md")), force=true)
+    cp(normpath(joinpath(".", "docs/index.md")), normpath(joinpath(".", "README.md")), force=true)
 end 
 end
 
@@ -572,7 +566,7 @@ showDoc(export2readme)
 
 # ╔═╡ 58b6fa50-0ba8-11eb-1ccf-1328cbe524b4
 #hide
-Export.notebook2script()
+Export.notebook2script(joinpath("..", "nbs"), joinpath("..", "src"))
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -933,6 +927,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═ed8b55f0-4121-11eb-1a2b-a77bea8bfe7f
 # ╠═f31331e0-28c2-11eb-1014-95ed88d77469
 # ╠═807db3e2-4121-11eb-136d-ad470b83a46f
+# ╠═0bf8a871-822a-4281-9186-2355751451d4
 # ╠═8c376960-4121-11eb-1627-cf0d01bcf47b
 # ╠═f69f6cba-4fa3-447c-9f8e-f9c5d1f8f7d5
 # ╠═15c1479b-8202-4d3c-8bdd-903c3c43775d

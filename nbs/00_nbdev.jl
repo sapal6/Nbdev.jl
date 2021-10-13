@@ -19,6 +19,7 @@ include(normpath(joinpath(@__FILE__,"..","..", "src/Export.jl")))
 include(normpath(joinpath(@__FILE__,"..","..", "src/Documenter.jl")))
 include(normpath(joinpath(@__FILE__,"..","..", "src/Makedocs.jl")))
 include(normpath(joinpath(@__FILE__,"..","..", "src/CodeRunner.jl")))
+include(normpath(joinpath(@__FILE__,"..","..", "src/Make.jl")))
 end
 
 # ╔═╡ 1ab8fabc-1b46-4cc3-9b58-03ac6b0fc9f9
@@ -26,13 +27,13 @@ end
 begin
 notebook2script = Export.notebook2script
 showDoc = Documenter.showDoc
-export2md = Documenter.export2md
-export notebook2script, showDoc, export2md
+build = Make.build
+export notebook2script, showDoc, build
 end
 
 # ╔═╡ 9724fdac-8ffd-483c-9d7e-a4cdc8d0dd72
 #hide
-Export.notebook2script()
+Export.notebook2script(joinpath("..", "nbs"), joinpath("..", "src"))
 
 # ╔═╡ Cell order:
 # ╠═6be32f5e-05ce-4be3-b7af-64821076fda1

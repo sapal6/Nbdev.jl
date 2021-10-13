@@ -69,7 +69,7 @@ Documenter.showDoc(execute_code)
 
 # ╔═╡ 63f13d10-0e0d-11eb-1442-f93b1f9beed9
 #hide
-Export.notebook2script()
+Export.notebook2script(joinpath("..", "nbs"), joinpath("..", "src"))
 
 # ╔═╡ Cell order:
 # ╠═70e301b0-0c7e-11eb-119a-f3a0a39ff933

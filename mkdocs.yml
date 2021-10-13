@@ -2,6 +2,7 @@ site_name: Nbdev-dev
 nav:
     - Home: index.md
     - Docs:
+      - Tutorial: tutorial.md
       - Coderunner: coderunner.md
       - Documenter: documenter.md
       - Export: export.md

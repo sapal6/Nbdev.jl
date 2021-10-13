@@ -6,3 +6,7 @@
 <p>While both projects try to achieve the same base goal i.e. generating source code and documentation from Notebooks, the Julia version aims to start from Pluto notebook while the python version starts from a Jupyter notebook. </p>
 <p>On the documentation side, I am using Mkdocs as the document generator while the original version uses Jekyll as the static site generator of choice.</p>
 
+## Getting-started
+
+<div class="markdown"><p>Follow the <a href="https://sapal6.github.io/nbdev.jl/coderunner/">tutorial</a> to start experimenting with Nbdev.</p>
+</div>

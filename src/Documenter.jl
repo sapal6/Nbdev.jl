@@ -200,7 +200,7 @@ function createPage(filename::AbstractString, notebook::Notebook)
 		end
 	end
 	if !isempty(sections)
-	    res=Page(sections, filename)
+	    res=Page(sections, basename(filename))
 	end
 	
 	return res
@@ -236,15 +236,6 @@ function save_page(page::Page, path::String)
         save_page(io, page)
     end
 end
-
-"""
-> save_page(docnames::Array{String,1})--> Given an array of documents, creates the related table of contents in "toc.md"
-"""
-function save_page(docnames::Array{String,1})
-	open("../toc.md", "w") do io
-        save_page(io, docnames)
-    end
-end
 end
 
 #export
@@ -253,7 +244,7 @@ begin
 > export2md(file::String, path::String)--> Generate document for a file in the given path
 """
 function export2md(file::String, path::String)
-	notebook=run_and_update_nb(joinpath(joinpath(pwd(), "nbs"),file))
+	notebook=run_and_update_nb(file)
 	page=createPage(file, notebook)
 	if page != nothing
 	    save_page(page, path)
@@ -275,7 +266,7 @@ end
 """
 > export2md()--> Higher level API to generate documents for all the valid notebooks
 """
-export2md()=export2md(Export.readfilenames(joinpath(pwd(), "nbs")), "docs")
+export2md(nbs_dir)=export2md(Export.read_filenames(joinpath(pwd(), nbs_dir)), "docs")
 end
 
 #export
@@ -287,7 +278,7 @@ begin
 > export2readme()--> create readme from the contents of Index notebook
 """
 function export2readme()
-    cp(normpath(joinpath(@__FILE__,"..","..", "docs/Index.md")),       normpath(joinpath(@__FILE__,"..","..", "", "README.md")), force=true)
+    cp(normpath(joinpath(".", "docs/index.md")), normpath(joinpath(".", "README.md")), force=true)
 end 
 end
 

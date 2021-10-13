@@ -203,7 +203,7 @@ function read_filenames(nbs_dir::String)
 	files=[]
 	#for file in readdir(normpath(joinpath(@__FILE__,"..","..", "nbs")))
 	for file in readdir(nbs_dir)
-			if endswith(file, ".jl") && !contains(file, "index")
+			if endswith(file, ".jl")
 				push!(files,joinpath(nbs_dir, file))
 			end
 			#if getfile_extension(file)== ".jl"
