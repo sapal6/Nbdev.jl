@@ -1,13 +1,9 @@
 First of all, thank you for having a look into Nbdev. If you are reading this then it&#39;s safe to say that you have taken Nbdev for a spin and you want to contribute to the project. May be you found somethign that can add value to Nbdev or may be something is missing which you want ot add. Whatever the reason maybe, here are some of the ways in which you can contribute 👇
 
-* You can write a tutorial.
-* 
+* You can write a tutorial. 
 * You can contribute to documentations. 
-
 * You can provide feedback. 
-
 * You can contribute code. 
-
 * Before moving into the details about how you can do the above mentioned contributions, let&#39;s see how to setup Nbdev for the first time. 
 
 ## Setting things up
