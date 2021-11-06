@@ -1,16 +1,15 @@
-<div class="markdown"><p>First of all, thank you for having a look into Nbdev. If you are reading this then it&#39;s safe to say that you have taken Nbdev for a spin and you want to contribute to the project. May be you found somethign that can add value to Nbdev or may be something is missing which you want ot add. Whatever the reason maybe, here are some of the ways in which you can contribute 👇 </p>
-<ul>
-<li><p>You can write a tutorial.</p>
-</li>
-<li><p>You can contribute to documentations.</p>
-</li>
-<li><p>You can provide feedback.</p>
-</li>
-<li><p>You can contribute code.</p>
-</li>
-</ul>
-<p>Before moving into the details about how you can do the above mentioned contributions, let&#39;s see how to setup Nbdev for the first time.</p>
-</div>
+First of all, thank you for having a look into Nbdev. If you are reading this then it&#39;s safe to say that you have taken Nbdev for a spin and you want to contribute to the project. May be you found somethign that can add value to Nbdev or may be something is missing which you want ot add. Whatever the reason maybe, here are some of the ways in which you can contribute 👇
+
+* You can write a tutorial.
+* 
+* You can contribute to documentations. 
+
+* You can provide feedback. 
+
+* You can contribute code. 
+
+* Before moving into the details about how you can do the above mentioned contributions, let&#39;s see how to setup Nbdev for the first time. 
+
 ## Setting things up
 <p>Working on Nbdev or any other open source project starts with a &quot;fork&quot;. If you are new to open source or this is your first time contribution to an open source project then read the following <a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo">tutorial</a> to get a quick understanding of what a &quot;fork&quot; is and how you can get started with forking a project.</p>
 <p>After you fork the project, clone the repo somewhere in your local machine.</p>
