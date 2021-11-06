@@ -55,7 +55,7 @@ julia&gt; Pluto.run&#40;&#41;</code></pre>
 </li>
 </ul>
 
-<div class="markdown"><p>Submitting a PR 🎈 </p>
+## Submitting a PR 🎈 
 <ul>
 <li><p>All Nbdev code starts with a Pluto notebook. The exported code from the notebook then appears as the final code under the src directory and the related documentation under the docs directory. If you are submitting your PR –&gt;</p>
 <ul>
@@ -75,6 +75,7 @@ julia&gt; Pluto.run&#40;&#41;</code></pre>
 </li>
 </ul>
 </div>
+
 ## Want to contribute to the docs? 📓
 <ul>
 <li><p>The docs are generated from the notebooks in the<code>nbs</code> directory. </p>
