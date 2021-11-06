@@ -7,6 +7,8 @@ nav:
       - Documenter: documenter.md
       - Export: export.md
       - MakeDocs: makedocs.md
+      - Styleguide: styleguide.md
+      - Developer's guide: developerguide.md
   
 theme:
   name: material
