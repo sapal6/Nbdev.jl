@@ -73,7 +73,7 @@ end
 ------
 Output
 ------
-Any["Main.workspace2.Section", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "aa8dda67be15c29a"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "32969b754e2742fb"), MIME type application/vnd.pluto.tree+object))], :Array, "", "d1e658280e2d4e82"]
+Any["Main.workspace2.Section", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "1db91f51219ab56b"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "f5340ccb50908830"), MIME type application/vnd.pluto.tree+object))], :Array, "", "a08a5b92ab70eef4"]
 ```
 
 ```
@@ -81,7 +81,7 @@ page
 ------
 Output
 ------
-Any["Page", Any[(:sections, (Dict{Symbol, Any}(:prefix => "Main.workspace2.Section", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "aa8dda67be15c29a"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "32969b754e2742fb"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "d1e658280e2d4e82"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"Monkey module\"", MIME type text/plain))], :struct, "Page", "a243f54b27b051c6"]
+Any["Page", Any[(:sections, (Dict{Symbol, Any}(:prefix => "Main.workspace2.Section", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "1db91f51219ab56b"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "f5340ccb50908830"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "a08a5b92ab70eef4"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"Monkey module\"", MIME type text/plain))], :struct, "Page", "44a9ea39826bbc2c"]
 ```
 
 ```
@@ -140,7 +140,7 @@ end
 ------
 Output
 ------
-Any["String", Tuple{Int64, Any}[(1, ("\"i\"", MIME type text/plain)), (2, ("\"j\"", MIME type text/plain))], :Array, "", "b445da0b57ef5a39"]
+Any["String", Tuple{Int64, Any}[(1, ("\"i\"", MIME type text/plain)), (2, ("\"j\"", MIME type text/plain))], :Array, "", "2f9bd911ce7e2f10"]
 ```
 
 ## collectFuncDocs
@@ -157,7 +157,7 @@ collectFuncDocs(stitchCode).funcDocs
 ------
 Output
 ------
-Any["String", Tuple{Int64, Any}[(1, ("\"> stitchCode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.\\n\\n\"", MIME type text/plain)), (2, ("\"> stitchCode(cellop::AbstractString)–> Removes the quotes from a string and creates a code block with that string inside the newely formed code block\\n\\n\"", MIME type text/plain)), (3, ("\"> stitchCode(fdocs::FunctionDocs)–> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object\\n\\n\"", MIME type text/plain))], :Array, "", "12d981df9864db60"]
+Any["String", Tuple{Int64, Any}[(1, ("\"> stitchCode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.\\n\\n\"", MIME type text/plain)), (2, ("\"> stitchCode(cellop::AbstractString)–> Removes the quotes from a string and creates a code block with that string inside the newely formed code block\\n\\n\"", MIME type text/plain)), (3, ("\"> stitchCode(fdocs::FunctionDocs)–> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object\\n\\n\"", MIME type text/plain))], :Array, "", "db1d54a62e59a50c"]
 ```
 
 ## Higher Level API
@@ -191,7 +191,7 @@ mystruct=MyStruct("test")
 ------
 Output
 ------
-Any["MyStruct", Any[(:name, ("\"test\"", MIME type text/plain))], :struct, "MyStruct", "79e5332a2dcb10a4"]
+Any["MyStruct", Any[(:name, ("\"test\"", MIME type text/plain))], :struct, "MyStruct", "54c3502ebed29f11"]
 ```
 
 ```
@@ -260,7 +260,7 @@ Export.read_filenames(joinpath(pwd()))
 ------
 Output
 ------
-Any["Any", Tuple{Int64, Any}[(1, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\00_nbdev.jl\"", MIME type text/plain)), (2, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\01_export.jl\"", MIME type text/plain)), (3, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\02_documenter.jl\"", MIME type text/plain)), (4, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\03_codeRunner.jl\"", MIME type text/plain)), (5, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\04_makedocs.jl\"", MIME type text/plain)), (6, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\05_make.jl\"", MIME type text/plain)), (7, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\index.jl\"", MIME type text/plain)), (8, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\tutorial.jl\"", MIME type text/plain))], :Array, "", "ca8ddb6585a597ed"]
+Any["Any", Tuple{Int64, Any}[(1, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\00_nbdev.jl\"", MIME type text/plain)), (2, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\01_export.jl\"", MIME type text/plain)), (3, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\02_documenter.jl\"", MIME type text/plain)), (4, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\03_codeRunner.jl\"", MIME type text/plain)), (5, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\04_makedocs.jl\"", MIME type text/plain)), (6, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\05_make.jl\"", MIME type text/plain)), (7, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\Developer_guide.jl\"", MIME type text/plain)), (8, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\index.jl\"", MIME type text/plain)), (9, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\styleguide.jl\"", MIME type text/plain)), (10, ("\"C:\\\\satya\\\\projects\\\\julia\\\\nbdev.jl\\\\nbs\\\\tutorial.jl\"", MIME type text/plain))], :Array, "", "4e410e3d8cefd4ef"]
 ```
 
 <div class="markdown"><p>The <code>export2md&#40;&#41;</code> is what gets summoned when document generation is invoked. Like most things in nbdev &#40;and unlike most things in life&#41; this too gets invoked automatically. 🥳</p>
