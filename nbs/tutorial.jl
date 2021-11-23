@@ -1,17 +1,8 @@
 ### A Pluto.jl notebook ###
-# v0.16.1
+# v0.17.1
 
 using Markdown
 using InteractiveUtils
-
-# ╔═╡ 5c86332a-db85-4326-9f17-215a8a0188c8
-begin
-import Pkg
-Pkg.add(url="https://github.com/sapal6/nbdev.jl.git")
-end
-
-# ╔═╡ 615ff1a1-31d9-4219-a942-efc8f53bf538
-using Nbdev
 
 # ╔═╡ 00f8bf47-47d2-4a99-86ba-d7cd0b7f268b
 md""" ## First steps
@@ -43,6 +34,16 @@ Each Pluto notebook maintains it's own environment. You can directly import a pa
 # ╔═╡ 15a5c4fd-301e-4f7c-9ad3-28ae2d214224
 md"""In the first cell of your notebook type in the following code 👇"""
 
+# ╔═╡ 5c86332a-db85-4326-9f17-215a8a0188c8
+md"""
+```
+begin
+import Pkg
+Pkg.add(url="https://github.com/sapal6/nbdev.jl.git")
+end
+```
+"""
+
 # ╔═╡ e89e5c16-845e-4d0a-a346-80586c100be0
 md"This will install Nbdev in our notebook environment."
 
@@ -53,6 +54,9 @@ md"!!! note
 
 # ╔═╡ 3f5c7fbe-f1f1-4e55-9eff-cba4c9bcd7c7
 md"Once Nbdev is installed, import the package in the usual way."
+
+# ╔═╡ 615ff1a1-31d9-4219-a942-efc8f53bf538
+md"`using Nbdev`"
 
 # ╔═╡ 9258500a-0a33-41cd-b32a-e09e820f84ee
 md"## Start building your project"
@@ -70,7 +74,7 @@ md"when you put the comment #export at the begining of a cell, it tells nbdev to
 md"
 ```
 #export
-function some_func(x)
+function somefunc(x)
 	x+1
 end
 ```"
@@ -90,7 +94,7 @@ In such a case use the `#hide` anchor at the begining of the cell."
 md"
 ```
 #hide
-my_experiment = 1+1
+myexperiment = 1+1
 ```"
 
 # ╔═╡ f8391a08-edf6-499c-8e8d-8f731dad8fd4
@@ -111,15 +115,15 @@ md"Define a docstring for functions, structs etc. and use the special function `
 """
 > This is a function docstring
 """ 
-function some_func()
+function somefunc()
 	1+1
 end
 
 # ╔═╡ 8c9f1b35-8f88-44ba-8a37-57b92b42980b
-md"`showDoc(some_func)` would show the function like this 👇"
+md"`showDoc(somefunc)` would show the function like this 👇"
 
 # ╔═╡ 52e3492a-c27d-476f-9010-7d009fd0eeaf
-showDoc(some_func)
+md"`showDoc(somefunc)`"
 
 # ╔═╡ 306239c9-7fd6-442e-8b97-db674398b307
 md"## Exporting code"
@@ -136,7 +140,7 @@ For example, the exported source code file would have the following structure �
 ```
 module Example
 
-function some_func(x)
+function somefunc(x)
     x+1
 end
 
@@ -147,7 +151,7 @@ end
 md"""
 Once you are happy with the code you can export the source code by calling 
 
-`notebook2script(nbs_dir, src_dir)`
+`notebook2script(nbsdir, srcdir)`
 
 Here "nbs_dir" is the directory where your notebooks are stored and the "src_dir" is the directory where you want your source code files to be exported. This is usually the `src` directory."""
 

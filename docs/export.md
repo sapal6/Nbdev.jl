@@ -36,7 +36,7 @@ nucleus=Nucleus(sample_code)
 ------
 Output
 ------
-Any["Nucleus", Any[(:code, ("\"a=1+1\"", MIME type text/plain))], :struct, "Nucleus", "f6236f77d5ae0a65"]
+Any["Nucleus", Any[(:code, ("\"a=1+1\"", MIME type text/plain))], :struct, "Nucleus", "8511ad5f35e3cdc5"]
 ```
 
 ```
@@ -78,7 +78,7 @@ samplecodes=[Nucleus("a=1+1"), Nucleus("function test(x)  x+1 end"), Nucleus("te
 ------
 Output
 ------
-Any["Main.workspace2.Nucleus", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"a=1+1\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "95063d09a224e3b0"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"function test(x)  x+1 end\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "97857f0227235ea5"), MIME type application/vnd.pluto.tree+object)), (3, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"test(2)\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "754acb4ae2adf7b3"), MIME type application/vnd.pluto.tree+object))], :Array, "", "841152567fd8ba82"]
+Any["Main.workspace#2.Nucleus", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"a=1+1\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "99fd9a73b8873ce9"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"function test(x)  x+1 end\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "c759dcde933fc36a"), MIME type application/vnd.pluto.tree+object)), (3, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"test(2)\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "c35cf3780b45f781"), MIME type application/vnd.pluto.tree+object))], :Array, "", "a895ce7ad07019fb"]
 ```
 
 ```
@@ -86,7 +86,7 @@ nb=Nb(samplecodes, "testnb.jl")
 ------
 Output
 ------
-Any["Nb", Any[(:nuclei, (Dict{Symbol, Any}(:prefix => "Main.workspace2.Nucleus", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"a=1+1\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "95063d09a224e3b0"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"function test(x)  x+1 end\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "97857f0227235ea5"), MIME type application/vnd.pluto.tree+object)), (3, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"test(2)\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "754acb4ae2adf7b3"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "841152567fd8ba82"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"testnb.jl\"", MIME type text/plain))], :struct, "Nb", "e310564cb599722b"]
+Any["Nb", Any[(:nuclei, (Dict{Symbol, Any}(:prefix => "Main.workspace#2.Nucleus", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"a=1+1\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "99fd9a73b8873ce9"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"function test(x)  x+1 end\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "c759dcde933fc36a"), MIME type application/vnd.pluto.tree+object)), (3, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"test(2)\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "c35cf3780b45f781"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "a895ce7ad07019fb"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"testnb.jl\"", MIME type text/plain))], :struct, "Nb", "94cb8c9642dd736b"]
 ```
 
 ```
@@ -94,7 +94,7 @@ nb.nuclei
 ------
 Output
 ------
-Any["Main.workspace2.Nucleus", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"a=1+1\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "95063d09a224e3b0"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"function test(x)  x+1 end\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "97857f0227235ea5"), MIME type application/vnd.pluto.tree+object)), (3, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"test(2)\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "754acb4ae2adf7b3"), MIME type application/vnd.pluto.tree+object))], :Array, "", "841152567fd8ba82"]
+Any["Main.workspace#2.Nucleus", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"a=1+1\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "99fd9a73b8873ce9"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"function test(x)  x+1 end\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "c759dcde933fc36a"), MIME type application/vnd.pluto.tree+object)), (3, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"test(2)\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "c35cf3780b45f781"), MIME type application/vnd.pluto.tree+object))], :Array, "", "a895ce7ad07019fb"]
 ```
 
 ```
@@ -105,28 +105,28 @@ Output
 "testnb.jl"
 ```
 
-> collect_nuclei(notebook::ScrubbedNotebook, marker)–> Reads a notebook, collects code from code cells and returns an array of Nucelus.
+> collectnuclei(notebook::Scrubbednb, marker)–> Reads a notebook, collects code from code cells and returns an array of Nucelus.
 
 
 
 
 <div class="markdown"><p><code>collect_nuclei&#40;notebook::ScrubbedNotebook, marker&#41;</code> reads the entire notebook cell by cell and then checks if the content of that cell starts with a marker, only then it builds an array of the Nucleus type. </p>
 </div>
-## load<em>scrubbed</em>nb
+## loadscrubbednb
 
-> load*scrubbed*nb(io, path)::ScrubbedNotebook–> These are modification of the Pluto.load_notebook methods. Scrubs the notebook of all stuff but the code to be exported.
-
-
+> loadscrubbednb(io, path)::Scrubbednb–> These are modification of the Pluto.load_notebook methods. Scrubs the notebook of all stuff but the code to be exported.
 
 
-<div class="markdown"><p><code>load_scrubbed_nb</code> reads the notebook in the given path cell by cell, while ignoring the stuffs in the notebook like the cell order delimeters and the cell start delimeter. The result is a <code>ScrubbedNotebook</code> type which contains only the code which you intend to export.</p>
+
+
+<div class="markdown"><p><code>loadscrubbednb</code> reads the notebook in the given path cell by cell, while ignoring the stuffs in the notebook like the cell order delimeters and the cell start delimeter. The result is a <code>ScrubbedNotebook</code> type which contains only the code which you intend to export.</p>
 </div>
 ## High Level APIs
 <p>This too are called automatically by Nbdev.</p>
 
-## load_nb
+## loadnb
 
-> load*nb(filename::String, marker::String)–> High level function which calls _load*nb
+> loadnb(filename::String, marker::String)–> High level function which calls *load*nb
 
 
 
@@ -136,14 +136,14 @@ Output
 
 
 
-## ScrubbedNotebook
+## Scrubbednb
 
 ```
-testnb= load_nb("01_export.jl", "#export")
+testnb= loadnb("01_export.jl", "#export")
 ------
 Output
 ------
-Any["Nb", Any[(:nuclei, (Dict{Symbol, Any}(:prefix => "Main.workspace2.Nucleus", :elements => Any[(1, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\nimport Pluto: Notebook, Cell, load_notebook_nobackup\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "3fc0b7826fc836cd"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\nfunction processMdChunk(mdChunk::String)\\n\\tchopMdMarker(mdChunk)\\nend\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "2485d7e2395277d5"), MIME type application/vnd.pluto.tree+object)), (3, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\nbegin\\n\\\"\\\"\\\"\\n> struct Nucleus--> This is the lowest entity of a code notebook. This type represents the code cell in a Pluto notebook.\\n> * Fields:\\n>   * code--> String which makes up a code cell\\n\\\"\\\"\\\"\\nBase.@kwdef mutable struct Nucleus\\n\\tcode::String=\\\"\\\"\\n\\tend\\n\\n\\\"\\\"\\\"\\n> Nucleus(code)-->Getter for accessing the constructer of the Nucleus type\\n\\\"\\\"\\\"\\nNucleus(code) = Nucleus(code = code)\\nend\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "8c86abc909542385"), MIME type application/vnd.pluto.tree+object)), (4, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\nbegin\\n\\\"\\\"\\\"\\n> struct Nb--> a notebook having nuclei made up of code cells only.\\n> * Fields:\\n>   * nuclei--> Array of Nucleus type\\n>   * name--> name of notebook\\n\\\"\\\"\\\"\\nmutable struct Nb\\n\\tnuclei::Array{Nucleus,1}\\n\\tname::AbstractString\\nend\\n\\n\\\"\\\"\\\"\\n> nuclei(nuclei::Array)--> Helper to collect an array of Nucleus.\\t\\n\\\"\\\"\\\"\\nnuclei(nuclei::Array) = nuclei\\n\\n\\\"\\\"\\\"\\n> nuclei(nuclei::Array)--> Helper to collect an name of a notebook.\\n\\\"\\\"\\\"\\nname(name::AbstractString) = name\\nend\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "c901fe60824acb47"), MIME type application/vnd.pluto.tree+object)), (5, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\nbegin\\n\\\"\\\"\\\"\\nHeaders that would appear in a code file\\n\\\"\\\"\\\"\\nconst _header = \\\"### A Nbdev script file ###\\\"\\nconst _sub_header = \\\"### Autogenerated file. Don't modify. ###\\\"\\nend\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "dc05ed6ca852c02f"), MIME type application/vnd.pluto.tree+object)), (6, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\n\\\"\\\"\\\"\\nThis had to be done because having the cell iddelimeter as a constant gives an error during parsing the notebook\\n\\\"\\\"\\\"\\ncell_id_delimiter=string(\\\"#\\\",\\\" ╔═╡ \\\")\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "576bb8149f1e54dd"), MIME type application/vnd.pluto.tree+object)), (7, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\n\\\"\\\"\\\"\\nmarks the end of a cell\\n\\\"\\\"\\\"\\nconst _cell_suffix = \\\"\\\\n\\\\n\\\"\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "7cea32ce6a1b4e98"), MIME type application/vnd.pluto.tree+object)), (8, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\n\\\"\\\"\\\"\\n> struct ScrubbedNotebook--> Represents a notebook from which all but code to be exported are scrubbed off.\\n> * Fields-->\\n>   * cells--> Vector of strings.\\n\\\"\\\"\\\"\\nmutable struct ScrubbedNotebook\\n\\tcells::Array{String, 1}\\nend\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "6c2d3e81c8a1692f"), MIME type application/vnd.pluto.tree+object)), (9, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\n\\\"\\\"\\\"\\n> collect_nuclei(notebook::ScrubbedNotebook, marker)--> Reads a notebook, collects code from code cells and returns an array of Nucelus.\\n\\\"\\\"\\\"\\nfunction collect_nuclei(notebook::ScrubbedNotebook, marker)\\n\\tnotebook_cells=notebook.cells\\n\\tnuclei=[]\\n\\t\\t\\n    for i in 1:length(notebook_cells)\\n    \\traw_code=notebook_cells[i]\\n    \\tnucleus=Nucleus(raw_code)\\n    \\t\\n    \\tif startswith(raw_code, marker)\\n            push!(nuclei,nucleus)\\n        end\\n    \\t\\n    end\\n\\t nuclei\\nend\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "d05a10e290fb08f7"), MIME type application/vnd.pluto.tree+object)), "more", (19, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\nexport notebook2script\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "6b2e68bfdacaca9"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "1689786e6f5b1a"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"01_export.jl\"", MIME type text/plain))], :struct, "Nb", "76b7178edea8e9e5"]
+Any["Nb", Any[(:nuclei, (Dict{Symbol, Any}(:prefix => "Main.workspace#2.Nucleus", :elements => Any[(1, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\nimport Pluto: Notebook, Cell, load_notebook_nobackup\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "66aee2006e1736c"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\nbegin\\n\\\"\\\"\\\"\\n> struct Nucleus--> This is the lowest entity of a code notebook. This type represents the code cell in a Pluto notebook.\\n> * Fields:\\n>   * code--> String which makes up a code cell\\n\\\"\\\"\\\"\\nBase.@kwdef mutable struct Nucleus\\n\\tcode::String=\\\"\\\"\\n\\tend\\n\\n\\\"\\\"\\\"\\n> Nucleus(code)-->Getter for accessing the constructer of the Nucleus type\\n\\\"\\\"\\\"\\nNucleus(code) = Nucleus(code = code)\\nend\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "d509f0e3a40f4d18"), MIME type application/vnd.pluto.tree+object)), (3, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\nbegin\\n\\\"\\\"\\\"\\n> struct Nb--> a notebook having nuclei made up of code cells only.\\n> * Fields:\\n>   * nuclei--> Array of Nucleus type\\n>   * name--> name of notebook\\n\\\"\\\"\\\"\\nmutable struct Nb\\n\\tnuclei::Array{Nucleus,1}\\n\\tname::AbstractString\\nend\\n\\n\\\"\\\"\\\"\\n> nuclei(nuclei::Array)--> Helper to collect an array of Nucleus.\\t\\n\\\"\\\"\\\"\\nnuclei(nuclei::Array) = nuclei\\n\\n\\\"\\\"\\\"\\n> nuclei(nuclei::Array)--> Helper to collect an name of a notebook.\\n\\\"\\\"\\\"\\nname(name::AbstractString) = name\\nend\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "afc19bb1597e9abc"), MIME type application/vnd.pluto.tree+object)), (4, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\nbegin\\n\\\"\\\"\\\"\\nHeaders that would appear in a code file\\n\\\"\\\"\\\"\\nconst header = \\\"### A Nbdev script file ###\\\"\\nconst subheader = \\\"### Autogenerated file. Don't modify. ###\\\"\\nend\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "391c0bbeec3378d9"), MIME type application/vnd.pluto.tree+object)), (5, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\n\\\"\\\"\\\"\\nThis had to be done because having the cell iddelimeter as a constant gives an error during parsing the notebook\\n\\\"\\\"\\\"\\ncelliddelim=string(\\\"#\\\",\\\" ╔═╡ \\\")\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "c24f6a5f7e9a36bc"), MIME type application/vnd.pluto.tree+object)), (6, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\n\\\"\\\"\\\"\\nmarks the end of a cell\\n\\\"\\\"\\\"\\nconst cellsuff = \\\"\\\\n\\\\n\\\"\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "f5c1a923e57eb34c"), MIME type application/vnd.pluto.tree+object)), (7, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\n\\\"\\\"\\\"\\n> struct Scrubbednb--> Represents a notebook from which all but code to be exported are scrubbed off.\\n> * Fields-->\\n>   * cells--> Vector of strings.\\n\\\"\\\"\\\"\\nmutable struct Scrubbednb\\n\\tcells::Array{String, 1}\\nend\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "46c8f7c3078d5565"), MIME type application/vnd.pluto.tree+object)), (8, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\n\\\"\\\"\\\"\\n> collectnuclei(notebook::Scrubbednb, marker)--> Reads a notebook, collects code from code cells and returns an array of Nucelus.\\n\\\"\\\"\\\"\\nfunction collectnuclei(nb::Scrubbednb, marker)\\n\\tnbcells=nb.cells\\n\\tnuclei=[]\\n\\t\\t\\n    for i in 1:length(nbcells)\\n    \\traw_code=nbcells[i]\\n    \\tnucleus=Nucleus(raw_code)\\n    \\t\\n    \\tif startswith(raw_code, marker)\\n            push!(nuclei,nucleus)\\n        end\\n    \\t\\n    end\\n\\t nuclei\\nend\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "8cab949e93528e17"), MIME type application/vnd.pluto.tree+object)), (9, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\nbegin\\n\\\"\\\"\\\"\\n>loadscrubbednb(io, path)::Scrubbednb--> These are modification of the Pluto.load_notebook methods. Scrubs the notebook of all stuff but the code to be exported.\\n\\\"\\\"\\\"\\nfunction loadscrubbednb(io, path)::Scrubbednb\\n    collectedcells = []\\n\\t\\t\\n\\t# ignore first bits of file\\n    readuntil(io,celliddelim)\\n\\n    last_read = \\\"\\\"\\n    while !eof(io)\\n        cellidstr = String(readline(io))\\n        if cellidstr == \\\"Cell order:\\\"\\n            break\\n        else\\n            rawcode = String(readuntil(io, celliddelim))\\n            # change Windows line endings to Linux\\n            normalisedcode = replace(rawcode, \\\"\\\\r\\\\n\\\" => \\\"\\\\n\\\")\\n            # remove the cell appendix\\n            code = normalisedcode[1:prevind(normalisedcode, end, length(cellsuff))]\\n\\n            readcell = code\\n            push!(collectedcells, readcell)\\n        end\\n    end\\n\\t\\t\\n\\tScrubbednb(collectedcells)\\nend\\n\\t\\nfunction loadscrubbednb(path::String)::Scrubbednb\\n    local loaded\\n    open(path, \\\"r\\\") do io\\n        loaded = loadscrubbednb(io, path)\\n    end\\n    loaded\\nend\\nend\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "cb23267b91bb1d"), MIME type application/vnd.pluto.tree+object)), "more", (18, (Dict{Symbol, Any}(:prefix => "Nucleus", :elements => Any[(:code, ("\"#export\\nexport notebook2script\"", MIME type text/plain))], :type => :struct, :prefix_short => "Nucleus", :objectid => "a20bce49be12eef1"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "acc3c6f8ec50d7b"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"01_export.jl\"", MIME type text/plain))], :struct, "Nb", "ba1201eef0108ac3"]
 ```
 
 ```
@@ -171,24 +171,24 @@ Output
 "module Export"
 ```
 
-## save_nb
+## savenb
 
 <div class="markdown"><p>To export the required code, the following scenarios must be considered.</p>
 <p>👉 Check if the file is in the src directory. If it&#39;s there then overwrite it. </p>
 <p>👉 If it&#39;s not there then create and then write.</p>
 </div>
-> save_nb(io, notebook)–> Reads the supplied notebook and creates an io and writes stuffs like the module name and the content to the created io.
+> savenb(io, nb)–> Reads the supplied notebook and creates an io and writes stuffs like the module name and the content to the created io.
 
 
 
-> save_nb(notebook::Nb, path::String)–> Creates a file in the supplied path with the name in the NB type.
+> savenb(nb::Nb, path::String)–> Creates a file in the supplied path with the name in the NB type.
 
 
 
 
 ## readfilenames
 
-> readfilenames(nbs_dir::String)–> Reads files in the directory and subdirectories in the given path. Reads only the files with \.jl\ extension
+> readfilenames(nbsdir::String)–> Reads files in the directory and subdirectories in the given path. Reads only the files with \.jl\ extension
 
 
 
@@ -196,30 +196,30 @@ Output
 <div class="markdown"><h4>Example</h4>
 </div>
 ```
-read_filenames(joinpath("..", "nbs"))
+readfilenames(joinpath("..", "nbs"))
 ------
 Output
 ------
-Any["Any", Tuple{Int64, Any}[(1, ("\"..\\\\nbs\\\\00_nbdev.jl\"", MIME type text/plain)), (2, ("\"..\\\\nbs\\\\01_export.jl\"", MIME type text/plain)), (3, ("\"..\\\\nbs\\\\02_documenter.jl\"", MIME type text/plain)), (4, ("\"..\\\\nbs\\\\03_codeRunner.jl\"", MIME type text/plain)), (5, ("\"..\\\\nbs\\\\04_makedocs.jl\"", MIME type text/plain)), (6, ("\"..\\\\nbs\\\\05_make.jl\"", MIME type text/plain)), (7, ("\"..\\\\nbs\\\\Developer_guide.jl\"", MIME type text/plain)), (8, ("\"..\\\\nbs\\\\index.jl\"", MIME type text/plain)), (9, ("\"..\\\\nbs\\\\styleguide.jl\"", MIME type text/plain)), (10, ("\"..\\\\nbs\\\\tutorial.jl\"", MIME type text/plain))], :Array, "", "ee0c7f4d44589668"]
+Any["Any", Tuple{Int64, Any}[(1, ("\"..\\\\nbs\\\\00_nbdev.jl\"", MIME type text/plain)), (2, ("\"..\\\\nbs\\\\01_export.jl\"", MIME type text/plain)), (3, ("\"..\\\\nbs\\\\02_documenter.jl\"", MIME type text/plain)), (4, ("\"..\\\\nbs\\\\03_codeRunner.jl\"", MIME type text/plain)), (5, ("\"..\\\\nbs\\\\04_makedocs.jl\"", MIME type text/plain)), (6, ("\"..\\\\nbs\\\\05_make.jl\"", MIME type text/plain)), (7, ("\"..\\\\nbs\\\\developerguide.jl\"", MIME type text/plain)), (8, ("\"..\\\\nbs\\\\index.jl\"", MIME type text/plain)), (9, ("\"..\\\\nbs\\\\styleguide.jl\"", MIME type text/plain)), (10, ("\"..\\\\nbs\\\\tutorial.jl\"", MIME type text/plain))], :Array, "", "7f03c1aff2c665c6"]
 ```
 
-## export_file
+## exportfile
 
-> export*file(file::String, src*dir::String, marker::String)–> Loads the file in the supplied path and reads the cells which are marked with \#export\. Then saves the notebook in the given path
-
-
-
-
-## export_content
-
-> export*content(files::AbstractVector, src*dir::String, marker::String)–> maps the `export_file` function to each files
+> exportfile(f::String, srcdir::String, marker::String)–> Loads the file in the supplied path and reads the cells which are marked with \#export\. Then saves the notebook in the given path
 
 
 
 
-## getfile_extension
+## exportcontent
 
-> getfile_extension(filename)–> get the file extensions in the pwd
+> exportcontent(fns::AbstractVector, srcdir::String, marker::String)–> maps the `export_file` function to each files
+
+
+
+
+## getfileextension
+
+> getfileextension(fn)–> get the file extensions in the pwd
 
 
 
@@ -227,7 +227,7 @@ Any["Any", Tuple{Int64, Any}[(1, ("\"..\\\\nbs\\\\00_nbdev.jl\"", MIME type text
 <div class="markdown"><h4>Example</h4>
 </div>
 ```
- getfile_extension("test.jl")
+ getfileextension("test.jl")
 ------
 Output
 ------
@@ -236,7 +236,7 @@ Output
 
 ## notebook2script
 
-> notebook2script(nbs*dir::String, src*dir::String)–> Export all the code from the provided notebook directory to the given source directory
+> notebook2script(nbsdir::String, srcdir::String)–> Export all the code from the provided notebook directory to the given source directory
 
 
 
@@ -248,6 +248,6 @@ notebook2script(joinpath("..", "nbs"), joinpath("..", "src"))
 ------
 Output
 ------
-Any["Nothing", Tuple{Int64, Any}[(1, ("nothing", MIME type text/plain)), (2, ("nothing", MIME type text/plain)), (3, ("nothing", MIME type text/plain)), (4, ("nothing", MIME type text/plain)), (5, ("nothing", MIME type text/plain)), (6, ("nothing", MIME type text/plain)), (7, ("nothing", MIME type text/plain)), (8, ("nothing", MIME type text/plain)), (9, ("nothing", MIME type text/plain)), (10, ("nothing", MIME type text/plain))], :Array, "", "b8cb653f60102001"]
+Any["Nothing", Tuple{Int64, Any}[(1, ("nothing", MIME type text/plain)), (2, ("nothing", MIME type text/plain)), (3, ("nothing", MIME type text/plain)), (4, ("nothing", MIME type text/plain)), (5, ("nothing", MIME type text/plain)), (6, ("nothing", MIME type text/plain)), (7, ("nothing", MIME type text/plain)), (8, ("nothing", MIME type text/plain)), (9, ("nothing", MIME type text/plain)), (10, ("nothing", MIME type text/plain))], :Array, "", "2234510ce85c91fe"]
 ```
 

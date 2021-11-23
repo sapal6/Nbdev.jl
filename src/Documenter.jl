@@ -75,27 +75,27 @@ end
 
 #export
 """
-> run_and_update_nb(file::AbstractString)--> Run the notebook in the supplied path and update the notebook with the output of each cell.
+> runandupdatenb(fn::AbstractString)--> Run the notebook in the supplied path and update the notebook with the output of each cell.
 """
-function run_and_update_nb(file::AbstractString)
-	notebook=load_notebook_nobackup(file)
-	return CodeRunner.execute_code(notebook)
+function runandupdatenb(fn::AbstractString)
+	nb=load_notebook_nobackup(fn)
+	return CodeRunner.executecode(nb)
 end
 
 #export
 begin
 """
-> struct FunctionDocs--> Stores the document of different objects.
-> * funcDocs--> Array of strings.
+> struct Functiondocs--> Stores the document of different objects.
+> * funcdocs--> Array of strings.
 """
-mutable struct FunctionDocs
-	funcDocs::Array{String, 1}
+mutable struct Functiondocs
+	funcdocs::Array{String, 1}
 end
 
 """
-> FunctionDocs(funcDocs)--> Helper for accessing the FunctionDocs constructer.
+> Functiondocs(funcdocs)--> Helper for accessing the FunctionDocs constructer.
 """
-FunctionDocs(funcDocs)=FunctionDocs(funcDocs) 
+Functiondocs(funcdocs)=Functiondocs(funcdocs) 
 end
 
 #export
@@ -103,31 +103,29 @@ begin
         		
 
 """
-> stitchCode(cell::Cell)--> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.
+> stitchcode(cell::Cell)--> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.
 """
-function stitchCode(cell::AbstractArray)
-	#op=Export.strip(values(cell[2]), "\"")
+function stitchcode(cell::AbstractArray)
 	op=values(cell[2])
 	string("```","\n$(cell[1])\n","------\nOutput\n------\n","$(op)\n", "```\n")
 end
 	
 """
-> stitchCode(cellop::AbstractString)--> Removes the quotes from a string and creates a code block with that string inside the newely formed code block
+> stitchcode(cellop::AbstractString)--> Removes the quotes from a string and creates a code block with that string inside the newely formed code block
 """
-function stitchCode(cellop::AbstractString)
+function stitchcode(cellop::AbstractString)
 
 	cleanedop=Export.strip(Export.strip(cellop,"\""), "\"")
 	string("```","\n$cleanedop\n","```\n")
-	#string("",cellop,"\n")
 end
 	
 """
-> stitchCode(fdocs::FunctionDocs)--> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object
+> stitchcode(fdocs::Functiondocs)--> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object
 """
-function stitchCode(fdocs::FunctionDocs)
+function stitchcode(fdocs::Functiondocs)
 		funcdocs=""
 		
-		for fdoc in fdocs.funcDocs
+		for fdoc in fdocs.funcdocs
 		    funcdocs=string(funcdocs, "$(fdoc)\n\n")
 	    end
 		
@@ -137,29 +135,29 @@ end
 
 #export
 """
-> collectFuncDocs(obj)--> Collects objects (functions, methods, macro structs etc.) and creates an array of documents (generated from teh docstrings). Creates aFunctionDocs type from these documents.
+> collectfuncdocs(obj)--> Collects objects (functions, methods, macro structs etc.) and creates an array of documents (generated from teh docstrings). Creates aFunctionDocs type from these documents.
 """
-function collectFuncDocs(obj)
+function collectfuncdocs(obj)
 	docs=doc(obj)
     fdocs=["$(docs.meta[:results][i].object)" for i=1:length(docs.meta[:results])]
-	FunctionDocs(fdocs)
+	Functiondocs(fdocs)
 end
 
 #export
 begin
 	
 """
-> showDoc(o)--> Takes an object and builds markdown documentation.
+> showdoc(o)--> Takes an object and builds markdown documentation.
 """
-function showDoc(o)
-	docs=collectFuncDocs(o)
-	stitchCode(docs)
+function showdoc(o)
+	docs=collectfuncdocs(o)
+	stitchcode(docs)
 end
 end
 
 #export
 begin
-function maintain_heading(str:: AbstractString)
+function maintainheading(str:: AbstractString)
 	res= nothing
 	if startswith(str, """<div class="markdown"><h2>""")
 			res = Export.strip(Export.strip(Export.strip(str, """<div class="markdown"><h2>"""), """</h2>"""), """</div>""")
@@ -174,33 +172,32 @@ end
 """
 > CreatePage--> Creates the Page type from the markdown and example code cells of the supplied notebook. The filename is the name of the notebook which is parsed.
 """
-function createPage(filename::AbstractString, notebook::Notebook)
+function createpage(fn::AbstractString, nb::Notebook)
 	sections=Section[]
 	res=nothing
 	
-	for cell in notebook.cells
+	for cell in nb.cells
 		
 		if cell.errored
 			error("Build stopped. Seems like the code $cell.code has an error")
 			break
 	    end
 	    if startswith(cell.code, "md")
-			clean_op = maintain_heading(cell.output.body)
-			push!(sections, Section(clean_op))
+			cleanop = maintainheading(cell.output.body)
+			push!(sections, Section(cleanop))
 		elseif !startswith(cell.code, "#export") && !startswith(cell.code, "#hide") 
-			if occursin( "showDoc", cell.code)
-				#stitched_code=stitchCode(cell.output)
+			if occursin( "showdoc", cell.code)
 				cleanedop=Export.strip(cell.output.body, "\"")
 				cleanedop=replace(cleanedop, "\\n"=>"\n")
 				push!(sections, Section(cleanedop))
 			else
-				stitched_code=stitchCode([cell.code, cell.output.body])
-			    push!(sections, Section(stitched_code))
+				stitchedcode=stitchcode([cell.code, cell.output.body])
+			    push!(sections, Section(stitchedcode))
 			end
 		end
 	end
 	if !isempty(sections)
-	    res=Page(sections, basename(filename))
+	    res=Page(sections, basename(fn))
 	end
 	
 	return res
@@ -212,13 +209,13 @@ end
 begin
 
 """
-> save_page(io, page::Page)--> Take the contents from a Page type and write to the io
+> savepage(io, page::Page)--> Take the contents from a Page type and write to the io
 """
-function save_page(io, page::Page)
+function savepage(io, page::Page)
 		
-	pageHeading=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
+	pageheading=uppercasefirst(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
 
-    println(io, "<h1>$pageHeading</h1>")
+    println(io, "<h1>$pageheading</h1>")
 	
 	for section in page.sections
 			println(io, section.line)
@@ -228,12 +225,12 @@ end
 
 
 """
-> save_page(page::Page, path::String)--> Given a Page type and the required path, creates the related markdwon file in the specified path. The name of the resulting markdown file is same as the nameof the notebook for which the document is generated
+> savepage(page::Page, path::String)--> Given a Page type and the required path, creates the related markdwon file in the specified path. The name of the resulting markdown file is same as the nameof the notebook for which the document is generated
 """
-function save_page(page::Page, path::String)
-	file_name=lowercase(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
-	open(joinpath(path, file_name*".md"), "w") do io
-        save_page(io, page)
+function savepage(page::Page, path::String)
+	fn=lowercase(Export.strip(Export.strip(page.name, r"[0-9_]"), r".jl"))
+	open(joinpath(path, fn*".md"), "w") do io
+        savepage(io, page)
     end
 end
 end
@@ -241,36 +238,36 @@ end
 #export
 begin			
 """
-> export2md(file::String, path::String)--> Generate document for a file in the given path
+> export2md(fn::String, path::String)--> Generate document for a file in the given path
 """
-function export2md(file::String, path::String)
-	notebook=run_and_update_nb(file)
-	page=createPage(file, notebook)
+function export2md(fn::String, path::String)
+	nb=runandupdatenb(fn)
+	page=createpage(fn, nb)
 	if page != nothing
-	    save_page(page, path)
+	    savepage(page, path)
 	end
 end
 
 """
-> export2md(files::AbstractVector, path::String)--> Map the `export2md(file, path)` to a given vector of file.
+> export2md(fns::AbstractVector, path::String)--> Map the `export2md(file, path)` to a given vector of file.
 """
-function export2md(files::AbstractVector, path::String)
-	n = length(files)
+function export2md(fns::AbstractVector, path::String)
+	n = length(fns)
 	p = Progress(n, 1)
-	for file in files
+	for fn in fns
 	  next!(p)
-      export2md(file, path)
+      export2md(fn, path)
 	end
 end
 
 """
 > export2md()--> Higher level API to generate documents for all the valid notebooks
 """
-export2md(nbs_dir)=export2md(Export.read_filenames(joinpath(pwd(), nbs_dir)), "docs")
+export2md(nbsdir)=export2md(Export.readfilenames(joinpath(pwd(), nbsdir)), "docs")
 end
 
 #export
-export showDoc, export2md
+export showdoc, export2md
 
 #export
 begin

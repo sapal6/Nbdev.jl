@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.16.1
+# v0.17.1
 
 using Markdown
 using InteractiveUtils
@@ -10,7 +10,7 @@ import Pkg
 
 # ╔═╡ e7a181c5-e00e-44cb-8c42-c27983deae25
 #hide
-Pkg.activate(".")
+Pkg.activate(Base.current_project())
 
 # ╔═╡ 64f0c27d-9276-4e9f-b09c-414dd93ffe83
 #hide
@@ -40,26 +40,26 @@ function makepath(path:: AbstractString)
 end
 
 # ╔═╡ 0fc70e35-557d-4bc1-a0bf-b03b68987d81
-Documenter.showDoc(makepath)
+Documenter.showdoc(makepath)
 
 # ╔═╡ 23f638ee-4f7d-4480-8c3e-dbd29f5dd39b
 #hide
 #makepath("../docs/docs")
 
 # ╔═╡ fe6028bc-58b8-45d1-bf7b-8f5e31e8d452
-md"## mkdocs_yml"
+md"## mkdocsyml"
 
 # ╔═╡ ad99a75a-2918-4e27-b679-3ab3611cc3fc
 #export
 """
-> mkdocs_yml()--> Creates a mkdocs.yml file
+> mkdocsyml()--> Creates a mkdocs.yml file
 > at the document root and fills it with initial
 > content.
 """
-function mkdocs_yml(path:: AbstractString)
-	mkdoc_yml = joinpath(path, "mkdocs.yml")
-	if !isfile(mkdoc_yml)
-	    touch(mkdoc_yml)
+function mkdocsyml(path:: AbstractString)
+	mkdocyml = joinpath(path, "mkdocs.yml")
+	if !isfile(mkdocyml)
+	    touch(mkdocyml)
 	else
 		@warn "File not created because it was already present"
     end
@@ -67,7 +67,7 @@ function mkdocs_yml(path:: AbstractString)
 end
 
 # ╔═╡ 18af50bd-bc5f-4e38-ab97-2a8cef56805a
-Documenter.showDoc(mkdocs_yml)
+Documenter.showdoc(mkdocsyml)
 
 # ╔═╡ 4b3477a9-cf4a-4ea6-8eac-359cb34d97be
 #mkdocs_yml("../docs")
@@ -96,7 +96,7 @@ end
 #newsitegen()
 
 # ╔═╡ c5160350-960f-4f42-a6bd-a0c2d9b03b7f
-Documenter.showDoc(newsitegen)
+Documenter.showdoc(newsitegen)
 
 # ╔═╡ 1ed0902f-34ce-4b62-b484-fdf70124394a
 #hide

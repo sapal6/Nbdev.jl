@@ -14,9 +14,9 @@ end
 #export
 begin
 notebook2script = Export.notebook2script
-showDoc = Documenter.showDoc
+showdoc = Documenter.showdoc
 build = Make.build
-export notebook2script, showDoc, build
+export notebook2script, showdoc, build
 end
 
 end

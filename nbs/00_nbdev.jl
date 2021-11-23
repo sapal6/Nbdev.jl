@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.16.1
+# v0.17.1
 
 using Markdown
 using InteractiveUtils
@@ -10,7 +10,7 @@ import Pkg
 
 # ╔═╡ 0a803a48-8ad1-4d3c-9272-c0d1270d8e92
 #hide
-Pkg.activate(".")
+Pkg.activate(Base.current_project())
 
 # ╔═╡ 00758500-175a-11ec-173c-670141a85b02
 #export
@@ -26,9 +26,9 @@ end
 #export
 begin
 notebook2script = Export.notebook2script
-showDoc = Documenter.showDoc
+showdoc = Documenter.showdoc
 build = Make.build
-export notebook2script, showDoc, build
+export notebook2script, showdoc, build
 end
 
 # ╔═╡ 9724fdac-8ffd-483c-9d7e-a4cdc8d0dd72

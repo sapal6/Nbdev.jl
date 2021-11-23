@@ -11,9 +11,9 @@
 </ul>
 <p>This is taken straight from Pluto&#39;s webserver code</p>
 </div>
-## execute_code
+## executecode
 
-> execute_code(notebook::Notebook)–> This function does the following
+> executecode(nb::Notebook)–> This function does the following
 >
 >   * Take a notebook.
 >   * Create a fake server, fake client etc.

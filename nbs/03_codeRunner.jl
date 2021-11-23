@@ -1,11 +1,10 @@
 ### A Pluto.jl notebook ###
-# v0.16.1
+# v0.17.1
 
 using Markdown
 using InteractiveUtils
 
 # ╔═╡ 086bff3e-6324-11eb-31cc-995e82c7b175
-#hide
 #hide
 #for sharing environments between notebooks
 begin
@@ -39,7 +38,7 @@ import Pluto: Notebook, Cell, Configuration, Notebook, ServerSession, ClientSess
 import Pluto.PlutoRunner
 
 # ╔═╡ fb233ac0-6322-11eb-0a09-b9ad1391f893
-md"## execute_code "
+md"## executecode "
 
 # ╔═╡ bcb831c0-0e07-11eb-3958-4b88811cfae8
 #export
@@ -48,24 +47,24 @@ md"## execute_code "
 #executed in the notebook
 
 """
-> execute_code(notebook::Notebook)--> This function does the following
+> executecode(nb::Notebook)--> This function does the following
 > * Take a notebook. 
 > * Create a fake server, fake client etc.
 > * Run the notebook cell by cell and update the notebook with the output.
 """
-function execute_code(notebook::Notebook)
+function executecode(nb::Notebook)
 	fakeserver=ServerSession()
 	fakeclient = ClientSession(:fake, nothing)
 	fakeserver.connected_clients[fakeclient.id] = fakeclient
 	
-	fakeclient.connected_notebook = notebook
+	fakeclient.connected_notebook = nb
 	
-	update_run!(fakeserver, notebook, notebook.cells)
-	notebook
+	update_run!(fakeserver, nb, nb.cells)
+	nb
 end
 
 # ╔═╡ 2b204642-6324-11eb-05ac-8d9484a0c19e
-Documenter.showDoc(execute_code)
+Documenter.showdoc(executecode)
 
 # ╔═╡ 63f13d10-0e0d-11eb-1442-f93b1f9beed9
 #hide

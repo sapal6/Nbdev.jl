@@ -14,20 +14,20 @@ import Pluto.PlutoRunner
 #executed in the notebook
 
 """
-> execute_code(notebook::Notebook)--> This function does the following
+> executecode(nb::Notebook)--> This function does the following
 > * Take a notebook. 
 > * Create a fake server, fake client etc.
 > * Run the notebook cell by cell and update the notebook with the output.
 """
-function execute_code(notebook::Notebook)
+function executecode(nb::Notebook)
 	fakeserver=ServerSession()
 	fakeclient = ClientSession(:fake, nothing)
 	fakeserver.connected_clients[fakeclient.id] = fakeclient
 	
-	fakeclient.connected_notebook = notebook
+	fakeclient.connected_notebook = nb
 	
-	update_run!(fakeserver, notebook, notebook.cells)
-	notebook
+	update_run!(fakeserver, nb, nb.cells)
+	nb
 end
 
 end

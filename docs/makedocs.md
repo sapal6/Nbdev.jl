@@ -8,9 +8,9 @@ create the given path if not present
 
 
 
-## mkdocs_yml
+## mkdocsyml
 
-> mkdocs_yml()–> Creates a mkdocs.yml file at the document root and fills it with initial content.
+> mkdocsyml()–> Creates a mkdocs.yml file at the document root and fills it with initial content.
 
 
 

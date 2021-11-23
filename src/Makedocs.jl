@@ -14,14 +14,14 @@ end
 
 #export
 """
-> mkdocs_yml()--> Creates a mkdocs.yml file
+> mkdocsyml()--> Creates a mkdocs.yml file
 > at the document root and fills it with initial
 > content.
 """
-function mkdocs_yml(path:: AbstractString)
-	mkdoc_yml = joinpath(path, "mkdocs.yml")
-	if !isfile(mkdoc_yml)
-	    touch(mkdoc_yml)
+function mkdocsyml(path:: AbstractString)
+	mkdocyml = joinpath(path, "mkdocs.yml")
+	if !isfile(mkdocyml)
+	    touch(mkdocyml)
 	else
 		@warn "File not created because it was already present"
     end

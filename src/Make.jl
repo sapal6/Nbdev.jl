@@ -6,8 +6,8 @@ module Make
 include("../src/Documenter.jl")
 
 #export
-function build(nbs_dir)
-		Documenter.export2md(nbs_dir)
+function build(nbsdir)
+		Documenter.export2md(nbsdir)
 		Documenter.export2readme()
 end
 

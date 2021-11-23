@@ -16,17 +16,11 @@
 </div>
 <div class="markdown"><p>In the first cell of your notebook type in the following code 👇</p>
 </div>
-```
-begin
+<div class="markdown"><pre><code>begin
 import Pkg
-Pkg.add(url="https://github.com/sapal6/nbdev.jl.git")
-end
-------
-Output
-------
-
-```
-
+Pkg.add&#40;url&#61;&quot;https://github.com/sapal6/nbdev.jl.git&quot;&#41;
+end</code></pre>
+</div>
 <div class="markdown"><p>This will install Nbdev in our notebook environment.</p>
 </div>
 <div class="markdown"><div class="admonition note"><p class="admonition-title">Note</p></div>
@@ -34,14 +28,8 @@ Output
 </div>
 <div class="markdown"><p>Once Nbdev is installed, import the package in the usual way.</p>
 </div>
-```
-using Nbdev
-------
-Output
-------
-
-```
-
+<div class="markdown"><p><code>using Nbdev</code></p>
+</div>
 ## Start building your project
 
 <div class="markdown"><p>There are some anchors which tell Nbdev about which portion of your notebook should be exported as code, which portion should be part of documentation and which portion should not be touched.</p>
@@ -51,7 +39,7 @@ Output
 <div class="markdown"><p>when you put the comment #export at the begining of a cell, it tells nbdev to export that cell as a code into the source file.</p>
 </div>
 <div class="markdown"><pre><code>#export
-function some_func&#40;x&#41;
+function somefunc&#40;x&#41;
 	x&#43;1
 end</code></pre>
 </div>
@@ -63,7 +51,7 @@ end</code></pre>
 <p>In such a case use the <code>#hide</code> anchor at the begining of the cell.</p>
 </div>
 <div class="markdown"><pre><code>#hide
-my_experiment &#61; 1&#43;1</code></pre>
+myexperiment &#61; 1&#43;1</code></pre>
 </div>
 <div class="markdown"><p>such a cell won&#39;t be exported.</p>
 </div>
@@ -78,22 +66,41 @@ my_experiment &#61; 1&#43;1</code></pre>
 """
 > This is a function docstring
 """ 
-function some_func()
+function somefunc()
 	1+1
 end
 ------
 Output
 ------
-Main.workspace2.some_func
+<div class="pluto-docs-binding" style="margin: .5em; padding: 1em; background: #8383830a; border-radius: 1em;">
+<span style="
+    display: inline-block;
+    transform: translate(-19px, -16px);
+    font-family: 'JuliaMono', monospace;
+    font-size: .9rem;
+    font-weight: 700;
+    /* height: 1px; */
+    margin-top: -1em;
+    background: white;
+    padding: 4px;
+    border-radius: 7px;
+    /* color: #646464; */
+    /* border: 3px solid #f99b1536;
+">somefunc</span>
+<div class="markdown"><blockquote>
+<p>This is a function docstring</p>
+</blockquote>
+
+
+</div>
+</div>
+
 ```
 
-<div class="markdown"><p><code>showDoc&#40;some_func&#41;</code> would show the function like this 👇</p>
+<div class="markdown"><p><code>showDoc&#40;somefunc&#41;</code> would show the function like this 👇</p>
 </div>
-> This is a function docstring
-
-
-
-
+<div class="markdown"><p><code>showDoc&#40;somefunc&#41;</code></p>
+</div>
 ## Exporting code
 
 <div class="markdown"><p>Once you are done with your notebook and you can run <code>notebook2script&#40;&#41;</code>. This reads the current notebook in the &quot;nbs&quot; folder, scrubs out all the cells which are do not start with <code>#export</code> and creates a module file in the src folder.</p>
@@ -102,14 +109,14 @@ Main.workspace2.some_func
 <p>For example, the exported source code file would have the following structure 👇</p>
 <pre><code>module Example
 
-function some_func&#40;x&#41;
+function somefunc&#40;x&#41;
     x&#43;1
 end
 
 end</code></pre>
 </div>
 <div class="markdown"><p>Once you are happy with the code you can export the source code by calling </p>
-<p><code>notebook2script&#40;nbs_dir, src_dir&#41;</code></p>
+<p><code>notebook2script&#40;nbsdir, srcdir&#41;</code></p>
 <p>Here &quot;nbs<em>dir&quot; is the directory where your notebooks are stored and the &quot;src</em>dir&quot; is the directory where you want your source code files to be exported. This is usually the <code>src</code> directory.</p>
 </div>
 ## Building documentation
