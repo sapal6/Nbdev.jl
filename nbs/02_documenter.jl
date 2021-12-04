@@ -247,7 +247,6 @@ end
 > stitchcode(cellop::AbstractString)--> Removes the quotes from a string and creates a code block with that string inside the newely formed code block
 """
 function stitchcode(cellop::AbstractString)
-
 	cleanedop=Export.strip(Export.strip(cellop,"\""), "\"")
 	string("```","\n$cleanedop\n","```\n")
 end
@@ -428,7 +427,7 @@ function createpage(fn::AbstractString, nb::Notebook)
 				cleanedop=replace(cleanedop, "\\n"=>"\n")
 				push!(sections, Section(cleanedop))
 			elseif occursin( "#noop", cell.code)
-				stitchedcode=stitchcode(cell.code)
+				stitchedcode=stitchcode([cell.code])
 			    push!(sections, Section(stitchedcode))
 			else
 				stitchedcode=stitchcode([cell.code, cell.output.body])
