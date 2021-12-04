@@ -356,6 +356,7 @@ showdoc(collectfuncdocs)
 showdoc(showdoc)
 
 # ╔═╡ 2b104160-4e83-11eb-1a78-a96f77e1aff4
+#noop
 begin
 """
 > An example of a struct
@@ -370,6 +371,9 @@ mystruct=Mystruct("test")
 
 # ╔═╡ df1998f0-4ea1-11eb-0626-dbead118373f
 typeof(mystruct)
+
+# ╔═╡ 26e54202-9cc7-4b8f-b5b4-d83f72547dbc
+md"`showdoc(Mystruct)`"
 
 # ╔═╡ e1d02746-3098-4832-af6c-81f99fab6ca5
 showdoc(Mystruct)
@@ -402,7 +406,6 @@ function maintainheading(str:: AbstractString)
 	res
 end
 
-
 """
 > CreatePage--> Creates the Page type from the markdown and example code cells of the supplied notebook. The filename is the name of the notebook which is parsed.
 """
@@ -424,6 +427,9 @@ function createpage(fn::AbstractString, nb::Notebook)
 				cleanedop=Export.strip(cell.output.body, "\"")
 				cleanedop=replace(cleanedop, "\\n"=>"\n")
 				push!(sections, Section(cleanedop))
+			elseif occursin( "#noop", cell.code)
+				stitchedcode=stitchcode(cell.code)
+			    push!(sections, Section(stitchedcode))
 			else
 				stitchedcode=stitchcode([cell.code, cell.output.body])
 			    push!(sections, Section(stitchedcode))
@@ -908,6 +914,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═2b104160-4e83-11eb-1a78-a96f77e1aff4
 # ╠═449bb6f2-4e83-11eb-27ae-298352285e98
 # ╠═df1998f0-4ea1-11eb-0626-dbead118373f
+# ╠═26e54202-9cc7-4b8f-b5b4-d83f72547dbc
 # ╠═e1d02746-3098-4832-af6c-81f99fab6ca5
 # ╠═10866060-5980-11eb-0422-e7300713c6a4
 # ╠═4fee8610-5980-11eb-137a-83f4aa64e933

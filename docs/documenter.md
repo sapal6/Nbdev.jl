@@ -73,7 +73,7 @@ end
 ------
 Output
 ------
-Any["Main.workspace#2.Section", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "c458a8142b46d11a"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "757a8b440d8a9937"), MIME type application/vnd.pluto.tree+object))], :Array, "", "dc6de28b598476d0"]
+Any["Main.workspace#2.Section", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "ff2d9e7b8311a217"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "1822844534fb6dde"), MIME type application/vnd.pluto.tree+object))], :Array, "", "ee4d30a77bedbe08"]
 ```
 
 ```
@@ -81,7 +81,7 @@ page
 ------
 Output
 ------
-Any["Page", Any[(:sections, (Dict{Symbol, Any}(:prefix => "Main.workspace#2.Section", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "c458a8142b46d11a"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "757a8b440d8a9937"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "dc6de28b598476d0"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"Monkey module\"", MIME type text/plain))], :struct, "Page", "1a516b70110a8492"]
+Any["Page", Any[(:sections, (Dict{Symbol, Any}(:prefix => "Main.workspace#2.Section", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "ff2d9e7b8311a217"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "1822844534fb6dde"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "ee4d30a77bedbe08"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"Monkey module\"", MIME type text/plain))], :struct, "Page", "204aebc17fcbf6dd"]
 ```
 
 ```
@@ -140,7 +140,7 @@ end
 ------
 Output
 ------
-Any["String", Tuple{Int64, Any}[(1, ("\"i\"", MIME type text/plain)), (2, ("\"j\"", MIME type text/plain))], :Array, "", "8c45df693c91f00d"]
+Any["String", Tuple{Int64, Any}[(1, ("\"i\"", MIME type text/plain)), (2, ("\"j\"", MIME type text/plain))], :Array, "", "aca830f4fb62a07c"]
 ```
 
 ## collectfuncdocs
@@ -157,7 +157,7 @@ collectfuncdocs(stitchcode).funcdocs
 ------
 Output
 ------
-Any["String", Tuple{Int64, Any}[(1, ("\"> stitchcode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.\\n\\n\"", MIME type text/plain)), (2, ("\"> stitchcode(cellop::AbstractString)–> Removes the quotes from a string and creates a code block with that string inside the newely formed code block\\n\\n\"", MIME type text/plain)), (3, ("\"> stitchcode(fdocs::Functiondocs)–> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object\\n\\n\"", MIME type text/plain))], :Array, "", "c31b4c6c30b9cf6"]
+Any["String", Tuple{Int64, Any}[(1, ("\"> stitchcode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.\\n\\n\"", MIME type text/plain)), (2, ("\"> stitchcode(cellop::AbstractString)–> Removes the quotes from a string and creates a code block with that string inside the newely formed code block\\n\\n\"", MIME type text/plain)), (3, ("\"> stitchcode(fdocs::Functiondocs)–> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object\\n\\n\"", MIME type text/plain))], :Array, "", "c5c566172f13e744"]
 ```
 
 ## Higher Level API
@@ -172,40 +172,15 @@ Any["String", Tuple{Int64, Any}[(1, ("\"> stitchcode(cell::Cell)–> Stitches th
 
 
 ```
+#noop
 begin
-"""
+
 > An example of a struct
-"""
+
 struct Mystruct
 	name
 end
 end
-------
-Output
-------
-<div class="pluto-docs-binding" style="margin: .5em; padding: 1em; background: #8383830a; border-radius: 1em;">
-<span style="
-    display: inline-block;
-    transform: translate(-19px, -16px);
-    font-family: 'JuliaMono', monospace;
-    font-size: .9rem;
-    font-weight: 700;
-    /* height: 1px; */
-    margin-top: -1em;
-    background: white;
-    padding: 4px;
-    border-radius: 7px;
-    /* color: #646464; */
-    /* border: 3px solid #f99b1536;
-">Mystruct</span>
-<div class="markdown"><blockquote>
-<p>An example of a struct</p>
-</blockquote>
-
-
-</div>
-</div>
-
 ```
 
 ```
@@ -213,7 +188,7 @@ mystruct=Mystruct("test")
 ------
 Output
 ------
-Any["Mystruct", Any[(:name, ("\"test\"", MIME type text/plain))], :struct, "Mystruct", "b4e6c9a65b32af0d"]
+Any["Mystruct", Any[(:name, ("\"test\"", MIME type text/plain))], :struct, "Mystruct", "ea2076c48790f4e0"]
 ```
 
 ```
@@ -224,6 +199,8 @@ Output
 Mystruct
 ```
 
+<div class="markdown"><p><code>showdoc&#40;Mystruct&#41;</code></p>
+</div>
 > An example of a struct
 
 
@@ -304,7 +281,7 @@ Export.readfilenames(joinpath(pwd()))
 ------
 Output
 ------
-Any["Any", Tuple{Int64, Any}[(1, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\00_nbdev.jl\"", MIME type text/plain)), (2, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\01_export.jl\"", MIME type text/plain)), (3, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\02_documenter.jl\"", MIME type text/plain)), (4, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\03_codeRunner.jl\"", MIME type text/plain)), (5, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\04_makedocs.jl\"", MIME type text/plain)), (6, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\05_make.jl\"", MIME type text/plain)), (7, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\developerguide.jl\"", MIME type text/plain)), (8, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\index.jl\"", MIME type text/plain)), (9, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\styleguide.jl\"", MIME type text/plain)), (10, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\tutorial.jl\"", MIME type text/plain))], :Array, "", "880e6e47b2f16e0a"]
+Any["Any", Tuple{Int64, Any}[(1, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\00_nbdev.jl\"", MIME type text/plain)), (2, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\01_export.jl\"", MIME type text/plain)), (3, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\02_documenter.jl\"", MIME type text/plain)), (4, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\03_codeRunner.jl\"", MIME type text/plain)), (5, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\04_makedocs.jl\"", MIME type text/plain)), (6, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\05_make.jl\"", MIME type text/plain)), (7, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\developerguide.jl\"", MIME type text/plain)), (8, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\index.jl\"", MIME type text/plain)), (9, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\styleguide.jl\"", MIME type text/plain)), (10, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\tutorial.jl\"", MIME type text/plain))], :Array, "", "a1f7009ee4daa27c"]
 ```
 
 <div class="markdown"><p>The <code>export2md&#40;&#41;</code> is what gets summoned when document generation is invoked. Like most things in nbdev &#40;and unlike most things in life&#41; this too gets invoked automatically. 🥳</p>

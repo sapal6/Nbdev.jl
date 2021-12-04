@@ -168,7 +168,6 @@ function maintainheading(str:: AbstractString)
 	res
 end
 
-
 """
 > CreatePage--> Creates the Page type from the markdown and example code cells of the supplied notebook. The filename is the name of the notebook which is parsed.
 """
@@ -190,6 +189,9 @@ function createpage(fn::AbstractString, nb::Notebook)
 				cleanedop=Export.strip(cell.output.body, "\"")
 				cleanedop=replace(cleanedop, "\\n"=>"\n")
 				push!(sections, Section(cleanedop))
+			elseif occursin( "#noop", cell.code)
+				stitchedcode=stitchcode(cell.code)
+			    push!(sections, Section(stitchedcode))
 			else
 				stitchedcode=stitchcode([cell.code, cell.output.body])
 			    push!(sections, Section(stitchedcode))
