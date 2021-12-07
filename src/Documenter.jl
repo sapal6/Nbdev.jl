@@ -106,7 +106,10 @@ begin
 > stitchcode(cell::Cell)--> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.
 """
 function stitchcode(cell::AbstractArray)
-	op=values(cell[2])
+	op=' '
+	if length(cell) > 1
+	    op=values(cell[2])
+	end
 	string("```","\n$(cell[1])\n","------\nOutput\n------\n","$(op)\n", "```\n")
 end
 	
