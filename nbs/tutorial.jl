@@ -105,6 +105,44 @@ md"Any other cell which neither has the `#hide` nor the `#export` anchor, is exp
 
 The output and the code of an example cell appears in the final document."
 
+# ╔═╡ c40eeb9c-dbda-4dc0-9fc3-e91be447ac25
+md"### #noop"
+
+# ╔═╡ 929d68db-fac5-4507-8316-a0dcf71df403
+md"Nbdev captures the output for cells which are not marked with `#export` by default. but there might be times when you have an example for which you just want to show the code and not the output. Such cases can be handled by the `#noop` anchor. Just start such cells with `#noop` and nbdev will not capture output for such cells."
+
+# ╔═╡ fac3e16d-76ff-476e-a2c4-ff34f7c3f1cc
+md"""
+```
+begin
+#noop
+"
+some experiment
+"
+function myexperiment
+    1+1
+end
+myexperiment
+end
+```"""
+
+# ╔═╡ 9fcf1320-0ddf-471c-a584-092586122347
+md"In the above case even though Pluto displays the docstrign as an output, that output won't be displayed in your document.
+
+As another example let's consider something like the code below"
+
+# ╔═╡ a3ea3f66-a66c-41d1-8c3c-c1cd3a879871
+md"
+```
+#noop 
+add = 1+1
+add
+````
+"
+
+# ╔═╡ 77b75b82-c684-4377-882a-ff0a4283c7f5
+md"The output for such code cell won't be captured in the documentation. Only the code will be displayed once you build the document."
+
 # ╔═╡ a7714f66-3eff-481a-af7f-ae26c2b8e8e2
 md"## Docstrings"
 
@@ -154,6 +192,22 @@ Once you are happy with the code you can export the source code by calling
 `notebook2script(nbsdir, srcdir)`
 
 Here "nbs_dir" is the directory where your notebooks are stored and the "src_dir" is the directory where you want your source code files to be exported. This is usually the `src` directory."""
+
+# ╔═╡ 7b1fdf81-870a-4977-8a9d-c867ee2861ff
+md"## Tests"
+
+# ╔═╡ 6ace0489-21ae-488f-8ea5-d3087651394c
+md"""Nbdev comes with support for [PlutoTests(in alpha)](https://github.com/JuliaPluto/PlutoTest.jl) out of the box.
+
+What this means is that you can write reactive tests within the same notebook where you are writing your code. when you run that particular notebook, the affected tests are executed. So, you can write tests as you write your code.
+
+In addition to reactivity you can also take advantage of other goodies in PlutoTests like "time travel" to see the different stages of your code (follow the link to PlutoTests for further details)."""
+
+# ╔═╡ 50ef31b0-b5f2-4a8e-b123-1681645a031f
+md"!!! note
+Currently PlutoTests is in **alpha** so use it with caution. However, you can even use the native test suite in Julia to write your tests but won't get features like time travel while using the native test suite.
+
+Automatic execution of tests using github actions or Travis CI is planned for future versions of PlutoTest"
 
 # ╔═╡ bc79b045-8969-4014-b7ac-01282d969c8c
 md"## Building documentation"
@@ -257,6 +311,12 @@ You project website would be published at the following url --> "<username>.gith
 # ╠═809102dd-b91a-458f-b5c7-2a49c7536d3b
 # ╠═f8391a08-edf6-499c-8e8d-8f731dad8fd4
 # ╠═4d12cf7f-54d7-4a06-9749-a97246e7564e
+# ╠═c40eeb9c-dbda-4dc0-9fc3-e91be447ac25
+# ╠═929d68db-fac5-4507-8316-a0dcf71df403
+# ╠═fac3e16d-76ff-476e-a2c4-ff34f7c3f1cc
+# ╠═9fcf1320-0ddf-471c-a584-092586122347
+# ╠═a3ea3f66-a66c-41d1-8c3c-c1cd3a879871
+# ╠═77b75b82-c684-4377-882a-ff0a4283c7f5
 # ╠═a7714f66-3eff-481a-af7f-ae26c2b8e8e2
 # ╠═926b30a2-1a86-4952-a991-d75b5ce6e545
 # ╠═5bd889ce-9522-462b-a843-508061926306
@@ -265,6 +325,9 @@ You project website would be published at the following url --> "<username>.gith
 # ╠═306239c9-7fd6-442e-8b97-db674398b307
 # ╠═a8955cbd-2530-405f-b876-18bb35e0b008
 # ╠═84f7040c-0ca9-4d61-abfe-789fc446ebb2
+# ╠═7b1fdf81-870a-4977-8a9d-c867ee2861ff
+# ╠═6ace0489-21ae-488f-8ea5-d3087651394c
+# ╠═50ef31b0-b5f2-4a8e-b123-1681645a031f
 # ╠═bc79b045-8969-4014-b7ac-01282d969c8c
 # ╠═eb26aca4-4b12-435d-941f-edb18bda0c3c
 # ╠═547f7e70-71bf-44a6-ba62-0e35edf688fc

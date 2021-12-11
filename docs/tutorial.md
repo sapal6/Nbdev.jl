@@ -58,6 +58,28 @@ myexperiment &#61; 1&#43;1</code></pre>
 <div class="markdown"><p>Any other cell which neither has the <code>#hide</code> nor the <code>#export</code> anchor, is exported as an example block. For such a block the cell is executed and the output is captured.</p>
 <p>The output and the code of an example cell appears in the final document.</p>
 </div>
+<div class="markdown"><h3>#noop</h3>
+</div>
+<div class="markdown"><p>Nbdev captures the output for cells which are not marked with <code>#export</code> by default. but there might be times when you have an example for which you just want to show the code and not the output. Such cases can be handled by the <code>#noop</code> anchor. Just start such cells with <code>#noop</code> and nbdev will not capture output for such cells.</p>
+</div>
+<div class="markdown"><pre><code>begin
+#noop
+&quot;
+some experiment
+&quot;
+function myexperiment
+    1&#43;1
+end
+myexperiment
+end</code></pre>
+</div>
+<div class="markdown"><p>In the above case even though Pluto displays the docstrign as an output, that output won&#39;t be displayed in your document.</p>
+<p>As another example let&#39;s consider something like the code below</p>
+</div>
+<div class="markdown"><p><code>#noop  add &#61; 1&#43;1 add</code>&#96;</p>
+</div>
+<div class="markdown"><p>The output for such code cell won&#39;t be captured in the documentation. Only the code will be displayed once you build the document.</p>
+</div>
 ## Docstrings
 
 <div class="markdown"><p>Define a docstring for functions, structs etc. and use the special function <code>showDoc</code> to document that function or struct</p>
@@ -118,6 +140,16 @@ end</code></pre>
 <div class="markdown"><p>Once you are happy with the code you can export the source code by calling </p>
 <p><code>notebook2script&#40;nbsdir, srcdir&#41;</code></p>
 <p>Here &quot;nbs<em>dir&quot; is the directory where your notebooks are stored and the &quot;src</em>dir&quot; is the directory where you want your source code files to be exported. This is usually the <code>src</code> directory.</p>
+</div>
+## Tests
+
+<div class="markdown"><p>Nbdev comes with support for <a href="https://github.com/JuliaPluto/PlutoTest.jl">PlutoTests&#40;in alpha&#41;</a> out of the box.</p>
+<p>What this means is that you can write reactive tests within the same notebook where you are writing your code. when you run that particular notebook, the affected tests are executed. So, you can write tests as you write your code.</p>
+<p>In addition to reactivity you can also take advantage of other goodies in PlutoTests like &quot;time travel&quot; to see the different stages of your code &#40;follow the link to PlutoTests for further details&#41;.</p>
+</div>
+<div class="markdown"><div class="admonition note"><p class="admonition-title">Note</p></div>
+<p>Currently PlutoTests is in <strong>alpha</strong> so use it with caution. However, you can even use the native test suite in Julia to write your tests but won&#39;t get features like time travel while using the native test suite.</p>
+<p>Automatic execution of tests using github actions or Travis CI is planned for future versions of PlutoTest</p>
 </div>
 ## Building documentation
 

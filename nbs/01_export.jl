@@ -12,6 +12,9 @@ import Pkg
 Pkg.activate(Base.current_project())
 end
 
+# ╔═╡ 5b3f2908-4bcf-4dea-b59b-e54a5f11f7b5
+using PlutoTest
+
 # ╔═╡ 1cfdfbea-3ef7-4a38-b42b-8610d0f90646
 #hide
 begin
@@ -76,7 +79,8 @@ sample_code="a=1+1"
 nucleus=Nucleus(sample_code)
 
 # ╔═╡ 0361d7d0-54c0-11eb-0a50-79dc00a9d848
-nucleus.code
+#noop
+@test nucleus.code == "a=1+1"
 
 # ╔═╡ d236da00-54c6-11eb-3afe-859ccc31d041
 md"## Nb type"
@@ -128,10 +132,12 @@ samplecodes=[Nucleus("a=1+1"), Nucleus("function test(x)  x+1 end"), Nucleus("te
 nb=Nb(samplecodes, "testnb.jl")
 
 # ╔═╡ cf50547e-54c9-11eb-132d-894c0cfe9ccc
-nb.nuclei
+#noop
+@test nb.nuclei == samplecodes
 
 # ╔═╡ 99fd66a0-54ca-11eb-3d11-d92049fd2f6a
-nb.name
+#noop
+@test nb.name == "testnb.jl"
 
 # ╔═╡ 296282f0-1770-11eb-0900-b37a94fbc69c
 #export
@@ -285,7 +291,8 @@ Documenter.showdoc(_loadnb)
 testnb= loadnb("01_export.jl", "#export")
 
 # ╔═╡ e229a820-1777-11eb-37c5-c108ab5f7110
-testnb.nuclei[1].code
+#noop
+@test testnb.nuclei[1].code == "#export\nimport Pluto: Notebook, Cell, load_notebook_nobackup"
 
 # ╔═╡ 54f54160-176f-11eb-0317-3542cb72f89f
 md"something to save files"
@@ -312,8 +319,12 @@ strip=(x::String,y) -> replace(x, y=>"")
 # ╔═╡ 526b7d10-54d7-11eb-20f1-5d26e020ff16
 md"#### Example"
 
+# ╔═╡ 8be444d7-406f-4dcd-a8ec-9d6e34435481
+fn = "01_export.jl"
+
 # ╔═╡ 7b999f90-1775-11eb-031e-69d461ec4150
-"module $(uppercasefirst(strip(strip(k, r"[0-9_]"), r".jl")))"
+#noop
+@test uppercasefirst(strip(strip(fn, r"[0-9_]"), r".jl")) == "Export"
 
 # ╔═╡ a0169477-e5ba-43bc-b86e-a377fa3b6e39
 md"## savenb"
@@ -385,8 +396,21 @@ Documenter.showdoc(readfilenames)
 # ╔═╡ 4259e9b0-54d8-11eb-3768-85ede85ab315
 md"#### Example"
 
+# ╔═╡ 3a378ca5-ff38-44ac-ba50-db48679b1eaa
+expected_list = ["..\\nbs\\00_nbdev.jl"
+"..\\nbs\\01_export.jl"
+"..\\nbs\\02_documenter.jl"
+"..\\nbs\\03_codeRunner.jl"
+"..\\nbs\\04_makedocs.jl"
+"..\\nbs\\05_make.jl"
+"..\\nbs\\developerguide.jl"
+"..\\nbs\\index.jl"
+"..\\nbs\\styleguide.jl"
+"..\\nbs\\tutorial.jl"]
+
 # ╔═╡ 9b436180-177c-11eb-1c9a-ffbac62c95df
-readfilenames(joinpath("..", "nbs"))
+#noop
+@test readfilenames(joinpath("..", "nbs")) == expected_list
 
 # ╔═╡ 528689b0-54d8-11eb-35f4-2b56012fa4e6
 md"## exportfile"
@@ -440,7 +464,8 @@ Documenter.showdoc(getfileextension)
 md"#### Example"
 
 # ╔═╡ 06649ce0-177d-11eb-2092-d7160725252a
- getfileextension("test.jl")
+#noop
+ @test getfileextension("test.jl") == ".jl"
 
 # ╔═╡ 4de0d9f0-54d9-11eb-38c6-3de69a7ec1db
 md"## notebook2script"
@@ -472,6 +497,7 @@ notebook2script(joinpath("..", "nbs"), joinpath("..", "src"))
 # ╠═5b4e526e-3dfa-11eb-3472-bd753d60c119
 # ╠═5bb30a64-043e-4ad0-9d60-3d470d22fd8f
 # ╠═0aecd4c0-0e14-11eb-1619-4f5e0ced1279
+# ╠═5b3f2908-4bcf-4dea-b59b-e54a5f11f7b5
 # ╠═2181580b-7f3e-456f-aa62-68130d9b9178
 # ╠═1cfdfbea-3ef7-4a38-b42b-8610d0f90646
 # ╠═822b3787-f4ec-4edf-bd8d-7469c9ccc8bf
@@ -520,6 +546,7 @@ notebook2script(joinpath("..", "nbs"), joinpath("..", "src"))
 # ╠═4c511e5e-1771-11eb-3c8e-5785e7399d70
 # ╠═55ed2102-597d-11eb-342c-b589f4681bdd
 # ╠═526b7d10-54d7-11eb-20f1-5d26e020ff16
+# ╠═8be444d7-406f-4dcd-a8ec-9d6e34435481
 # ╠═7b999f90-1775-11eb-031e-69d461ec4150
 # ╠═a0169477-e5ba-43bc-b86e-a377fa3b6e39
 # ╠═76f97bd0-177b-11eb-2d78-77c72b2aef81
@@ -529,6 +556,7 @@ notebook2script(joinpath("..", "nbs"), joinpath("..", "src"))
 # ╠═cdada98e-0e13-11eb-30aa-1777efffb181
 # ╠═37ffeb40-54d8-11eb-0c8a-af262b2bec28
 # ╠═4259e9b0-54d8-11eb-3768-85ede85ab315
+# ╠═3a378ca5-ff38-44ac-ba50-db48679b1eaa
 # ╠═9b436180-177c-11eb-1c9a-ffbac62c95df
 # ╠═528689b0-54d8-11eb-35f4-2b56012fa4e6
 # ╠═0be54350-177c-11eb-285a-93dd4d45e40e

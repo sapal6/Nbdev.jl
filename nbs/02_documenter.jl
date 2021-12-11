@@ -20,6 +20,9 @@ using Distributed
 #export
 using ProgressMeter
 
+# ╔═╡ 295d813f-1e85-4b2e-a953-1bd0087a85e2
+using PlutoTest
+
 # ╔═╡ 9930ad11-84da-45e0-95dc-f46c4d48174a
 #hide
 using PlutoUI
@@ -73,10 +76,10 @@ end
 md"## Example"
 
 # ╔═╡ cfb6d710-3f97-11eb-31ed-6daa12cf592e
-begin
 section=Section("This is a test line")
-line(section)
-end
+
+# ╔═╡ 610d9263-645a-46aa-8f16-12e90787b7bc
+@test line(section) == "This is a test line"
 
 # ╔═╡ 309585e2-3f93-11eb-0873-d9b0d7a6200e
 md"## Page Type"
@@ -579,11 +582,13 @@ PLUTO_PROJECT_TOML_CONTENTS = """
 Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 Markdown = "d6f4376e-aef5-505a-96c1-9c027394607a"
 Pluto = "c3e4b0f8-55cb-11ea-2926-15256bba5781"
+PlutoTest = "cb4044da-4d16-4ffa-a6a3-8cad7f73ebdc"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
 ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
 
 [compat]
 Pluto = "~0.16.1"
+PlutoTest = "~0.2.0"
 PlutoUI = "~0.7.10"
 ProgressMeter = "~1.7.1"
 """
@@ -751,6 +756,12 @@ git-tree-sha1 = "d4955d6b5267ed826d03e3f05cc23426492b23c9"
 uuid = "c3e4b0f8-55cb-11ea-2926-15256bba5781"
 version = "0.16.1"
 
+[[PlutoTest]]
+deps = ["HypertextLiteral", "InteractiveUtils", "Markdown", "Test"]
+git-tree-sha1 = "92b8ae1eee37c1b8f70d3a8fb6c3f2d81809a1c5"
+uuid = "cb4044da-4d16-4ffa-a6a3-8cad7f73ebdc"
+version = "0.2.0"
+
 [[PlutoUI]]
 deps = ["Base64", "Dates", "HypertextLiteral", "InteractiveUtils", "JSON", "Logging", "Markdown", "Random", "Reexport", "Suppressor"]
 git-tree-sha1 = "26b4d16873562469a0a1e6ae41d90dec9e51286d"
@@ -856,6 +867,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═b068dfd2-0eb3-11eb-109a-d1b6ef1eeca0
 # ╠═1d83078e-2024-11eb-0e5f-51310d134662
 # ╠═27ff1d70-1201-11eb-2003-27cb52571be6
+# ╠═295d813f-1e85-4b2e-a953-1bd0087a85e2
 # ╠═9930ad11-84da-45e0-95dc-f46c4d48174a
 # ╠═fcfaccaf-cc88-44bb-8971-c1328d8599ee
 # ╠═7081aafd-d6ef-4672-99b0-6080497e2498
@@ -866,6 +878,7 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═0d10aed0-3f9b-11eb-1bcd-dbdb5e5068f4
 # ╠═f1318ca0-3f97-11eb-3727-3f71064c77bf
 # ╠═cfb6d710-3f97-11eb-31ed-6daa12cf592e
+# ╠═610d9263-645a-46aa-8f16-12e90787b7bc
 # ╠═309585e2-3f93-11eb-0873-d9b0d7a6200e
 # ╠═28a4e100-17ac-11eb-172c-2d0e73460caa
 # ╠═87c22750-3f94-11eb-201c-a3c6374881f4

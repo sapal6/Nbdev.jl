@@ -1,4 +1,12 @@
 <h1>Documenter</h1>
+```
+using PlutoTest
+------
+Output
+------
+
+```
+
 ## Lower Level Entities&#40;Structs, methods etc.&#41;
 <p>These are the objects on which nbdev&#39;s Documenter module was built. You can use it to extend nbdev but these are automtically used by Nbdev&#39;s internal engine to generate code files for you.</p>
 
@@ -25,14 +33,365 @@
 ## Example
 
 ```
-begin
 section=Section("This is a test line")
-line(section)
-end
 ------
 Output
 ------
-"This is a test line"
+Any["Section", Any[(:line, ("\"This is a test line\"", MIME type text/plain))], :struct, "Section", "4ea02a8ac898d269"]
+```
+
+```
+@test line(section) == "This is a test line"
+------
+Output
+------
+
+<div class='pluto-test call correct pass infix-operator'>
+	<script>
+	
+	const div = currentScript.parentElement
+	div.addEventListener("click", (e) => {
+		if(!div.classList.contains("expanded") || e.target.closest("pt-dot:not(.floating)") != null){
+			div.classList.toggle("expanded")
+			e.stopPropagation()
+		}
+	})
+	
+	const throttled = (f, delay) => {
+		const waiting = { current: false }
+		return () => {
+			if (!waiting.current) {
+				f()
+				waiting.current = true
+				setTimeout(() => {
+					f()
+					waiting.current = false
+				}, delay)
+			}
+		}
+	}
+	
+	const dot = div.querySelector("pt-dot")
+	const dot_top = div.querySelector("pt-dot.top")
+	const dot_bot = div.querySelector("pt-dot.bottom")
+	
+	const is_chrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
+	const is_firefox = /Firefox/.test(navigator.userAgent) && /Mozilla/.test(navigator.userAgent)
+	
+	// safari is too slow
+	
+	if(is_chrome || is_firefox){
+
+	const intersect = (r) => {
+		const topdistance = r.top
+		const botdistance = window.innerHeight - r.bottom
+	
+		
+		const t = (x) => `translate(${2*Math.sqrt(Math.max(0,-50-x))}px,0)`
+		dot_top.style.transform = t(topdistance)
+		dot_bot.style.transform = t(botdistance)
+
+		div.classList.toggle("show-top-float", topdistance < 4)
+		div.classList.toggle("show-bottom-float", botdistance < 4)
+	}
+	
+	intersect(dot.getBoundingClientRect())
+	
+	const scroll_listener = throttled(() => {
+		intersect(dot.getBoundingClientRect())
+	}, 200)
+	
+	window.addEventListener("scroll", scroll_listener)
+
+	let observer = new IntersectionObserver((es) => {
+		const e = es[0]
+		intersect(e.boundingClientRect)
+	},  {
+	  rootMargin: '-4px',
+	  threshold: 1.0
+	});
+
+	observer.observe(dot)
+	invalidation.then(() => {
+		window.removeEventListener("scroll", scroll_listener)
+		observer.unobserve(dot)
+	})
+	
+	Array.from(div.querySelectorAll("pt-dot.floating")).forEach(e => {
+		e.addEventListener("click", () => dot.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"}))
+	})
+	
+	}
+	
+	</script>
+	<pt-dot></pt-dot>
+	<pt-dot class="floating top"></pt-dot>
+	<pt-dot class="floating bottom"></pt-dot>
+
+	<p-frame-viewer>
+	<p-frames>
+	<slotted-code>
+<line-like><pre-ish>line(section) == &quot;This is a test line&quot;</pre-ish></line-like>
+</slotted-code><slotted-code>
+<line-like><pre-ish>line(</pre-ish>    <pluto-display></pluto-display>
+    <script id=rekootzaffeotmje>
+
+        // see https://plutocon2021-demos.netlify.app/fonsp%20%E2%80%94%20javascript%20inside%20pluto to learn about the techniques used in this script
+        
+        const body = /* See the documentation for PlutoRunner.publish_to_js */ getPublishedObject("c6085d80-5a60-11ec-2c25-b3dec1737c9b/610d9263-645a-46aa-8f16-12e90787b7bc/rekootzaffeotmje")
+        const mime = "application/vnd.pluto.tree+object"
+        
+        const create_new = this == null || this._mime !== mime
+        
+        const display = create_new ? currentScript.previousElementSibling : this
+        
+        display.persist_js_state = true
+        display.body = body
+        if(create_new) {
+            // only set the mime if necessary, it triggers a second preact update
+            display.mime = mime
+            // add it also as unwatched property to prevent interference from Preact
+            display._mime = mime
+        }
+        return display
+
+    </script>
+	<pre-ish>) == &quot;This is a test line&quot;</pre-ish></line-like>
+</slotted-code><slotted-code>
+<line-like>    <pluto-display></pluto-display>
+    <script id=verieirftcryqksk>
+
+        // see https://plutocon2021-demos.netlify.app/fonsp%20%E2%80%94%20javascript%20inside%20pluto to learn about the techniques used in this script
+        
+        const body = /* See the documentation for PlutoRunner.publish_to_js */ getPublishedObject("c6085d80-5a60-11ec-2c25-b3dec1737c9b/610d9263-645a-46aa-8f16-12e90787b7bc/verieirftcryqksk")
+        const mime = "text/plain"
+        
+        const create_new = this == null || this._mime !== mime
+        
+        const display = create_new ? currentScript.previousElementSibling : this
+        
+        display.persist_js_state = true
+        display.body = body
+        if(create_new) {
+            // only set the mime if necessary, it triggers a second preact update
+            display.mime = mime
+            // add it also as unwatched property to prevent interference from Preact
+            display._mime = mime
+        }
+        return display
+
+    </script>
+	<pre-ish> == &quot;This is a test line&quot;</pre-ish></line-like>
+</slotted-code><slotted-code>
+<line-like>    <pluto-display></pluto-display>
+    <script id=donksimgqpbgxzhn>
+
+        // see https://plutocon2021-demos.netlify.app/fonsp%20%E2%80%94%20javascript%20inside%20pluto to learn about the techniques used in this script
+        
+        const body = /* See the documentation for PlutoRunner.publish_to_js */ getPublishedObject("c6085d80-5a60-11ec-2c25-b3dec1737c9b/610d9263-645a-46aa-8f16-12e90787b7bc/donksimgqpbgxzhn")
+        const mime = "text/plain"
+        
+        const create_new = this == null || this._mime !== mime
+        
+        const display = create_new ? currentScript.previousElementSibling : this
+        
+        display.persist_js_state = true
+        display.body = body
+        if(create_new) {
+            // only set the mime if necessary, it triggers a second preact update
+            display.mime = mime
+            // add it also as unwatched property to prevent interference from Preact
+            display._mime = mime
+        }
+        return display
+
+    </script>
+	<pre-ish></pre-ish></line-like>
+</slotted-code>
+	</p-frames>
+	
+	<p-frame-controls>
+		<img src="https://cdn.jsdelivr.net/gh/ionic-team/ionicons@5.5.1/src/svg/time-outline.svg" style="width: 1em; height: 1em; transform: scale(-1,1); opacity: .5; margin-left: 2em;">
+		<input class="timescrub" style="filter: hue-rotate(149deg) grayscale(.9);" type=range min=1 max='4' value='3'>
+	</p-frame-controls>
+	
+	
+	<script>
+	const div = currentScript.parentElement
+	
+	const input = div.querySelector(":scope > p-frame-controls > input.timescrub")
+	const frames = div.querySelector(":scope > p-frames")
+	
+	const setviz = () => {
+		Array.from(frames.children).forEach((f,i) => {
+			f.style.display = i + 1 === input.valueAsNumber ? "inherit" : "none"
+		})
+	}
+	
+	setviz()
+	
+	input.addEventListener("input", setviz)
+	</script>
+
+	<style>
+	PlutoTest.PlutoStylesheet("p-frame-viewer {\n\tdisplay: inline-flex;\n\tflex-direction: column;\n}\np-frames,\np-frame-controls {\n\tdisplay: inline-flex;\n}\n")
+	</style>
+</p-frame-viewer>
+</div>
+<style>
+pt-dot {
+	flex: 0 0 auto;
+	background: grey;
+	width: 1em;
+	height: 1em;
+	bottom: -.1em;
+	border-radius: 100%;
+	margin-right: .7em;
+	display: block;
+	position: relative;
+	cursor: pointer;
+}
+
+pt-dot.floating {
+	position: fixed;
+	z-index: 60;
+	visibility: hidden;
+	transition: transform linear 240ms;
+	opacity: .8;
+}
+.show-top-float > pt-dot.floating.top,
+.show-bottom-float > pt-dot.floating.bottom {
+	visibility: visible;
+}
+
+pt-dot.floating.top {
+	top: 5px;
+}
+pt-dot.floating.bottom {
+	bottom: 5px;
+}
+
+
+.fail > pt-dot {
+	background: #f75d5d;
+
+}
+.pass > pt-dot {
+	background: #56a038;
+}
+
+@keyframes fadeout {
+    0% { opacity: 1;}
+    100% { opacity: 0; pointer-events: none;}
+}
+
+
+.pass > pt-dot.floating {
+
+    animation: fadeout 2s;
+
+	animation-fill-mode: both;
+	animation-delay: 2s;
+
+	/*opacity: 0.4;*/
+	
+}
+
+
+.pluto-test {
+	font-family: "JuliaMono", monospace;
+	font-size: 0.75rem;
+	white-space: normal;
+	padding: 4px;
+	
+	min-height: 25px;
+}
+
+
+.pluto-test.pass {
+	color: rgba(0,0,0,.5);
+}
+
+.pluto-test.fail {
+background: linear-gradient(90deg, #ff2e2e14, transparent);
+border-radius: 7px;
+}
+
+
+.pluto-test>.arg_result {
+	flex: 0 0 auto;
+}
+
+.pluto-test>.arg_result>div,
+.pluto-test>.arg_result>div>pluto-display>div {
+	display: inline-flex;
+}
+
+
+.pluto-test>.comma {
+	margin-right: .5em;
+}
+
+.pluto-test.call>code {
+	padding: 0px;
+}
+
+.pluto-test.call.infix-operator>div {
+	overflow-x: auto;
+}
+
+.pluto-test {
+	display: flex;
+	align-items: baseline;
+}
+
+.pluto-test.call.infix-operator>.fname {
+	margin: 0px .6em;
+	/*color: darkred;*/
+}
+
+
+/* expanding */
+
+
+.pluto-test:not(.expanded) {
+	cursor: pointer;
+}
+
+.pluto-test:not(.expanded) > p-frame-viewer > p-frame-controls {
+	display: none;
+	
+}
+
+.pluto-test.expanded > p-frame-viewer {
+    max-width: 100%;
+}
+.pluto-test.expanded > p-frame-viewer > p-frames > slotted-code > line-like {
+	flex-wrap: wrap;
+}
+.pluto-test.expanded > p-frame-viewer > p-frames > slotted-code > line-like > pluto-display[mime="application/vnd.pluto.tree+object"] {
+	/*flex-basis: 100%;*/
+}
+
+slotted-code {
+	font-family: "JuliaMono", monospace;
+	font-size: .75rem;
+	display: flex;
+	flex-direction: column;
+}
+pre-ish {
+	white-space: pre;
+}
+
+line-like {
+	display: flex;
+	align-items: baseline;
+}
+
+</style>
+
+
+
 ```
 
 ## Page Type
@@ -73,7 +432,7 @@ end
 ------
 Output
 ------
-Any["Main.workspace#2.Section", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "25b8074d4b000b4e"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "36f454eb6d78a706"), MIME type application/vnd.pluto.tree+object))], :Array, "", "ab661a846fa76157"]
+Any["Main.workspace#2.Section", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "3382009968da2b6a"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "c161df7d0499e8c3"), MIME type application/vnd.pluto.tree+object))], :Array, "", "40d6347821c2ac00"]
 ```
 
 ```
@@ -81,7 +440,7 @@ page
 ------
 Output
 ------
-Any["Page", Any[(:sections, (Dict{Symbol, Any}(:prefix => "Main.workspace#2.Section", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "25b8074d4b000b4e"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "36f454eb6d78a706"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "ab661a846fa76157"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"Monkey module\"", MIME type text/plain))], :struct, "Page", "ecd320214577aac2"]
+Any["Page", Any[(:sections, (Dict{Symbol, Any}(:prefix => "Main.workspace#2.Section", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "3382009968da2b6a"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "c161df7d0499e8c3"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "40d6347821c2ac00"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"Monkey module\"", MIME type text/plain))], :struct, "Page", "afb96b024399ec9b"]
 ```
 
 ```
@@ -140,7 +499,7 @@ end
 ------
 Output
 ------
-Any["String", Tuple{Int64, Any}[(1, ("\"i\"", MIME type text/plain)), (2, ("\"j\"", MIME type text/plain))], :Array, "", "355fa82a084fd2a"]
+Any["String", Tuple{Int64, Any}[(1, ("\"i\"", MIME type text/plain)), (2, ("\"j\"", MIME type text/plain))], :Array, "", "70203f0a01c7580b"]
 ```
 
 ## collectfuncdocs
@@ -157,7 +516,7 @@ collectfuncdocs(stitchcode).funcdocs
 ------
 Output
 ------
-Any["String", Tuple{Int64, Any}[(1, ("\"> stitchcode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.\\n\\n\"", MIME type text/plain)), (2, ("\"> stitchcode(cellop::AbstractString)–> Removes the quotes from a string and creates a code block with that string inside the newely formed code block\\n\\n\"", MIME type text/plain)), (3, ("\"> stitchcode(fdocs::Functiondocs)–> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object\\n\\n\"", MIME type text/plain))], :Array, "", "505f11943a03b4c0"]
+Any["String", Tuple{Int64, Any}[(1, ("\"> stitchcode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.\\n\\n\"", MIME type text/plain)), (2, ("\"> stitchcode(cellop::AbstractString)–> Removes the quotes from a string and creates a code block with that string inside the newely formed code block\\n\\n\"", MIME type text/plain)), (3, ("\"> stitchcode(fdocs::Functiondocs)–> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object\\n\\n\"", MIME type text/plain))], :Array, "", "540c378fd36d7337"]
 ```
 
 ## Higher Level API
@@ -192,7 +551,7 @@ mystruct=Mystruct("test")
 ------
 Output
 ------
-Any["Mystruct", Any[(:name, ("\"test\"", MIME type text/plain))], :struct, "Mystruct", "f0065dcff90c0b2d"]
+Any["Mystruct", Any[(:name, ("\"test\"", MIME type text/plain))], :struct, "Mystruct", "e8229af8a89c94ab"]
 ```
 
 ```
@@ -285,7 +644,7 @@ Export.readfilenames(joinpath(pwd()))
 ------
 Output
 ------
-Any["Any", Tuple{Int64, Any}[(1, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\00_nbdev.jl\"", MIME type text/plain)), (2, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\01_export.jl\"", MIME type text/plain)), (3, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\02_documenter.jl\"", MIME type text/plain)), (4, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\03_codeRunner.jl\"", MIME type text/plain)), (5, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\04_makedocs.jl\"", MIME type text/plain)), (6, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\05_make.jl\"", MIME type text/plain)), (7, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\developerguide.jl\"", MIME type text/plain)), (8, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\index.jl\"", MIME type text/plain)), (9, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\styleguide.jl\"", MIME type text/plain)), (10, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\tutorial.jl\"", MIME type text/plain))], :Array, "", "151eac83c6293718"]
+Any["Any", Tuple{Int64, Any}[(1, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\00_nbdev.jl\"", MIME type text/plain)), (2, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\01_export.jl\"", MIME type text/plain)), (3, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\02_documenter.jl\"", MIME type text/plain)), (4, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\03_codeRunner.jl\"", MIME type text/plain)), (5, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\04_makedocs.jl\"", MIME type text/plain)), (6, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\05_make.jl\"", MIME type text/plain)), (7, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\developerguide.jl\"", MIME type text/plain)), (8, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\index.jl\"", MIME type text/plain)), (9, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\styleguide.jl\"", MIME type text/plain)), (10, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl\\\\nbs\\\\tutorial.jl\"", MIME type text/plain))], :Array, "", "588a310753f60386"]
 ```
 
 <div class="markdown"><p>The <code>export2md&#40;&#41;</code> is what gets summoned when document generation is invoked. Like most things in nbdev &#40;and unlike most things in life&#41; this too gets invoked automatically. 🥳</p>

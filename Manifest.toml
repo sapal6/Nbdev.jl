@@ -177,6 +177,12 @@ git-tree-sha1 = "39da9dbed4931b85d65029ee78f75231cbfe20c4"
 uuid = "c3e4b0f8-55cb-11ea-2926-15256bba5781"
 version = "0.17.1"
 
+[[PlutoTest]]
+deps = ["HypertextLiteral", "InteractiveUtils", "Markdown", "Test"]
+git-tree-sha1 = "92b8ae1eee37c1b8f70d3a8fb6c3f2d81809a1c5"
+uuid = "cb4044da-4d16-4ffa-a6a3-8cad7f73ebdc"
+version = "0.2.0"
+
 [[PlutoUI]]
 deps = ["AbstractPlutoDingetjes", "Base64", "Dates", "Hyperscript", "HypertextLiteral", "IOCapture", "InteractiveUtils", "JSON", "Logging", "Markdown", "Random", "Reexport", "UUIDs"]
 git-tree-sha1 = "e071adf21e165ea0d904b595544a8e514c8bb42c"
