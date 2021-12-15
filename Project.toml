@@ -1,7 +1,7 @@
 name = "Nbdev"
 uuid = "14b8a8f1-9102-5b29-a752-f990bacb7fe1"
 authors = ["Satyabrata pal"]
-version = "0.1.0"
+version = "0.0.1"
 
 [deps]
 Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
