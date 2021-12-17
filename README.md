@@ -1,4 +1,4 @@
-<h1>Index</h1>
+<h1>Welcome</h1>
 ## Nbdev
 <p>This project is an attempt to port fastai <a href="https://github.com/fastai/nbdev">Nbdev</a> to Julia. Nbdev&#40;both the oriignal version and the Julia version&#41; are based on the idea of using Notebooks for literate programming. </p>
 <p>On a very high level the base idea is this 👇</p>

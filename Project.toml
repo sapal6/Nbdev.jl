@@ -1,5 +1,6 @@
-name = "Nbdev"
+name = "nbdev"
 uuid = "14b8a8f1-9102-5b29-a752-f990bacb7fe1"
+license = "MIT"
 authors = ["Satyabrata pal"]
 version = "0.0.1"
 
@@ -10,3 +11,6 @@ Pluto = "c3e4b0f8-55cb-11ea-2926-15256bba5781"
 PlutoTest = "cb4044da-4d16-4ffa-a6a3-8cad7f73ebdc"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
 ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
+
+[compat]
+julia = "^1.5"
