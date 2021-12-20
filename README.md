@@ -10,3 +10,8 @@
 
 <div class="markdown"><p>Follow the <a href="https://sapal6.github.io/nbdev.jl/coderunner/">tutorial</a> to start experimenting with Nbdev.</p>
 </div>
+
+**This is an Alpha release**
+## Future plans 
+* Backlinks to source code.
+* Automatic scaffolding of projects.
