@@ -37,10 +37,7 @@ md"""In the first cell of your notebook type in the following code 👇"""
 # ╔═╡ 5c86332a-db85-4326-9f17-215a8a0188c8
 md"""
 ```
-begin
-import Pkg
-Pkg.add(url="https://github.com/sapal6/nbdev.jl.git")
-end
+using Nbdev
 ```
 """
 
@@ -51,12 +48,6 @@ md"This will install Nbdev in our notebook environment."
 md"!!! note
 
 *If you don't want to install Nbdev as part of every notebook that you create in your project, then you can follow the other options to install packages for your notebook projects by following the instructions in the [Pluto wiki](https://github.com/fonsp/Pluto.jl/wiki/%F0%9F%8E%81-Package-management).*"
-
-# ╔═╡ 3f5c7fbe-f1f1-4e55-9eff-cba4c9bcd7c7
-md"Once Nbdev is installed, import the package in the usual way."
-
-# ╔═╡ 615ff1a1-31d9-4219-a942-efc8f53bf538
-md"`using Nbdev`"
 
 # ╔═╡ 9258500a-0a33-41cd-b32a-e09e820f84ee
 md"## Start building your project"
@@ -158,10 +149,10 @@ function somefunc()
 end
 
 # ╔═╡ 8c9f1b35-8f88-44ba-8a37-57b92b42980b
-md"`showDoc(somefunc)` would show the function like this 👇"
+md"`showdoc(somefunc)` would show the function like this 👇"
 
 # ╔═╡ 52e3492a-c27d-476f-9010-7d009fd0eeaf
-md"`showDoc(somefunc)`"
+md"`showdoc(somefunc)`"
 
 # ╔═╡ 306239c9-7fd6-442e-8b97-db674398b307
 md"## Exporting code"
@@ -298,8 +289,6 @@ You project website would be published at the following url --> "<username>.gith
 # ╠═5c86332a-db85-4326-9f17-215a8a0188c8
 # ╠═e89e5c16-845e-4d0a-a346-80586c100be0
 # ╠═2ac2c281-ad4a-4364-8f62-5c8202d4e9c1
-# ╠═3f5c7fbe-f1f1-4e55-9eff-cba4c9bcd7c7
-# ╠═615ff1a1-31d9-4219-a942-efc8f53bf538
 # ╠═9258500a-0a33-41cd-b32a-e09e820f84ee
 # ╠═dedef829-e43c-41c9-8238-b9d631dccb35
 # ╠═99d43364-5ac6-43bb-a70c-20a79a463fdf

@@ -9,7 +9,11 @@ using InteractiveUtils
 using PlutoUI
 
 # ╔═╡ c1c575f0-f8b3-11eb-3679-27a9b018100f
-md"""## Nbdev
+md"""
+
+**Alpha Release**
+
+## Nbdev
 This project is an attempt to port fastai [Nbdev](https://github.com/fastai/nbdev) to Julia. Nbdev(both the oriignal version and the Julia version) are based on the idea of using Notebooks for literate programming. 
 
 On a very high level the base idea is this 👇
@@ -24,7 +28,26 @@ On the documentation side, I am using Mkdocs as the document generator while the
 md"## Getting-started"
 
 # ╔═╡ c36b7a25-4b76-4c91-a77e-a677513158d0
-md"Follow the [tutorial](https://sapal6.github.io/nbdev.jl/coderunner/) to start experimenting with Nbdev."
+md"Follow the [tutorial](https://sapal6.github.io/Nbdev.jl/tutorial/) to start experimenting with Nbdev."
+
+# ╔═╡ bb78bb31-8a72-4e9e-a1c5-31457fd4326c
+md"## First among the version
+
+This is an alpha release of Nbdev so expect some breaks in plumbing here and there. Some features are still under development and are not included in this version.
+
+* Feel free to log any issues, bugs (which I expect to come) [here](https://github.com/sapal6/Nbdev.jl/issues)
+
+* Anything that you feel like is missing and want to discuss the same or havean idea then start a new discussion [here](https://github.com/sapal6/Nbdev.jl/discussions)"
+
+
+# ╔═╡ 6ee57f9a-dfd7-4bea-802d-eba78f8fc99c
+md"## What's more to come?
+
+Well much more can be expected some of which are already thought of and some are not. However, the immediate requirements for future release are the following -->
+
+* Backlinks to source code.
+* Automatic document (markdown) generation using Github actions.
+* Testing for including plots/graphs from notebook to markdown document."
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -121,5 +144,7 @@ uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
 # ╠═c1c575f0-f8b3-11eb-3679-27a9b018100f
 # ╠═e9a9f361-eaf1-4546-a83e-516eb189e3e5
 # ╠═c36b7a25-4b76-4c91-a77e-a677513158d0
+# ╠═bb78bb31-8a72-4e9e-a1c5-31457fd4326c
+# ╠═6ee57f9a-dfd7-4bea-802d-eba78f8fc99c
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

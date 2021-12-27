@@ -16,19 +16,12 @@
 </div>
 <div class="markdown"><p>In the first cell of your notebook type in the following code 👇</p>
 </div>
-<div class="markdown"><pre><code>begin
-import Pkg
-Pkg.add&#40;url&#61;&quot;https://github.com/sapal6/nbdev.jl.git&quot;&#41;
-end</code></pre>
+<div class="markdown"><pre><code>using Nbdev</code></pre>
 </div>
 <div class="markdown"><p>This will install Nbdev in our notebook environment.</p>
 </div>
 <div class="markdown"><div class="admonition note"><p class="admonition-title">Note</p></div>
 <p><em>If you don&#39;t want to install Nbdev as part of every notebook that you create in your project, then you can follow the other options to install packages for your notebook projects by following the instructions in the <a href="https://github.com/fonsp/Pluto.jl/wiki/&#37;F0&#37;9F&#37;8E&#37;81-Package-management">Pluto wiki</a>.</em></p>
-</div>
-<div class="markdown"><p>Once Nbdev is installed, import the package in the usual way.</p>
-</div>
-<div class="markdown"><p><code>using Nbdev</code></p>
 </div>
 ## Start building your project
 
@@ -119,9 +112,9 @@ Output
 
 ```
 
-<div class="markdown"><p><code>showDoc&#40;somefunc&#41;</code> would show the function like this 👇</p>
+<div class="markdown"><p><code>showdoc&#40;somefunc&#41;</code> would show the function like this 👇</p>
 </div>
-<div class="markdown"><p><code>showDoc&#40;somefunc&#41;</code></p>
+<div class="markdown"><p><code>showdoc&#40;somefunc&#41;</code></p>
 </div>
 ## Exporting code
 
