@@ -1,15 +1,17 @@
 <h1>Welcome</h1>
-<div class="markdown"><p><strong>Alpha Release</strong></p>
+
+## Nbdev (Alpha release)
 <p>This project is an attempt to port fastai <a href="https://github.com/fastai/nbdev">Nbdev</a> to Julia. Nbdev&#40;both the oriignal version and the Julia version&#41; are based on the idea of using Notebooks for literate programming. </p>
-<p>On a very high level the base idea is this 👇</p>
-![](docs\images\nbdev.png)
+
 <p>While both projects try to achieve the same base goal i.e. generating source code and documentation from Notebooks, the Julia version aims to start from Pluto notebook while the python version starts from a Jupyter notebook. </p>
 <p>On the documentation side, I am using Mkdocs as the document generator while the original version uses Jekyll as the static site generator of choice.</p>
 </div>
+
 ## Getting-started
 
 <div class="markdown"><p>Follow the <a href="https://sapal6.github.io/Nbdev.jl/tutorial/">tutorial</a> to start experimenting with Nbdev.</p>
 </div>
+
 ## First among the version
 <p>This is an alpha release of Nbdev so expect some breaks in plumbing here and there. Some features are still under development and are not included in this version.</p>
 <ul>
