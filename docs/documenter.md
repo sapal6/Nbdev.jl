@@ -1,33 +1,43 @@
 <h1>Documenter</h1>
-```
-using PlutoTest
-------
-Output
-------
-
-```
-
 ## Lower Level Entities&#40;Structs, methods etc.&#41;
 <p>These are the objects on which nbdev&#39;s Documenter module was built. You can use it to extend nbdev but these are automtically used by Nbdev&#39;s internal engine to generate code files for you.</p>
 
+```
+#noop
+begin
+f = joinpath("..", "Project.toml")
+path = "https://github.com/sapal6/Nbdev.jl"
+res = Dict("github_url" => "https://github.com/sapal6/Nbdev.jl")
+end
+------
+Output
+------
+ 
+```
+
+```
+#noop
+@test Common.getsetting(f, "settings") == res
+------
+Output
+------
+ 
+```
+
+```
+#noop
+@test Common.getsettings(f, ["settings", "github_url"]) == res["github_url"]
+------
+Output
+------
+ 
+```
+
 ## Section type
-
-> struct Section–> This is like the section of a page and is made up of one or multiple lines.
->
->   * Fields:
->
->       * line–> String which makes up a section
-
-
-
-> Section(line)–> Helper function to call the constructor of the type Section
-
-
-
 
 > line(section::Section)–> Getter for accessing the underlying field line.
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=line)
 
 
 ## Example
@@ -37,361 +47,16 @@ section=Section("This is a test line")
 ------
 Output
 ------
-Any["Section", Any[(:line, ("\"This is a test line\"", MIME type text/plain))], :struct, "Section", "b24ea8350bd22b58"]
+Any["Section", Any[(:line, ("\"This is a test line\"", MIME type text/plain))], :struct, "Section", "252f45eac776c22"]
 ```
 
 ```
+#noop
 @test line(section) == "This is a test line"
 ------
 Output
 ------
-
-<div class='pluto-test call correct pass infix-operator'>
-	<script>
-	
-	const div = currentScript.parentElement
-	div.addEventListener("click", (e) => {
-		if(!div.classList.contains("expanded") || e.target.closest("pt-dot:not(.floating)") != null){
-			div.classList.toggle("expanded")
-			e.stopPropagation()
-		}
-	})
-	
-	const throttled = (f, delay) => {
-		const waiting = { current: false }
-		return () => {
-			if (!waiting.current) {
-				f()
-				waiting.current = true
-				setTimeout(() => {
-					f()
-					waiting.current = false
-				}, delay)
-			}
-		}
-	}
-	
-	const dot = div.querySelector("pt-dot")
-	const dot_top = div.querySelector("pt-dot.top")
-	const dot_bot = div.querySelector("pt-dot.bottom")
-	
-	const is_chrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
-	const is_firefox = /Firefox/.test(navigator.userAgent) && /Mozilla/.test(navigator.userAgent)
-	
-	// safari is too slow
-	
-	if(is_chrome || is_firefox){
-
-	const intersect = (r) => {
-		const topdistance = r.top
-		const botdistance = window.innerHeight - r.bottom
-	
-		
-		const t = (x) => `translate(${2*Math.sqrt(Math.max(0,-50-x))}px,0)`
-		dot_top.style.transform = t(topdistance)
-		dot_bot.style.transform = t(botdistance)
-
-		div.classList.toggle("show-top-float", topdistance < 4)
-		div.classList.toggle("show-bottom-float", botdistance < 4)
-	}
-	
-	intersect(dot.getBoundingClientRect())
-	
-	const scroll_listener = throttled(() => {
-		intersect(dot.getBoundingClientRect())
-	}, 200)
-	
-	window.addEventListener("scroll", scroll_listener)
-
-	let observer = new IntersectionObserver((es) => {
-		const e = es[0]
-		intersect(e.boundingClientRect)
-	},  {
-	  rootMargin: '-4px',
-	  threshold: 1.0
-	});
-
-	observer.observe(dot)
-	invalidation.then(() => {
-		window.removeEventListener("scroll", scroll_listener)
-		observer.unobserve(dot)
-	})
-	
-	Array.from(div.querySelectorAll("pt-dot.floating")).forEach(e => {
-		e.addEventListener("click", () => dot.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"}))
-	})
-	
-	}
-	
-	</script>
-	<pt-dot></pt-dot>
-	<pt-dot class="floating top"></pt-dot>
-	<pt-dot class="floating bottom"></pt-dot>
-
-	<p-frame-viewer>
-	<p-frames>
-	<slotted-code>
-<line-like><pre-ish>line(section) == &quot;This is a test line&quot;</pre-ish></line-like>
-</slotted-code><slotted-code>
-<line-like><pre-ish>line(</pre-ish>    <pluto-display></pluto-display>
-    <script id=wvefoukpzxotjlrz>
-
-        // see https://plutocon2021-demos.netlify.app/fonsp%20%E2%80%94%20javascript%20inside%20pluto to learn about the techniques used in this script
-        
-        const body = /* See the documentation for PlutoRunner.publish_to_js */ getPublishedObject("729bf790-66c4-11ec-0be6-5b2df2ee7789/610d9263-645a-46aa-8f16-12e90787b7bc/wvefoukpzxotjlrz")
-        const mime = "application/vnd.pluto.tree+object"
-        
-        const create_new = this == null || this._mime !== mime
-        
-        const display = create_new ? currentScript.previousElementSibling : this
-        
-        display.persist_js_state = true
-        display.body = body
-        if(create_new) {
-            // only set the mime if necessary, it triggers a second preact update
-            display.mime = mime
-            // add it also as unwatched property to prevent interference from Preact
-            display._mime = mime
-        }
-        return display
-
-    </script>
-	<pre-ish>) == &quot;This is a test line&quot;</pre-ish></line-like>
-</slotted-code><slotted-code>
-<line-like>    <pluto-display></pluto-display>
-    <script id=rcxzqsqwhgnofxts>
-
-        // see https://plutocon2021-demos.netlify.app/fonsp%20%E2%80%94%20javascript%20inside%20pluto to learn about the techniques used in this script
-        
-        const body = /* See the documentation for PlutoRunner.publish_to_js */ getPublishedObject("729bf790-66c4-11ec-0be6-5b2df2ee7789/610d9263-645a-46aa-8f16-12e90787b7bc/rcxzqsqwhgnofxts")
-        const mime = "text/plain"
-        
-        const create_new = this == null || this._mime !== mime
-        
-        const display = create_new ? currentScript.previousElementSibling : this
-        
-        display.persist_js_state = true
-        display.body = body
-        if(create_new) {
-            // only set the mime if necessary, it triggers a second preact update
-            display.mime = mime
-            // add it also as unwatched property to prevent interference from Preact
-            display._mime = mime
-        }
-        return display
-
-    </script>
-	<pre-ish> == &quot;This is a test line&quot;</pre-ish></line-like>
-</slotted-code><slotted-code>
-<line-like>    <pluto-display></pluto-display>
-    <script id=tpapuacxbqtljsmu>
-
-        // see https://plutocon2021-demos.netlify.app/fonsp%20%E2%80%94%20javascript%20inside%20pluto to learn about the techniques used in this script
-        
-        const body = /* See the documentation for PlutoRunner.publish_to_js */ getPublishedObject("729bf790-66c4-11ec-0be6-5b2df2ee7789/610d9263-645a-46aa-8f16-12e90787b7bc/tpapuacxbqtljsmu")
-        const mime = "text/plain"
-        
-        const create_new = this == null || this._mime !== mime
-        
-        const display = create_new ? currentScript.previousElementSibling : this
-        
-        display.persist_js_state = true
-        display.body = body
-        if(create_new) {
-            // only set the mime if necessary, it triggers a second preact update
-            display.mime = mime
-            // add it also as unwatched property to prevent interference from Preact
-            display._mime = mime
-        }
-        return display
-
-    </script>
-	<pre-ish></pre-ish></line-like>
-</slotted-code>
-	</p-frames>
-	
-	<p-frame-controls>
-		<img src="https://cdn.jsdelivr.net/gh/ionic-team/ionicons@5.5.1/src/svg/time-outline.svg" style="width: 1em; height: 1em; transform: scale(-1,1); opacity: .5; margin-left: 2em;">
-		<input class="timescrub" style="filter: hue-rotate(149deg) grayscale(.9);" type=range min=1 max='4' value='3'>
-	</p-frame-controls>
-	
-	
-	<script>
-	const div = currentScript.parentElement
-	
-	const input = div.querySelector(":scope > p-frame-controls > input.timescrub")
-	const frames = div.querySelector(":scope > p-frames")
-	
-	const setviz = () => {
-		Array.from(frames.children).forEach((f,i) => {
-			f.style.display = i + 1 === input.valueAsNumber ? "inherit" : "none"
-		})
-	}
-	
-	setviz()
-	
-	input.addEventListener("input", setviz)
-	</script>
-
-	<style>
-	PlutoTest.PlutoStylesheet("p-frame-viewer {\n\tdisplay: inline-flex;\n\tflex-direction: column;\n}\np-frames,\np-frame-controls {\n\tdisplay: inline-flex;\n}\n")
-	</style>
-</p-frame-viewer>
-</div>
-<style>
-pt-dot {
-	flex: 0 0 auto;
-	background: grey;
-	width: 1em;
-	height: 1em;
-	bottom: -.1em;
-	border-radius: 100%;
-	margin-right: .7em;
-	display: block;
-	position: relative;
-	cursor: pointer;
-}
-
-pt-dot.floating {
-	position: fixed;
-	z-index: 60;
-	visibility: hidden;
-	transition: transform linear 240ms;
-	opacity: .8;
-}
-.show-top-float > pt-dot.floating.top,
-.show-bottom-float > pt-dot.floating.bottom {
-	visibility: visible;
-}
-
-pt-dot.floating.top {
-	top: 5px;
-}
-pt-dot.floating.bottom {
-	bottom: 5px;
-}
-
-
-.fail > pt-dot {
-	background: #f75d5d;
-
-}
-.pass > pt-dot {
-	background: #56a038;
-}
-
-@keyframes fadeout {
-    0% { opacity: 1;}
-    100% { opacity: 0; pointer-events: none;}
-}
-
-
-.pass > pt-dot.floating {
-
-    animation: fadeout 2s;
-
-	animation-fill-mode: both;
-	animation-delay: 2s;
-
-	/*opacity: 0.4;*/
-	
-}
-
-
-.pluto-test {
-	font-family: "JuliaMono", monospace;
-	font-size: 0.75rem;
-	white-space: normal;
-	padding: 4px;
-	
-	min-height: 25px;
-}
-
-
-.pluto-test.pass {
-	color: rgba(0,0,0,.5);
-}
-
-.pluto-test.fail {
-background: linear-gradient(90deg, #ff2e2e14, transparent);
-border-radius: 7px;
-}
-
-
-.pluto-test>.arg_result {
-	flex: 0 0 auto;
-}
-
-.pluto-test>.arg_result>div,
-.pluto-test>.arg_result>div>pluto-display>div {
-	display: inline-flex;
-}
-
-
-.pluto-test>.comma {
-	margin-right: .5em;
-}
-
-.pluto-test.call>code {
-	padding: 0px;
-}
-
-.pluto-test.call.infix-operator>div {
-	overflow-x: auto;
-}
-
-.pluto-test {
-	display: flex;
-	align-items: baseline;
-}
-
-.pluto-test.call.infix-operator>.fname {
-	margin: 0px .6em;
-	/*color: darkred;*/
-}
-
-
-/* expanding */
-
-
-.pluto-test:not(.expanded) {
-	cursor: pointer;
-}
-
-.pluto-test:not(.expanded) > p-frame-viewer > p-frame-controls {
-	display: none;
-	
-}
-
-.pluto-test.expanded > p-frame-viewer {
-    max-width: 100%;
-}
-.pluto-test.expanded > p-frame-viewer > p-frames > slotted-code > line-like {
-	flex-wrap: wrap;
-}
-.pluto-test.expanded > p-frame-viewer > p-frames > slotted-code > line-like > pluto-display[mime="application/vnd.pluto.tree+object"] {
-	/*flex-basis: 100%;*/
-}
-
-slotted-code {
-	font-family: "JuliaMono", monospace;
-	font-size: .75rem;
-	display: flex;
-	flex-direction: column;
-}
-pre-ish {
-	white-space: pre;
-}
-
-line-like {
-	display: flex;
-	align-items: baseline;
-}
-
-</style>
-
-
-
+ 
 ```
 
 ## Page Type
@@ -403,21 +68,21 @@ line-like {
 >       * sections–> Array of Section type.
 >       * name–> Name of the module being documented.
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=Page)
 
 > Page–> Helper function to create constructer for Page type.
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=Page)
 
 
 > sections–> Getter for accessing the underlying field sections of Page.
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=sections)
 
 
 > name–> Getter for accessing the underlying field name of Page.
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=name)
 
 
 <div class="markdown"><p>A 📃 is made up of several sections. These sections can be example codes, text ,graphs&#40;to be implemented&#41; and function documentation and several pages. The Page type helps in implementing this concept into code.</p>
@@ -432,7 +97,7 @@ end
 ------
 Output
 ------
-Any["Main.workspace#2.Section", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "206a0c2cde35fe72"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "c812fd36ad87ea0b"), MIME type application/vnd.pluto.tree+object))], :Array, "", "bda7a62817b7d8fa"]
+Any["Main.workspace#9.Section", Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "db1af0e35885ae9c"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "6660eb9cef11a461"), MIME type application/vnd.pluto.tree+object))], :Array, "", "dc793314d2d12b5b"]
 ```
 
 ```
@@ -440,7 +105,7 @@ page
 ------
 Output
 ------
-Any["Page", Any[(:sections, (Dict{Symbol, Any}(:prefix => "Main.workspace#2.Section", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "206a0c2cde35fe72"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "c812fd36ad87ea0b"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "bda7a62817b7d8fa"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"Monkey module\"", MIME type text/plain))], :struct, "Page", "fa1d9d55c2d06c8d"]
+Any["Page", Any[(:sections, (Dict{Symbol, Any}(:prefix => "Main.workspace#9.Section", :elements => Tuple{Int64, Any}[(1, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"iny, meeny, miny mo\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "db1af0e35885ae9c"), MIME type application/vnd.pluto.tree+object)), (2, (Dict{Symbol, Any}(:prefix => "Section", :elements => Any[(:line, ("\"🙈 🙊 🙉\"", MIME type text/plain))], :type => :struct, :prefix_short => "Section", :objectid => "6660eb9cef11a461"), MIME type application/vnd.pluto.tree+object))], :type => :Array, :prefix_short => "", :objectid => "dc793314d2d12b5b"), MIME type application/vnd.pluto.tree+object)), (:name, ("\"Monkey module\"", MIME type text/plain))], :struct, "Page", "2562b58f313e81da"]
 ```
 
 ```
@@ -458,22 +123,22 @@ Page
 </div>
 > runandupdatenb(fn::AbstractString)–> Run the notebook in the supplied path and update the notebook with the output of each cell.
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=runandupdatenb)
 
 
 ## stitchcode
 
 > stitchcode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=stitchcode)
 
 > stitchcode(cellop::AbstractString)–> Removes the quotes from a string and creates a code block with that string inside the newely formed code block
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=stitchcode)
 
 > stitchcode(fdocs::Functiondocs)–> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=stitchcode)
 
 
 ## Functiondocs
@@ -482,11 +147,11 @@ Page
 >
 >   * funcdocs–> Array of strings.
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=Functiondocs)
 
 > Functiondocs(funcdocs)–> Helper for accessing the FunctionDocs constructer.
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=Functiondocs)
 
 
 <div class="markdown"><h4>Example</h4>
@@ -499,14 +164,14 @@ end
 ------
 Output
 ------
-Any["String", Tuple{Int64, Any}[(1, ("\"i\"", MIME type text/plain)), (2, ("\"j\"", MIME type text/plain))], :Array, "", "9735ff54caf95230"]
+Any["String", Tuple{Int64, Any}[(1, ("\"i\"", MIME type text/plain)), (2, ("\"j\"", MIME type text/plain))], :Array, "", "de0474ac6094ec52"]
 ```
 
 ## collectfuncdocs
 
-> collectfuncdocs(obj)–> Collects objects (functions, methods, macro structs etc.) and creates an array of documents (generated from teh docstrings). Creates aFunctionDocs type from these documents.
+> collectfuncdocs(obj)–> Collects objects (functions, methods, macro structs etc.) and creates an array of documents (generated from the docstrings). Creates aFunctionDocs type from these documents.
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=collectfuncdocs)
 
 
 <div class="markdown"><h4>Example</h4>
@@ -516,7 +181,7 @@ collectfuncdocs(stitchcode).funcdocs
 ------
 Output
 ------
-Any["String", Tuple{Int64, Any}[(1, ("\"> stitchcode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.\\n\\n\"", MIME type text/plain)), (2, ("\"> stitchcode(cellop::AbstractString)–> Removes the quotes from a string and creates a code block with that string inside the newely formed code block\\n\\n\"", MIME type text/plain)), (3, ("\"> stitchcode(fdocs::Functiondocs)–> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object\\n\\n\"", MIME type text/plain))], :Array, "", "34f1b5e90c9ce42e"]
+Any["String", Tuple{Int64, Any}[(1, ("\"> stitchcode(cell::Cell)–> Stitches the code in a Pluto notebook cell with the output of that code. The output is a code block.\\n\\n [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=stitchcode)\"", MIME type text/plain)), (2, ("\"> stitchcode(cellop::AbstractString)–> Removes the quotes from a string and creates a code block with that string inside the newely formed code block\\n\\n [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=stitchcode)\"", MIME type text/plain)), (3, ("\"> stitchcode(fdocs::Functiondocs)–> When supplied with a FunctionDocs type, stitchCode appends together the object docstrings and generates documentation for that particular object\\n\\n [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=stitchcode)\"", MIME type text/plain))], :Array, "", "423c824d31550382"]
 ```
 
 ## Higher Level API
@@ -527,7 +192,7 @@ Any["String", Tuple{Int64, Any}[(1, ("\"> stitchcode(cell::Cell)–> Stitches th
 
 > showdoc(o)–> Takes an object and builds markdown documentation.
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=showdoc)
 
 
 ```
@@ -551,7 +216,7 @@ mystruct=Mystruct("test")
 ------
 Output
 ------
-Any["Mystruct", Any[(:name, ("\"test\"", MIME type text/plain))], :struct, "Mystruct", "401161766087ecb8"]
+Any["Mystruct", Any[(:name, ("\"test\"", MIME type text/plain))], :struct, "Mystruct", "1ac9deea220e6f7c"]
 ```
 
 ```
@@ -566,47 +231,26 @@ Mystruct
 </div>
 > An example of a struct
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=Mystruct)
 
 
 <div class="markdown"><p>Currently nbdev is unable to recognize the docstrings of inline expressions.👇</p>
 </div>
 ```
+#noop
 "> inlinetest--> This is a inline test expression"
 inlinetest=str->replace(str, "1"=> "one")
 ------
 Output
 ------
-<div class="pluto-docs-binding" style="margin: .5em; padding: 1em; background: #8383830a; border-radius: 1em;">
-<span style="
-    display: inline-block;
-    transform: translate(-19px, -16px);
-    font-family: 'JuliaMono', monospace;
-    font-size: .9rem;
-    font-weight: 700;
-    /* height: 1px; */
-    margin-top: -1em;
-    background: white;
-    padding: 4px;
-    border-radius: 7px;
-    /* color: #646464; */
-    /* border: 3px solid #f99b1536;
-">inlinetest</span>
-<div class="markdown"><blockquote>
-<p>inlinetest–&gt; This is a inline test expression</p>
-</blockquote>
-
-
-</div>
-</div>
-
+ 
 ```
 
 ## createpage
 
 > CreatePage–> Creates the Page type from the markdown and example code cells of the supplied notebook. The filename is the name of the notebook which is parsed.
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=createpage)
 
 
 <div class="markdown"><p>While generating document you don&#39;t need to call this function. This is done automatically😃 for you when nbdev generates documents.</p>
@@ -615,11 +259,11 @@ Output
 
 > savepage(io, page::Page)–> Take the contents from a Page type and write to the io
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=savepage)
 
 > savepage(page::Page, path::String)–> Given a Page type and the required path, creates the related markdwon file in the specified path. The name of the resulting markdown file is same as the nameof the notebook for which the document is generated
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=savepage)
 
 
 <div class="markdown"><p>Nbdev calls the required method of <code>save_page</code> automatically during document generation.</p>
@@ -628,15 +272,15 @@ Output
 
 > export2md(fn::String, path::String)–> Generate document for a file in the given path
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=export2md)
 
 > export2md(fns::AbstractVector, path::String)–> Map the `export2md(file, path)` to a given vector of file.
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=export2md)
 
 > export2md()–> Higher level API to generate documents for all the valid notebooks
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=export2md)
 
 
 ```
@@ -644,7 +288,7 @@ Export.readfilenames(joinpath(pwd()))
 ------
 Output
 ------
-Any["Any", Tuple{Int64, Any}[(1, ("\"C:\\\\satya\\\\julia\\\\Nbdev.jl\\\\nbs\\\\00_nbdev.jl\"", MIME type text/plain)), (2, ("\"C:\\\\satya\\\\julia\\\\Nbdev.jl\\\\nbs\\\\01_export.jl\"", MIME type text/plain)), (3, ("\"C:\\\\satya\\\\julia\\\\Nbdev.jl\\\\nbs\\\\02_documenter.jl\"", MIME type text/plain)), (4, ("\"C:\\\\satya\\\\julia\\\\Nbdev.jl\\\\nbs\\\\03_codeRunner.jl\"", MIME type text/plain)), (5, ("\"C:\\\\satya\\\\julia\\\\Nbdev.jl\\\\nbs\\\\04_makedocs.jl\"", MIME type text/plain)), (6, ("\"C:\\\\satya\\\\julia\\\\Nbdev.jl\\\\nbs\\\\05_make.jl\"", MIME type text/plain)), (7, ("\"C:\\\\satya\\\\julia\\\\Nbdev.jl\\\\nbs\\\\developerguide.jl\"", MIME type text/plain)), (8, ("\"C:\\\\satya\\\\julia\\\\Nbdev.jl\\\\nbs\\\\index.jl\"", MIME type text/plain)), (9, ("\"C:\\\\satya\\\\julia\\\\Nbdev.jl\\\\nbs\\\\styleguide.jl\"", MIME type text/plain)), (10, ("\"C:\\\\satya\\\\julia\\\\Nbdev.jl\\\\nbs\\\\tutorial.jl\"", MIME type text/plain))], :Array, "", "66450c96ec88b67d"]
+Any["Any", Tuple{Int64, Any}[(1, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl-changes\\\\nbdev-backlinks\\\\nbs\\\\00_nbdev.jl\"", MIME type text/plain)), (2, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl-changes\\\\nbdev-backlinks\\\\nbs\\\\01_export.jl\"", MIME type text/plain)), (3, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl-changes\\\\nbdev-backlinks\\\\nbs\\\\02_documenter.jl\"", MIME type text/plain)), (4, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl-changes\\\\nbdev-backlinks\\\\nbs\\\\03_codeRunner.jl\"", MIME type text/plain)), (5, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl-changes\\\\nbdev-backlinks\\\\nbs\\\\04_make.jl\"", MIME type text/plain)), (6, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl-changes\\\\nbdev-backlinks\\\\nbs\\\\05_common.jl\"", MIME type text/plain)), (7, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl-changes\\\\nbdev-backlinks\\\\nbs\\\\developerguide.jl\"", MIME type text/plain)), (8, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl-changes\\\\nbdev-backlinks\\\\nbs\\\\index.jl\"", MIME type text/plain)), (9, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl-changes\\\\nbdev-backlinks\\\\nbs\\\\styleguide.jl\"", MIME type text/plain)), (10, ("\"C:\\\\satya\\\\julia\\\\nbdev.jl-changes\\\\nbdev-backlinks\\\\nbs\\\\tutorial.jl\"", MIME type text/plain))], :Array, "", "287e4b26780ba021"]
 ```
 
 <div class="markdown"><p>The <code>export2md&#40;&#41;</code> is what gets summoned when document generation is invoked. Like most things in nbdev &#40;and unlike most things in life&#41; this too gets invoked automatically. 🥳</p>
@@ -659,6 +303,6 @@ Output
 
 > export2readme()–> create readme from the contents of Index notebook
 
-
+ [source](https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=export2readme)
 
 

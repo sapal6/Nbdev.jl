@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.17.1
+# v0.18.4
 
 using Markdown
 using InteractiveUtils
@@ -60,11 +60,11 @@ Base.@kwdef mutable struct Nucleus
 """
 > Nucleus(code)-->Getter for accessing the constructer of the Nucleus type
 """
-Nucleus(code) = Nucleus(code = code)
+nucleus(code) = Nucleus(code = code)
 end
 
 # ╔═╡ ad64c040-54bf-11eb-2c3d-ff1de3c15f3f
-Documenter.showdoc(Nucleus)
+Documenter.showdoc(nucleus)
 
 # ╔═╡ 1d983360-54c0-11eb-0104-672aaffbbb95
 md"Every time a code cell is parsed, it gets stored as a Nucleus type. The stored code can then be accessed using the `code` field in the Nucleus type."
@@ -76,11 +76,11 @@ md"#### Example"
 sample_code="a=1+1"
 
 # ╔═╡ f1eadd80-54bf-11eb-1de4-ef2da2e36eda
-nucleus=Nucleus(sample_code)
+n=nucleus(sample_code)
 
 # ╔═╡ 0361d7d0-54c0-11eb-0a50-79dc00a9d848
 #noop
-@test nucleus.code == "a=1+1"
+@test n.code == "a=1+1"
 
 # ╔═╡ d236da00-54c6-11eb-3afe-859ccc31d041
 md"## Nb type"
@@ -397,16 +397,20 @@ Documenter.showdoc(readfilenames)
 md"#### Example"
 
 # ╔═╡ 3a378ca5-ff38-44ac-ba50-db48679b1eaa
-expected_list = ["..\\nbs\\00_nbdev.jl"
-"..\\nbs\\01_export.jl"
-"..\\nbs\\02_documenter.jl"
-"..\\nbs\\03_codeRunner.jl"
-"..\\nbs\\04_makedocs.jl"
-"..\\nbs\\05_make.jl"
-"..\\nbs\\developerguide.jl"
-"..\\nbs\\index.jl"
-"..\\nbs\\styleguide.jl"
+expected_list = ["..\\nbs\\00_nbdev.jl",
+"..\\nbs\\01_export.jl",
+"..\\nbs\\02_documenter.jl",
+"..\\nbs\\03_codeRunner.jl",
+"..\\nbs\\04_makedocs.jl",
+"..\\nbs\\05_make.jl",
+"..\\nbs\\06_common.jl",
+"..\\nbs\\developerguide.jl",
+"..\\nbs\\index.jl",
+"..\\nbs\\styleguide.jl",
 "..\\nbs\\tutorial.jl"]
+
+# ╔═╡ 329d1cea-da20-4fd9-900b-d169ab293901
+readfilenames(joinpath("..", "nbs"))
 
 # ╔═╡ 9b436180-177c-11eb-1c9a-ffbac62c95df
 #noop
@@ -557,6 +561,7 @@ notebook2script(joinpath("..", "nbs"), joinpath("..", "src"))
 # ╠═37ffeb40-54d8-11eb-0c8a-af262b2bec28
 # ╠═4259e9b0-54d8-11eb-3768-85ede85ab315
 # ╠═3a378ca5-ff38-44ac-ba50-db48679b1eaa
+# ╠═329d1cea-da20-4fd9-900b-d169ab293901
 # ╠═9b436180-177c-11eb-1c9a-ffbac62c95df
 # ╠═528689b0-54d8-11eb-35f4-2b56012fa4e6
 # ╠═0be54350-177c-11eb-285a-93dd4d45e40e

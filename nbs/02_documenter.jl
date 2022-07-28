@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.17.1
+# v0.18.4
 
 using Markdown
 using InteractiveUtils
@@ -7,6 +7,10 @@ using InteractiveUtils
 # ╔═╡ 4cb4aa50-3e01-11eb-3460-5f109773492b
 #export
 using Base.Docs
+
+# ╔═╡ 6c0aeda1-81d7-469d-8443-bbf347feede6
+#export
+using TOML
 
 # ╔═╡ 151ec8b0-2b27-11eb-1ec2-a7c5e4c13db9
 #export
@@ -21,6 +25,7 @@ using Distributed
 using ProgressMeter
 
 # ╔═╡ 295d813f-1e85-4b2e-a953-1bd0087a85e2
+#hide
 using PlutoTest
 
 # ╔═╡ 9930ad11-84da-45e0-95dc-f46c4d48174a
@@ -35,6 +40,10 @@ include("../src/Export.jl")
 #export
 include("../src/CodeRunner.jl")
 
+# ╔═╡ 2bc37e16-7ff5-430b-b29c-571db5e9b6b5
+#export
+include("../src/Common.jl")
+
 # ╔═╡ 1d83078e-2024-11eb-0e5f-51310d134662
 #export
 import Pluto: Notebook, Cell, load_notebook_nobackup
@@ -46,6 +55,22 @@ TableOfContents()
 # ╔═╡ 25ff264e-3ec5-11eb-362c-07b4e24c635a
 md"## Lower Level Entities(Structs, methods etc.) 
 These are the objects on which nbdev's Documenter module was built. You can use it to extend nbdev but these are automtically used by Nbdev's internal engine to generate code files for you."
+
+# ╔═╡ 28951cc5-0f45-48fc-965a-4257de0332fa
+#noop
+begin
+f = joinpath("..", "Project.toml")
+path = "https://github.com/sapal6/Nbdev.jl"
+res = Dict("github_url" => "https://github.com/sapal6/Nbdev.jl")
+end
+
+# ╔═╡ c371d5ec-8d89-4f33-8b6d-9add8e15938f
+#noop
+@test Common.getsetting(f, "settings") == res
+
+# ╔═╡ c099d54a-38df-46ee-8fb1-37c2b90c1df2
+#noop
+@test Common.getsettings(f, ["settings", "github_url"]) == res["github_url"]
 
 # ╔═╡ bf4e47f0-3ec5-11eb-1b65-5fe2e7a88ff1
 md"## Section type"
@@ -79,6 +104,7 @@ md"## Example"
 section=Section("This is a test line")
 
 # ╔═╡ 610d9263-645a-46aa-8f16-12e90787b7bc
+#noop
 @test line(section) == "This is a test line"
 
 # ╔═╡ 309585e2-3f93-11eb-0873-d9b0d7a6200e
@@ -291,16 +317,40 @@ docs=@doc stitchcode
 # ╔═╡ 85446eb5-b22f-41f9-bb9c-be41a7479866
 md"## collectfuncdocs"
 
+# ╔═╡ e32bff29-cb7a-40b2-a512-e58f6143d506
+#hide
+search_url = "https://github-link.vercel.app/api?ghUrl=https://github.com/sapal6/Nbdev.jl/blob/master/src/Documenter.jl&q=Section"
+
+# ╔═╡ d9a872f2-74d0-4f49-8505-b44f03dce3b9
+#hide
+pattern = r"\\(.+\\)*(.+)(\.jl)"
+
 # ╔═╡ 3f171660-3ec1-11eb-0983-2789adeab1c3
 #export
 """
-> collectfuncdocs(obj)--> Collects objects (functions, methods, macro structs etc.) and creates an array of documents (generated from teh docstrings). Creates aFunctionDocs type from these documents.
+> collectfuncdocs(obj)--> Collects objects (functions, methods, macro structs etc.) and creates an array of documents (generated from the docstrings). Creates aFunctionDocs type from these documents.
 """
 function collectfuncdocs(obj)
 	docs=doc(obj)
-    fdocs=["$(docs.meta[:results][i].object)" for i=1:length(docs.meta[:results])]
+	searchurl = "https://github-link.vercel.app/api?ghUrl="
+	giturl = Common.getsettings(joinpath("..", "Project.toml"), ["settings", "github_url"])
+
+	pattern = r"\\(.+\\)*(.+)(\.jl)"
+	fn = uppercasefirst(Export.strip(basename(join(match(pattern, string(first(methods(obj)))).captures)), r"[0-9_]"))
+	
+	searchurl = "$searchurl$giturl/blob/master/src/$fn&q=$(string(nameof(obj)))"
+    fdocs=["$(docs.meta[:results][i].object) [source]($searchurl)" for i=1:length(docs.meta[:results])]
 	Functiondocs(fdocs)
 end
+
+# ╔═╡ 0a4f347d-dd6b-493b-8473-249270209160
+#hide
+#TODO: use regex to extract filename from this
+uppercasefirst(Export.strip(basename(join(match(pattern, string(first(methods(collectfuncdocs)))).captures)), r"[0-9_]"))
+
+# ╔═╡ 94812075-ec9b-43da-97b6-80ca731fa0d5
+#hide
+string(first(methods(collectfuncdocs)))
 
 # ╔═╡ 01a22122-4061-11eb-393e-17c15f09e58d
 md"#### Example"
@@ -329,9 +379,6 @@ function showdoc(o)
 	stitchcode(docs)
 end
 end
-
-# ╔═╡ d8395ed0-3ec5-11eb-049c-0b38eb2e7d54
-showdoc(Section)
 
 # ╔═╡ 0d10aed0-3f9b-11eb-1bcd-dbdb5e5068f4
 showdoc(line)
@@ -387,6 +434,7 @@ showdoc(Mystruct)
 md"Currently nbdev is unable to recognize the docstrings of inline expressions.👇"
 
 # ╔═╡ 4fee8610-5980-11eb-137a-83f4aa64e933
+#noop
 "> inlinetest--> This is a inline test expression"
 inlinetest=str->replace(str, "1"=> "one")
 
@@ -421,7 +469,7 @@ function createpage(fn::AbstractString, nb::Notebook)
 	for cell in nb.cells
 		
 		if cell.errored
-			error("Build stopped. Seems like the code $cell.code has an error")
+			error("Build stopped. Seems like the code $(cell.code) has an error")
 			break
 	    end
 	    if startswith(cell.code, "md")
@@ -585,6 +633,7 @@ Pluto = "c3e4b0f8-55cb-11ea-2926-15256bba5781"
 PlutoTest = "cb4044da-4d16-4ffa-a6a3-8cad7f73ebdc"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
 ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
 
 [compat]
 Pluto = "~0.16.1"
@@ -861,20 +910,24 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 
 # ╔═╡ Cell order:
 # ╠═4cb4aa50-3e01-11eb-3460-5f109773492b
+# ╠═6c0aeda1-81d7-469d-8443-bbf347feede6
 # ╠═151ec8b0-2b27-11eb-1ec2-a7c5e4c13db9
 # ╠═07b9d565-4690-4e48-bcc2-05428b665ca1
 # ╠═77a9e510-4ae2-44a2-9536-17a89a54d6f6
 # ╠═b068dfd2-0eb3-11eb-109a-d1b6ef1eeca0
 # ╠═1d83078e-2024-11eb-0e5f-51310d134662
 # ╠═27ff1d70-1201-11eb-2003-27cb52571be6
+# ╠═2bc37e16-7ff5-430b-b29c-571db5e9b6b5
 # ╠═295d813f-1e85-4b2e-a953-1bd0087a85e2
 # ╠═9930ad11-84da-45e0-95dc-f46c4d48174a
 # ╠═fcfaccaf-cc88-44bb-8971-c1328d8599ee
 # ╠═7081aafd-d6ef-4672-99b0-6080497e2498
 # ╠═25ff264e-3ec5-11eb-362c-07b4e24c635a
+# ╠═28951cc5-0f45-48fc-965a-4257de0332fa
+# ╠═c371d5ec-8d89-4f33-8b6d-9add8e15938f
+# ╠═c099d54a-38df-46ee-8fb1-37c2b90c1df2
 # ╠═bf4e47f0-3ec5-11eb-1b65-5fe2e7a88ff1
 # ╠═5a2e9790-201f-11eb-0df4-f90b3cc54f20
-# ╠═d8395ed0-3ec5-11eb-049c-0b38eb2e7d54
 # ╠═0d10aed0-3f9b-11eb-1bcd-dbdb5e5068f4
 # ╠═f1318ca0-3f97-11eb-3727-3f71064c77bf
 # ╠═cfb6d710-3f97-11eb-31ed-6daa12cf592e
@@ -917,6 +970,10 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═95219eb0-3e01-11eb-28d2-af58c55dfbd1
 # ╠═83214680-3eb9-11eb-32bd-01e55390224e
 # ╠═85446eb5-b22f-41f9-bb9c-be41a7479866
+# ╠═e32bff29-cb7a-40b2-a512-e58f6143d506
+# ╠═d9a872f2-74d0-4f49-8505-b44f03dce3b9
+# ╠═0a4f347d-dd6b-493b-8473-249270209160
+# ╠═94812075-ec9b-43da-97b6-80ca731fa0d5
 # ╠═3f171660-3ec1-11eb-0983-2789adeab1c3
 # ╠═d038c980-4061-11eb-19a5-5bab5b196788
 # ╠═01a22122-4061-11eb-393e-17c15f09e58d

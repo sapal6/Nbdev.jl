@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.17.1
+# v0.18.4
 
 using Markdown
 using InteractiveUtils
@@ -17,7 +17,6 @@ Pkg.activate(Base.current_project())
 begin
 include(normpath(joinpath(@__FILE__,"..","..", "src/Export.jl")))
 include(normpath(joinpath(@__FILE__,"..","..", "src/Documenter.jl")))
-include(normpath(joinpath(@__FILE__,"..","..", "src/Makedocs.jl")))
 include(normpath(joinpath(@__FILE__,"..","..", "src/CodeRunner.jl")))
 include(normpath(joinpath(@__FILE__,"..","..", "src/Make.jl")))
 end
@@ -28,7 +27,9 @@ begin
 notebook2script = Export.notebook2script
 showdoc = Documenter.showdoc
 build = Make.build
-export notebook2script, showdoc, build
+new = Make.new
+buildlib = Make.buildlib
+export notebook2script, showdoc, build, new
 end
 
 # ╔═╡ 9724fdac-8ffd-483c-9d7e-a4cdc8d0dd72

@@ -6,7 +6,8 @@ nav:
       - Coderunner: coderunner.md
       - Documenter: documenter.md
       - Export: export.md
-      - MakeDocs: makedocs.md
+      - Make: make.md
+      - Common: common.md
       - Styleguide: styleguide.md
       - Developer's guide: developerguide.md
   
