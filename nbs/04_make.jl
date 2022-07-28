@@ -155,81 +155,6 @@ begin
 	map(rm, files)
 end
 
-# ╔═╡ 5f377d5e-cd11-428d-8ae5-c93f4f0c097c
-md"## buildlib"
-
-# ╔═╡ 30d55aa6-4c27-4ec7-8b03-de2eb00eb562
-#export
-begin
-"""
-> buildlib()-> Build a deployable package structure inside it's own directory
-"""
-function buildlib(path = ".")
-
-	files = ["Manifest.toml", "Project.toml"]
-
-    if !isfile(joinpath(path, files[2]))
-		error("$(files[2]) not present in project root. Can not proceed further")
-	else
-		projname = Common.getsetting(joinpath(path, "Project.toml"), "name")
-	end
-
-	if isdir(joinpath(path, projname))
-		rm(joinpath(path, projname), recursive=true)
-	end
-	mkpath(joinpath(path, projname))
-	cp(joinpath(path, "src") , joinpath(path, projname, "src"))
-	
-	for file in files
-		cp(joinpath(path, file), joinpath(path, projname, file))
-	end
-end
-end
-
-# ╔═╡ 1a86702d-3e63-458d-b216-c173a3a0dfdd
-#export
-export buildlib
-
-# ╔═╡ 92817630-6f4e-4f1e-b7fe-b85f0eef766e
-Documenter.showdoc(buildlib)
-
-# ╔═╡ 63254529-40f7-402d-857a-a0d61896b8e5
-#noop
-#build_lib test pre-requisite
-begin
-cp("../src", joinpath(testdir, "src"))
-cp("../src", joinpath(testdir, "nbs"))
-cp("../Project.toml", joinpath(testdir, "Project.toml"))
-cp("../Manifest.toml", joinpath(testdir, "Manifest.toml"))
-buildlib(testdir)
-end
-
-# ╔═╡ e3998a7f-b380-464a-ab8f-ff79e2a2aef3
-#noop
-@test isdir(joinpath(testdir, "Nbdev")) == true
-
-# ╔═╡ 0d66d777-9739-44a9-a6c0-2862c3125333
-#noop
-@test isdir(joinpath(testdir, "Nbdev", "src")) == true 
-
-# ╔═╡ b617e861-d4ad-40fd-a2a8-2e5919083024
-#noop
-@test isfile(joinpath(testdir, "Nbdev", "Project.toml")) == true
-
-# ╔═╡ ba2234f5-b4cf-46e2-92d4-3822574e84d6
-#noop
-@test isfile(joinpath(testdir, "Nbdev", "Manifest.toml")) == true
-
-# ╔═╡ ae461fde-297f-4ab8-86e1-26336e8e291a
-#noop
-begin
-rm(joinpath(testdir, "Nbdev"), recursive=true)
-rm(joinpath(testdir, "src"), recursive=true)
-rm(joinpath(testdir, "nbs"), recursive=true)
-rm(joinpath(testdir, "Project.toml"))
-rm(joinpath(testdir, "Manifest.toml"))
-end
-
 # ╔═╡ c96a7fe1-ccba-4499-aa15-95ced972492b
 #hide
 Export.notebook2script(joinpath("..", "nbs"), joinpath("..", "src"))
@@ -268,14 +193,4 @@ Export.notebook2script(joinpath("..", "nbs"), joinpath("..", "src"))
 # ╠═7477e2a6-d2a2-4552-9b03-63daef9c1189
 # ╠═f29215d9-b898-4540-bf71-6e0c4f192979
 # ╠═89317c3d-5889-4887-893c-aed3bf37b55e
-# ╠═5f377d5e-cd11-428d-8ae5-c93f4f0c097c
-# ╠═30d55aa6-4c27-4ec7-8b03-de2eb00eb562
-# ╠═1a86702d-3e63-458d-b216-c173a3a0dfdd
-# ╠═92817630-6f4e-4f1e-b7fe-b85f0eef766e
-# ╠═63254529-40f7-402d-857a-a0d61896b8e5
-# ╠═e3998a7f-b380-464a-ab8f-ff79e2a2aef3
-# ╠═0d66d777-9739-44a9-a6c0-2862c3125333
-# ╠═b617e861-d4ad-40fd-a2a8-2e5919083024
-# ╠═ba2234f5-b4cf-46e2-92d4-3822574e84d6
-# ╠═ae461fde-297f-4ab8-86e1-26336e8e291a
 # ╠═c96a7fe1-ccba-4499-aa15-95ced972492b

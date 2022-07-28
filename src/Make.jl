@@ -47,34 +47,4 @@ end
 #export
 export new
 
-#export
-begin
-"""
-> buildlib()-> Build a deployable package structure inside it's own directory
-"""
-function buildlib(path = ".")
-
-	files = ["Manifest.toml", "Project.toml"]
-
-    if !isfile(joinpath(path, files[2]))
-		error("$(files[2]) not present in project root. Can not proceed further")
-	else
-		projname = Common.getsetting(joinpath(path, "Project.toml"), "name")
-	end
-
-	if isdir(joinpath(path, projname))
-		rm(joinpath(path, projname), recursive=true)
-	end
-	mkpath(joinpath(path, projname))
-	cp(joinpath(path, "src") , joinpath(path, projname, "src"))
-	
-	for file in files
-		cp(joinpath(path, file), joinpath(path, projname, file))
-	end
-end
-end
-
-#export
-export buildlib
-
 end

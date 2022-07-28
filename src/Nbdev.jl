@@ -16,7 +16,6 @@ notebook2script = Export.notebook2script
 showdoc = Documenter.showdoc
 build = Make.build
 new = Make.new
-buildlib = Make.buildlib
 export notebook2script, showdoc, build, new
 end
 

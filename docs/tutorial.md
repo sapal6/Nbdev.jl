@@ -160,13 +160,6 @@ Nbdev.build&#40;&quot;nbs&quot;&#41;</code></pre>
 
 <div class="markdown"><p>There are loads of other optional edits which you can make to the config file in order to customize your project website. Refer the documentation <a href="https://squidfunk.github.io/mkdocs-material/getting-started/">here</a> to know about the other options.</p>
 </div>
-## Packaging
-
-<div class="markdown"><p>To build documentation, goto the project root and launch the Julia prompt and then import Nbdev with <code>import Nbdev</code> and then call the following function <code>Nbdev.buildlib&#40;&#41;</code>. Your code at the Julia prompt should look like this </p>
-<pre><code>import Nbdev
-Nbdev.buildlib&#40;&#41;</code></pre>
-<p>This will create a directory in your project root with a name same as teh name of the &quot;name&quot; key in your Project.toml file and then copy the &quot;src&quot; directory, Project.toml file and Manifest.toml file into this newely created directory.</p>
-</div>
 ## Publishing your project website
 
 <div class="markdown"><p>The first step is to checkin all your project contents to your repoitory. As soon as you push your changes to the remote branch, the github action &#40;placed under &quot;/.github/workflows&quot; creates a new &quot;gh-pages&quot; branch under your project repository, builds the project webpages and pushes the created pages to the &quot;&quot;gh-pages&quot; branch.</p>

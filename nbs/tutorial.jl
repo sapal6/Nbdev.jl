@@ -254,20 +254,6 @@ md"## Optional edits"
 # ╔═╡ 952bc125-e3b6-474c-90c4-786fdf300dcc
 md"There are loads of other optional edits which you can make to the config file in order to customize your project website. Refer the documentation [here](https://squidfunk.github.io/mkdocs-material/getting-started/) to know about the other options."
 
-# ╔═╡ aa281843-1b37-44e3-b939-05c9c882ad49
-md"## Packaging"
-
-# ╔═╡ ef5e224d-8a21-42d0-a210-475639b18884
-md"""To build documentation, goto the project root and launch the Julia prompt and then import Nbdev with `import Nbdev` and then call the following function `Nbdev.buildlib()`. Your code at the Julia prompt should look like this 
-
-```
-import Nbdev
-Nbdev.buildlib()
-```
-
-This will create a directory in your project root with a name same as teh name of the "name" key in your Project.toml file and then copy the "src" directory, Project.toml file and Manifest.toml file into this newely created directory.
-"""
-
 # ╔═╡ 7429a0be-4f40-4d36-89cd-df56377c4502
 md"## Publishing your project website"
 
@@ -529,8 +515,6 @@ uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
 # ╠═23ac38d5-c44a-4b8b-86c4-0bc3833add14
 # ╠═33eaee48-fc83-4c71-949d-1c9b9a2b32aa
 # ╠═952bc125-e3b6-474c-90c4-786fdf300dcc
-# ╠═aa281843-1b37-44e3-b939-05c9c882ad49
-# ╠═ef5e224d-8a21-42d0-a210-475639b18884
 # ╠═7429a0be-4f40-4d36-89cd-df56377c4502
 # ╠═8fa0648a-599b-4ed5-870f-6b3d74e25fcd
 # ╟─00000000-0000-0000-0000-000000000001
