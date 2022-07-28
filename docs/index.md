@@ -20,14 +20,3 @@
 </li>
 </ul>
 
-## What&#39;s more to come?
-<p>Well much more can be expected some of which are already thought of and some are not. However, the immediate requirements for future release are the following –&gt;</p>
-<ul>
-<li><p>Backlinks to source code.</p>
-</li>
-<li><p>Automatic document &#40;markdown&#41; generation using Github actions.</p>
-</li>
-<li><p>Testing for including plots/graphs from notebook to markdown document.</p>
-</li>
-</ul>
-

@@ -40,15 +40,6 @@ This is an alpha release of Nbdev so expect some breaks in plumbing here and the
 * Anything that you feel like is missing and want to discuss the same or havean idea then start a new discussion [here](https://github.com/sapal6/Nbdev.jl/discussions)"
 
 
-# ╔═╡ 6ee57f9a-dfd7-4bea-802d-eba78f8fc99c
-md"## What's more to come?
-
-Well much more can be expected some of which are already thought of and some are not. However, the immediate requirements for future release are the following -->
-
-* Backlinks to source code.
-* Automatic document (markdown) generation using Github actions.
-* Testing for including plots/graphs from notebook to markdown document."
-
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -145,6 +136,5 @@ uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
 # ╠═e9a9f361-eaf1-4546-a83e-516eb189e3e5
 # ╠═c36b7a25-4b76-4c91-a77e-a677513158d0
 # ╠═bb78bb31-8a72-4e9e-a1c5-31457fd4326c
-# ╠═6ee57f9a-dfd7-4bea-802d-eba78f8fc99c
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
