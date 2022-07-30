@@ -1,0 +1,894 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/nbdev.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.8">
+    
+    
+      
+        <title>Tutorial - Nbdev-dev</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#first-steps" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Nbdev-dev" class="md-header__button md-logo" aria-label="Nbdev-dev" data-md-component="logo">
+      
+  <img src="../assets/nbdev.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nbdev-dev
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tutorial
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sapal6/nbdev.jl.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nbdev.jl
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Docs
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Nbdev-dev" class="md-nav__button md-logo" aria-label="Nbdev-dev" data-md-component="logo">
+      
+  <img src="../assets/nbdev.png" alt="logo">
+
+    </a>
+    Nbdev-dev
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sapal6/nbdev.jl.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nbdev.jl
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Docs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Docs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Docs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Tutorial
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#first-steps" class="md-nav__link">
+    First steps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-notebook" class="md-nav__link">
+    First notebook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-building-your-project" class="md-nav__link">
+    Start building your project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docstrings" class="md-nav__link">
+    Docstrings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exporting-code" class="md-nav__link">
+    Exporting code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    Tests
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-documentation" class="md-nav__link">
+    Building documentation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-the-table-of-contents" class="md-nav__link">
+    Creating the Table of contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-required-edits" class="md-nav__link">
+    Other required edits
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-edits" class="md-nav__link">
+    Optional edits
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publishing-your-project-website" class="md-nav__link">
+    Publishing your project website
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coderunner/" class="md-nav__link">
+        Coderunner
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documenter/" class="md-nav__link">
+        Documenter
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../export/" class="md-nav__link">
+        Export
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../make/" class="md-nav__link">
+        Make
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common/" class="md-nav__link">
+        Common
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../styleguide/" class="md-nav__link">
+        Styleguide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developerguide/" class="md-nav__link">
+        Developer's guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#first-steps" class="md-nav__link">
+    First steps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-notebook" class="md-nav__link">
+    First notebook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-building-your-project" class="md-nav__link">
+    Start building your project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docstrings" class="md-nav__link">
+    Docstrings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exporting-code" class="md-nav__link">
+    Exporting code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    Tests
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-documentation" class="md-nav__link">
+    Building documentation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-the-table-of-contents" class="md-nav__link">
+    Creating the Table of contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-required-edits" class="md-nav__link">
+    Other required edits
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-edits" class="md-nav__link">
+    Optional edits
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publishing-your-project-website" class="md-nav__link">
+    Publishing your project website
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/sapal6/nbdev.jl.git/edit/master/docs/tutorial.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1>Tutorial</h1>
+<h2 id="first-steps">First steps</h2>
+<p>Install Nbdev by with the following command –&gt; <code>add Nbdev</code></p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATIAAAA4CAYAAAB&#43;KnQXAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAADrBSURBVHhe3Z15rOZXed/P3Nk9y5198YzHxgYbG4OBsC8RAZq0SlupWapKIaGKmq1p1P7ThFSq2r&#43;atlKVf1iqtlKqqqmiqmkiVZCwQ9kXg40DGLDH49k8q2fft57POe/nfb/3cKcQRZGALzx&#43;znmW7/Oc81vu713unSVf&#43;fOnbi1btqzcvHmzLFmypNy6datp52kTjG/cuFHm5uaaT7966dKlLR/oB/iSB7scaDiTZ4zRBrd2beaCzCmzcg3Jk/EttmLkoNaUK0CcXOoRmQMHuDXZF/OAdQS&#43;3F/mCDHurXP82IB8cjtPGAuSJ4&#43;Z&#43;TnOHrEl5BD2LYe55lkPZI/jOHkYj3br2mP6HCPXr1&#43;f5hPvWI7MSy77BczpOc8zoP3atWvNnr4xzljsuV/OjScOMEc8F24HYuTPGq5bbsdoOAHxPwrX/5yLEElkwgjskkyJJnPi8Y&#43;5xmozDo2dTQfYgLxg5AL4tevDln20cdzJsCdv5oHcmMV01lIDxmMcgA9kLh7H&#43;jypgDycDMA5gI88&#43;ZgTp00x1hNaG5pY9g3RJy8aAc6BecKxXBkrlzHkEqOftdozsAdzHKPTn2P3y3UQbw0vBgSbc5C8jMf16deX8cAbA/YENbiOQHICebF7gds/sH/is3fEXOOAdrQ28hhjsz/m9oLGZ/9Z50fl&#43;p9jURnEmA2nMZtDG2MiyA3JYmjtcgjtYPny5S2W3PGiSz7txjonB2gDxCDUxY5w97h1s&#43;cCY4HxQH8CHiCnc4HdE9Q5Mei05bw20MQ1GS&#43;0C&#43;ejXVtCP7UQ/MjYu3ZisKMzVx/Anrac60eYpw9eNTaEvTKeuWBOHBo4HgVYB3gOeCPJnhinZD6wftrzgmKOxk&#43;d7IkxIMb1WUN&#43;eTNPX0IfcVxTIvmsl3smFzqFHCCv4&#43;wToH9Urv9apxdKsRGJhHZEQhcDj80Ya2F5zAfJ4TgB13dzML5Ra16vOUR129wcE2LhoEb972S8dCkHgTr1hKLO5ESBz7UztndqYU8f2hzn&#43;B3bn/HG5pqST1kCR/URZw2QeeZYZ4T7L4caAeYwz9pAnznCXkcB7JNiPpATmI9f&#43;7j&#43;5GSuH40YBzIubdrR&#43;jxv9Gv3BoFtsfW6Fsbq5BnXAp827UAekbnWtAa2HANijEV7XuoXuR58&#43;s1B48vaCFDDQX19ivFyiuSBF&#43;35B4&#43;9GotYX5v&#43;5HCccA0jB2NrCmrPjYWUfIwmEe0cAY2giuTYKUAT2BkbY2FiiLeuXGrj8JMHF&#43;j2zufjcOaPwE4OcXC4MeTnzWxqm9QDyc1YDteTSD97oA3wE2eMB9jg8qd/nUz7QOPLeq4DJF/6Eeq7TvnkREYOcoCxxmFH6xPaFXsEzBlbw73Q7/kBrIVPTmCuPvsHGYctY1Njxy83IuRAZz5iTyLHI5KfPYArueW0DuOMy72xjvW1ZX&#43;pibO&#43;cYzNR&#43;RHYwfmA8bkIPanXfnBvP57zcWu//qQ0osBjJkAmBujn3HG5QltkywMmwtE5ADJoV/RDlzQLLapBnzY0cIxdrmw&#43;WYsXM1fJWONQ6fNuTcdOIlDu2451YAxa7eG3Ni1ZTxPZ1mfeszzBEHcVwVf&#43;gVj8q1FDPWMR4B5GYckl/PMAdrhzQtV7RgxBht5rh2fPPrMYywXY8BYrYw&#43;wR4aQ21qugfA3HFuDkJ9gN2eOJcAc/tTAzWx1GMurzY1cE6PIOOsb4zzMR5gA8QqAL&#43;cCfzYjcMv15jLXL95gLHHFbgnf33X/2wN&#43;LC3GAY6MxinGrsJ08RKTpM2KliUfuxoYJ5gjN9c7rLEkq/NuohYjDc1yLHwoJObOdkDc3i1u15rZox5xrMP&#43;oU8aXNuvmMw5i4Wh3bv7C/Ho1aSh55dA1oYRy7IHDWCX1&#43;O3QvE/NSeK/jzBAeL9ZtgLj&#43;xjD3/sAni5PJcUrALzwcgZ/ZgLHVyDOSVg/h8j854x6nTT&#43;9wwuWcMTHWAszVmS&#43;n6wNoeYQx9CuX0OcYMIdbjR1xjM79z1rU0I/ddZgnGOM39696/U9vZJkgIdBPw4xzEcZbGL3YGJCTxeXX5obkIy21EHwuHCxZMnt6wUa8vbAh2LQLbQggngxrjYBf4G/xVewJoO1bHrnQyQHkyX6BuTcn&#43;Yi9o8f4xFiDWGxq4X4D7NQA1oNf7clkXe3mMVbkxa4PyGEMufqSD22ue&#43;m5pYygL5B&#43;tLz6c/2Mc0/yuAG57EWb0CeMhy9z0HKCrGmsvO4RQHPu6pMbGAMck5uxamtnDmsF2OAkhjFCjloe/B5X/R4T850D/OrFxoAceyNPfm0ej&#43;/v&#43;l947jRuEw3UCdzoLCwyzhh40Ap2Y3ypBPCN2ubtBWRNeUDnml1oQP&#43;4wXLqxyd/24ywqRFqJz9z87Ah9sc4awG1dmAfHpi0GQPsA2hnbi/AsbVTG2sPzPExN88Y6wj9aGvLA9KP5FqIzx7YH23up3HAuT&#43;N7Y9Y69g7czRzBdtivQH9grEXC2Mle9GXwGaNrAWoIeQBWTvzgXWxEWceNs5r5gi&#43;sS52efGbj80cucdzE6CtK88P7/Xf90eOOp4lCp4MkBvYayDacXsvB1IIqjT6SQz265wsE46MMQ4hxhrM3UThwtxkBbuL5eS/cWN2QoscE8vcmMwHaOY3K49xmeNcyfwco4E2oDZWAWjsCDVAcgK5hT45jAOZa55&#43;Twbn6uTOeMBYyX3IGtqxyZW9Idw4gDeQhFyuX795zr3JEXe7Oo4BPnsTxgPrptavpj5j&#43;5d77AHJVwDGjX2SZ7xry/4AOYgcwHHyJpeCH20&#43;Ij/1xpuQPmuOvSQHvGjH1rA2MAZ77lnGAOfugTHmCmzU&#43;d7Xf/8h2uLzhoNwQzLBQpK4ICChfm0AG4WAcUBetGMwx0ZjI67qdpOb9OEijVXrrwkLejK&#43;&#43;2YHS&#43;TYeL6&#43;wffM8JmHTxH4sidtIG8YuV4gDxsvB7DvtAE5zMPnOAXogyvj5B5rqhPGAjnMud1PxRwD84CaNSjY7BGo8eU&#43;EEdNx/gQOTLPMdCvhkNu5sYA53LnhWUukIs6SB5jcgD59pE1gbWxyy2yd&#43;zmYIcDLXf2lz7jk5cxNseuQSHPfuyPeMWaxjPOmtbFpx2tDWD7y1z/9COPdvuwR2PV&#43;h3PruoKEwwGEgEKSiAJ0G8jCHfTjHPzjGnF6xhNLLA2fm9u6DavsRxQ89GOly7td&#43;e0wwuwWwvYKyAewb9sWa038XXO2csbwNgayUGuHEC/dkS7PmCfCHbizbFX5o7px7FgnnXgRhgLYhD92hxbDwFZk/G452jldjAf2I/ifLE&#43;maOpC&#43;zRntDYtKuBY/o1xryxNnsJHKONNdd8fMDa6ORlDPQBeYD52ABzfYAxtswRxprLGMn6npOL8RqjXds4FtgUQS3n7BVz6wn91kP&#43;qte/x0VN7HguOm4xj31o76zrChyQC4It4NzFAMYQAWPAOE4exqPduuiMm46X9sZ93ATEL&#43;BqubOek8t&#43;a2Sb07MngdDev6rRN0mMcS223vyw5345N544wBzxYNwOfQ2dv9WYHEjXLfft&#43;IG23M/RDy9&#43;fWKxuTY0PTBmHe5h7qVxjtMunzEibWj3h/FivCDzjbMPjz8il7nJAZIn44HxwDyEY&#43;FxwZ4&#43;xuzrWBdo14ZOYMtcYZxajhHJKddix4Z8fMYlzBPWytr4zbMGyJ7GcfIwHu3Wtcf0OUZud/3PGShctCAYv7Ycgyy2WFzGMjYeMJbfeH1iml/Nyem4uSY5vDTF5IagWQ8gptfqdT3hgfGOsfNyE20twRzBl7/2BBg7JyfznJuP0AM2c9QZg80LR2QOMfLCpz2BD&#43;AzFp3HOjVxxrhHzN0PoB1NvPPkNN/esSvWQPATZyzrxS&#43;vY/jQCWzW0ScX3EBNHLA&#43;wGYfxgF5AbH6GLseOZgnB4LPvgBzezIfWMf&#43;M14OxLyxlvGMAXPEHG0Ce9Z56dvuaTaRxw/Yg7YcA2spY1zGMjYeMB7XqE9kfnI61j69kUEI5uZ4BISAgl3X/1Y/cZ0YzRzpZDM/wry/Ru6&#43;fuD6WE40b9ZrB/RgozYJyG8LntRjnAcHYG8XciUm1fV40hDv6/be6&#43;x9DnKZ57hL5wDMPQj21nqZfOAAF7XkAYyx2at5xOqTL/Oyd3z0jR87cznNkT9tgFhs1tWvwAMYy81YPpBzxsD&#43;mMvNGKFX/WjtxLXjU22Ia8KOmEOMx8l&#43;7NM5seZoE8zzuKZfTR5rGvNHLsA890Ngy3jXlrUBfuzAmtqIkYe5fiGH64fbeta2nvasB/ihgA1uNbA&#43;yBzj5DcGf9qZJ4d&#43;BHgMgf2D5LB3IZ8iyM/6jF2HaN8jQ7iBeYG3N7&#43;jYPd7MjfVbAg5zpNcOyCn8/Q4G85Nq57WA3OgT5nOJz0iydU5JidL9QFsxDkmFhDTb6adB&#43;gDxBIDsHsgGGdtc4k1pnO7pwt/4ljDXHm0OSaPg4yQo1ADn7kAu3zyq7HDoR&#43;xP2KSx3x8CBcAGqSGzx6co5FxD9BAbrQ&#43;8xF8xqKtbQxA48MG0J7gzkHyK4ncQzQCjGXuPqj1A7mzrv2bbw6aOTW9cYPcM4Dd&#43;XgTN8cagHxEEGvdFGzazTcPmzCWGNdgT2pswH6wIe5DxgDtgBx5zDFeO3CeY2WcI8m15Ksf3Ftts6ZBc8QcfPTAfHny&#43;dXl/NW5snn1jfKPHj7a7D2WZmcHBGQu4ObIzU0/Km92onP0cXIxnjaNNL7ZZmEjjgUb17/z0TcFW26G8QQx/r0v7mqxW1ZdL6&#43;781x5ePOFXqcKfXIycoHBgc2TEaAr67R&#43;&#43;rIfbcB&#43;RlslaXbQ&#43;&#43;scAF7GrmG8kLOGuQAbc3OtPfaFtnf92uUH5gF9IPtBc1EmR46FufYmblcP4CNemGdMcpqbNjDaGSPaEcA894J484xD9LsO5uwHYI7II6cY89XYrOOxB8xHWAOftYC5js21v4ffend5/MN7p3nAOOfCOdyLxSKMwZjrevSjXXMiOZLLeLSS&#43;e2JzMYyyEaOXFpZ3vP4jvInT20q36w3sgPnV5aTl/s3kH1yy6cyYC7&#43;GV8zTdFfVs5gfXrx5aw8PX/mZ8yTWd6o8AFzmq6mxTYwNUH4D5xb0eSrx&#43;8o73t8e13vlsaBr9&#43;Ee7/mwas2Dh9jbPp7fu9PmzGcYPgRbMTwPt9//fqW8hsfuafdXOXOEzm5sx85nNuPNazjBUaMYpy&#43;5JZXPmKc6weuBzsxcgI1SLtgbh01Nt7DeeRv3Duth9AvyFg0QvzL3v6C5icfn7VynYmMwQ&#43;8&#43;MnBh50x60KTI&#43;595Y5W88E33dViPVbmAWug8cmRAugfMZd6jK2bsIZITuBaPV74sbkWc7WbizAH5iIgnxjNk8cYc7MfbcL9FdY3RxswXz/j5MM2fY&#43;MCTCA5hj/8bc3thvYyqU3y9vuOlPe89Z95V2vPkxka4aa/YZVyuefW1s&#43;sn9dOXSeG13nUmwiF43dusyt6bz&#43;t87hcd5hbOOoNzTep/L9s2abcHz&#43;uXXlQ8&#43;urf2saHP5icmN5CXte966t/yL1xwsr915odk&#43;sn99&#43;d/f2dQOpHyeVOMaQNvMKvYA0K6PHGoazzxPEuz6EsQAeDJGu8BuLePgtUa&#43;Z2EfrgXJPl2H49GHlsM6rgGknXjH5Ak5zUWAx8VagnnyA2KNcZ3CWsTqsw/3jnn2p773x3a0mydPK1vvWd9ijHvgDbuaffu9GxpH66uNOoiBH&#43;0cIc4awPVg0zdCX&#43;6DwM76iTF3rEmeHICxNR0DYx0D&#43;&#43;NViPPkAta3jpxIjp0TN/ZiXebWdA4yXxgrB&#43;Pp71rq8CBT4GMH56c3sb9///PlZ170fI3BO9uoNqtjFvyJg&#43;vrk8zm8uSpO5q9FyeOGlwwnKS9UXIRT1yRnIj9oXlS4&#43;mvTtvYfnudmoOvytJ6Y6rR5eP1pvon36Gf1W19wNjM7TJXdq&#43;7Vt750LHy9rvPtphPH15fDpz1BjA7wOOJCuDA5xxgY27/jhPO7aXHNFODuQr7Yx1tADs2Ty7A3OPq3LG57jdgjM29AtZCEuN7OXI5B&#43;N&#43;uG/EIIlxTa5HjDn4iGG9xmX8wv2cCXXGPUrurAE2bF87zVuI3L&#43;FfY6cifSTC69rzXjmnXvWI7G5T&#43;iE8UBuwX5YC9zuPCEOGIdNu2Mw9sf1b1/GqImzhsCG/OWu/9k15ty&#43;2hMZyRgYC24&#43;jx9f08aPbL1YXrfzXBvniWNjctRBm/NdKJB&#43;ihnnDQ1NXWz4GJNDDRfUm/UG1vk7D4uyj5nPOn3cVAP23ATg5mubpJWfeeHJcte6K&#43;XKjbnyiQPrmq3n0&#43;9s8zM314rkGL81XZdrBcQ41j/C3kHyps06aRPk2wMvm//wm5vLwXPLp7ysKWsA&#43;QD2PCZZw/k4Bsw9txA4xhiBD5t&#43;tLhdTnIn4HLNI49c1svckWf56mVl5R3Lpzkz9PEYD&#43;RkT8nLNQPG9Cawj/yuy2vBtTAWjs0nxprJKY9gDvADeKwnsCHy6oPHsWtgTqxz&#43;0q/vWQcmrrY8DHG5poBedqtuxhPnVOgPy0x5q&#43;v1tDm3HtmVQt8xZbz02IQK9rQSDW2eLeDGAGfc7SNU9u/4Hr9Ol9EZSP6TQM7/fS60sPeD07vm8U47wJcJNDW6tb/5e&#43;NopkTwW8R9HvjknL/xssMyv5zq6b5bY0V3MyoCR/iyeM&#43;GKct89PGGDA2JvcJYPVTWHnNz5NKmJvrH&#43;ucvTpXPn1oXfkPj95Z3v3YzvLEiTumMRnLWH5PdOf4qEEv9iWIxW9M/rQmFps8aPcPoI1NYHPd6bMH&#43;YTxjuUlfszBhw3duCdU16/2a2JbfRmZNYF8cgh4Ebng9cKUwxgBBzHsm2BuHhqMtewZnb7kwe6csX3Baw7aPbGW3PgQ481PDrRiPCBGyAfQxOQ5hY3zRF7XRD/6zQfmEQeWPP7hZ24RoAEw//Cz9WVZfZm4fsWN8m/e&#43;OzUjrjBgE8zeS/pe&#43;F9b3&#43;2NWqT8Py3b25rn4Sevdo3euvqa&#43;VlWy&#43;Vn60vYWkSGHvo/PJaa2N57kJ/Uz7B01N/3&#43;777&#43;e9tR/WwWamdo1PHF9d/uPXtrfYd//E01M7cGN7jxPb5Mamz/1h/KFn1raeeP9tc10jN5GzV5a2l&#43;z3brhSX7Kfai9r7eMPnthcvnhkbV3X1fI7rz445ark7QMA1v/2PWfLz9aX&#43;918q3zu8LrymcNrpz98yH3LXWfLJw&#43;srzfjFXX/9017&#43;&#43;j&#43;&#43;fKF5&#43;6oPCtbLCD&#43;ZfXJ&#43;&#43;/cd6bFse/WNQ9o14ZOYCPmwTftKSvq0wzgiflGvSlcOHOlPPu1/mm3HGLTrnVl2z3zNWd5m1&#43;9dK3se&#43;xYuf/1/dNkPlnLuhvvXDvEXy/PfPVIeeANu9v8ax95ZtoLyHr2rS37YPzCV99Z1mxYVS6cvlJWra1Prddvlm9&#43;&#43;kDz84b&#43;8lXLytG9p8uRp3mrZUm571XEryzXLl9va1y/9Y7KTe1b5Vrta/8Tx8vFc5dbLJj1v2G6R/S/9yvPlRe/8a42z/7R9PqCV26v/awoS5f148KN9sKpy&#43;XZJ45N17J81dIpx966Hxee73Xluefl28u6zatbr9/41P72XuDXP75/uk8g44H7wxzJ638xEOO&#43;IpzT2MbrHwEjP9BmLPPRDy9&#43;xq0bGtPQ32eqpJMLdH5FfUKrnL6h3v5SRP0fem7JXFk9d6PctfZKuxC4MAE3JOa7J3bk5o1abEm9A/PIU///nsd3touVm1jLr3L8Ur1Z7V/fPrVrvdDgZMP&#43;y1/saPFcxAv4q2xeNXuJuGbZzWlN&#43;9k2ieeG16X2M3lZ608BoAYvrTdUYQ/48yAg/emsx2izF2KNB4frzfgDezeUVUtvtR546frNk6vLf/7a1hYPiE/I1&#43;x17E1855qr05zPP7e&#43;/M9vb2o3Mda8p3KfqTfKD&#43;7b0G5iwB441rwH&#43;K5XHyr/&#43;OXHyiu2XWw58L6/9vbbn9xd/vDJLeXwhZUtx36oxTxPYG3GOUZuXLvRLhaEY87Fv2H7mvLQm/dM4wHjLbvXlzsf2NxuSu3irzlLly&#43;tF922FgMyh5ved8fXC/0VO5of0NvYM9o9w&#43;5Y5No6bpWrF6&#43;13tdv6e/7zpAX1oSz3rxYIzc&#43;egIr1yzvN6A1sx&#43;&#43;s/75esqs/3tfuXMS0ZH7&#43;8LX7mw3V25ixCPLViwt87Xefa/aOd2b61dulssX&#43;l&#43;w3bpnvmmOOYBn9breBzdczn&#43;w4PqfCLGOgX40PrT7aQwwzrF7mvFADpAcPr0r5hMPzMHOrxIyx7f013/xn/5rEup2NWd3zJVP1aeGQ/XpZ74&#43;kf347gvNZ3G0xLvWXC5v3n2&#43;vHnX&#43;fLVY3fUG9Oy8lN3ny6/cP/RlvfGnWer79yCBj6wb1P53HPryrrK/csPnWjvSRG7YcW18u3Tq8vRi8vb97jmV/aN&#43;9jBDeXRY2vbBffbrzpU/u59p8ubKucbd55p&#43;pXb&#43;ieN9LSr3tioh/2rx/uN8ifvOV1&#43;qdZ5wyQePxeX63CzXBvAxoUN/tY9/ScvMIdYYtre4av/d/ONEXvPrGwfmtDL2&#43;qT1G88cqT1cc/8tfK1&#43;uTHnl2&#43;Plce3HSxnVyP1X3kk9b5lTfa3gL4eEKGa321//LDJ6Y1/ujJTeVE/SFw7/zl8msvO1Z&#43;&#43;t4z9YntTHvJiB387cmTFjnqHWtvlFdsPVf&#43;5guqjx9Ot5aUI3Xv959dUfadXdX2iTiFPMCYtbMH9IvdPQT4nz98vhx79nQ5efBcOf7smXLxzOX2JLB85bIm505canFgz0u3tYuSp7C9jx5pTzvkbLpzXbODY8&#43;cme733dP4&#43;hRT4488far6T5fNu2fxx/f1eECfrtma41ocA&#43;quqDcvbhb0snHn2nYzO1XXxM2Bm8nF&#43;rR2vj4NkYufeH4f&#43;MSBs/XJ8Gg5vv9MOXP0QvMtqzdl3mc79dy5Fr/npVun633qS4dbjZP7z5WN9QZn/6yJWHripseN9Ea9QT77&#43;NFy6Fsny6lDF8rVy9fK2smenj12sT2hsdY71q0sq9evbH2ePDA7hms3rap7tL7G3KpPicfKtSvXy477NrZa7oPXAPvjnmG3F/0IIEYfY5&#43;SEM8NwBwYKxwbiwbyZh4CFsuvZ0ZttD4pAWryVYTbAXISTbZJ0MYWqMovQxKbDXL3f&#43;Zsf0nzmm3ny0u3XGxj7G&#43;480K9GPub7N86XX&#43;y1XybF48dX9PepJY3&#43;0m4AYKYcRP9x3KpjVgLnfn0bh1jqD2T2U8hQFz2Vv/fwA3o5x44NY19uK79VTv6TXhf3RO4kwfI87EDG8qnDq5ttldvn93ckEPn&#43;36&#43;adeFctf62V8d&#43;Ik9/QMa4LEQ1OKnn8flnvmr7WWvT7GCvNwLOOjJJ1n2DWBjbP/43Cvyz528VK5MnhR4SiHO9S5b2Xs4/uzZcqU&#43;Aclx&#43;NsnmxbWNP7YvtP16eNqs7GOI9851ewADnnsA5374Jy&#43;0fY0ecBqOF9fmnGD4CWdeYI5OXW327zd&#43;J463cb4uNFePN3fa&#43;VGBqizrN54AOslBg7sR5&#43;a9Z8X9JqN/e0C9vDM8f5FbeKfP3Su5fMydn47L2f7xX7wmyeqv&#43;5rvSnyw0NsmTyhcQNln9taK9TT9U/APNHWWmu7D&#43;nXp/7/Xf/mJ7QTSx59qNMOxlrInG&#43;2k&#43;AY7K4vTxKQJAFAZ6H6n2ZPZKxFz1/ri/rowfnymx&#43;/p/yTT9xbfuuT97UxTy6AJyY/4uf9oAc31Quh3uD&#43;bN/G8ntf2l3&#43;1Wd3lfc9sau9J2YN0Nex8IBQ0wtOmMOWEstGm2efgi/v4kPchzzREE5mcqwvkoenW3z2xnj7Hf3ivnqjn5yNa5JzrD4d/dsv7irv&#43;tRd7ft8rP/BzbP3EIlHrtRc8Po7&#43;5OvF&#43;ZLNvUbHoBTbjTCGv7Xtza2Gu99bFt76U6NhzZfLm/ZfbbFIq4p87G5V8A5oPbuhzaXF79x9/QLrXxhdPX87D05Ofu4c3Bhygcunl54Dspv/MmDvUfAms&#43;e6D8Uhfz2TUzWzXXITe&#43;T&#43;9IUPHnxdMN3ysSs94XH2/235qVz/fjSJrHsea4XWD/7zx6XLu3xvGx9&#43;U/eN/3SLHu6qv5QEOZQ98r5vnfbXtBvXvQ1fVlZ15Mgz3Ukh&#43;c4IB8fdmPM06YkMpa4zGesTjt1qZdf8RmFPc5rcG4JT2B8P6tyMK7lyg0&#43;MWwhpZyuL3v4VK9/olcbrTY&#43;7Utdmfsna1V3xLwKMc5bPOMKbk6v2XG&#43;PWG8pj6ZvHr7uel8&#43;x1cjJygNbY&#43;Nf7mI8&#43;VX3jx8ebnfS7eT&#43;Omx5vovN8GXKRj66D8ZXgPCJtgLP88nJuIZpN4s1/0DXNtsxg0HJ4EtXrze3CJsUaCHsxLYEPshRsU7135wQC4c83s4jZe2I8nQJ6I&#43;qj9FyfXlP/0&#43;Lbyzz6&#43;p33xl/fReFpkb//l6w&#43;X33rFkfKGXedbrGsD8LGm7Buf6xH3v2532bCjvxzjacb3dNr7owF5BfPRJqyTSJt7LhjLlyJynjo5xJGn&#43;ocqG3esa7qjx7X6Qwr/DCCAb/X6fvOQ21oi&#43;xxhjuC9rwv1CY8PIbgZ9XGXi2eutFjjT05ukivqkyA881vXtCc0Xp4eevLkgl4ce1zdU&#43;sz59gbb5zafGvnXFv6Gadffuui4SYmezFn1EjthAAu7i7V1kjeurs/Ip&#43;7urR8vZ74XrgIcBHMKQZZnTQbTxKg2SYg3gt77Yre3NrlN8o7Hjha/uFLTpRfevBYleMTOVYeqk8TcLe8tpi58rrtZ8s7HzxRfufHDpV3v2Vv&#43;Xsv7C89uKF94cj69tLDXtoGTOrTT98cFk3fsw0G1Bj/rctvn5p9&#43;idYXueZ/RTnAMBlHhcrMfZOT&#43;LM5NNZ7MYfu9RP9OVzvW9sXhjUfu/b95X3vO2Z8vJt/cMHPvHkjXg4RnCDkgPN&#43;2&#43;COUK/jx5d034Vi6cvarxtz5ny73/8YN33o2XX2v7Sjlhgn/KC3GN5/SfSgD/5D3zjePnG/91fnvzMwfKtzx4qlydPCfw0g8t8Mb&#43;tf/lUG&#43;/pCG32AHjfyH3APsbjG3XCiwc7&#43;Wjm/adtB3m8fOVlMd8p4w39jtleLAb75SUpuHi2fziT8Wtqv&#43;4Bki8D7QdpP8wr&#43;ADl6S8/V/Y&#43;WuUrR9r7g9/54qGmeQkMF3lw8bTHDxGeJPlwYfNd/WmSDy/sTU2Ogs39yLjv5/pPPzAf9HXMfrAzJw9bHgfhWoxbjB9M4ybzBYEKbx6DR4&#43;t6cGVlDgbAM7Rm1b1i5abAF&#43;XIAfgS7y4PomBr524o/zp01u&#43;q1HqcNPpL3P7vHHVm1AuY82y2YwRGwLgA5tX9YuLfg5fWFHts4PTW5v13m5IWOoY&#43;c7pflLtWX9lQX/cCHNd7AN&#43;9wahmek4wJMVLxEBPm403mx2Tm4gCzGbv/Mlx9tTEzcfOLInj9MHn5lvdsFvNgji8HnceBr&#43;xYdOlN99zaH2UtU1yKsG1tFmn9PjUuHeOweXzvT3r8jbsHPN9KKuxmYjh3je5wE7X9Q/XAHYd7xo9jUa&#43;naPjd/94OzTbew771/4tRt7Idc&#43;jIeLHzL24Fp8mm2o6fbZ39ivT7uTN&#43;PrIiZ6IeAgh08pX/S6XWX5yv4UdPTp/v7Xgv5fvKVpQN6OF/VzQ2BDzhztbxHwBv5dD29tY&#43;wgX37Rp2tkPZfO9R8cvMHvDxfe2DcmQb71FDDumfu42PUPsgc59AlroTM/63g8gOPFeMTSX3tH/9QSSCLOXF1ZL&#43;hV7ZfEd6&#43;9XravmT1dEOcJoixbcqN8/fk17VO4Lx1d296Y/8zhdeX9&#43;zZWf6kXXN9Y3tDnU7lD9cnimbOryscOzJevHLujfPbIfHvPi5vIK7b2L&#43;GySGy//9U7y5cr5xeOrCufrpwfPbChfL6OAV/HeMcDx1sPbgq5y&#43;dutU/uZv2sbbkfeMZ&#43;rtQ1w7DwoP3p05tb77yc&#43;wcPnCzrlvd1c5DgBmj3rdu63QsOuJ/PnFnVvmbB0w9Pj587vLb9XurH9s&#43;3GxM3qJ9/0Ymq&#43;03o8fqDo39qebO8adfZxtPq1f89&#43;Xz/JHJVvYm/YH2/gfE1mMfrE9apK8vqS8W6l/WJ6/11jcScqscO/PS9p6c985WL1&#43;&#43;6OH3aZF3AvgGxzD1hGWNDiMeOnvY22QviNt25tj0J8Cnc5irbXrChvdS8dPZK&#43;3QP2Xr3hvbEcLHa2H6ervjKxdZ7NrSc7ffWi7pyYgPH983es&#43;MH0hjPl1Yz/rn6ctD1oD0WSF44qcVGP7W8cr2cfu5Ci&#43;eNdt4s9/0t3sQ///yltgd&#43;asnTGr1s2bO&#43;9jU/fSl35KlTLR&#43;0etP&#43;59rezPqvx6LaAJ9k2hM30fX1pSE1VtcfBnBP69w93/b2xIH&#43;qbTHBGG/t9QnMTg5Huw3LyvdB8DvjHJzA&#43;RoB3l8FUHceP27rxkHMkaMvORyU0bDbS/MGQPmxHruATnb71oCtSDpp/acaD/tudj&#43;x7e21JtHfzxtRWr88lqYPOYIX2b9ufrT3ScE/lIGcrXm8/UCcpRff&#43;RE&#43;91NYw8Se25Fe&#43;&#43;LI5p9nas3Ir6qgY8YYhlzIfK&#43;zq883L8QeON6/6N85LABfCL68/dTo14sFeQivPdEP/Ts98AAHH/07W3tC6PgVdsvtC&#43;q2gucbmz9fwM5rp84Nth40N8XmgRXzdcvrtycq32srDfKW&#43;WhzZfa&#43;3/WabkLD8W0Bh96ePPh6zHGv27n2bqX/FpV/24aa&#43;SDhTdMfq0MEEfvwH6de7NyDWiQNzHXLo9xGQ/w8UVWv8vE&#43;2Rc4Lyvw0sgwYXFhU4&#43;b9of3XuqvY/GjYIcvovFp3pcfIJ&#43;EF42LRZ/bN&#43;ZBfH0Db89ImPvwjV0PVsPMfL4JAUy/toVnsq58HovCL1x83rqi4fb&#43;oA8fb2nF&#43;n/9LR/ewRoeFgznzgC67QnxOr3vGN/iLdfxJsvN0R97EMCW4JefVsEzrEf5l5rzBFyFoN2YhX7JY9e5NCGNsd848jN/olZ8uifPXUrG5AEIZiXZP/9yW3t4gA8pbx446XyKy891ubEkG88Y4tggw9YnLkxxgPr6kNjY2yufGjHycENEttiT/3mz7Aw6N99uX9jXjyypd4gX3as8tXeJz3RB6BGq9PGvkTqNYQ9Yfv4oY3t5SA3mt99bf8NhLGfXBfiyx7A3HrkLZvsBzU4yawln1z/5&#43;n59l04jtnvv&#43;XZliOnINdezBtrA3zE8l4YGjviSS7w2at8jhFOfrQ1EcaCfNfkGsHI5fh7xdgPYzTxo08ObIgxCGAvcp/xAznNFebJpU9tftYH/Tya9QrUwHxjxnFitDMf1wv49POJj&#43;5rY2AekusE&#43;NS5F67fceaZw9qwm8vYeGBdfWhsjM2VD&#43;3Y2Hrt9ybRBqMJArz5&#43;89feaC8dfeZ9lKGp4jnJy9XLCKpxEBe4Ylg42hOavIZy8FFxFwe44U17C/r&#43;Mno9fpkZp5xzK3TMfsJALiJ8RKV9454UvzVlx2vmzPjsKesDfyrtvAorAkwJi/jARzWNYYc4hQ5wLhe8/PiAtixPVFfZvK1io8825&#43;geSIlXk7iFpOsTbzzjNFuHyD3VR60velPTmyOEWEN87OGcdi0WxdYR37A&#43;aQNoM2BY5wnLxzWzeOhHZFbAXJyLOTGJr&#43;5WUsebOSlT60NMEbgSe6xXsIa1jYWyK8mLu3yuWbAfLFzBRgj/rqv//YXYikCIU4cFm0BBlYtuXGLjckbbSB5sBlrU/oBc/rBl/GOgX4EHmQ8cZYv76&#43;5ETYNLcybfQCw8CREUyNtmc88a8qXcczJ5SsOfCufJ7J3vebQlA8BxDsGo7/3GXtfNT7juGH98W1&#43;v5Rfz/rVR46XO9f0mxlI/rE20IYQy5y9MB6MfntMuzr7H/Oc68NmjnP9cmozDp1&#43;JeMAY5G8QB5sHlP5EWzGMfb8G21AHmAMSDt67EHoc4yQCz/aPOP0I/SCLfvDDvAxNo85T2SPfejpKTc&#43;1oIPMFcnn/ZxnDW0geTBZiycGQ&#43;Y23/GOwb6Xcf0z/gkfO1rIguTADBG8JOLTui3SUTIRY6NKgDtZhhH08a0pid&#43;QK/OGQNjr17t35rOTRHmoJMXAdjolbw6mfIAc&#43;Rkzr&#43;LqQ0wJqf5qwhtwJgR8FELH0IfYBob3I1rRt/A&#43;4n8vuWbdp9fcBOzLvz0mccVm/WMs272kjza3F84FoP7ZL55xDPHbz/YshdzQOYpghjEXLjMAxlLLSAXcdZBe5yZu0f6zUVjc6xPwef&#43;AWx5XTGnzrgOoR3JOvaBdiy0Zf8ADsejBmP9H8brf8lX/vzp9tcvTMQIKGICOk&#43;M1NjNERbJPLkQ841jfruxcNEgOYA52ojtB1P7ws3MeJ/Iem49CWqf12vPxrVYPDXeG5J7Y53eG54Zb9YDjWtutl/GAea&#43;BJIX6G&#43;1B3vrdlIjudBjbaA9OdXYXItjYA4yW2fPd4y4HtbAiaXPGsC5&#43;YyJIzdtGZM52uRmH8ee0Myxm4fO/R35zDEOjJyZw3gxv3vAPK8Jbbcbo8eetTv25RZjYoExyWMMME6/Y2Lsnzm/dcF7ZIz1A2IYa/M6BqlzrYIckHlyIeYbx/x2Y2HPIDkA4/ZEBnQiuQiEORuNDWGu3TkgF7u5HgBgPLAJtTAPbR8g8/QpxCNAPdqXTH6XNO2M7b/7uv9a7VlkPNLeg6vIHoC6dtD&#43;O64TkM9BTdiHB9uxPVkXu5z47MUc4/UB7EKbfufACyh9mSu/dmOwIfaFLS9GYHzyMQfmZ&#43;xiY/jJUezFn8TJQSxja6CZZ48Zz9wcegeMU5LLXoS9oPGpReY6Tr981iFfO&#43;BckHcE8fRMLn40IN5zSG7GijaA5s8jAe2INbEhzH/Qr//6jFAnfHS8pAbU/&#43;Wf6eG6ZOxcYa7PXObm8DUIYxD8xHWmGVfGMCaPsZz8yWpsHjDgomge5KLAYjcLNvTWrYUnC0he6Nx4ubPWNHYSzxg7MYg5uP1KB3Z7w&#43;9YONZvjFx50EZfG1ftzZW59YA3RyAPuYxZi3wgNXbXrcauD6AzjlryySVyPwU2c&#43;CQbzEeegVyuEbz1NjUxgD3wbljxf6yD2zMhTagxp8xoJ9nvQfjmAtraiMmY8eaQk7PT8aAuWN5EWLgwobYqzzmyGWOsWpgvBz69ZkLzMlzD&#43;DP2iMPYEwekJNjjy2vU2sQA&#43;RsHSQhgESihEnA5tHYILZZ8tJOcX3ZgE2lHwEswA1pN8gKFz9yobVlXZC22u2CnATzpUv5asAsR7t89EMP/MoUY2J63myf8PcTjL3peUjyud7GNVmjeybwq4mzFmI/fU21JvaqnaN5YkkOYU3qLcZHHcQxdnLsGfsYD4wFqckz3hxhLePdg8wD2LImQBPDOoXHAR/COgFxQI4UjyO5cmN3f7Dhl0OfNeQ0buzVsT7taMcjjEUAce5HrgWRUy5zgNzocX2I&#43;6NdWNv9FMQZax00tuyBvLTTsz40YOxa0o8AekPGODnUAD39&#43;gXIQESijAE0id8GkMxT3AjiPeHkwg&#43;Yu2g0kJe5vvbUNslNXoAdkTO1XPrNgQOfawTmVcYFeYC5HOj2Z7IrtJkLP9zaW&#43;MTO9A3XdcE9EEN49RiXAeaHOKQ1kONm9Wd7Qt&#43;8gFjbCBjscOHCHPkMB7t2Llj55mnTbt7CVwDMM4c4ly3fel3jN&#43;5/QLGvvwUWR9OgJ&#43;5/I6TC5hrvBoeuYA2YwAaTuzycB6YR6x2YH00dgXA5Zj8kZexvMYi2OyJOTq5gH3IkfUT5MlnbOYpeZ3&#43;la//CnXygpbLwMJCEsGcYIQiCGBurjkWM1Yw1gcYO7dx42kU0Q5aPC9FK7TrSy2v3ICxvkmJxsGcnpPP2Jo15UDTj/GgnUBVE0s&#43;fsczDjF7vwC7BwKYp00OdcJe4VeI8yUN4GlRuzHkZN&#43;OjVOMl8s5SD&#43;AI&#43;fA9ZkP9KPTDpgvxjNeQLlmcvBrVzvOnOQhzxhqejydO0bnsVCcwyGfeejkVlvfWGOAPACNeC6YoxbGw5v1Gec87cTahz0J&#43;cwXcgnmxCL07TqsoVhX3&#43;3WCxg7x0e&#43;8ewDoh0sFq&#43;v1dZpIEG5YP1iJMt85wh&#43;NFyOLZybZIybQIwC1KDVnHzKSLw&#43;87KGyFojjLU2mn/sxHllnvrdj1wLwp838mWcHEIbSDtc&#43;tBwIsKc9DuWhzFgrsihD519EwMP4zy&#43;CD7irZMgXi79iH0hQM6EPaHZJ&#43;Pt2ZtG1sAujLGGcSB7lg9Yi7n15QHW0YeGQy6AJt5awBhtqY1F7Mt&#43;AHPyEesK4/iBBIjBtli&#43;vSYPccxdE7HAHvAxHu1ygeTE57HUL5xbJ/OdI3JnHetjE8YgxihADbIm8fra3AlBIAuD8YADixojOUKM&#43;dgZy2kt43MuN8i8PEGsVytNN1pMfRMNHJsPsFHKNQjHvE9mL9hIoxbxmUNfzOHNTzqBT0j4QY/77r0jhlrO5TbGPqilP9dCnPtkvRZTfcbJydh1MIaTXPc3fdYxD2DDTxw2&#43;wbMkcwX2AS5&#43;FwXWiHPdTLPPEFMwlrEox27JmTkMQc7knlowBgxXy7zBHN9Yw8AO9A&#43;zrUhPrFnHPORyzlxvlwTxC&#43;Wg40x2rn9jrzpAxwzfRmD3xg4nBNjPnbGclrL&#43;JzLDTIvj6X10PSVaCsjGBkXYTJ2oN0TUjAmdlygeTYFbArBPi4gc5kLeRHq06/2jHMMrzcP86xJrhtBDHZ9wNoIebxp3/lmdXI&#43;apF2OMnxxFgs1vpqcsb1jTb0bC2zvSUOEJsg1lzg3xFjT6wLiMFmvnXRyZ18qeHK2oyxe5PHD48108Y41&#43;STCpATe/KTK5dja9ovY/Uo2s1RI&#43;YDY/FbP8fAPMeuxbUJ8&#43;jV/cePDe0ayNNGnDzuZSLnxinwAecCTnmtCYixPtDOehwDe7NPfebB6djaCHZ7AtYDxDMX8iLUp1/txDV2NkRSiSQhwQL6xyKOPamNzzHIxQDm&#43;PQDfNQxxrE1xzEg3821hpp/Lanr2Ylt7OyAzPpJXjVubnjJge65fY8ENv9CKDAekA8ynprG2DPAZr1ckxz6M89YtHMlORDW7hwO1wTkRAPsxjOmLn6054e8AE2cNyC5iUUjAE73wpfnGQsYy2uuMY6FsfoA/rzg5RLa5aQnYrRbwzlwnPuQMdi0k&#43;9aksNa2HKtiMDHHB7AGJtzaujXbo5zx2j3nzljeX4Urv/20nLcyBRPYAiBBPoZQ&#43;wiEefGAfMBfpEcxtoPSD5jiAducuYCawN8PpkB7cTkwTRdfjTfB9MOT81uY2uRyxhxjObE6PGzXtDUMyaB3zXLw76jgf14Y2DsOvr6Zvs8Hi/r5x5hy/er3EfAfOw9c7MWdvsk1prGuL&#43;MsVkDyKmNOOKtbTxCHHZj7Z2c7M0ezAPpt15y6nMPzNMOtIl8SZc5CWy5luzLPqyJL5HrUowzVh5ALAJf2kDWyzoeN&#43;zkAeaj/LBc/&#43;3NfptAN6GB6iQc3b50CUGd5xhx3L6OUMdI5t9ubn5uqAu3UcDY/ohlbKybjM6TgljBvKNz6nMz1R2dN211OtEelO&#43;OyT6w5xqyFyBPCjbFGGEd89DWY67WT3yeCAC7&#43;2bMyKc9YwF6FO2512gF&#43;8gBMp4xwKftdpwg4xNjvGsAxMoJWCdzYtxD5sQzJ469M184x4/4BGMtb2yMsaOtLbCl2Ff2m358i&#43;VnLTkYA8cIYzFyMbeusWpj8QM0c/wgx8Bx8mX&#43;7ebCcw&#43;b3OlnbH8eI2M9hujGbrM1ut&#43;QKiRDj00gjBGQsbkZ&#43;tHYgE2BxlvHfmUAyTzHxLVmJ31kPwJe7PLryxz/UV58tGOMuvc4O/n515O6ffZTC19/wpv1ycklL34wan3mgM7VuXvthf26HkAcc&#43;soCfmNVY/xaHgR7cQCLlLXai6Q21i5gTZPLOb6rAHkNR6oAbHEpC1Bnn3Li9YHcm4Pi&#43;0ZPvrFRw7a9TKnB/vAztiYMW5ct7HWyjE64&#43;HInq2pBtgRuRPYOGZjHnY1Qg/4kJHHuTWAfuOB/RmLgIx1PcYAtGtEa4dXHxrJPMfEfa/rv720bEQTJ3Ng4SQFbAhgDrnFtVHETcsGseciPLjK&#43;MmfOXIbNy4GP3bH2LOWPoCdqTmuEZg7mdX&#43;&#43;iZbv5qanzk3rv4yb3bgFoN88ji3vvsknBvP/upPm&#43;MUbYB&#43;tDEmRxvCuO/FbP&#43;xoelhrAHsDTEH6Gc&#43;27&#43;ZfbQxtxbCXtoPYCwYywPMF&#43;TTF1jMxzoAPubAWtpyLuDEZg4&#43;bPZmLH7GxCYH2g9RGNOHxwDIbTxzfIp2Y8hFK5mLdg&#43;AfsS5Ghu1hLXQ2o3HBkae3O88T7TBQwxjOOzFNcpHjD7Et02EOXIbZ5/Zb7Pzn/ZSb2JAbBDRDkhGnGcsGAuDPAjaGLuJQF5mxBiv37EboR1wIWQsyA3OOui8AQF7EsSYi/bPBPNURg714Lcu6WhsebK7F52jbzo&#43;&#43;zEHv7nYBDmZC5gjQLtx1pJ7sfVlvn77gWexHOvYm75Ru5a055rk5gLHB6810cQRD7JWinBOTWIR5tl/&#43;oAx1HK/hXsAzJGLsf1Zg7lwDZkD8lxAc76Q79xezNenjbm9kKtNDb855Of&#43;2wuxjAW&#43;rCWHdcwfudAgewMZC7KetjwO2hjTh7HyAmKM1&#43;/Y3rUDr8Pp98gsAlhgEieBkvE5Hv3wkA&#43;wM8eXOfKj2/tp4bMPTzz5AXFsFDBOWGOsybjHsjG9tvHEUsfNJ2ZSqoGY8SeHvcCZfcHLHHF9YFa/xwFzidPnCaIdMNbm2Dpy5TiBzXhrjLHaAXb8eSIq9pucnlCJjJXbCxqb6xLW0g&#43;M0w6smzFq6uBDWzNz5eI4agP2KZdz4DlGrnXx2y9jawJszLWZo41zTG6gHVhLm3bj1fxAkBM&#43;9z/PX4T69O26BXZjgHUAHK4Fe65byfgcj37rA&#43;zuR&#43;bIb4/psw96AvID4tyvOW4cBFkMGIxkE0IfsFA2bFM2hI94Y8xPnoxPyKlfnsx1zKKISb9jfYwB9prZxoA5wgnOSSHyE08AR/L0/mY8&#43;OwZMBfwZ64HgXhtaOYeOOLtzbgU/eYxt6Yx&#43;sexMRkPiHG/xj6AOa6TsTcGfTlmP40F2K2Fdl2AeOpYC2Ss8Qi8GYvWnyCO9Wi3BjbENWKzb0RebIA4fYjIeoy9noxhLgfQZx51GNuXY2LQ7K39y2mcYjyx9g30YZMPEAew2a/ApmhnLPQBa9kPoIZ1gbWNMT95Mj4hp355MrfZDBphEIskEbEQJ4Zjctlk4rFlMUEMNmMSzG3MA55cWVcOx9Ywxnz6AYyNZzyuk3ggL8LazEGTJ492gC17E9pHmE9v5lBfTmzaybdX/Xni4ZdPIXfk0&#43;7&#43;O0bcK2COvTFnHwBj12M8GPuz59vVY64GcpHncVDbBz5ri&#43;xBzhHJbQ9yWYNcxs6JMRaN2CvaPtKXvdGzdcxjjJ05PoS5edoBNsbyounNudccQpxj4Z4BfeSOY3NdN7CHBPGAOOoj5IEfxOu/jUxyQdmEB4jE8aAAiznPQjSG3RjjxniEGPiFduLQ5MjjXI7sHe1ByjEgDgFwAHnN1w6wM7eetrSPuUgeWKAmzr7xqxParAHQ9mkfaO2OzQNoxZNRH2PquN/6iLPm2Ie5OTdWn8cbPsAY4Ofkty55oxCDD2Fsb3Ik8GevqcexvSXgzP2wJtCOLTm0AWsYY47rBvKZm3HmZy3h&#43;UqMdjT7gU4&#43;NEgebcYBYxFifXoW&#43;qyX67AuHJ7XzI2V0zl&#43;teeDMcaN8QgxHnOgnTg0OfI4l6PZ&#43;Y9IJ9CHthhIAkVYCNBY5iDW0O4cLayFGIsGLla7PGjyEGOB8fakltPY5CLGdYx5xjsHWRvxJ5YHXr8acJBds08/wLoAPY4R1&#43;6Jgmh3bC3mnLiOM9&#43;9T7tjQMzoQ/SR74VnLBqQ49g85mkXWU&#43;xN8faibUfYAySIAfk&#43;WIuPjnM02cNwFgebcZgt6&#43;EdewPODZ3zBHZF2CMeK6gPacQwLljTfxo&#43;LUxNl6RZ&#43;yFGtm3PjmcG2O&#43;duAagDUAOYg1tDtHC2shxqJBHk9jSinl/wHccipGNfxjmwAAAABJRU5ErkJggg&#61;&#61;" controls="" type="image/png"></img></p>
+<p>This will install Nbdev in your global environment.</p>
+<p>Create a directory in your local system where you would want to start your work. For example, in your local system </p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkwAAAAgCAYAAADgzSfLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAj5SURBVHhe7d1PaBvZHQfwn1wWWgqlp8rSUnqJ97AEQ2LowTmUHmoSrS67h1xNQNhQ6j8UFgwqpYV1bdhDbUFLN&#43;vWVumh9LQHIa9dekzaHhTXIhS6dv&#43;xVLIObSjtJYmt19/vzXvSjDQzb&#43;RxN876&#43;4HJ/Hvz5s2MovnpvTfjjGIEAAAAAJHGzBgAAAAAIiBgAgAAAHBAwAQAAADggIAJAAAAwAEBEwAAAIADAiYAAAAABwRMAAAAAA4ImAAAAAAcEDABAAAAOCBgAgAAAHBAwAQAAADgkO5vyf3hLVJPfssTGepyLl5OYzT25RKNvfY9mQEAAAB46aWqYeo&#43;&#43;R0HSRwsdTOkZFBjPE10&#43;ref0tlffmhSAQAAALzcUtUwnf4mT8QBk61ZkrHUNEmNk0xLMOVlLvMZPe7qBF5aGV4Z/wZ9/qs/0akAAAAALqNUAdN/d1&#43;lZ89NYMS52GAp85nP0Rcn3qRXvvAVXnjKy3iQsZLpM7NMxs&#43;p&#43;&#43;w/NPb6j2VDAIBPgQ7tr69Su1Ch2UmzSDSrtLjVMDNsqkSVQIJozeoi9TbNF6m8MkNZMxug99GmYnmFZkIT&#43;CQoT&#43;x&#43;Xduf&#43;3gjzh9LfB7YKGXPF8u04jxhV0vg/BlTJe&#43;aeOumqFSZJblEMl/PpTuHnf11Wq21eKqfr0uS/ep824XE/9diScB0Xmcfv69U55dKnfxCqfbPlWr9TKl/8LKPf6TU399V6q8/4OEdHr6v1J&#43;/y0NZqeMVpY7eVuqjbyv1pyUevmVyi1CfUzS9oY7MbCoXmRcAwIDDnQW1sOANO4dmoXai9nb2&#43;F/rUO1wmrW9/pIoJ3tramHNbsv5rHH&#43;wcwNs25hTbmzdZcnfr&#43;u7d35h4k&#43;f67yBLnSHu7scIksr2wRWV1Zci2SfD7FKGlDneyptUSf26Ak&#43;9WfhQu6uKn6MI2NnRI9/ycP/&#43;qPT5/w8G&#43;i7lOOxp7z&#43;Jk3KDPuzZt1ZzwAALzsmlXzq7vEv5EHZWlm1l8bMkm3i3lqPTqkjlkSrkkf8q/uqYLdlvO5V6R8o077Axt29replpsK2XcYV3lc&#43;3Vtf47jjT1/yc9DkrSTs/4ajEm6wTtsHDTNPLwYORrvf2AupXSvFehKe5wEPyYAskEQmXEvSJJ5s94uO5OAStLwOMLufIYyhftED5dpIsPT87tmDdHx5i3KyDI93KLNY7NC7M4PrYvLCwAgtclZqiRsShDZ8ZyZitE5oTaHDzf8mWbH&#43;dbSorY/UOjs03YtR6XZG2bB6ALlSbpfH9fxOI837vy5ysPHv7647gVE5yi7yOcu&#43;d36EpGmsPXhSDVAmsIWFxfNYK5NCJ1utcZXp0FbkrbaD1yDeQTXRZGy9dKv74cG6NFlk&#43;bgRao2m1TV66ocfvelC5h0gGQHEwjZgMius0GUDZJsGgmU9Hx0wHTnPUWqPkc0vUFHiqffu6OXS7A08au73jIZ6tdpeWKedAh0vEm3Co9p48iuu6u3icoLAOBFaB40&#43;Ef1uK8WJkSnTa18biBNlnJ5M6nxl/x2jXKl5MFamEB5Eu03yHU8iY43yijlGbXspmargD5MF0b3G3p0k8qVCgfBPJRyVFsNBh9WdmaFKuUi5TnILUla09dI5yE/AmwelTIV21uxQZPuW9Uu9vdbaNOW7hfVl6Rs7foB5cqyPvh/KmUNkwRCJiiyg3To1stMYGSDJQmQ/PN2mYxHskvvLhNtVJfomllCd96mjen79EGv0ug6vWZX3lmipV5CAIAXT760dfNTio6o7RPvZ3Gzukq1XGmog/QoRimP3a&#43;fa/uLON4oujzZGVqpuDu698tuaxB4qOf45pku2Py0atVWfTUx4QHPMGkSJSre8zXJTt6mYr5ByVs9TR5l/3WxTasHEeVo0kEjP7DfWSoF2ncTlu3m7dDP0sU0yQWCIDstwZOZH0wjtUp6MPOj2P2A7tNDWp6wTW4yTNDyQ7P&#43;2ht0l4OnAi9HqxsAXDbyK9j75ey/Gfhu4AlvTjnp8CG1I/KLOjIQcecbXp5oer8&#43;ru1HzX9Ug&#43;WJ0087SbO2huEe0TafG1cT01UkTw96tTvDtS2RmgfUoBbVVv2fOw7qgxU98XQeIX2adNNqm0Jido7KpSl2eJusv2oxYdmiPlMpm&#43;Qk4LGBkQRPviCpFxDx2DbF9QIl37ykHdkc1W1znG/wWtmu0dIDnj/aoMcFCaZMUx0AwAvl9Y/YolLIzcd3Ax&#43;8ObXaA/0wOtTWX/CcX70h1QC02vvy3&#43;rfEHTTRUy&#43;seVhkfu1HNs714/IWR6fUdJK7VRpik/jh84gFZIyzWsDw/&#43;hgrFPmmLNZLzzl&#43;2COn2bQMn2SRoMmnTTm38w622aUUy8TtP0mD7yd/IOc22JHqgj3VT3TqBHOADAJ882nY30PpjJG/z1PvCLutepOUszK4Nf/PKEWZ6K0v/CsZ/Y8sTu15t1Hc&#43;5jjdKgvL0jJIWLl42x5/AiFqgpKLyiKhF0iK26fgj5ZRlSxUwdZ/J6wMk6DGBjw6ATCAU6OAty2W9DbB42qw/fcpjl4d/pCMzKYHQd&#43;akSc5fc3RMm/Ob/C/bnR9qirve69DE/HkBAHwSOvtUl/4Vt0e9Y8sj7y2qbdunfTq6gzdnlK7Gxlkex35d25/7eKO4y9N7Ss6Vlpq0H2h&#43;a1J1q0H5tOcUPNkZKsj5D3Sk5mtQDX9iLVRUHnGffbtN77oz3aHfTIuUZUv3pu/ff5Oetn7NU2PU1dn0/ySK/jMoMt2VlPbPonjTeof6z6Zk6LOvfp2&#43;9LVNWRKBg6Fbpo/SXL33dJu8JkDeEmBNbxzRA&#43;ndLU/JTSyT7dLUW66F5wUAcHGk39AWkXkrsiY3dP3o9DD79uQ4&#43;ukf&#43;8Uf&#43;8Zs2Xedcq43fScsT&#43;R&#43;Xdtn0xxvyPkz4svziG76jjv6nPENcj3YbwVv&#43;h4m5y/qLdqD68LSBs4/iz3H&#43;vq1qTDQdKufaPNdqME8hvc7cG35updz9aE3fUeXzds&#43;7C3zIlXABAAAAHAVpOvDBAAAAHAFIGACAAAAcEDABAAAAOCAgAkAAADAAQETAAAAQCyi/wGTH2ufz27IlQAAAABJRU5ErkJggg&#61;&#61;" controls="" type="image/png"></img></p>
+<p><code>cd</code> into this directory now. This will be the place where you are going to place your project. Now open a command prompt from inside this directory and type <code>julia</code>, this will launch a Julia shell. Here type <code>&#93;</code> to launch the &quot;pkg&quot; prompt and then you can type <code>activate .</code> in order to create a restricted environment where you can restrict further installations or else you can skip typing <code>activate .</code> and type <code>import Nbdev followed by Nbdev.new&#40;&#41;</code>. This will create the &quot;docs&quot;, &quot;Nbdev&quot;, &quot;nbs&quot; and &quot;src&quot; directories in your project root. In addition to these directories the &quot;Manifest.toml&quot;, mkdocs.yml&quot; and &quot;Project.toml&quot; will also be created at the project root.</p>
+
+<div class="markdown"><div class="admonition note"><p class="admonition-title">Note</p></div>
+<p><em>Right now nbdev is highly opinionated about the folder structure like presence of &quot;nbs&quot;, &quot;src&quot; and &quot;docs&quot; directory.</em></p>
+</div>
+<h2 id="first-notebook">First notebook</h2>
+<div class="markdown"><p>Inside the project directory, open a terminal and start Pluto the usual way and create a notebook inside the &quot;nbs&quot; directory.</p>
+<p>At this point you might have installed Nbdev in your global environment. If this is not the case then follow any of the below methods.</p>
+</div>
+<h2 id="start-building-your-project">Start building your project</h2>
+<div class="markdown"><p>There are some anchors which tell Nbdev about the portion of your notebook that should be exported as code or should be part of documentation or should not be touched.</p>
+</div>
+<div class="markdown"><h3>#export</h3>
+</div>
+<div class="markdown"><p>when you put the comment #export at the begining of a cell, it tells nbdev to export that cell as a code into the source file.</p>
+</div>
+<div class="markdown"><pre><code>#export
+function somefunc&#40;x&#41;
+    x&#43;1
+end</code></pre>
+</div>
+<div class="markdown"><p>Nbdev will now put the above cell as part of the source file &#40;with the same name as the current notebook&#41; inside the src directory.</p>
+</div>
+<div class="markdown"><h3>#hide</h3>
+</div>
+<div class="markdown"><p>Suppose that you have included soem cells as par of experment while developing your package but you want that the cell should neither be exported as a code nor that should be exported as part of documentation.</p>
+<p>In such a case use the <code>#hide</code> anchor at the begining of the cell.</p>
+</div>
+<div class="markdown"><pre><code>#hide
+myexperiment &#61; 1&#43;1</code></pre>
+</div>
+<div class="markdown"><p>such a cell won&#39;t be exported.</p>
+</div>
+<div class="markdown"><p>Any other cell which neither has the <code>#hide</code> nor the <code>#export</code> anchor, is exported as an example block. For such a block the cell is executed and the output is captured.</p>
+<p>The output and the code of an example cell appears in the final document.</p>
+</div>
+<div class="markdown"><h3>#noop</h3>
+</div>
+<div class="markdown"><p>Nbdev captures the output for cells which are not marked with <code>#export</code> by default. but there might be times when you have an example for which you just want to show the code and not the output. Such cases can be handled by the <code>#noop</code> anchor. Just start such cells with <code>#noop</code> and nbdev will not capture output for such cells.</p>
+</div>
+<div class="markdown"><pre><code>begin
+#noop
+&quot;
+some experiment
+&quot;
+function myexperiment
+    1&#43;1
+end
+myexperiment
+end</code></pre>
+</div>
+<div class="markdown"><p>In the above case even though Pluto displays the docstring as an output, that output won&#39;t be displayed in your document.</p>
+<p>As another example let&#39;s consider something like the code below</p>
+</div>
+<div class="markdown"><p><code>#noop  add &#61; 1&#43;1 add</code>&#96;</p>
+</div>
+<div class="markdown"><p>The output for such code cell won&#39;t be captured in the documentation. Only the code will be displayed once you build the document.</p>
+</div>
+<h2 id="docstrings">Docstrings</h2>
+<div class="markdown"><p>Define a docstring for functions, structs etc. and use the special function <code>showDoc</code> to document that function or struct</p>
+</div>
+
+<pre><code>&quot;&quot;&quot;
+&gt; This is a function docstring
+&quot;&quot;&quot; 
+function somefunc()
+    1+1
+end
+------
+Output
+------
+&lt;div class=&quot;pluto-docs-binding&quot;&gt;
+&lt;span&gt;somefunc&lt;/span&gt;
+&lt;div class=&quot;markdown&quot;&gt;&lt;blockquote&gt;
+&lt;p&gt;This is a function docstring&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+<div class="markdown"><p><code>showdoc&#40;somefunc&#41;</code> would show the function like this 👇</p>
+</div>
+<div class="markdown"><p><code>showdoc&#40;somefunc&#41;</code></p>
+</div>
+<h2 id="exporting-code">Exporting code</h2>
+<div class="markdown"><p>Once you are done with your notebook and you can run <code>notebook2script&#40;&#41;</code>. This reads the current notebook in the &quot;nbs&quot; folder, scrubs out all the cells which are do not start with <code>#export</code> and creates a module file in the src folder.</p>
+<p>The module file in the src folder will have the same name as the current file with the first letter in uppercase.</p>
+<p>The exported code file automatically has all the code inside the module with the same name as the file.</p>
+<p>For example, the exported source code file would have the following structure 👇</p>
+<pre><code>module Example
+
+function somefunc&#40;x&#41;
+    x&#43;1
+end
+
+end</code></pre>
+</div>
+<div class="markdown"><p>Once you are happy with the code you can export the source code by calling </p>
+<p><code>notebook2script&#40;nbsdir, srcdir&#41;</code></p>
+<p>Here &quot;nbs<em>dir&quot; is the directory where your notebooks are stored and the &quot;src</em>dir&quot; is the directory where you want your source code files to be exported. This is usually the <code>src</code> directory.</p>
+</div>
+<h2 id="tests">Tests</h2>
+<div class="markdown"><p>Nbdev comes with support for <a href="https://github.com/JuliaPluto/PlutoTest.jl">PlutoTests&#40;in alpha&#41;</a> out of the box.</p>
+<p>What this means is that you can write reactive tests within the same notebook where you are writing your code. when you run that particular notebook, the affected tests are executed. So, you can write tests as you write your code.</p>
+<p>In addition to reactivity you can also take advantage of other goodies in PlutoTests like &quot;time travel&quot; to see the different stages of your code &#40;follow the link to PlutoTests for further details&#41;.</p>
+</div>
+<div class="markdown"><div class="admonition note"><p class="admonition-title">Note</p></div>
+<p>Currently PlutoTests is in <strong>alpha</strong> so use it with caution. However, you can even use the native test suite in Julia to write your tests but won&#39;t get features like time travel while using the native test suite.</p>
+<p>Automatic execution of tests using github actions or Travis CI is planned for future versions of PlutoTest</p>
+</div>
+<h2 id="building-documentation">Building documentation</h2>
+<div class="markdown"><p>Do not forget to edit the &quot;index&quot; notebook available in the &quot;nbs&quot; folder. This notebook would be used as your homepage and the contents of this notebook are also used in the README file.</p>
+</div>
+<div class="markdown"><div class="admonition note"><p class="admonition-title">Note</p></div>
+<p><em>You will get the index notebook in the nbs directory when you create a new project using the nbdev template.</em></p>
+</div>
+<div class="markdown"><p>To build documentation, goto the project root and launch the Julia prompt and then import Nbdev with <code>import Nbdev</code> and then call the following function <code>Nbdev.build&#40;&lt;your notebook directory&#41;</code>. Your code at the Julia prompt should look like this </p>
+<pre><code>import Nbdev
+Nbdev.build&#40;&quot;nbs&quot;&#41;</code></pre>
+<p>This will run all your notebooks in the notebook directory &#40;/nbs usually&#41; and pick up the cells which are not marked as <code>#export</code> or #hide and then create markdown files in the <code>/docs</code> directory.</p>
+</div>
+<h2 id="creating-the-table-of-contents">Creating the Table of contents</h2>
+<div class="markdown"><p>The default configuration in the &quot;mkdocs.yml&quot; file &#40;available to you when you create your repository from the template&#41; contains all the necessary default configuration required to create you project page.</p>
+<p>In order to test how your website looks like, go to the project root and type <code>mkdocs serve</code> . This would serve the project documentation to view locally &#40;localhost&#41;.</p>
+<p>The table of contents in the default case would be created by mkdocs on the basis of the documents available under the &quot;docs&quot; directory.</p>
+<p>If you want to give your own spin to the table of contents then add a config similar to the following in the mkdocs.yml file–&gt;</p>
+<pre><code>nav:
+    - Home: index.md
+    - Docs:
+      - Nav1: nav1.md
+      - Nav2: nav2.md</code></pre>
+</div>
+<div class="markdown"><div class="admonition note"><p class="admonition-title">Note</p></div>
+<p><em>Make sure that the &quot;Home&quot; navigation should always be the index.md file</em></p>
+</div>
+<div class="markdown"><p>For more details about setting up navigation refer <a href="https://www.mkdocs.org/user-guide/writing-your-docs/">this</a> and <a href="https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/?h&#61;table&#43;con&#43;of#table-of-contents">this</a> </p>
+</div>
+<h2 id="other-required-edits">Other required edits</h2>
+<div class="markdown"><p>In the mkdocs.yml file, edit the &quot;site<em>name&quot; config to the name that you want to give to your site. The &quot;repo</em>url&quot; and &quot;repo_name&quot; should be your git repository url and the name of your git repository respectively.</p>
+</div>
+<h2 id="optional-edits">Optional edits</h2>
+<div class="markdown"><p>There are loads of other optional edits which you can make to the config file in order to customize your project website. Refer the documentation <a href="https://squidfunk.github.io/mkdocs-material/getting-started/">here</a> to know about the other options.</p>
+</div>
+<h2 id="publishing-your-project-website">Publishing your project website</h2>
+<div class="markdown"><p>The first step is to checkin all your project contents to your repoitory. As soon as you push your changes to the remote branch, the github action &#40;placed under &quot;/.github/workflows&quot; creates a new &quot;gh-pages&quot; branch under your project repository, builds the project webpages and pushes the created pages to the &quot;&quot;gh-pages&quot; branch.</p>
+<p>If you go to the &quot;Actions&quot; tab in your github repository then you can view the Action under the &quot;All workflows&quot; section. Here, a green tick mark before the action name suggests that all went fine.</p>
+<p>Now, go to the Settings tab in your repository, click on Pages menu item from the left menu and in the &quot;Source&quot; drop-down select &quot;gh-pages&quot; as the source and root as the source folder, Click on save.</p>
+<p>A detailed step by step description about configuring github pages can be read <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">here</a>.</p>
+<p>You project website would be published at the following url –&gt; &quot;&lt;username&gt;.github.io/&lt;project reporsitory name&gt;&quot;</p>
+</div>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../coderunner/" class="md-footer__link md-footer__link--next" aria-label="Next: Coderunner" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Coderunner
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/thecodingprojec" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://medium.com/ml-and-automation" target="_blank" rel="noopener" title="medium.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M180.5 74.262C80.813 74.262 0 155.633 0 256s80.819 181.738 180.5 181.738S361 356.373 361 256 280.191 74.262 180.5 74.262Zm288.25 10.646c-49.845 0-90.245 76.619-90.245 171.095s40.406 171.1 90.251 171.1 90.251-76.619 90.251-171.1H559c0-94.503-40.4-171.095-90.248-171.095Zm139.506 17.821c-17.526 0-31.735 68.628-31.735 153.274s14.2 153.274 31.735 153.274S640 340.631 640 256c0-84.649-14.215-153.271-31.742-153.271Z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/satyabratapal" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": "navigation.tabs", "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.0238f547.min.js"></script>
+      
+    
+  </body>
+</html>
